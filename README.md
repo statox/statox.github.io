@@ -37,3 +37,8 @@ In the future I need to add some CI.
 `_includes/layouts` contains the structure which is used in templates like `index.html` or `posts.html`.
 
 The template syntax is [nunjucks](https://www.11ty.dev/docs/languages/nunjucks/) because so far it seems to be the easier but maybe I'll change that.
+
+## References
+
+- A blog made with the same tools https://github.com/11ty/eleventy-base-blog
+- Eleventy docs https://www.11ty.dev/docs/
