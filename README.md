@@ -32,6 +32,13 @@ For now github pages server the `/docs/` directory of the master branch. To publ
 
 In the future I need to add some CI.
 
+I created a Travis CI job here:
+https://travis-ci.org/github/statox/blog
+
+It needs an access token generated like so:
+ - On Github: Account > Settings > Developer settings > Personal access token
+ - In the travis job settings I added its value
+
 ## Notes
 
 `_includes/layouts` contains the structure which is used in templates like `index.html` or `posts.html`.
