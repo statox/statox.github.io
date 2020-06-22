@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The stuff I do</title>
+    <meta name="description" content="A personal blog where I write about my side projects">
+    <meta name="keywords" content="statox blog">
+    <meta property="og:title" content="The stuff I do">
+    <meta property="og:url" content="https://www.statox.fr">
+    <meta property="og:description" content="A personal blog where I write about my side projects">
+    <meta property="og:type" content="website">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-fonts@1.1.1/fonts/inter.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css">
+</head>
+<body>
+    <header>
+        <h1>The stuff I do</h1>
+        <nav>
+            <a href="/">Home</a> /
+            <a href="/posts/">Posts</a> /
+            <a href="https://github.com/statox/" target="_blank">GitHub</a> / 
+        </nav>
+    </header>
+
+    
+<h2>Colorscheme changer</h2>
+
+<h3>Automatic colorscheme changer</h3>
+<p>A few years ago, <a href="https://vi.stackexchange.com/q/13660/1841" target="_blank" rel="noopener noreferrer">a question on vi.stackexchange</a> caught my attention. @oarfish wanted a way to change their colorscheme depending on the time of the day.</p>
+<p>In a world where Apple has a tool by default on most of its devices to change the colorscheme from dark to light during the day and where a lot of developpers use extensively <a href="https://justgetflux.com/" target="_blank" rel="noopener noreferrer">f.lux</a> or <a href="http://jonls.dk/redshift/" target="_blank" rel="noopener noreferrer">redshift</a> it does make sense to be able to change your favorite text editor colorscheme automatically too.</p>
+<p>To add this feature I made a very simple plugin which takes for variables as its configuration:</p>
+<ul>
+<li><code>g:dayTime</code> and <code>g:nightTime</code> which are two arrays used to describe when in the plugin should switch the colorscheme in the morning and in the evening.</li>
+<li><code>g:dayColorscheme</code> and <code>g:nightColorscheme</code> which are the names of the colorschemes to use for each time of the day.</li>
+</ul>
+<p>The source code is on <a href="https://github.com/statox/colorscheme-changer.vim" target="_blank" rel="noopener noreferrer">Github</a>.</p>
+<p>This plugin leverages the timer function of Vim &gt;8 and neovim (See <a href="http://vimhelp.appspot.com/eval.txt.html#timers" target="_blank" rel="noopener noreferrer"><code>:h timers</code></a>) to regularly check the current system hour, compare it to the configurations of the plugin and call <code>:colorscheme</code> accordingly.</p>
+<p>This was interesting to create this plugin because I didn't have an opportunity to play with Vim's timers before. However after a few days of use I realized that I actually like my colorscheme and I don't want to change it during the day. So I soon stopped using this plugin but this gave me another idea.</p>
+<h3>Event based colorscheme changer</h3>
+<p>I noticed that my main pain point related to my colorscheme was when I switch vim to the diff mode using <a href="http://vimhelp.appspot.com/diff.txt.html#%3Adiffthis" target="_blank" rel="noopener noreferrer"><code>:h :diffthis</code></a>. I realized that my current colorscheme didn't do as well as the previous one in diff mode. So I came up with a pretty simple trick in my <code>.vimrc</code>:</p>
+<pre class="language-vim"><code class="language-vim"><span class="token comment">" Color configuration</span><br>    <span class="token keyword">try</span><br>        <span class="token comment">" Define the default colorscheme and the one used in diff mode</span><br>        <span class="token keyword">let</span> g<span class="token punctuation">:</span>colorsDefault  <span class="token operator">=</span> <span class="token string">'forest-night'</span><br>        <span class="token keyword">let</span> g<span class="token punctuation">:</span>colorsDiff     <span class="token operator">=</span> <span class="token string">'jellybeans'</span><br><br>        <span class="token comment">" Set up the default colorscheme when vimrc is sourced</span><br>        execute <span class="token string">"colorscheme "</span> <span class="token operator">.</span> g<span class="token punctuation">:</span>colorsDefault<br>    <span class="token keyword">catch</span><br>        echo <span class="token string">"Colorscheme not found"</span><br>    <span class="token keyword">endtry</span><br><span class="token comment">" Diff configurations</span><br>    <span class="token comment">" Easier diff commands</span><br>    command<span class="token operator">!</span> DT execute <span class="token string">"colorscheme "</span> <span class="token operator">.</span> g<span class="token punctuation">:</span>colorsDiff | <span class="token keyword">windo</span> <span class="token keyword">diffthis</span><br>    command<span class="token operator">!</span> DO execute <span class="token string">"colorscheme "</span> <span class="token operator">.</span> g<span class="token punctuation">:</span>colorsDefault | <span class="token keyword">windo</span> <span class="token keyword">diffoff</span></code></pre>
+<p>The idea is very simple: Declare two variables holding the names of the colorschemes I want to use in normal mode and in diff mode and define some wrapper commands around diffmode:</p>
+<ul>
+<li><code>:DT</code> (For <code>DiffThis</code>) will change the colorscheme and then switch every window to diffmode</li>
+<li><code>:DO</code> (For <code>DiffOff</code>) will do the opposite: Switch back to default colorscheme and stop diff mode.</li>
+</ul>
+<p>These lines having been <a href="https://github.com/statox/dotfiles/blob/7fd57caab6f7e610529b976ec45728c650a1322b/vimrc#L381-L403" target="_blank" rel="noopener noreferrer">in my <code>.vimrc</code></a> for a few time now and so far they fit my needs. Maybe in the future I'll also explain with more details how I handle the diff mode in Vim.</p>
+
+
+<p><a href="/posts">← Posts</a></p>
+
+
+    <script data-goatcounter="https://statoxblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script async defer src="https://api.newcss.net/latest.js"></script>
+    <noscript><img src="https://api.newcss.net/noscript.gif" alt=""></noscript>
+</body>
+</html>
