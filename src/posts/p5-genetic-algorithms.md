@@ -1,7 +1,8 @@
 ---
 layout: layouts/post.njk
 tags: ['post', 'p5', 'algorithms']
-title: Genertic algorithms
+date: 2020-01-23
+title: Genetic algorithms
 ---
 
 This was my beginning with P5.js and I wanted to play with genetic algorithms.
