@@ -1,11 +1,14 @@
 {
     "author": "statox (me@statox.fr)",
     "bugs": {
-        "url": "https://github.com/statox/statox.github.io/issues"
+        "url": "https://github.com/statox/blog/issues"
     },
     "description": "My blog attempt",
     "devDependencies": {
-        "@11ty/eleventy": "^0.11.0"
+        "@11ty/eleventy": "^0.11.0",
+        "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+        "markdown-it-external-links": "0.0.6",
+        "moment": "^2.27.0"
     },
     "homepage": "www.statox.fr",
     "keywords": [],
@@ -13,7 +16,7 @@
     "name": "blog",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/statox/statox.github.io.git"
+        "url": "git+https://github.com/statox/blog.git"
     },
     "scripts": {
         "dev": "npx 11ty/eleventy --input=src --output=docs --serve",

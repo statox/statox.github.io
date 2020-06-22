@@ -1,6 +1,7 @@
 ---
 layout: layouts/post.njk
 tags: ['post', 'vim']
+date: 2020-06-22
 title: Example
 eleventyExcludeFromCollections: true
 ---
