@@ -1,17 +1,19 @@
 language: node_js
 node_js:
     12
-# deploy:
-  # provider: pages
-  # skip_cleanup: true
-  # github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  # keep_history: true
-  # on:
-    # branch: master
-
 deploy:
-  # deploy master to production
-  - provider: script
-    script: bash tools/deploy.sh
-    on:
-      branch: master
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: master
+  local_dir: docs/
+  fqdn: www.statox.fr
+
+# deploy:
+  # # deploy master to production
+  # - provider: script
+    # script: bash tools/deploy.sh
+    # on:
+      # branch: master
