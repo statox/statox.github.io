@@ -5,4 +5,5 @@
  */
 *{
     font-family: var(--nc-font-mono);
+    text-align: justify;
 }
