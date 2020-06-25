@@ -25,17 +25,15 @@ Will build the site in `/docs/` which is served by github pages.
 
 ## Publishing the site
 
-For now github pages server the `/docs/` directory of the master branch. To publish changes:
+Github pages serves the `gh-pages` branch. The deployment is automated with travis-ci. (The job is [here](https://travis-ci.org/github/statox/blog))
 
-    - run `npm run build`
-    - commit `/docs/` to the master branch
+In `.travis.yml` I use the github pages provider which does the following:
 
-In the future I need to add some CI.
+ - Install everything
+ - Use `npm run build` to generate the site in the `docs/` directory
+ - Checkout the result on the `gh-pages` branch
 
-I created a Travis CI job here:
-https://travis-ci.org/github/statox/blog
-
-It needs an access token generated like so:
+The job needs an access token generated like so:
  - On Github: Account > Settings > Developer settings > Personal access token
  - In the travis job settings I added its value
 
