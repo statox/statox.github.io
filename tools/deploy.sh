@@ -6,7 +6,11 @@ USERNAME='statox'
 # abort on errors
 set -e
 
+# dependencies
+npm ci
+
 # build
+rm -r docs/
 npm run build
 
 # navigate into the build output directory
@@ -19,4 +23,3 @@ git commit -m 'deploy'
 git push -f git@github.com:$USERNAME/$REPO.git master:master
 
 git checkout -
-

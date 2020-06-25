@@ -12,6 +12,6 @@ node_js:
 deploy:
   # deploy master to production
   - provider: script
-    script: bash scripts/deploy.sh
+    script: bash tools/deploy.sh
     on:
       branch: master
