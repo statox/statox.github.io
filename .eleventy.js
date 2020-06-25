@@ -60,4 +60,10 @@ module.exports = function(eleventyConfig) {
         .use(markdownItEmoji);
 
     eleventyConfig.setLibrary("md", markdownLib);
+
+
+    /*
+     * Copy ./css/ to docs/css/
+     */
+    eleventyConfig.addPassthroughCopy("css");
 };
