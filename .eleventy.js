@@ -24,8 +24,8 @@ module.exports = function(eleventyConfig) {
     /*
      * Filter to reformat dates
      */
-    eleventyConfig.addFilter('dateReadable', date => {
-        return moment(date).utc().format('YYYY/MM/DD'); // E.g. May 31, 2019
+    eleventyConfig.addFilter('datePost', date => {
+        return moment(date).utc().format('MMM YYYY');
     });
 
 

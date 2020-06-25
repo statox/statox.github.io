@@ -39,6 +39,11 @@ It needs an access token generated like so:
  - On Github: Account > Settings > Developer settings > Personal access token
  - In the travis job settings I added its value
 
+## Analytics
+
+To do analytics I use [goatcounter](https://www.goatcounter.com/) because it respects user's privacy and that's important.
+The dashboard is here https://statoxblog.goatcounter.com/
+
 ## Notes
 
 `_includes/layouts` contains the structure which is used in templates like `index.html` or `posts.html`.
