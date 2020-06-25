@@ -25,7 +25,7 @@ When I heard that John Conway passed away in 2020 I decided to create a tribute 
 For this implementation I had a few things in mind which really mattered to me:
 
  - First I wanted it to be executable in a browser. Mainly because I need to practice a bit my web development but also because it is easier to share my lovely shiny new project with people.
- - I wanted to use [P5.js](https://p5js.org/), an implementation of Processing in the browser which makes it super easy to create cool visuals in a web page.
+ - I wanted to use [p5.js](https://p5js.org/), an implementation of Processing in the browser which makes it super easy to create cool visuals in a web page.
  - I wanted to be able to customize the behavior of the CA very easily.
  - I wanted to have a result quickly and be able to iterate on that _(otherwise I get bored and never finish my side projects, which is probably the main issue for developers and side projects)_
 

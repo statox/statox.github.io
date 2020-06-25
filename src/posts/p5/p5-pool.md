@@ -17,7 +17,7 @@ After watching some of the videos I decided that I was ready to try to do someth
 
 What do I need to do that?
 
-First of all I need a table and some balls rolling on it. This is pretty straightforward: a p5js canvas will be my table, my balls are simple javascript objects with some coordinates, the ability to apply a force on it (i.e. incrementing the coordinates), a friction force to keep the ball from rolling for ever and some simple tests to prevent the balls from falling out of the table.
+First of all I need a table and some balls rolling on it. This is pretty straightforward: a p5.js canvas will be my table, my balls are simple javascript objects with some coordinates, the ability to apply a force on it (i.e. incrementing the coordinates), a friction force to keep the ball from rolling for ever and some simple tests to prevent the balls from falling out of the table.
 
 ``` js
 function Ball(x, y, id, color) {
