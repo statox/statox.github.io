@@ -5,6 +5,10 @@ date: 2020-05-13
 title: Playing with cellular automata in the browser
 ---
 
+This has been one of my most satisfying project recently so if you want to see cool visualisations of digital life the demo is live [here](https://statox.github.io/p5-cellular-automaton/).
+
+The code of this project is [on Github](https://github.com/statox/p5-cellular-automaton), now let me tell you what this is about.
+
 ### Cellular automata are cool! 
 
 Despite the fact that I never remember which spelling is singular or plural (`automaton`? `automata`? `automat[a|on]s`??) these mathematical concepts have been fascinating me for a long time.
@@ -39,7 +43,3 @@ By default the app will start on a simple Game of Life CA, but in the settings t
 I found a few interesting presets which can be used to create new CA and see cool patterns emerging.
 
 When I have time I'll add some pictures here... And maybe a technical write up about how it was done!
-
-
-### Demo and code
-The code of this project is [on Github](https://github.com/statox/p5-cellular-automaton) and the demo is live [here](https://statox.github.io/p5-cellular-automaton/)

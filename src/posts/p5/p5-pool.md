@@ -5,6 +5,10 @@ date: 2019-01-10
 title: A pool in the browser
 ---
 
+Go grab a beer and play the pool [in the demo](https://statox.github.io/p5-pool/)!
+
+And if that's your thing you can see the code [on Github](https://github.com/statox/p5-pool).
+
 ### Pool, snooker, billiard?
 
 I love to watch Daniel Shiffman's videos on Youtube, I can spend _hours_ binging his channel [The Coding Train](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw) and it always gives me some inspiration for new projects.
@@ -74,7 +78,3 @@ Having this code I was able to create my pool, put balls on it, apply a force on
 Well now is the time for the balls to bounce on each other when they touch!
 
 And this is where the project became pretty fun because I didn't want to use a full blown physics engine, so I did mine... Well I did a function which bounced two circles against each other. The code of this function is [here on Github](https://github.com/statox/p5-pool/blob/54c4a280b4d90eb130f1c907b04f75f132f7ec93/Ball.js#L44-L115). It uses some workarounds and still has some bugs (sometimes the balls teleport away from each other when they touch, some times they get crazy and go off the tables) also it is not really elegant to read... But it works! (Kinda)
-
-### Code and demo
-
-A [demo](https://statox.github.io/p5-pool/) is available online and the code is [on Github](https://github.com/statox/p5-pool)

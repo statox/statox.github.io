@@ -5,6 +5,10 @@ date: 2020-01-23
 title: Genetic algorithms
 ---
 
+If you want to see a bunch of robots blindly running toward a black dot, here is [the demo](https://statox.github.io/p5-genetics/).
+
+And [the code](https://github.com/statox/p5-genetics) is on Github, it's not beautiful but it's free. Now let's see what I did here.
+
 ### Teaching a machine to do stuff
 
 Once of the funniest things to do with a computer or a piece of hardware and is to make it smart. This has been humankind obsession for many decades now and it's not going to stop anytime soon. Of course there are tons of way to make a piece of silicon smart, but for this project I wanted to explore a very simple category of machine learning algorithms: *The genetic algorithms*.
@@ -51,4 +55,58 @@ Let's notice that it changes its color depending on if it crashed (i.e touched t
 
 ### Actually, _a bunch_ of smart robots
 
-Still [the demo](https://statox.github.io/p5-genetics/) is fun to watch and [the code](https://github.com/statox/p5-genetics)... well it's ugly, but free.
+So having a robot and making it move is good but to create a genetic algorithm I need to use more bots. So I will need to create a crowd of robots all starting at the same position but all with different genes (and that makes each robot unique and beautiful, just like you 🤗):
+
+``` js
+function Crowd(size) {
+    this.robots = [];
+    this.matingPool = [];
+    this.size = size;
+    for (var i=0; i<size; i++) {
+        this.robots.push(new Robot(W/2, L/2, ROBOT_SIZE, LIFESPAN));
+    }
+}
+```
+
+This crowd is the hearth of our algorithm: During a generation each robot will move independently, once they reach their lifespan the crow will inspect all of the bots, check if they reached the target and if they didn't how far they were from the target or if they crashed against a wall.
+
+Based on this information it is then possible to rank the robots: The one which crashed will be removed and the other ones will be more advantages the closer they got to the target. To do this the crowd has a mating pool which is reset for each generation: Each robot is then added to the pool a number of times proportional to its efficiency.
+
+This is great because that will allow me to right a simple function to create the new generation of robots:
+
+``` js
+Crowd.prototype.evolve = function() {
+    for (robot of this.robots) {
+        robot.reset();
+
+        var parentA = random(this.matingPool);
+        var parentB = random(this.matingPool);
+        var child = parentA.merge(parentB);
+
+        robot.genes.moves = child;
+        robot.genes.mutate();
+    }
+}
+```
+
+For each robot we will take randomly two parents in the mating pool (which favored the efficient robots of the previous generation) and merge their genes which simply mean here that we merge the first half of one parent's genes with the second half of the other parent's genes. This could have been done in a lot of different ways like take every other genes of the parents or taking them randomly.
+
+And then come the magical random touch: `robot.genes.mutate()` will move a few genes of this new robot, this way some will get better and some worst and the natural selection will do its job on the next generation:
+
+``` js
+Genes.prototype.mutate = function() {
+    var mutationCnt = 0;
+    for (var i=0; i<this.moves.length; i++) {
+        if (random() < MUTATION_RATE / 100) {
+            mutationCnt++;
+            this.moves[i] = this.generateNewMove();
+        }
+    }
+}
+```
+
+### And now let's them to their job
+
+Now that I have all the important components of the algorithm I can generate a crowd and a target, wait for the robots to become more and more efficient at reaching their target and finally move the target and watch them learn everything again.
+
+And to please my inner [/r/dataisbeautiful](http://reddit.com/r/dataisbeautiful) fan I also added a few graphs to better visualize the efficiency.

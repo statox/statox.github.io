@@ -5,6 +5,11 @@ date: 2020-03-03
 title: Solving mazes in the browser
 ---
 
+
+Quick, no time to explain! Have a look at how a computer goes out of a maze [in the demo](https://statox.github.io/p5-maze/)!
+
+And check out [Github](https://github.com/statox/p5-maze/) if you want to see the code.
+
 ### Getting out of the maze
 
 Solving mazes is not a new topic, every computer science student heard about this topic at least once during their studies and most of them tried to implement a maze solver one way or another. However seeing a computer getting out of a maze is always a source of wonder and excitement to me. I know there is nothing magical in these maze solving algorithms but seeing them getting executed has always been some kind of a kink to me.
@@ -29,7 +34,3 @@ About the solvers so far I implemented four of them:
  - The depth first search and breadth first search algorithms: Classical and not really surprising.
  - The wall follower: This one is the less efficient of all but, given there is not island in a maze it will always find the exit. This one is cool because it can easily be applied in the real world.
  - The Euristic approach: This one is based on a very smart euristic I chose myself and which can be summed up like this: Between the four next possible cells, choose the one the closest to the exit. To my surprise it works reasonably well but I suspect this is because my mazes are not complex enough.
-
-### Demo and code
-
-The [demo is here](https://statox.github.io/p5-maze/) and the code is on [Github](https://github.com/statox/p5-maze/)
