@@ -2,7 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'p5', 'physic']
 date: 2019-01-10
-title: A pool in the browser
+title: A pool game with my own physic engine
 ---
 
 Go grab a beer and play the pool [in the demo](https://statox.github.io/p5-pool/)!

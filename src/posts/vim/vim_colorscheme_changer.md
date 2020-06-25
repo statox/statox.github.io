@@ -2,7 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'vim']
 date: 2017-09-22
-title: Colorscheme changer
+title: Changing my Vim colorscheme depending on the time of the day
 ---
 
 ### Automatic colorscheme changer

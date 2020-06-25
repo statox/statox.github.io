@@ -2,7 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'vim']
 date: 2017-02-01
-title: GOD.vim - Quote the help
+title: GOD.vim - The easiest way to quote Vim's help
 ---
 
 ### I love to Quote the doc

@@ -2,7 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'p5', 'maze']
 date: 2020-03-03
-title: Solving mazes in the browser
+title: Generating a maze... and then solving it
 ---
 
 

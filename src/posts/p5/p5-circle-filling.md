@@ -2,7 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'p5']
 date: 2020-06-21
-title: Circle filling
+title: Circle filling algorithm (with kittens)
 ---
 
 Inspired by a video of The Coding Train on Youtube I implemented a circle filling thing!
