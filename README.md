@@ -6,22 +6,21 @@ For now the rest of this readme will probably be my cheatsheet/todo list.
 # Tools used
 
 - The [newcss](https://newcss.net/) css framework.
-- The [eleventy](https://www.11ty.dev/) statix site generator.
+- The [eleventy](https://www.11ty.dev/) static site generator.
 
 # Commands
 
-##Develop site locally.
+## Develop site locally.
 
-The following command will watch the files, generate the site in the `/docs/` directory and serve it.
+The following command will watch the files, generate the site in the `docs/` directory and serve it locally.
 
     npm run dev
-
 
 ## Generate the site
 
     npm run build
 
-Will build the site in `/docs/` which is served by github pages.
+Will build the site in `docs/` which is served by github pages. (This is actually done by the CI)
 
 ## Publishing the site
 
@@ -46,7 +45,7 @@ The dashboard is here https://statoxblog.goatcounter.com/
 
 `_includes/layouts` contains the structure which is used in templates like `index.html` or `posts.html`.
 
-The template syntax is [nunjucks](https://www.11ty.dev/docs/languages/nunjucks/) because so far it seems to be the easier but maybe I'll change that.
+The template syntax is [nunjucks](https://www.11ty.dev/docs/languages/nunjucks/) because so far it seems to be the easieest but maybe I'll change that.
 
 ## References
 
