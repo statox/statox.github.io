@@ -75,7 +75,7 @@ Because p5.js is constantly calling the `draw()` function I need to use a little
 
 The interesting part of this function is how p5 gives access to the pixels of an image: After calling `img.loadPixels()`, the `img` object will have a `pixels` property containing a list of integers. For each pixels in the image, four integers are added to `pixels` one for each of the RGB values of the pixel and a last one for its alpha value.
 
-Once we looped through all these values we have an array `imgColors` containing for `P5.Color` object 🎉
+Once we looped through all these values we have an array `imgColors` containing for `P5.Color` object :tada:
 
 ### Generating circles
 
@@ -127,4 +127,4 @@ Of course the more circles we generate the harder it become to find the right sp
 
 ### And making them grow
 
-Now that we can generate a bunch of new circle on each iteration, let's make them grow too and that's how we pack circles on kittens 💪
+Now that we can generate a bunch of new circle on each iteration, let's make them grow too and that's how we pack circles on kittens :muscle:

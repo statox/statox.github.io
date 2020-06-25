@@ -39,20 +39,25 @@ module.exports = function(eleventyConfig) {
      * Markdown parsing configuration
      */
     let markdownIt = require("markdown-it")
+    let markdownItExternalLinks = require('markdown-it-external-links');
+    let markdownItEmoji = require("markdown-it-emoji");
 
-    let options = {
+    let markdownItOptions = {
         html: true, // Enable HTML tags in source
         breaks: true, // Convert '\n' in paragraphs into <br>
         linkify: true, // Convert text looking like a link to a link
-    }
+    };
 
-    let markdownLib = markdownIt(options)
-        // Open external links in new tabs
-        .use(require('markdown-it-external-links'), {
-            externalClassName: null,
-            externalRel: 'noopener noreferrer',
-            externalTarget: '_blank'
-        });
+    // Open external links in new tabs
+    let markdownItExternalLinksOptions = {
+        externalClassName: null,
+        externalRel: 'noopener noreferrer',
+        externalTarget: '_blank'
+    };
+
+    let markdownLib = markdownIt(markdownItOptions)
+        .use(markdownItExternalLinks, markdownItExternalLinksOptions)
+        .use(markdownItEmoji);
 
     eleventyConfig.setLibrary("md", markdownLib);
 };
