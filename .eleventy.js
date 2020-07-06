@@ -61,6 +61,7 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.setLibrary("md", markdownLib);
 
+    eleventyConfig.setTemplateFormats("html,liquid,njk,md,gif");
 
     /*
      * Copy ./css/ to docs/css/
