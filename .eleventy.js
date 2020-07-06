@@ -2,12 +2,10 @@
  * Eleventy configuration file
  */
 
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-
 const moment = require('moment');
 moment.locale('en');
-
-const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 module.exports = function(eleventyConfig) {
     /*
@@ -23,22 +21,19 @@ module.exports = function(eleventyConfig) {
     });
 
     /*
-     * Filter to reformat dates
+     * Filters
      */
+    // Posts dates in home page
     eleventyConfig.addFilter('datePost', date => {
         return moment(date).utc().format('MMM YYYY');
     });
 
-
     /*
-     * eleventy plugin to handle syntax highlighting in code blocks
-     * https://www.11ty.dev/docs/plugins/syntaxhighlight/
+     * Plugins
      */
+     // syntax highlighting in code blocks
     eleventyConfig.addPlugin(syntaxHighlight);
-
-    /*
-     * RSS feed plugin
-     */
+    // RSS feed plugin
     eleventyConfig.addPlugin(pluginRss);
 
     /*
@@ -70,7 +65,8 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.setTemplateFormats("html,liquid,njk,md,gif");
 
     /*
-     * Copy ./css/ to docs/css/
+     * Passthroughs
      */
+    // Copy ./css/ to docs/css/
     eleventyConfig.addPassthroughCopy("css");
 };
