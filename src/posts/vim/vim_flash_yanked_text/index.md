@@ -161,6 +161,8 @@ function! DeleteTemporaryMatch(timerId)
 endfunction
 ```
 
+_Note that this only work in Neovim: Vim has a different implementation of `matchdelete()`. For Vim I would use [`:h clearmatches()`](http://vimhelp.appspot.com/eval.txt.html#clearmatches%28%29) instead, giving it the window id as a parameter. There is a risk of removing too many matches but I'd say it's better than not removing the match at all_
+
 For good measures the call to `matchdelete()` is enclosed in a `try...catch` block, just in case something else fails and I don't want to be bothered with an error message.
 
 And here we are! With about 20 lines of vimscript we reimplemented the highlight yanked text feature!
