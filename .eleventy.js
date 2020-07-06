@@ -6,7 +6,8 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 const moment = require('moment');
 moment.locale('en');
- 
+
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 module.exports = function(eleventyConfig) {
     /*
@@ -34,6 +35,11 @@ module.exports = function(eleventyConfig) {
      * https://www.11ty.dev/docs/plugins/syntaxhighlight/
      */
     eleventyConfig.addPlugin(syntaxHighlight);
+
+    /*
+     * RSS feed plugin
+     */
+    eleventyConfig.addPlugin(pluginRss);
 
     /*
      * Markdown parsing configuration
