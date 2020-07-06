@@ -44,7 +44,7 @@ First a bit of Vim terminology about highlighting:
    let id = matchadd('IncSearch', 'TODO')
    ```
 
-   To delete a match simply use the ID returned by the previous command. Note that this command only works in the window where the match was create, this will be important later on.
+   To delete a match simply use the ID returned by the previous command. Note that this command only works in the window where the match was created, this will be important later on.
 
     ```vim
     call matchdelete(id)
@@ -65,7 +65,7 @@ The main items of the pattern are the following:
  - `'[` is the mark I mentioned before but `[` being a special character (used in [`:h /[]`](http://vimhelp.appspot.com/pattern.txt.html#%2f%5b%5d)) it needs to be escaped hence `'\\[`. Note that each `\` needs to be escaped to be used in the command.
  - Given this previous point, `\\%'\\[` is the way to use [`:h /\%'m`](http://vimhelp.appspot.com/pattern.txt.html#%2f%5c%25%27m) with the `'[` mark, matching the beginning of the previously yanked text.
  - `.*` allows to match any characters any number of time.
- - `\\%']` is the equivalent of the first item with the `']` mark, note that here `]` doesn't need to be escaped since there is no risk of confusion with [`:h /[]`](http://vimhelp.appspot.com/pattern.txt.html#%2f%5b%5d).
+ - `\\%']` is the equivalent of the first item with the `']` mark. Note that here `]` doesn't need to be escaped since there is no risk of confusion with [`:h /[]`](http://vimhelp.appspot.com/pattern.txt.html#%2f%5b%5d).
 
 This is a great first attempt which kind of works on some simple cases but fails when yanking text on several lines. This is because the [`.`](http://vimhelp.appspot.com/pattern.txt.html#%2f.) atom doesn't match end of lines characters, so we need to use [`\_.`](http://vimhelp.appspot.com/pattern.txt.html#%2f%5c_.) instead:
 
@@ -106,15 +106,14 @@ function! FlashYankedText()
 endfunction
 ```
 
-As you can see I put my autocommand in an [`augroup`](http://vimhelp.appspot.com/autocmd.txt.html#%3Aaugroup) because every time you use an autocommand without an augroup you make a kitten cry :crying_cat_face: and [for other reasons too](https://vi.stackexchange.com/q/9455/1841).
+As you can see I put my autocommand in an [`augroup`](http://vimhelp.appspot.com/autocmd.txt.html#%3Aaugroup) because **_every time you use an autocommand without an augroup you make a kitten cry_** :crying_cat_face:... and [for other reasons too](https://vi.stackexchange.com/q/9455/1841).
 
-That is great! Each time we yank some text it gets highlighted... but then it remains highlighted indefinitely. So let's simply use a timer to delete the match we just created. Note that the function puts the id of the newly created match in a global variable which is kind of ugly but pretty pratical to access it in the `DeleteTemporaryMatch` function.
+That is great! Each time we yank some text it gets highlighted... but then it remains highlighted indefinitely. So let's simply use a timer to delete the match we just created. Note that the function puts the id of the newly created match in a global variable which is kind of ugly but pretty pratical to access it in the `DeleteTemporaryMatch()` function.
 
 
 ``` vim
 function! FlashYankedText()
     let g:idTemporaryHighlight = matchadd('IncSearch', ".\\%>'\\[\\_.*\\%<']..")
-
     call timer_start(500, 'DeleteTemporaryMatch')
 endfunction
 
@@ -127,7 +126,7 @@ endfunction
 
 The previous code kind of works but some edge cases are problematic:
 
-- When I yank two different texts too quickly sometimes the `DeleteTemporaryMatch` function doesn't have the time to delete the previous match.
+- When I yank two different texts too quickly sometimes the `DeleteTemporaryMatch()` function doesn't have the time to delete the previous match.
 - More importantly, when I switch to another window just after yanking some text, `deletematches()` fails because the matches id are local to a window.
 
 So let's put the ids in a list, with the window id where they were created:
@@ -139,14 +138,14 @@ function! FlashYankedText()
     endif
 
     let matchId = matchadd('IncSearch', ".\\%>'\\[\\_.*\\%<']..")
-    let window = winnr()
+    let windowId = winnr()
 
-    call add(g:yankedTextMatches, [window, matchId])
+    call add(g:yankedTextMatches, [windowId, matchId])
     call timer_start(500, 'DeleteTemporaryMatch')
 endfunction
 ```
 
-Now `DeleteTemporaryMatch` can simply dequeue the `g:yankedTextMatches` list and remove the matches on the corresponding window:
+Now `DeleteTemporaryMatch()` can simply dequeue the `g:yankedTextMatches` list and remove the matches on the corresponding window:
 
 ```vim
 function! DeleteTemporaryMatch(timerId)
@@ -162,12 +161,12 @@ function! DeleteTemporaryMatch(timerId)
 endfunction
 ```
 
-For good measures the call to `matchdelete` is enclosed in a `try...catch`, just in case something else fails and I don't want to be bothered with an error message.
+For good measures the call to `matchdelete()` is enclosed in a `try...catch` block, just in case something else fails and I don't want to be bothered with an error message.
 
 And here we are! With about 20 lines of vimscript we reimplemented the highlight yanked text feature!
 
 #### Turning it into a plugin
 
-Now that we have a code working properly, we could leave that in our `.vimrc` and live happily with that... But it would be even better to make it into a plugin! This way the functions will be loaded only when necessary (and thus, avoid increasing your startup time), we can get rid of global variables and just have a clean line in our `.vimrc`. And while we are at it we could create a variable to control how long the flash should last... And that's actually what I did!
+Now that we have a code working properly, we could leave that in our `.vimrc` and live happily with that... But it would be even better to make it a plugin! This way the functions will be loaded only when necessary (and thus, avoid increasing your startup time), we can get rid of global variables and just have a clean line in our `.vimrc`, and while we are at it we could create a variable to control how long the flash should last... And that's actually what I did!
 
 I think the specific of how I turned my code into a plugin would make this post way too long, so the resulting plugin can be found [on my github](https://github.com/statox/vim-flash-yanked-text) and I am of course available to answer any questions you could have about it.
