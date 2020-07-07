@@ -21,7 +21,7 @@ After watching some of the videos I decided that I was ready to try to do someth
 
 What do I need to do that?
 
-First of all I need a table and some balls rolling on it. This is pretty straightforward: a p5.js canvas will be my table, my balls are simple javascript objects with some coordinates, the ability to apply a force on it (i.e. incrementing the coordinates), a friction force to keep the ball from rolling for ever and some simple tests to prevent the balls from falling out of the table.
+First of all I need a table and some balls rolling on it. This is pretty straightforward: a p5.js canvas will be my table, my balls are simple javascript objects with some coordinates, the ability to apply a force on it (i.e. incrementing the coordinates), a friction force to keep the ball from rolling forever and some tests to prevent the balls from falling out of the table.
 
 ``` js
 function Ball(x, y, id, color) {
@@ -49,7 +49,7 @@ function Ball(x, y, id, color) {
 }
 ```
 
-Easy right? With that I can apply a force to a ball (as it's velocity) and way for it to shrink over time. As a bonus I used the boundaries check to simply reverse the velocity of the ball, this is a lazy simulation of a perfectly on elastic collision. In real life some energy would be dissipated with the rebound but here, it's good enough.
+Easy, right? With that I can apply a force to a ball (as it's velocity) and way for the force to shrink over time. As a bonus I used the boundaries check to simply reverse the velocity of the ball, this is a lazy simulation of a perfectly on elastic collision. In real life some energy would be dissipated with the rebound but here, it's good enough.
 
 Let's add to that a simple function to know if a ball is colliding with another one. To do that we can simply check the distance between two balls is larger than the sum of the balls radius. I came up with something quick and dirty, but mostly dirty. Here I knew I wanted to tag all the balls part of a collision:
 
@@ -77,4 +77,4 @@ Having this code I was able to create my pool, put balls on it, apply a force on
 
 Well now is the time for the balls to bounce on each other when they touch!
 
-And this is where the project became pretty fun because I didn't want to use a full blown physics engine, so I did mine... Well I did a function which bounced two circles against each other. The code of this function is [here on Github](https://github.com/statox/p5-pool/blob/54c4a280b4d90eb130f1c907b04f75f132f7ec93/Ball.js#L44-L115). It uses some workarounds and still has some bugs (sometimes the balls teleport away from each other when they touch, some times they get crazy and go off the tables) also it is not really elegant to read... But it works! (Kinda)
+And this is where the project became pretty fun because I didn't want to use a full blown physics engine, so I did mine... Well I did a function which bounced two circles against each other. The code of this function is [here on Github](https://github.com/statox/p5-pool/blob/54c4a280b4d90eb130f1c907b04f75f132f7ec93/Ball.js#L44-L115) (as well as the whole project). It uses some workarounds and still has some bugs (sometimes the balls teleport away from each others when they touch, sometimes they get crazy and go off the table) also it is not really elegant to read... But it works! (Kinda)
