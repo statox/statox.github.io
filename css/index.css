@@ -10,3 +10,7 @@
 .post-date {
     font-family: var(--nc-font-mono);
 }
+
+a:-webkit-any-link {
+    text-decoration: none;
+}
