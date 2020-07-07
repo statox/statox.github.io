@@ -5,20 +5,10 @@ eleventyNavigation:
   order: 2
 ---
 
-<h2>p5.js</h2>
 <ul>
-    {%- for post in collections.posts_p5 reversed -%}
+    {%- for post in collections.post reversed -%}
     <li>
-        <span class="post-date">{{ post.date | datePost }}</span> <a href={{post.url}}>{{ post.data.title }}</a>
-    </li>
-    {%- endfor -%}
-</ul>
-
-<h2>Vim</h2>
-<ul>
-    {%- for post in collections.posts_vim reversed -%}
-    <li>
-        <span class="post-date">{{ post.date | datePost }}</span> <a href={{post.url}}>{{ post.data.title }}</a>
+        <span class="post-date">{{ post.date | datePost }}</span> <a class="post-link" href={{post.url}}>{{ post.data.title }}</a>
     </li>
     {%- endfor -%}
 </ul>
