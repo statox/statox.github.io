@@ -24,7 +24,7 @@ So here is the result I am looking for: In this screen cap you can see me first 
 
 In this article I will to relate the main steps I followed to get this feature working. To keep it readable I will not follow all the best practices or go into all the details to make it flawless but I hope this kind of iteration process can help new vimmers to get into vimscript by demonstrating some useful concepts.
 
-#### A reminder on how to highlight stuff
+### A reminder on how to highlight stuff
 
 First a bit of Vim terminology about highlighting:
 
@@ -50,7 +50,7 @@ First a bit of Vim terminology about highlighting:
     call matchdelete(id)
     ```
 
-#### Making the pattern work
+### Making the pattern work
 
 The first step to highlight yanked text is to be able to match the last yanked text. Fortunately, [`:h '[`](http://vimhelp.appspot.com/motion.txt.html#%27%5b) tells us that Vim has two marks `'[` and `']` which are positioned on the first and last characters of the previously changed or yanked text.
 
@@ -91,7 +91,7 @@ let g:idTemporaryHighlight = matchadd('IncSearch', ".\\%>'\\[\\_.*\\%<']..")
 
 So after a few tests yanking some random text, using `matchadd` to highlight it and `matchdelete` to remove the highlighting I am satisfied with the result, it is then time to automatically highlight our text.
 
-#### Using the pattern automatically
+### Using the pattern automatically
 
 Vim provides since it [patch 8.0.1394](https://github.com/vim/vim/commit/7e1652c63c96585b9e2235c195a3c322b1f11595) the [`:h TextYankPost`](http://vimhelp.appspot.com/autocmd.txt.html#TextYankPost) autocommand event which triggers just after a yank or deleting command. So our first step is to create a function triggered by this event:
 
@@ -122,7 +122,7 @@ function! DeleteTemporaryMatch(timerId)
 endfunction
 ```
 
-#### Making the feature reliable
+### Making the feature reliable
 
 The previous code kind of works but some edge cases are problematic:
 
@@ -165,7 +165,7 @@ For good measures the call to `matchdelete()` is enclosed in a `try...catch` blo
 
 And here we are! With about 20 lines of vimscript we reimplemented the highlight yanked text feature! Well, kind of, there are some edge cases which needs a bit more work for this to work flawlessly, especially the cases where the user changes of window before `DeleteTemporaryMatch()` is called.
 
-#### Turning it into a plugin
+### Turning it into a plugin
 
 Now that we have a code working properly, we could leave that in our `.vimrc` and live happily with that... But it would be even better to make it a plugin! This way the functions will be loaded only when necessary (and thus, avoid increasing your startup time), we can get rid of global variables and just have a clean line in our `.vimrc`, and while we are at it we could create a variable to control how long the flash should last... And that's actually what I did!
 
