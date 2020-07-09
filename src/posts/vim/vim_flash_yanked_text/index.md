@@ -22,7 +22,7 @@ So here is the result I am looking for: In this screen cap you can see me first 
 
 ![Demo of highlighted text](./flash_yanked_text.gif)
 
-In this article I want to detail the steps I followed to get this feature working and I hope this kind of iteration process can help new vimmers to get into vimscript.
+In this article I will to relate the main steps I followed to get this feature working. To keep it readable I will not follow all the best practices or go into all the details to make it flawless but I hope this kind of iteration process can help new vimmers to get into vimscript by demonstrating some useful concepts.
 
 #### A reminder on how to highlight stuff
 
@@ -163,10 +163,10 @@ endfunction
 
 For good measures the call to `matchdelete()` is enclosed in a `try...catch` block, just in case something else fails and I don't want to be bothered with an error message.
 
-And here we are! With about 20 lines of vimscript we reimplemented the highlight yanked text feature!
+And here we are! With about 20 lines of vimscript we reimplemented the highlight yanked text feature! Well, kind of, there are some edge cases which needs a bit more work for this to work flawlessly, especially the cases where the user changes of window before `DeleteTemporaryMatch()` is called.
 
 #### Turning it into a plugin
 
 Now that we have a code working properly, we could leave that in our `.vimrc` and live happily with that... But it would be even better to make it a plugin! This way the functions will be loaded only when necessary (and thus, avoid increasing your startup time), we can get rid of global variables and just have a clean line in our `.vimrc`, and while we are at it we could create a variable to control how long the flash should last... And that's actually what I did!
 
-I think the specific of how I turned my code into a plugin would make this post way too long, so the resulting plugin can be found [on my github](https://github.com/statox/vim-flash-yanked-text) and I am of course available to answer any questions you could have about it.
+I think the specific of how I turned my code into a plugin would make this post way too long, so the result can be found [on my github](https://github.com/statox/vim-flash-yanked-text) and I am of course available to answer any questions you could have about it.
