@@ -11,6 +11,10 @@
     font-family: var(--nc-font-mono);
 }
 
+.add-comment {
+    float: right;
+}
+
 a:-webkit-any-link {
     text-decoration: none;
 }
