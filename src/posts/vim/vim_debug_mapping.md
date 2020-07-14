@@ -2,6 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'vim']
 date: 2016-05-10
+commentIssueId: 1
 title: How to debug a mapping before asking for help on the internet
 ---
 

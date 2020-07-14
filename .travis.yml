@@ -5,6 +5,7 @@ cache:
   directories:
   - node_modules
 script:
+  - npm run create-issues -- $BASIC_AUTH_HEADER false
   - npm run build
 deploy:
   provider: pages

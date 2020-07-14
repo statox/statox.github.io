@@ -2,6 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'vim']
 date: 2017-02-01
+commentIssueId: 2
 title: GOD.vim - The easiest way to quote Vim's help
 ---
 

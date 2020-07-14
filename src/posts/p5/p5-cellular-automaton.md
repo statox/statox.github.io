@@ -2,7 +2,8 @@
 layout: layouts/post.njk
 tags: ['post', 'p5', 'cellular automaton']
 date: 2020-05-13
-title: 'Cellular automata: Digital life and death'
+commentIssueId: 7
+title: 'Cellular automata - Digital life and death'
 ---
 
 This has been one of my most satisfying project recently so if you want to see cool visualisations of digital life the demo is live [here](https://statox.github.io/p5-cellular-automaton/).

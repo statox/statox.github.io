@@ -2,6 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'p5', 'maze']
 date: 2020-03-03
+commentIssueId: 6
 title: Generating a maze... and then solving it
 ---
 

@@ -2,6 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'p5', 'algorithms']
 date: 2020-01-23
+commentIssueId: 5
 title: Genetic algorithms or how I made a bunch of smart robots
 ---
 

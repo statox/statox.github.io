@@ -2,6 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'vim']
 date: 2020-07-04
+commentIssueId: 9
 title: Highlighting yanked text with pure vimscript
 ---
 
