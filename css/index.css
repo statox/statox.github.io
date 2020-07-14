@@ -18,3 +18,7 @@
 a:-webkit-any-link {
     text-decoration: none;
 }
+
+pre {
+    max-height: 50rem
+}
