@@ -44,7 +44,7 @@
 <p>So here is the result I am looking for: In this screen cap you can see me first yanking the word &quot;filetype&quot; with <code>yiw</code>, then the full line with <code>yy</code> and finally several lines:</p>
 <p><img src="./flash_yanked_text.gif" alt="Demo of highlighted text"></p>
 <p>In this article I will to relate the main steps I followed to get this feature working. To keep it readable I will not follow all the best practices or go into all the details to make it flawless but I hope this kind of iteration process can help new vimmers to get into vimscript by demonstrating some useful concepts.</p>
-<h4>A reminder on how to highlight stuff</h4>
+<h3>A reminder on how to highlight stuff</h3>
 <p>First a bit of Vim terminology about highlighting:</p>
 <ul>
 <li>
@@ -63,7 +63,7 @@
 <pre class="language-vim"><code class="language-vim"><span class="token keyword">call</span> <span class="token function">matchdelete</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span></code></pre>
 </li>
 </ul>
-<h4>Making the pattern work</h4>
+<h3>Making the pattern work</h3>
 <p>The first step to highlight yanked text is to be able to match the last yanked text. Fortunately, <a href="http://vimhelp.appspot.com/motion.txt.html#%27%5b" target="_blank" rel="noopener noreferrer"><code>:h '[</code></a> tells us that Vim has two marks <code>'[</code> and <code>']</code> which are positioned on the first and last characters of the previously changed or yanked text.</p>
 <p>And <a href="http://vimhelp.appspot.com/pattern.txt.html#%2f%5c%25%27m" target="_blank" rel="noopener noreferrer"><code>:h /\%'m</code></a> tells us that we can use such marks in a pattern, so my first attempt looked like this:</p>
 <pre class="language-vim"><code class="language-vim"><span class="token keyword">let</span> g<span class="token punctuation">:</span>idTemporaryHighlight <span class="token operator">=</span> <span class="token function">matchadd</span><span class="token punctuation">(</span><span class="token string">'IncSearch'</span><span class="token punctuation">,</span> <span class="token string">"\\%'\\[.*\\%']"</span><span class="token punctuation">)</span></code></pre>
@@ -87,13 +87,13 @@ since it's a |/zero-width| match it doesn't include that character.
 <pre class="language-vim"><code class="language-vim"><span class="token keyword">let</span> g<span class="token punctuation">:</span>idTemporaryHighlight <span class="token operator">=</span> <span class="token function">matchadd</span><span class="token punctuation">(</span><span class="token string">'IncSearch'</span><span class="token punctuation">,</span> <span class="token string">".\\%>'\\[\\_.*\\%&lt;'].."</span><span class="token punctuation">)</span></code></pre>
 <p><em>Important note</em>: Some of this escaping could be greatly simplified using a different magic mode but it's not my point here. For more information on magic in Vim see <a href="http://vimhelp.appspot.com/pattern.txt.html#%2fmagic" target="_blank" rel="noopener noreferrer"><code>:h /magic</code></a></p>
 <p>So after a few tests yanking some random text, using <code>matchadd</code> to highlight it and <code>matchdelete</code> to remove the highlighting I am satisfied with the result, it is then time to automatically highlight our text.</p>
-<h4>Using the pattern automatically</h4>
+<h3>Using the pattern automatically</h3>
 <p>Vim provides since it <a href="https://github.com/vim/vim/commit/7e1652c63c96585b9e2235c195a3c322b1f11595" target="_blank" rel="noopener noreferrer">patch 8.0.1394</a> the <a href="http://vimhelp.appspot.com/autocmd.txt.html#TextYankPost" target="_blank" rel="noopener noreferrer"><code>:h TextYankPost</code></a> autocommand event which triggers just after a yank or deleting command. So our first step is to create a function triggered by this event:</p>
 <pre class="language-vim"><code class="language-vim">augroup highlightYankedText<br>    <span class="token builtin">autocmd</span><span class="token operator">!</span><br>    <span class="token builtin">autocmd</span> TextYankPost <span class="token operator">*</span> <span class="token keyword">call</span> <span class="token function">FlashYankedText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>augroup END<br><br><span class="token keyword">function</span><span class="token operator">!</span> <span class="token function">FlashYankedText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token keyword">let</span> g<span class="token punctuation">:</span>idTemporaryHighlight <span class="token operator">=</span> <span class="token function">matchadd</span><span class="token punctuation">(</span><span class="token string">'IncSearch'</span><span class="token punctuation">,</span> <span class="token string">".\\%>'\\[\\_.*\\%&lt;'].."</span><span class="token punctuation">)</span><br><span class="token keyword">endfunction</span></code></pre>
 <p>As you can see I put my autocommand in an <a href="http://vimhelp.appspot.com/autocmd.txt.html#%3Aaugroup" target="_blank" rel="noopener noreferrer"><code>augroup</code></a> because <strong><em>every time you use an autocommand without an augroup you make a kitten cry</em></strong> 😿... and <a href="https://vi.stackexchange.com/q/9455/1841" target="_blank" rel="noopener noreferrer">for other reasons too</a>.</p>
 <p>That is great! Each time we yank some text it gets highlighted... but then it remains highlighted indefinitely. So let's simply use a timer to delete the match we just created. Note that the function puts the id of the newly created match in a global variable which is kind of ugly but pretty pratical to access it in the <code>DeleteTemporaryMatch()</code> function.</p>
 <pre class="language-vim"><code class="language-vim"><span class="token keyword">function</span><span class="token operator">!</span> <span class="token function">FlashYankedText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token keyword">let</span> g<span class="token punctuation">:</span>idTemporaryHighlight <span class="token operator">=</span> <span class="token function">matchadd</span><span class="token punctuation">(</span><span class="token string">'IncSearch'</span><span class="token punctuation">,</span> <span class="token string">".\\%>'\\[\\_.*\\%&lt;'].."</span><span class="token punctuation">)</span><br>    <span class="token keyword">call</span> <span class="token function">timer_start</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token string">'DeleteTemporaryMatch'</span><span class="token punctuation">)</span><br><span class="token keyword">endfunction</span><br><br><span class="token keyword">function</span><span class="token operator">!</span> <span class="token function">DeleteTemporaryMatch</span><span class="token punctuation">(</span>timerId<span class="token punctuation">)</span><br>    <span class="token keyword">call</span> <span class="token function">matchdelete</span><span class="token punctuation">(</span>g<span class="token punctuation">:</span>idTemporaryHighlight<span class="token punctuation">)</span><br><span class="token keyword">endfunction</span></code></pre>
-<h4>Making the feature reliable</h4>
+<h3>Making the feature reliable</h3>
 <p>The previous code kind of works but some edge cases are problematic:</p>
 <ul>
 <li>When I yank two different texts too quickly sometimes the <code>DeleteTemporaryMatch()</code> function doesn't have the time to delete the previous match.</li>
@@ -105,12 +105,61 @@ since it's a |/zero-width| match it doesn't include that character.
 <pre class="language-vim"><code class="language-vim"><span class="token keyword">function</span><span class="token operator">!</span> <span class="token function">DeleteTemporaryMatch</span><span class="token punctuation">(</span>timerId<span class="token punctuation">)</span><br>    <span class="token keyword">while</span> <span class="token operator">!</span><span class="token function">empty</span><span class="token punctuation">(</span>g<span class="token punctuation">:</span>yankedTextMatches<span class="token punctuation">)</span><br>        <span class="token keyword">let</span> <span class="token keyword">match</span> <span class="token operator">=</span> <span class="token function">remove</span><span class="token punctuation">(</span>g<span class="token punctuation">:</span>yankedTextMatches<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><br>        <span class="token keyword">let</span> windowID <span class="token operator">=</span> <span class="token keyword">match</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><br>        <span class="token keyword">let</span> matchID <span class="token operator">=</span> <span class="token keyword">match</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><br><br>        <span class="token keyword">try</span><br>            <span class="token keyword">call</span> <span class="token function">matchdelete</span><span class="token punctuation">(</span>matchID<span class="token punctuation">,</span> windowID<span class="token punctuation">)</span><br>        <span class="token keyword">endtry</span><br>    <span class="token keyword">endwhile</span><br><span class="token keyword">endfunction</span></code></pre>
 <p>For good measures the call to <code>matchdelete()</code> is enclosed in a <code>try...catch</code> block, just in case something else fails and I don't want to be bothered with an error message.</p>
 <p>And here we are! With about 20 lines of vimscript we reimplemented the highlight yanked text feature! Well, kind of, there are some edge cases which needs a bit more work for this to work flawlessly, especially the cases where the user changes of window before <code>DeleteTemporaryMatch()</code> is called.</p>
-<h4>Turning it into a plugin</h4>
+<h3>Turning it into a plugin</h3>
 <p>Now that we have a code working properly, we could leave that in our <code>.vimrc</code> and live happily with that... But it would be even better to make it a plugin! This way the functions will be loaded only when necessary (and thus, avoid increasing your startup time), we can get rid of global variables and just have a clean line in our <code>.vimrc</code>, and while we are at it we could create a variable to control how long the flash should last... And that's actually what I did!</p>
 <p>I think the specific of how I turned my code into a plugin would make this post way too long, so the result can be found <a href="https://github.com/statox/vim-flash-yanked-text" target="_blank" rel="noopener noreferrer">on my github</a> and I am of course available to answer any questions you could have about it.</p>
 
 
 <p><a href="/">← Posts</a></p>
+
+<comments></comments>
+<script type="text/javascript">
+
+
+function domReady(fn) {
+    document.addEventListener('DOMContentLoaded', fn);
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        fn();
+    }
+}
+
+async function getComments(url = '') {
+    const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: { Accept: 'application/vnd.github.v3.html+json' },
+    });
+    return response.json();
+}
+
+domReady(() => {
+    const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/9/comments';
+    const appendComments = function (comments) {
+        const commentSection = document.querySelector('comments');
+        if (!comments || !comments.forEach || comments.length === 0) {
+            commentSection.insertAdjacentHTML('beforeend', '<p>No comments yet.</p>');
+            return;
+        }
+        comments.forEach(function (comment) {
+            commentSection.insertAdjacentHTML(
+                'beforeend',
+                '<div class="comment"> ✿\
+                <a class="commenter" href="' +
+                comment.user.html_url +
+                '"\
+                target="_blank">' +
+                comment.user.login +
+                '</a> on ' +
+                new Date(comment.created_at).toUTCString() +
+                comment.body_html +
+                '</div>',
+            );
+        });
+    };
+    getComments(apiUrl).then(appendComments);
+});
+</script>
 
     </div>
 

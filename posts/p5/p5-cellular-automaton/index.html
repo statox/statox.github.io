@@ -35,7 +35,7 @@
 
     <div class="content-container">
         
-<h2>Cellular automata: Digital life and death</h2>
+<h2>Cellular automata - Digital life and death</h2>
 
 <p>This has been one of my most satisfying project recently so if you want to see cool visualisations of digital life the demo is live <a href="https://statox.github.io/p5-cellular-automaton/" target="_blank" rel="noopener noreferrer">here</a>.</p>
 <p>The code of this project is <a href="https://github.com/statox/p5-cellular-automaton" target="_blank" rel="noopener noreferrer">on Github</a>, now let me tell you what this is about.</p>
@@ -66,6 +66,55 @@ The first CA I heard about was John Conway's game of life and it was something l
 
 
 <p><a href="/">← Posts</a></p>
+
+<comments></comments>
+<script type="text/javascript">
+
+
+function domReady(fn) {
+    document.addEventListener('DOMContentLoaded', fn);
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        fn();
+    }
+}
+
+async function getComments(url = '') {
+    const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: { Accept: 'application/vnd.github.v3.html+json' },
+    });
+    return response.json();
+}
+
+domReady(() => {
+    const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/7/comments';
+    const appendComments = function (comments) {
+        const commentSection = document.querySelector('comments');
+        if (!comments || !comments.forEach || comments.length === 0) {
+            commentSection.insertAdjacentHTML('beforeend', '<p>No comments yet.</p>');
+            return;
+        }
+        comments.forEach(function (comment) {
+            commentSection.insertAdjacentHTML(
+                'beforeend',
+                '<div class="comment"> ✿\
+                <a class="commenter" href="' +
+                comment.user.html_url +
+                '"\
+                target="_blank">' +
+                comment.user.login +
+                '</a> on ' +
+                new Date(comment.created_at).toUTCString() +
+                comment.body_html +
+                '</div>',
+            );
+        });
+    };
+    getComments(apiUrl).then(appendComments);
+});
+</script>
 
     </div>
 
