@@ -3,10 +3,4 @@ layout: layouts/base.njk
 templateClass: tmpl-posts
 ---
 
-<ul>
-    {%- for post in collections.post reversed -%}
-    <li>
-        <span class="post-date">{{ post.date | datePost }}</span> <a class="post-link" href={{post.url}}>{{ post.data.title }}</a>
-    </li>
-    {%- endfor -%}
-</ul>
+{{ content | safe }}
