@@ -14,10 +14,6 @@ My plan is to talk about the topics that I like (in no particular order): Vim, L
 
 You can contact me at <code>me AT statox DOT fr</code> if you want to.
 
-### Feed
-
-You can subscribe to this [blog's RSS feed](/feed.xml)
-
 ### Technology on this site
 
 #### Analytics
