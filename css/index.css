@@ -1,5 +1,20 @@
 /*
- * Trick to apply the font to everything. 
+ * Reminder on newcss colors
+ *
+ * --nc-font-sans: Font for all text besides code or preformatted
+ * --nc-font-mono: Font for <code>, <pre>, <kbd>, <samp>
+ * --nc-tx-1: Heading text color
+ * --nc-tx-2: Body text color
+ * --nc-bg-1: Base background color
+ * --nc-bg-2: Slightly darker background color
+ * --nc-bg-3: Even slightly darker background color
+ * --nc-lk-1: Action color for links and buttons
+ * --nc-lk-2: Link and buttons on mouse hover and active
+ * --nc-ac-1: Accent color for <mark> and text selection background
+ */
+
+/*
+ * Justify all texts
  * If there is a need to not apply that to a specific tag see this:
  * https://stackoverflow.com/a/35734554/4194289
  */
@@ -15,10 +30,19 @@
     float: right;
 }
 
+.note-tags {
+    font-family: var(--nc-font-mono);
+    /* Graying out https://stackoverflow.com/a/5081723/4194289 */
+    opacity: 0.6; /* Real browsers */
+    filter: alpha(opacity = 60); /* MSIE */
+}
+
+/* Remove underline added by newcss under links */
 a:-webkit-any-link {
     text-decoration: none;
 }
 
+/* Limit the size of code snippets */
 pre {
     max-height: 50rem
 }
