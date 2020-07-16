@@ -20,12 +20,26 @@ module.exports = function(eleventyConfig) {
         return collectionApi.getFilteredByTags("post", "p5");
     });
 
+    // Notes sorted alphabetically by their title
+    eleventyConfig.addCollection("notesAlphabetical", (collection) =>
+        collection.getFilteredByGlob("src/notes/*.md").sort((a, b) => {
+            if (a.data.title > b.data.title) return 1;
+            else if (a.data.title < b.data.title) return -1;
+            else return 0;
+        })
+    );
+
     /*
      * Filters
      */
     // Posts dates in home page
     eleventyConfig.addFilter('datePost', date => {
         return moment(date).utc().format('MMM YYYY');
+    });
+
+    // Format tags of notes
+    eleventyConfig.addFilter('noteTags', tags => {
+        return tags.filter(t => t !== 'note').map(t => '[' + t + ']').join('');
     });
 
     /*

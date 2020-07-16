@@ -2,4 +2,14 @@
 layout: layouts/base.njk
 templateClass: tmpl-notes
 ---
-{{ content | safe }}
+
+<ul>
+    {%- for note in collections.notesAlphabetical -%}
+    <li>
+        <a class="note-link" href={{note.url}}>{{ note.data.title }}</a>
+        <span class="note-tags">{{ note.data.tags | noteTags}}</span>
+
+        {# TODO: Find a way to show a preview of the note here #}
+    </li>
+    {%- endfor -%}
+</ul>
