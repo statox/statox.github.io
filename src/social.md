@@ -2,7 +2,7 @@
 layout: layouts/social.njk
 eleventyNavigation:
   key: social
-  order: 3
+  order: 4
 ---
 
 ## Social

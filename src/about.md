@@ -1,8 +1,8 @@
 ---
 layout: layouts/about.njk
 eleventyNavigation:
-  key: About
-  order: 1
+  key: about
+  order: 3
 ---
 
 ### Hello

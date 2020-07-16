@@ -1,0 +1,14 @@
+---
+layout: layouts/notes.njk
+eleventyNavigation:
+  key: notes
+  order: 2
+---
+
+<ul>
+    {%- for note in collections.note -%}
+    <li>
+        <a class="note-link" href={{note.url}}>{{ note.data.title }}</a>
+    </li>
+    {%- endfor -%}
+</ul>
