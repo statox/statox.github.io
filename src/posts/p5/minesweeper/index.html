@@ -3,7 +3,7 @@ layout: layouts/post.njk
 tags: ['post', 'p5', 'minesweeper']
 title: Minesweeper
 commentIssueId: 11
-<!-- eleventyExcludeFromCollections: true -->
+eleventyExcludeFromCollections: true
 ---
 
 <div oncontextmenu="return false;" id="canvasDiv"></div>
@@ -11,5 +11,6 @@ commentIssueId: 11
 <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
 <script src="sketch.js"></script>
 <script src="Cell.js"></script>
+<script src="CellSquare.js"></script>
 <script src="utils.js"></script>
 <script src="Game.js"></script>

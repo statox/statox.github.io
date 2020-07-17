@@ -1,27 +1,22 @@
-function Game() {
+function Game(fillingRatio) {
+    this.nbCells = COL * COL;
     this.lost = false;
     this.won = false;
     this.cells = [];
     this.bombs=0;
     this.openedCells=new Set();
     this.flaggedCells=new Set();
+    this.fillingRatio = fillingRatio;
 
-    for (let j=0; j<COL; j++) {
-        this.cells.push([]);
-        for (let i=0; i<COL; i++) {
-            const bomb = Math.random() < fillingRatio;
-            if (bomb) {
-                this.bombs++;
-            }
-            this.cells[j].push(new Cell(i, j, bomb));
+    for (let i=0; i<this.nbCells; i++) {
+        const bomb = Math.random() < this.fillingRatio;
+        if (bomb) {
+            this.bombs++;
         }
+        this.cells.push(new CellSquare(i, bomb));
     }
 
     this.show = () => {
-        for (let j=0; j<COL; j++) {
-            for (let i=0; i<COL; i++) {
-                this.cells[j][i].show();
-            }
-        }
+        this.cells.forEach(c => c.show());
     };
 }

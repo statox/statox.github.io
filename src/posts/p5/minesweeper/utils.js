@@ -16,30 +16,11 @@ const ijToIndex = (i, j) => {
     return i + COL * j;
 }
 
-function openCells(i, j, visited) {
-    const cell = game.cells[j][i];
-    cell.open();
-    visited.add(cell.index);
-
-    if (cell.countBombNeighbors > 0) {
-        return;
+const indexToij = (index) => {
+    return {
+        i: index % COL,
+        j: Math.floor(index / COL)
     }
-
-    cell.neighbors.forEach(n => {
-        if (!visited.has(n.index)) {
-            openCells(n.i, n.j, visited);
-        }
-    });
-}
-
-function loseGame() {
-    game.lost = true;
-    setTimeout(() => game = new Game(), 2000);
-}
-
-function winGame() {
-    game.won = true;
-    setTimeout(() => game = new Game(), 2000);
 }
 
 function clickCell(x, y) {
@@ -48,9 +29,8 @@ function clickCell(x, y) {
         return;
     }
 
-
     const {i, j} = xyToij(x, y);
-    const cell = game.cells[j][i];
+    const cell = game.cells[ijToIndex(i, j)];
 
     if (mouseButton === 'left') {
         // Don't click already clicked cells or the flagged ones
@@ -62,7 +42,7 @@ function clickCell(x, y) {
             loseGame();
         }
 
-        openCells(i, j, new Set());
+        openCells(cell.index, new Set());
     }
 
     if (mouseButton === 'right' && !cell.isOpen ) {
@@ -72,4 +52,30 @@ function clickCell(x, y) {
     if (game.flaggedCells.size === game.bombs && game.openedCells.size === COL*COL-game.bombs) {
         winGame();
     }
+}
+
+function openCells(index, visited) {
+    const cell = game.cells[index];
+    cell.open();
+    visited.add(cell.index);
+
+    if (cell.countBombNeighbors > 0) {
+        return;
+    }
+
+    cell.neighbors.forEach(n => {
+        if (!visited.has(n.index)) {
+            openCells(n.index, visited);
+        }
+    });
+}
+
+function loseGame() {
+    game.lost = true;
+    setTimeout(() => game = new Game(FILLING_RATIO), 2000);
+}
+
+function winGame() {
+    game.won = true;
+    setTimeout(() => game = new Game(FILLING_RATIO), 2000);
 }

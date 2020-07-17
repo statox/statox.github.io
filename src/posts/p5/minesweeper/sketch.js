@@ -1,5 +1,6 @@
+const FILLING_RATIO = 0.1;
 const D = 800;
-const COL = 5;
+const COL = 50;
 const CELL_SIZE = D/COL;
 const NUMBER_COLORS = [
     [10,   10, 230],
@@ -13,7 +14,6 @@ const NUMBER_COLORS = [
     [115, 115,  10],
 ];
 
-let fillingRatio = 0.2;
 let game;
 
 function setup() {
@@ -21,7 +21,7 @@ function setup() {
     var myCanvas = createCanvas(D, D);
     myCanvas.parent("canvasDiv");
 
-    game = new Game();
+    game = new Game(FILLING_RATIO);
 }
 
 function draw() {
@@ -53,15 +53,10 @@ function mousePressed() {
 // Cheat keys
 function keyPressed() {
     if (keyCode === UP_ARROW) {
-        for (let j=0; j<COL; j++) {
-            for (let i=0; i<COL; i++) {
-                game.cells[j][i].open();
-            }
-        }
+        game.cells.forEach(c => c.open());
     }
 
     if (keyCode === DOWN_ARROW) {
-        // game.resetGame();
-        game = new Game();
+        game = new Game(FILLING_RATIO);
     }
 }
