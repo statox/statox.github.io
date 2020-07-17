@@ -71,7 +71,7 @@ module.exports = function(eleventyConfig) {
     /*
      * Specify which types of templates should be transformed.
      */
-    eleventyConfig.setTemplateFormats(["html","liquid","njk","md","gif"]);
+    eleventyConfig.setTemplateFormats(["html","liquid","njk","md","gif","js"]);
 
     /*
      * Passthroughs
