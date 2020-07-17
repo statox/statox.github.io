@@ -3,13 +3,15 @@ layout: layouts/base.njk
 templateClass: tmpl-notes
 ---
 
-<ul>
-    {%- for note in collections.notesAlphabetical -%}
-    <li>
-        <a class="note-link" href={{note.url}}>{{ note.data.title }}</a>
-        <span class="note-tags">{{ note.data.tags | noteTags}}</span>
-
-        {# TODO: Find a way to show a preview of the note here #}
-    </li>
-    {%- endfor -%}
-</ul>
+{%- for note in collections.notesAlphabetical -%}
+    <div>
+        <details>
+            <summary>
+                <a class="note-link" href={{note.url}}>{{ note.data.title }}</a>
+                <span class="note-tags">{{ note.data.tags | noteTags}}</span>
+            </summary>
+            {# If needed check how to limit the size of the preview here #}
+            {{ note.templateContent | safe }}
+        </details>
+    </div>
+{%- endfor -%}

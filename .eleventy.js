@@ -12,14 +12,6 @@ module.exports = function(eleventyConfig) {
      * Posts collections by category
      * TODO: I'll probably need to update that to have dynamical lists based on a list of categories
      */
-    eleventyConfig.addCollection("posts_vim", function(collectionApi) {
-        return collectionApi.getFilteredByTags("post", "vim");
-    });
-
-    eleventyConfig.addCollection("posts_p5", function(collectionApi) {
-        return collectionApi.getFilteredByTags("post", "p5");
-    });
-
     // Notes sorted alphabetically by their title
     eleventyConfig.addCollection("notesAlphabetical", (collection) =>
         collection.getFilteredByGlob("src/notes/*.md").sort((a, b) => {
@@ -76,7 +68,10 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.setLibrary("md", markdownLib);
 
-    eleventyConfig.setTemplateFormats("html,liquid,njk,md,gif");
+    /*
+     * Specify which types of templates should be transformed.
+     */
+    eleventyConfig.setTemplateFormats(["html","liquid","njk","md","gif"]);
 
     /*
      * Passthroughs

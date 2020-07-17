@@ -5,6 +5,7 @@ cache:
   directories:
   - node_modules
 script:
+    # Script to generate the issue in github used for comments
   - npm run create-issues -- $BASIC_AUTH_HEADER false
   - npm run build
 deploy:
