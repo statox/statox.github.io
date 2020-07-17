@@ -17,7 +17,7 @@ const ijToIndex = (i, j) => {
 }
 
 function openCells(i, j, visited) {
-    const cell = cells[j][i];
+    const cell = game.cells[j][i];
     cell.open();
     visited.add(cell.index);
 
@@ -32,37 +32,25 @@ function openCells(i, j, visited) {
     });
 }
 
-function resetGame() {
-    gameLost = false;
-    gameWon = false;
-    cells = [];
-    bombs=0;
-    openedCells=new Set();
-    flaggedCells=new Set();
-    for (let j=0; j<COL; j++) {
-        cells.push([]);
-        for (let i=0; i<COL; i++) {
-            const bomb = Math.random() < fillingRatio;
-            if (bomb) {
-                bombs++;
-            }
-            cells[j].push(new Cell(i, j, bomb));
-        }
-    }
-}
-
 function loseGame() {
-    gameLost = true;
-    setTimeout(resetGame, 2000);
+    game.lost = true;
+    setTimeout(() => game = new Game(), 2000);
 }
 
 function winGame() {
-    gameWon = true;
-    setTimeout(resetGame, 2000);
+    game.won = true;
+    setTimeout(() => game = new Game(), 2000);
 }
 
-function clickCell(i, j, mode) {
-    const cell = cells[j][i];
+function clickCell(x, y) {
+    // Don't accept inputs when user lost
+    if (game.lost) {
+        return;
+    }
+
+
+    const {i, j} = xyToij(x, y);
+    const cell = game.cells[j][i];
 
     if (mouseButton === 'left') {
         // Don't click already clicked cells or the flagged ones
@@ -81,7 +69,7 @@ function clickCell(i, j, mode) {
         cell.flagToggle();
     }
 
-    if (flaggedCells.size === bombs && openedCells.size === COL*COL-bombs) {
+    if (game.flaggedCells.size === game.bombs && game.openedCells.size === COL*COL-game.bombs) {
         winGame();
     }
 }

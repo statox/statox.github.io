@@ -10,7 +10,7 @@ function Cell(i, j, bomb) {
 
     this.open = () => {
         this.isOpen = true;
-        openedCells.add(this.index);
+        game.openedCells.add(this.index);
         if (!this.neighbors) {
             this.neighbors = this.getNeighbors();
             this.countBombNeighbors = this.neighbors.filter(n => n.bomb).length;
@@ -20,9 +20,9 @@ function Cell(i, j, bomb) {
     this.flagToggle = () => {
         this.flagged = !this.flagged;
         if (this.flagged) {
-            flaggedCells.add(this.index);
+            game.flaggedCells.add(this.index);
         } else {
-            flaggedCells.delete(this.index);
+            game.flaggedCells.delete(this.index);
         }
     };
 
@@ -57,28 +57,28 @@ function Cell(i, j, bomb) {
         const neighbors = [];
         if (j > 0) {
             if (i > 0) {
-                neighbors.push(cells[j-1][i-1])
+                neighbors.push(game.cells[j-1][i-1])
             }
-            neighbors.push(cells[j-1][i])
+            neighbors.push(game.cells[j-1][i])
             if (i < COL-1) {
-                neighbors.push(cells[j-1][i+1])
+                neighbors.push(game.cells[j-1][i+1])
             }
         }
 
         if (i > 0) {
-            neighbors.push(cells[j][i-1])
+            neighbors.push(game.cells[j][i-1])
         }
         if (i < COL-1) {
-            neighbors.push(cells[j][i+1])
+            neighbors.push(game.cells[j][i+1])
         }
 
         if (j < COL-1) {
             if (i > 0) {
-                neighbors.push(cells[j+1][i-1])
+                neighbors.push(game.cells[j+1][i-1])
             }
-            neighbors.push(cells[j+1][i])
+            neighbors.push(game.cells[j+1][i])
             if (i < COL-1) {
-                neighbors.push(cells[j+1][i+1])
+                neighbors.push(game.cells[j+1][i+1])
             }
         }
 

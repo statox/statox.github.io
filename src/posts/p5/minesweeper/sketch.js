@@ -1,5 +1,5 @@
 const D = 800;
-const COL = 20;
+const COL = 5;
 const CELL_SIZE = D/COL;
 const NUMBER_COLORS = [
     [10,   10, 230],
@@ -14,36 +14,27 @@ const NUMBER_COLORS = [
 ];
 
 let fillingRatio = 0.2;
-let cells;
-let gameLost;
-let gameWon;
-let bombs;
-let openedCells;
-let flaggedCells;
+let game;
 
 function setup() {
     // Create the canvas and put it in its div
     var myCanvas = createCanvas(D, D);
     myCanvas.parent("canvasDiv");
 
-    resetGame();
+    game = new Game();
 }
 
 function draw() {
     background(220);
 
-    for (let j=0; j<COL; j++) {
-        for (let i=0; i<COL; i++) {
-            cells[j][i].show();
-        }
-    }
+    game.show();
 
-    if (gameLost) {
+    if (game.lost) {
         fill(250, 0, 0);
         textSize(40);
         text("GAME OVER", 150, D/2);
     };
-    if (gameWon) {
+    if (game.won) {
         fill(0, 250, 0);
         textSize(40);
         text("YOU WIN", 150, D/2);
@@ -56,13 +47,7 @@ function mousePressed() {
         return;
     }
 
-    // Don't accept inputs when user lost
-    if (gameLost) {
-        return;
-    }
-
-    const {i, j} = xyToij(mouseX, mouseY);
-    clickCell(i, j, mouseButton)
+    clickCell(mouseX, mouseY)
 }
 
 // Cheat keys
@@ -70,12 +55,13 @@ function keyPressed() {
     if (keyCode === UP_ARROW) {
         for (let j=0; j<COL; j++) {
             for (let i=0; i<COL; i++) {
-                cells[j][i].open();
+                game.cells[j][i].open();
             }
         }
     }
 
     if (keyCode === DOWN_ARROW) {
-        resetGame();
+        // game.resetGame();
+        game = new Game();
     }
 }
