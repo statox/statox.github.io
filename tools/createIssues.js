@@ -99,8 +99,13 @@ function getPosts(cb) {
             }
 
             // Only keep the part between the two '---' lines
-            const postHeader = content.split('---')[1].split('\n')
-            return cb(null, convertPostHeader(postHeader));
+            if (content.match('---')) {
+                const postHeader = content.split('---')[1].split('\n')
+                return cb(null, convertPostHeader(postHeader));
+            } else {
+                console.log('ignoring', file);
+                return cb(null, {});
+            }
         });
     },
     (error, results) => {
