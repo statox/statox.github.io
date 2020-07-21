@@ -74,8 +74,8 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.setTemplateFormats(["html","liquid","njk","md","gif","js"]);
 
     /*
-     * Passthroughs
+     * Passthroughs: Copy ./dir/ to docs/dir/
      */
-    // Copy ./css/ to docs/css/
     eleventyConfig.addPassthroughCopy("css");
+    eleventyConfig.addPassthroughCopy("fonts");
 };

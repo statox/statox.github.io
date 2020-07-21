@@ -3,7 +3,7 @@ function CellSquare(index, bomb) {
 
     this.show = () => {
         const {x, y} = ijToxy(this.i, this.j);
-        stroke(0);
+        stroke(100);
         rect(x+2, y+2, CELL_SIZE-4);
 
         let cellColor = color(125, 125, 125);
@@ -21,10 +21,20 @@ function CellSquare(index, bomb) {
         fill(cellColor);
         rect(x, y, CELL_SIZE);
 
+        if (this.flagged) {
+            textSize(D/COL);
+            text('🚩', x, y+D/COL);
+        }
+
         if (this.isOpen && !this.bomb && this.countBombNeighbors > 0) {
             fill(color(NUMBER_COLORS[this.countBombNeighbors - 1]));
             textSize(D/COL);
             text(this.countBombNeighbors, x, y+D/COL);
+        }
+
+        if (this.isOpen && this.bomb) {
+            textSize(D/COL);
+            text('💣', x, y+D/COL);
         }
     }
 

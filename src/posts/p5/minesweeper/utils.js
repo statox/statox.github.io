@@ -47,6 +47,7 @@ function clickCell(x, y) {
 
     if (mouseButton === 'right' && !cell.isOpen ) {
         cell.flagToggle();
+        updateFlagsSpan();
     }
 
     if (game.flaggedCells.size === game.bombs && game.openedCells.size === COL*COL-game.bombs) {
@@ -70,12 +71,15 @@ function openCells(index, visited) {
     });
 }
 
+function newGame () {
+    game = new Game(FILLING_RATIO)
+    updateFlagsSpan(game.flagsLeft)
+}
 function loseGame() {
     game.lost = true;
-    setTimeout(() => game = new Game(FILLING_RATIO), 2000);
+    game.cells.filter(c => c.bomb).forEach(c => c.open());
 }
 
 function winGame() {
     game.won = true;
-    setTimeout(() => game = new Game(FILLING_RATIO), 2000);
 }

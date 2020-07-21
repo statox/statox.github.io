@@ -22,9 +22,13 @@ function Cell(index, bomb) {
     this.flagToggle = () => {
         this.flagged = !this.flagged;
         if (this.flagged) {
-            game.flaggedCells.add(this.index);
+            if (game.flagsLeft > 0) {
+                game.flaggedCells.add(this.index);
+                game.flagsLeft--;
+            }
         } else {
             game.flaggedCells.delete(this.index);
+            game.flagsLeft++;
         }
     };
 }

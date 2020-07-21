@@ -1,7 +1,7 @@
-const FILLING_RATIO = 0.1;
 const D = 800;
-const COL = 50;
-const CELL_SIZE = D/COL;
+let FILLING_RATIO = 0.2;
+let COL = 30;
+let CELL_SIZE = D/COL;
 const NUMBER_COLORS = [
     [10,   10, 230],
     [ 10, 230,  10],
@@ -21,7 +21,8 @@ function setup() {
     var myCanvas = createCanvas(D, D);
     myCanvas.parent("canvasDiv");
 
-    game = new Game(FILLING_RATIO);
+    newGame();
+    initParams();
 }
 
 function draw() {
@@ -57,6 +58,6 @@ function keyPressed() {
     }
 
     if (keyCode === DOWN_ARROW) {
-        game = new Game(FILLING_RATIO);
+        newGame();
     }
 }
