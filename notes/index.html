@@ -21,6 +21,7 @@
 
     
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/minesweeper.css">
 
 </head>
 <body>
@@ -36,24 +37,69 @@
     </header>
 
     <div class="content-container">
-        
-<ul><li>
-        <a class="note-link" href=/notes/git-commits/>Fixing commits in git</a>
-        <span class="note-tags">[git][commit]</span>
+        <div>
+        <details>
+            <summary>
+                <a class="note-link" href=/notes/git-commits/>Fixing commits in git</a>
+                <span class="note-tags">[git][commit]</span>
+            </summary>
+            
+            <p>This link is dope <a href="https://sethrobertson.github.io/GitFixUm/fixup.html" target="_blank" rel="noopener noreferrer">https://sethrobertson.github.io/GitFixUm/fixup.html</a></p>
+<p>TODO: Extract the ones I need but can never remember</p>
 
-        
-    </li><li>
-        <a class="note-link" href=/notes/screen/>Screen</a>
-        <span class="note-tags">[screen]</span>
+        </details>
+    </div><div>
+        <details>
+            <summary>
+                <a class="note-link" href=/notes/screen/>Screen</a>
+                <span class="note-tags">[screen]</span>
+            </summary>
+            
+            <h3>Basic usage</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start a new session with session name</td>
+<td><code>screen -S &lt;session_name&gt;</code></td>
+</tr>
+<tr>
+<td>List running sessions / screens</td>
+<td><code>screen -ls</code></td>
+</tr>
+<tr>
+<td>Attach to a running session</td>
+<td><code>screen -x</code></td>
+</tr>
+<tr>
+<td>Attach to a running session with name</td>
+<td><code>screen -r &lt;session_name&gt;</code></td>
+</tr>
+<tr>
+<td>Detach a running session</td>
+<td><code>screen -d &lt;session_name&gt;</code></td>
+</tr>
+</tbody>
+</table>
 
-        
-    </li><li>
-        <a class="note-link" href=/notes/shell-redirection/>Shell redirections</a>
-        <span class="note-tags">[bash][shell][output]</span>
+        </details>
+    </div><div>
+        <details>
+            <summary>
+                <a class="note-link" href=/notes/shell-redirection/>Shell redirections</a>
+                <span class="note-tags">[bash][shell][output]</span>
+            </summary>
+            
+            <h3>Redirect stdout and stderr to a file</h3>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">command</span> <span class="token operator">></span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span></code></pre>
 
-        
-    </li></ul>
-
+        </details>
+    </div>
     </div>
 
     <script data-goatcounter="https://statoxblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
