@@ -46,6 +46,14 @@
             
             <p>This link is dope <a href="https://sethrobertson.github.io/GitFixUm/fixup.html" target="_blank" rel="noopener noreferrer">https://sethrobertson.github.io/GitFixUm/fixup.html</a></p>
 <p>TODO: Extract the ones I need but can never remember</p>
+<h3>Remove commit from history</h3>
+<p><em>Reminder on zsh escape <code>^</code> in <code>HEAD^</code> with <code>HEAD\^</code></em></p>
+<p>Remove the last commit of the history completely <strong>and discard changes</strong></p>
+<pre><code>git reset --hard HEAD^
+</code></pre>
+<p>Remove the last commit from history but keep the working tree</p>
+<pre><code>git reset HEAD^
+</code></pre>
 
         </details>
     </div><div>
