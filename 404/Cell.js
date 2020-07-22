@@ -12,6 +12,7 @@ function Cell(i, j) {
     this.show = () => {
         if (this.alive) {
             fill(cellColor);
+            stroke(cellColor);
             ellipse(this.i * CELL_SIZE, this.j * CELL_SIZE, CELL_SIZE);
         }
     };
