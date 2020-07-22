@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2020-07-22T12:17:15.311-00:00</updated>
+  <updated>2020-07-22T17:11:48.928-00:00</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -31,7 +31,7 @@
     <content type="html">&lt;h3&gt;I love to Quote the doc&lt;/h3&gt;
 &lt;p&gt;I often participate on the &lt;a href=&quot;https://vi.stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.stackexchange&lt;/a&gt; website because this community really helped me to get going with Vim when I first started using it and because it feels great to be able to help new vimmers.&lt;/p&gt;
 &lt;p&gt;When I write an answer I always try to think about how I can not only help the user to achieve what they want to do, but more importantly how I can help them to answer their own question next time they have one. And the best way to do that is to help them getting comfortable with the help.&lt;/p&gt;
-&lt;p&gt;Indeed Vim has an amazing built-in help system accessible directly from the editor itself using the command &lt;code&gt;:h&lt;/code&gt;. So whenever I write my answers I do my best to add these help topics. And I also like to add a link to one of the several online version of the help&lt;/p&gt;
+&lt;p&gt;Indeed Vim has an amazing built-in help system accessible directly from the editor itself using the command &lt;code&gt;:h&lt;/code&gt;. So whenever I write my answers I do my best to add the relevant help topics. And I also like to add a link to one of the several online version of the help&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://vimdoc.sourceforge.net/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;http://vimdoc.sourceforge.net/&lt;/a&gt; That I used at first but the anchoring of the topics were not always deterministic so it was to practical to use.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://vimhelp.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://vimhelp.org/&lt;/a&gt; Which I currently use.&lt;/li&gt;
@@ -40,19 +40,21 @@
 &lt;h3&gt;But it&#39;s painful&lt;/h3&gt;
 &lt;p&gt;For a long time I just wrote the help command like &lt;code&gt;:h autocmd-events&lt;/code&gt; in my answers but this was not convenient:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;First I have to do my own research, like any vimmer would do.&lt;/li&gt;
-&lt;li&gt;Then I&#39;d have to copy the help topic to my clipboard&lt;/li&gt;
-&lt;li&gt;In the web interface I have to type my redundant &lt;code&gt;:h &lt;/code&gt; and add the help topic.&lt;/li&gt;
-&lt;li&gt;Then because I think new users are more inclined to read the doc if it is available under their mouth I look for the topic on an online version of the help&lt;/li&gt;
+&lt;li&gt;First I have to do my own research in the help system, like any vimmer would do.&lt;/li&gt;
+&lt;li&gt;Then I have to copy the help topic to my clipboard&lt;/li&gt;
+&lt;li&gt;In the web interface I have to redundantly type the string &lt;code&gt;:h &lt;/code&gt; and add the help topic.&lt;/li&gt;
+&lt;li&gt;Then because I think new users are more inclined to read the doc if it is available right under their hand I look for the topic on an online version of the help&lt;/li&gt;
 &lt;li&gt;Finally I can update my markdown with the right link&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;After doing that for a few months and feeling the pain I started creating a short hack in my &lt;code&gt;.vimrc&lt;/code&gt; to improve this workflow, until the day I read &lt;a href=&quot;https://vi.stackexchange.com/q/4346/1841&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;How can I quickly convert a Vim help tag to a vimhelp.appspot.com link?&lt;/a&gt;. This question confirmed that this action was a pain point for other people and that pushed me to create a proper plugin.&lt;/p&gt;
 &lt;h3&gt;So let&#39;s create a plugin!&lt;/h3&gt;
 &lt;p&gt;So I created &lt;a href=&quot;https://github.com/statox/GOD.vim&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;GOD.vim&lt;/a&gt; this is a very simple plugin which goal is to easily get a markdown expression describing a help topic and linking to its online version. The plugin does the following:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Create a new command &lt;code&gt;:GOD&lt;/code&gt; which takes the exact same parameter as &lt;code&gt;:h&lt;/code&gt;. The behavior is completely duplicated thanks to &lt;a href=&quot;http://vimhelp.appspot.com/map.txt.html#%3Acommand-nargs&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;code&gt;:h :command-nargs&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;http://vimhelp.appspot.com/map.txt.html#%3Acommand-complete&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;code&gt;:h :command-complete&lt;/code&gt;&lt;/a&gt;, see &lt;a href=&quot;https://github.com/statox/GOD.vim/blob/bed2a6fe9458284760d6fb5f08495e6579ce69dd/plugin/GOD.vim#L16&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;how I create the command&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;On the help page, parse the help topics and get the first one and use that to build a URL to the relevant help website.&lt;/li&gt;
-&lt;li&gt;Use this URL to generate a markdown template&lt;/li&gt;
+&lt;li&gt;Create a new command &lt;code&gt;:GOD&lt;/code&gt; which takes the exact same parameter as &lt;code&gt;:h&lt;/code&gt;. The autcomplete behavior is completely duplicated thanks to &lt;a href=&quot;http://vimhelp.appspot.com/map.txt.html#%3Acommand-nargs&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;code&gt;:h :command-nargs&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;http://vimhelp.appspot.com/map.txt.html#%3Acommand-complete&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;code&gt;:h :command-complete&lt;/code&gt;&lt;/a&gt;, see &lt;a href=&quot;https://github.com/statox/GOD.vim/blob/bed2a6fe9458284760d6fb5f08495e6579ce69dd/plugin/GOD.vim#L16&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;how I create the command&lt;/a&gt;:&lt;pre class=&quot;language-vim&quot;&gt;&lt;code class=&quot;language-vim&quot;&gt;command&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;nargs&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;complete&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;help&lt;/span&gt; GOD &lt;span class=&quot;token keyword&quot;&gt;call&lt;/span&gt; GOD#&lt;span class=&quot;token function&quot;&gt;GetOnlineDoc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;vimhelp&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Open the corresponding help page, parse the help topics under the cursor and get the first one.&lt;/li&gt;
+&lt;li&gt;Use this string to build a URL to the relevant help website.&lt;/li&gt;
+&lt;li&gt;Use this URL to generate a markdown template of the form &lt;code&gt;[:h help-topic](https://url-of-the-help.com/escaped-help-topic)&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Copy this template to the clipboard.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I also added some additional features:&lt;/p&gt;
@@ -60,8 +62,18 @@
 &lt;li&gt;Being able to link either to the vim help or the neovim help using respectively &lt;code&gt;:GOD&lt;/code&gt; and &lt;code&gt;:NGOD&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Being able to have a nicely formatted markdown list if several help topics are given as parameters to the command.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I think the most part about writing this plugin was to create a pure vimscript encoding function to handle the URLs with the help of great developers from the &lt;a href=&quot;https://vi.stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.stackexchange&lt;/a&gt; community, namely &lt;a href=&quot;https://github.com/LucHermitte&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Luc Hermitte&lt;/a&gt; and &lt;a href=&quot;https://www.arp242.net/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Martin Tournoij&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;And of course it is always a great satisfaction to create a tool that you still continue to use several years after you first needed it. The sources of the plugin and its documentation are &lt;a href=&quot;https://github.com/statox/GOD.vim&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I think the trickiest part about writing this plugin was to create a pure vimscript encoding function to handle the URLs. Indeed a lot of help topics have some characters which need to be URL encoded. The first version of my encoding function didn&#39;t work very well but fortunately I got the help of great developers from the &lt;a href=&quot;https://vi.stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.stackexchange&lt;/a&gt; community, namely &lt;a href=&quot;https://luchermitte.github.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Luc Hermitte&lt;/a&gt; and &lt;a href=&quot;https://www.arp242.net/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Martin Tournoij&lt;/a&gt; who helped me with different parts of this plugin and in particular who helped me coming up with this function:&lt;/p&gt;
+&lt;pre class=&quot;language-vim&quot;&gt;&lt;code class=&quot;language-vim&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;&quot; Encode url&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; s&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;URLEncode&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;str&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; abort&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;&quot; Replace each non hex character of the string by its hex representation&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;strlen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;str&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;a:str[v:val] =~ &quot;[a-zA-Z0-9\-._]&quot; ? a:str[v:val] : printf(&quot;%%%02x&quot;, char2nr(a:str[v:val]))&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;endfun&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It takes an help topic as a parameter like &lt;code&gt;/\@&amp;lt;=&lt;/code&gt;, iterates on each characters of the string and if the character doesn&#39;t match &lt;code&gt;/[a-zA-Z0-9\-._]/&lt;/code&gt; (i.e. characters which don&#39;t need to be URL encoded) it uses &lt;a href=&quot;http://vimhelp.appspot.com/eval.txt.html#char2nr%28%29&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;code&gt;:h char2nr()&lt;/code&gt;&lt;/a&gt; to get the numerical value of the character and passes this value to &lt;a href=&quot;http://vimhelp.appspot.com/eval.txt.html#printf%28%29&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;code&gt;:h printf()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here &lt;code&gt;printf()&lt;/code&gt; is used with the following format: &lt;code&gt;%%%02x&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;%%&lt;/code&gt; is used to insert a litteral &lt;code&gt;%&lt;/code&gt; character (which is used in URL encoding to specify encoded characters)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%02x&lt;/code&gt; is used to get the hex value of the character. &lt;code&gt;02&lt;/code&gt; is the number of &lt;code&gt;0&lt;/code&gt; to use for the padding.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With our example topic &lt;code&gt;/\@&amp;lt;=&lt;/code&gt; the function returns &lt;code&gt;%2f%5c%40%3c%3d&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Field tested&lt;/h3&gt;
+&lt;p&gt;I&#39;ve been using this plugin regularly for several years now and I don&#39;t recall encountering a topic which didn&#39;t work well. And of course it is always a great satisfaction to create a tool that you still continue to use several years after you first needed it!&lt;/p&gt;
+&lt;p&gt;The sources of the plugin and its documentation are &lt;a href=&quot;https://github.com/statox/GOD.vim&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on Github&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
   
@@ -383,7 +395,7 @@ since it&#39;s a |/zero-width| match it doesn&#39;t include that character.
   <entry>
     <title>Including a p5.js project in this website (Minesweeper 💣)</title>
     <link href="https://www.statox.fr/posts/p5/minesweeper/"/>
-    <updated>2020-07-22T12:17:15.311-00:00</updated>
+    <updated>2020-07-22T17:11:48.928-00:00</updated>
     <id>https://www.statox.fr/posts/p5/minesweeper/</id>
     <content type="html">
 &lt;p&gt;

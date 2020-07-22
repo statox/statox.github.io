@@ -45,7 +45,7 @@
 <h3>I love to Quote the doc</h3>
 <p>I often participate on the <a href="https://vi.stackexchange.com" target="_blank" rel="noopener noreferrer">vi.stackexchange</a> website because this community really helped me to get going with Vim when I first started using it and because it feels great to be able to help new vimmers.</p>
 <p>When I write an answer I always try to think about how I can not only help the user to achieve what they want to do, but more importantly how I can help them to answer their own question next time they have one. And the best way to do that is to help them getting comfortable with the help.</p>
-<p>Indeed Vim has an amazing built-in help system accessible directly from the editor itself using the command <code>:h</code>. So whenever I write my answers I do my best to add these help topics. And I also like to add a link to one of the several online version of the help</p>
+<p>Indeed Vim has an amazing built-in help system accessible directly from the editor itself using the command <code>:h</code>. So whenever I write my answers I do my best to add the relevant help topics. And I also like to add a link to one of the several online version of the help</p>
 <ul>
 <li><a href="http://vimdoc.sourceforge.net/" target="_blank" rel="noopener noreferrer">http://vimdoc.sourceforge.net/</a> That I used at first but the anchoring of the topics were not always deterministic so it was to practical to use.</li>
 <li><a href="https://vimhelp.org/" target="_blank" rel="noopener noreferrer">https://vimhelp.org/</a> Which I currently use.</li>
@@ -54,19 +54,21 @@
 <h3>But it's painful</h3>
 <p>For a long time I just wrote the help command like <code>:h autocmd-events</code> in my answers but this was not convenient:</p>
 <ul>
-<li>First I have to do my own research, like any vimmer would do.</li>
-<li>Then I'd have to copy the help topic to my clipboard</li>
-<li>In the web interface I have to type my redundant <code>:h </code> and add the help topic.</li>
-<li>Then because I think new users are more inclined to read the doc if it is available under their mouth I look for the topic on an online version of the help</li>
+<li>First I have to do my own research in the help system, like any vimmer would do.</li>
+<li>Then I have to copy the help topic to my clipboard</li>
+<li>In the web interface I have to redundantly type the string <code>:h </code> and add the help topic.</li>
+<li>Then because I think new users are more inclined to read the doc if it is available right under their hand I look for the topic on an online version of the help</li>
 <li>Finally I can update my markdown with the right link</li>
 </ul>
 <p>After doing that for a few months and feeling the pain I started creating a short hack in my <code>.vimrc</code> to improve this workflow, until the day I read <a href="https://vi.stackexchange.com/q/4346/1841" target="_blank" rel="noopener noreferrer">How can I quickly convert a Vim help tag to a vimhelp.appspot.com link?</a>. This question confirmed that this action was a pain point for other people and that pushed me to create a proper plugin.</p>
 <h3>So let's create a plugin!</h3>
 <p>So I created <a href="https://github.com/statox/GOD.vim" target="_blank" rel="noopener noreferrer">GOD.vim</a> this is a very simple plugin which goal is to easily get a markdown expression describing a help topic and linking to its online version. The plugin does the following:</p>
 <ul>
-<li>Create a new command <code>:GOD</code> which takes the exact same parameter as <code>:h</code>. The behavior is completely duplicated thanks to <a href="http://vimhelp.appspot.com/map.txt.html#%3Acommand-nargs" target="_blank" rel="noopener noreferrer"><code>:h :command-nargs</code></a> and <a href="http://vimhelp.appspot.com/map.txt.html#%3Acommand-complete" target="_blank" rel="noopener noreferrer"><code>:h :command-complete</code></a>, see <a href="https://github.com/statox/GOD.vim/blob/bed2a6fe9458284760d6fb5f08495e6579ce69dd/plugin/GOD.vim#L16" target="_blank" rel="noopener noreferrer">how I create the command</a></li>
-<li>On the help page, parse the help topics and get the first one and use that to build a URL to the relevant help website.</li>
-<li>Use this URL to generate a markdown template</li>
+<li>Create a new command <code>:GOD</code> which takes the exact same parameter as <code>:h</code>. The autcomplete behavior is completely duplicated thanks to <a href="http://vimhelp.appspot.com/map.txt.html#%3Acommand-nargs" target="_blank" rel="noopener noreferrer"><code>:h :command-nargs</code></a> and <a href="http://vimhelp.appspot.com/map.txt.html#%3Acommand-complete" target="_blank" rel="noopener noreferrer"><code>:h :command-complete</code></a>, see <a href="https://github.com/statox/GOD.vim/blob/bed2a6fe9458284760d6fb5f08495e6579ce69dd/plugin/GOD.vim#L16" target="_blank" rel="noopener noreferrer">how I create the command</a>:<pre class="language-vim"><code class="language-vim">command<span class="token operator">!</span> <span class="token operator">-</span>nargs<span class="token operator">=</span><span class="token operator">+</span> <span class="token operator">-</span><span class="token builtin">complete</span><span class="token operator">=</span><span class="token keyword">help</span> GOD <span class="token keyword">call</span> GOD#<span class="token function">GetOnlineDoc</span><span class="token punctuation">(</span><span class="token string">'vimhelp'</span><span class="token punctuation">,</span> <span class="token operator">&lt;</span><span class="token keyword">f</span><span class="token operator">-</span><span class="token keyword">args</span><span class="token operator">></span><span class="token punctuation">)</span></code></pre>
+</li>
+<li>Open the corresponding help page, parse the help topics under the cursor and get the first one.</li>
+<li>Use this string to build a URL to the relevant help website.</li>
+<li>Use this URL to generate a markdown template of the form <code>[:h help-topic](https://url-of-the-help.com/escaped-help-topic)</code></li>
 <li>Copy this template to the clipboard.</li>
 </ul>
 <p>I also added some additional features:</p>
@@ -74,8 +76,18 @@
 <li>Being able to link either to the vim help or the neovim help using respectively <code>:GOD</code> and <code>:NGOD</code></li>
 <li>Being able to have a nicely formatted markdown list if several help topics are given as parameters to the command.</li>
 </ul>
-<p>I think the most part about writing this plugin was to create a pure vimscript encoding function to handle the URLs with the help of great developers from the <a href="https://vi.stackexchange.com" target="_blank" rel="noopener noreferrer">vi.stackexchange</a> community, namely <a href="https://github.com/LucHermitte" target="_blank" rel="noopener noreferrer">Luc Hermitte</a> and <a href="https://www.arp242.net/" target="_blank" rel="noopener noreferrer">Martin Tournoij</a></p>
-<p>And of course it is always a great satisfaction to create a tool that you still continue to use several years after you first needed it. The sources of the plugin and its documentation are <a href="https://github.com/statox/GOD.vim" target="_blank" rel="noopener noreferrer">on Github</a></p>
+<p>I think the trickiest part about writing this plugin was to create a pure vimscript encoding function to handle the URLs. Indeed a lot of help topics have some characters which need to be URL encoded. The first version of my encoding function didn't work very well but fortunately I got the help of great developers from the <a href="https://vi.stackexchange.com" target="_blank" rel="noopener noreferrer">vi.stackexchange</a> community, namely <a href="https://luchermitte.github.io/" target="_blank" rel="noopener noreferrer">Luc Hermitte</a> and <a href="https://www.arp242.net/" target="_blank" rel="noopener noreferrer">Martin Tournoij</a> who helped me with different parts of this plugin and in particular who helped me coming up with this function:</p>
+<pre class="language-vim"><code class="language-vim"><span class="token comment">" Encode url</span><br><span class="token keyword">function</span><span class="token operator">!</span> s<span class="token punctuation">:</span><span class="token function">URLEncode</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> abort<br>    <span class="token comment">" Replace each non hex character of the string by its hex representation</span><br>    <span class="token keyword">return</span> <span class="token function">join</span><span class="token punctuation">(</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span>str<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'a:str[v:val] =~ "[a-zA-Z0-9\-._]" ? a:str[v:val] : printf("%%%02x", char2nr(a:str[v:val]))'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><br><span class="token keyword">endfun</span></code></pre>
+<p>It takes an help topic as a parameter like <code>/\@&lt;=</code>, iterates on each characters of the string and if the character doesn't match <code>/[a-zA-Z0-9\-._]/</code> (i.e. characters which don't need to be URL encoded) it uses <a href="http://vimhelp.appspot.com/eval.txt.html#char2nr%28%29" target="_blank" rel="noopener noreferrer"><code>:h char2nr()</code></a> to get the numerical value of the character and passes this value to <a href="http://vimhelp.appspot.com/eval.txt.html#printf%28%29" target="_blank" rel="noopener noreferrer"><code>:h printf()</code></a>.</p>
+<p>Here <code>printf()</code> is used with the following format: <code>%%%02x</code>:</p>
+<ul>
+<li><code>%%</code> is used to insert a litteral <code>%</code> character (which is used in URL encoding to specify encoded characters)</li>
+<li><code>%02x</code> is used to get the hex value of the character. <code>02</code> is the number of <code>0</code> to use for the padding.</li>
+</ul>
+<p>With our example topic <code>/\@&lt;=</code> the function returns <code>%2f%5c%40%3c%3d</code>.</p>
+<h3>Field tested</h3>
+<p>I've been using this plugin regularly for several years now and I don't recall encountering a topic which didn't work well. And of course it is always a great satisfaction to create a tool that you still continue to use several years after you first needed it!</p>
+<p>The sources of the plugin and its documentation are <a href="https://github.com/statox/GOD.vim" target="_blank" rel="noopener noreferrer">on Github</a></p>
 
 
 <p><a href="/">← Posts</a></p>
