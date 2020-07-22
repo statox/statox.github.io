@@ -1,4 +1,4 @@
-# Blog
+# Blog [![Build Status](https://travis-ci.org/statox/blog.svg?branch=master)](https://travis-ci.org/statox/blog)
 
 I'm trying to do a minimal blog hoping that having it very simple will motivate me to put new stuff regularly.
 For now the rest of this readme will probably be my cheatsheet/todo list.
