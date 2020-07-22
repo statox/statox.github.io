@@ -31,7 +31,6 @@ function draw() {
 }
 
 function windowResized() {
-    const divWidth = document.getElementById("canvasDiv").offsetWidth
     resizeCanvas(windowWidth, windowHeight);
     resetGOL();
 }
