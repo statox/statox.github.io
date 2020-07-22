@@ -14,11 +14,11 @@ function setup() {
 
     const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (userPrefersDark) {
-        backgroundColor = color(0, 0, 0);
-        cellColor = color(10, 10, 10, 150);
+        backgroundColor = color(30, 39, 44);
+        cellColor = color(35, 44, 49, 100);
     } else {
-        backgroundColor = color(250, 250, 250);
-        cellColor = color(245, 245, 245, 150);
+        backgroundColor = color(244, 244, 244);
+        cellColor = color(239, 239, 239, 200);
     }
 
     resetGOL();
@@ -26,12 +26,11 @@ function setup() {
 }
 
 function draw() {
-    background(0);
+    background(backgroundColor);
     cells.forEach(c => {c.show()});
 }
 
 function windowResized() {
-    const divWidth = document.getElementById("canvasDiv").offsetWidth
     resizeCanvas(windowWidth, windowHeight);
     resetGOL();
 }
