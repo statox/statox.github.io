@@ -34,6 +34,9 @@ module.exports = function(eleventyConfig) {
         return tags.filter(t => t !== 'note').map(t => '[' + t + ']').join('');
     });
 
+    // Change the tab title to the tittle of the post or the tittle of the site
+    eleventyConfig.addFilter('pageTitle', tittle => tittle || 'The stuff I do');
+
     /*
      * Plugins
      */
