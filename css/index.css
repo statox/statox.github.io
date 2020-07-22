@@ -17,7 +17,7 @@
  * Justify all texts excepted the 404 page
  * cf. https://stackoverflow.com/a/35734554/4194289
  */
-*:not(div.not-found) {
+*:not(.not-found) {
     text-align: justify;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .not-found {
-  text-align: center;
+    text-align: center;
 }
 
 #not-found-canvas {
