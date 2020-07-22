@@ -19,7 +19,7 @@ Here are the important steps to make all of this working:
  - Create a dedicated repo [blog-comments](https://github.com/statox/blog-comments/issues) which will contain the issues used to host comments;
  - Have the CI run the script each time a new article is published;
  - Give the script the ability to create new issues in the blog-comments repo;
- - Give each post a unique number representing the issue ID on Github. [Eleventy](https://www.11ty.dev/docs/data-cascade/) as a simple way to do that;
+ - Give each post a unique number representing the issue ID on Github. [Eleventy](https://www.11ty.dev/docs/data-cascade/) provides a simple way to do that;
  - Make the script parsing all the published posts, listing the posts without an associated issue and creating the issues;
  - Change the posts source code to inject the comments.
 
@@ -54,7 +54,7 @@ const BASIC_AUTH_HEADER = process.argv[2]; // [0] is "node", [1] is scriptname
 
 /*
  * Configure axios to always use my user agent and my Github login
- * to authentication to the Github API
+ * to authenticate to the Github API
  */
 const axios = Axios.create({
     baseURL: 'https://api.github.com/',
@@ -65,7 +65,7 @@ const axios = Axios.create({
 });
 
 /*
- * Get all the issues open in a github repo
+ * Get all of the open issues in a github repo
  */
 function getIssues(cb) {
     return axios.get(
