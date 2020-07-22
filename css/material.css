@@ -1,0 +1,50 @@
+/*
+ * Inspired from material theme
+ * https://www.material-theme.com/docs/reference/color-palette/
+ */
+
+:root {
+    /* Light theme */
+    --nc-tx-1: #546e7a;
+    --nc-tx-2: #161d21;
+    --nc-bg-1: #F4F4F4;
+    --nc-bg-2: #eae8e8;
+    --nc-bg-3: #FAFAFA;
+    --nc-lk-1: #39ADB5;
+    --nc-lk-2: #528aff;
+    --nc-lk-tx: #F3F4F5;
+    --nc-ac-1: #91B859;
+    --nc-ac-tx: #FAFAFA;
+
+    /* Dark theme */
+    --nc-d-tx-1: #FFFFFF;
+    --nc-d-tx-2: #B7B7B7;
+    --nc-d-bg-1: #1E272C;
+    --nc-d-bg-2: #161d21;
+    --nc-d-bg-3: #263238;
+    --nc-d-lk-1: #5E92FF;
+    --nc-d-lk-2: #528aff;
+    --nc-d-lk-tx: #2E3C43;
+    --nc-d-ac-1: #C3E88D;
+    --nc-d-ac-tx: #263238;
+}
+
+/*
+ * I would have thought it is not necessary to write that again
+ * as it is already part of `new.css` but it looks like dark theme
+ * doesn't work otherwise
+ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --nc-tx-1: var(--nc-d-tx-1);
+        --nc-tx-2: var(--nc-d-tx-2);
+        --nc-bg-1: var(--nc-d-bg-1);
+        --nc-bg-2: var(--nc-d-bg-2);
+        --nc-bg-3: var(--nc-d-bg-3);
+        --nc-lk-1: var(--nc-d-lk-1);
+        --nc-lk-2: var(--nc-d-lk-2);
+        --nc-lk-tx: var(--nc-d-lk-tx);
+        --nc-ac-1: var(--nc-d-ac-1);
+        --nc-ac-tx: var(--nc-d-ac-tx);
+    }
+}
