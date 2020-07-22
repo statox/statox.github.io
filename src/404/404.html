@@ -15,8 +15,10 @@ layout: layouts/base.njk
     <script src="404/Cell.js"></script>
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <p>This page does not exist and it's unlikely to have ever existed. If you thing this is an error <a href="{{ "/social" | url }}">let me know</a>.</p>
+    <div class="not-found">
+        <h2>{{ title }}</h1>
+        <p>This page does not exist and it's unlikely to have ever existed. If you thing this is an error, please <a href="{{ "/social" | url }}">let me know</a>.</p>
+    </div>
     <div oncontextmenu="return false;" id="canvasDiv"></div>
   </body>
 </html>

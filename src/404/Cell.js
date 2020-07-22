@@ -5,14 +5,14 @@ function ijtoIndex(i, j) {
 function Cell(i, j) {
     this.i = i;
     this.j = j;
-    this.alive = (Math.random() > 0.8);
+    this.alive = (Math.random() > 0.5);
     this.nextAlive = this.alive;
     this.neighbors;
 
     this.show = () => {
         if (this.alive) {
-            fill(color(10, 10, 10));
-            rect(this.i * CELL_SIZE, this.j * CELL_SIZE, CELL_SIZE);
+            fill(cellColor);
+            ellipse(this.i * CELL_SIZE, this.j * CELL_SIZE, CELL_SIZE);
         }
     };
 

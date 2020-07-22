@@ -14,11 +14,10 @@
  */
 
 /*
- * Justify all texts
- * If there is a need to not apply that to a specific tag see this:
- * https://stackoverflow.com/a/35734554/4194289
+ * Justify all texts excepted the 404 page
+ * cf. https://stackoverflow.com/a/35734554/4194289
  */
-*{
+*:not(div.not-found) {
     text-align: justify;
 }
 
@@ -35,6 +34,14 @@
     /* Graying out https://stackoverflow.com/a/5081723/4194289 */
     opacity: 0.6; /* Real browsers */
     filter: alpha(opacity = 60); /* MSIE */
+}
+
+.not-found {
+  text-align: center;
+}
+
+#not-found-canvas {
+    z-index: -1;
 }
 
 /* Remove underline added by newcss under links */
