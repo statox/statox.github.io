@@ -1,0 +1,26 @@
+---
+layout: layouts/post.njk
+tags: ['post', 'p5']
+date: 2020-07-25
+title: Birds flock simulation
+commentIssueId: X
+<!-- eleventyExcludeFromCollections: true -->
+---
+
+<div>
+    <button id="wiggleButton" onclick="toggleWiggle()">Toggle wiggle</button>
+    <button id="followButton" onclick="toggleAlignment()">Toggle alignment</button>
+    <button id="followButton" onclick="toggleSeparation()">Toggle separation</button>
+    <button id="markButton" onclick="markRandom()">Mark a random boid</button>
+</div>
+<div>
+    <input id="flockSizeInput" type="number">
+    <button id="flockSizeBtn" onclick="updateFlockSize()">Change flock size</button>
+</div>
+<div oncontextmenu="return false;" id="canvasDiv"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+<script src="sketch.js"></script>
+<script src="Interface.js"></script>
+<script src="Bird.js"></script>
+<script src="utils.js"></script>
