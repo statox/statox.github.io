@@ -23,6 +23,10 @@ function toggleWrapEdges() {
     enableWrapEdges = !enableWrapEdges;
 }
 
+function toggleFollowTarget() {
+    enableFollowTarget = !enableFollowTarget;
+}
+
 function markRandom() {
     birds.forEach(b => b.marked = false);
     const randId = parseInt(random(0, birds.length-1));
