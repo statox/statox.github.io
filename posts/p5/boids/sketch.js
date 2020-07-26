@@ -79,6 +79,7 @@ function draw() {
         target.show();
     }
 
+    noStroke();
     textSize(20);
     fill(enableWiggle ? 'green' : 'red');
     text('wiggle ', 100, 100);

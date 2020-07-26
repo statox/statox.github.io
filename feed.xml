@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2020-07-26T20:11:36.131-00:00</updated>
+  <updated>2020-07-26T20:12:16.345-00:00</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -395,7 +395,7 @@ since it&#39;s a |/zero-width| match it doesn&#39;t include that character.
   <entry>
     <title>Including a p5.js project in this website (Minesweeper 💣)</title>
     <link href="https://www.statox.fr/posts/p5/minesweeper/"/>
-    <updated>2020-07-26T20:11:36.131-00:00</updated>
+    <updated>2020-07-26T20:12:16.345-00:00</updated>
     <id>https://www.statox.fr/posts/p5/minesweeper/</id>
     <content type="html">
 &lt;p&gt;
