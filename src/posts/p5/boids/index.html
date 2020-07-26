@@ -8,19 +8,20 @@ eleventyExcludeFromCollections: true
 ---
 
 <div>
+    <input id="flockSizeInput" type="number">
+    <button id="flockSizeBtn" onclick="updateFlockSize()">Change flock size</button>
+    <button id="markButton" onclick="markRandom()">Mark a random boid</button>
+</div>
+<div>
     <button id="wiggleButton" onclick="toggleWiggle()">Toggle wiggle</button>
     <button id="followButton" onclick="toggleAlignment()">Toggle alignment</button>
     <button id="followButton" onclick="toggleSeparation()">Toggle separation</button>
+    <button id="followButton" onclick="toggleCohesion()">Toggle cohesion</button>
 </div>
 <div>
     <button id="followMouseButton" onclick="toggleFollowMouse()">Follow mouse</button>
     <button id="followMouseButton" onclick="toggleFollowTarget()">Follow target</button>
     <button id="wrapEdgesButton" onclick="toggleWrapEdges()">Edge wrapping</button>
-</div>
-<div>
-    <input id="flockSizeInput" type="number">
-    <button id="flockSizeBtn" onclick="updateFlockSize()">Change flock size</button>
-    <button id="markButton" onclick="markRandom()">Mark a random boid</button>
 </div>
 <div oncontextmenu="return false;" id="canvasDiv"></div>
 

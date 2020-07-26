@@ -1,7 +1,7 @@
-let TARGET_MAX_SPEED = 12;
-let MAX_SPEED = 10;
+let TARGET_MAX_SPEED = 2;
+let MAX_SPEED = 5;
 let CROWD_SIZE = 500;
-let TARGET_MAX_ACC = 1.2;
+let TARGET_MAX_ACC = 1;
 let MAX_ACC = 1;
 let birds;
 let time=0;
@@ -12,6 +12,7 @@ let enableWiggle = true;
 let enableFollowMouse = false;
 let enableWrapEdges = true;
 let enableFollowTarget = false;
+let enableCohesion = false;
 let SQUARES=10;
 let repartition;
 
@@ -86,8 +87,10 @@ function draw() {
     text('alignment ', 100, 150);
     fill(enableSeparation ? 'green' : 'red');
     text('separation ', 100, 200);
+    fill(enableCohesion ? 'green' : 'red');
+    text('cohesion ', 100, 250);
     fill(enableFollowMouse ? 'green' : 'red');
-    text('mouse ', 100, 250);
+    text('mouse ', 100, 300);
     noFill();
 }
 

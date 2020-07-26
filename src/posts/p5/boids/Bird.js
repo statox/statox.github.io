@@ -7,15 +7,15 @@ function Bird(id, pos, vel) {
     this.vel = vel;
     this.acc = new p5.Vector(0, 0);
     this.r = 6;
+    this.color = random(255);
     this.marked = false;
     this.MAX_WIGGLE_ANGLE = HALF_PI;
-    this.ALIGNMENT_FRIENDS_RADIUS = this.r * 5;
-    this.SEPARATION_FRIENDS_RADIUS = this.r * 1.5;
 
     // Think timer to search for friends idea taken here
     // https://github.com/jackaperkins/boids
-
     this.thinkTimer = parseInt(random(10));
+    this.ALIGNMENT_FRIENDS_RADIUS = this.r * 5;
+    this.SEPARATION_FRIENDS_RADIUS = this.r * 1.5;
     this.alignmentFriends = [];
     this.separationFriends = []
 
@@ -130,6 +130,21 @@ function Bird(id, pos, vel) {
         return separationSteer;
     };
 
+    // Compute steering force towards local center of mass
+    this.getCohesionAcceleration = () => {
+        if (!enableCohesion) {
+            return
+        }
+
+        const cohesionSteer = new p5.Vector(0, 0);
+        this.alignmentFriends.forEach(id => {
+            const pos = birds[id].pos;
+            cohesionSteer.add(pos);
+        });
+        cohesionSteer.div(this.alignmentFriends.size);
+        return cohesionSteer;
+    };
+
     // Compute steering in a random position
     this.getWiggleAcceleration = () => {
         if (!enableWiggle) {
@@ -165,14 +180,18 @@ function Bird(id, pos, vel) {
         this.applyForce(borderSteer);
         const wiggleSteer = this.getWiggleAcceleration();
         this.applyForce(wiggleSteer);
+
         const mouseSteer = this.getMouseAcceleration();
         this.applyForce(mouseSteer);
+        const targetSteer = this.getTargetAcceleration();
+        this.applyForce(targetSteer);
+
         const alignmentSteer = this.getAlignmentAcceleration();
         this.applyForce(alignmentSteer);
         const separationSteer = this.getSeparationAcceleration();
         this.applyForce(separationSteer);
-        const targetSteer = this.getTargetAcceleration();
-        this.applyForce(targetSteer);
+        const cohesionSteer = this.getCohesionAcceleration();
+        this.applyForce(cohesionSteer);
 
         this.vel.add(this.acc);
         this.vel.limit(MAX_SPEED);
@@ -184,7 +203,9 @@ function Bird(id, pos, vel) {
         push();
         translate(this.pos.x, this.pos.y);
         rotate(angle);
-        fill(250);
+        fill(255);
+        // fill(this.color);
+        // fill(random(255));
         if (this.marked) {
             fill('red');
         }
