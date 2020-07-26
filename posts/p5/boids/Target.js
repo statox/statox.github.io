@@ -1,4 +1,4 @@
-const TARGET_BORDER_LIMIT = 150;
+const TARGET_BORDER_LIMIT = 40;
 
 function Target(id) {
     const x = random(0, width);
@@ -56,8 +56,7 @@ function Target(id) {
             return;
         }
 
-        const wiggleSteer = new p5.Vector(random(-width, width), random(-height, height));
-        wiggleSteer.normalize().mult(TARGET_MAX_ACC);
+        const wiggleSteer = new p5.Vector(random(-10, 10), random(-10, 10));
         return wiggleSteer;
 
         // const wiggleAngle = map(random(), 0, 1, -this.MAX_WIGGLE_ANGLE, this.MAX_WIGGLE_ANGLE);
