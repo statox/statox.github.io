@@ -72,7 +72,6 @@ function draw() {
         line(0, 0, 0, height);
         line(width, 0, width, height);
         line(0, height, width, height);
-        noStroke();
     }
 
     if (enableFollowTarget) {

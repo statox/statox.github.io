@@ -200,6 +200,7 @@ function Bird(id, pos, vel) {
 
     this.show = () => {
         const angle = ORD.angleBetween(this.vel);
+        noStroke();
         push();
         translate(this.pos.x, this.pos.y);
         rotate(angle);
