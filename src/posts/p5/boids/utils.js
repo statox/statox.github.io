@@ -11,8 +11,10 @@ const squareIJToIndex = (i, j) => {
 
 const squareIdToXY = (index) => {
     const {i, j} = squareIdToIJ(index);
+    const square_w = width / SQUARES;
+    const square_h = height / SQUARES;
     return {
-        x: i * SQUARES,
-        y: j * SQUARES
+        x: i * square_w,
+        y: j * square_h
     }
 }

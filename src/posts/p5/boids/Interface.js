@@ -7,12 +7,20 @@ function toggleAlignment() {
     enableAlignment = !enableAlignment;
 }
 
+function toggleFollowMouse() {
+    enableFollowMouse = !enableFollowMouse;
+}
+
 function toggleSeparation() {
     enableSeparation = !enableSeparation;
 }
 
 function toggleWiggle() {
     enableWiggle = !enableWiggle;
+}
+
+function toggleWrapEdges() {
+    enableWrapEdges = !enableWrapEdges;
 }
 
 function markRandom() {
