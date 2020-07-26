@@ -87,6 +87,7 @@ function Target(id) {
     }
 
     this.show = () => {
+        noStroke();
         fill('red');
         circle(this.pos.x, this.pos.y, this.r);
     }
