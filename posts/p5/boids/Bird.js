@@ -1,4 +1,5 @@
 const LIMIT_SIZE = 50;
+const BORDER_LIMIT = 20;
 
 function Bird(id, pos, vel) {
     this.id = id;
@@ -7,9 +8,11 @@ function Bird(id, pos, vel) {
     this.acc = new p5.Vector(0, 0);
     this.r = 10;
     this.marked = false;
+    this.MAX_WIGGLE_ANGLE = HALF_PI;
 
-    // Turn around when on a wall
-    this.avoidBorders = () => {
+    // Either wrap around edges or return an acceleration repealling from edges
+    this.getBorderAvoidingAcceleration = () => {
+        const steering = new p5.Vector(0, 0);
         if (enableWrapEdges) {
             if (this.pos.x < 0 ) {
                 this.pos.x = width;
@@ -23,24 +26,22 @@ function Bird(id, pos, vel) {
             if (this.pos.y > height) {
                 this.pos.y = 0;
             }
-        } else {
-            if (this.pos.x < 5) {
-                this.vel.x = Math.abs(this.vel.x);
-                this.pos.x = 5;
-            }
-            if (this.pos.x > width - 5) {
-                this.vel.x = -Math.abs(this.vel.x);
-                this.pos.x = width - 5;
-            }
-            if (this.pos.y < 5) {
-                this.vel.y = Math.abs(this.vel.y);
-                this.pos.y = 5;
-            }
-            if (this.pos.y > height - 5) {
-                this.vel.y = -Math.abs(this.vel.y);
-                this.pos.y = height - 5;
-            }
+            return steering;
         }
+
+        if (this.pos.x < BORDER_LIMIT) {
+            steering.x = MAX_ACC;
+        }
+        if (this.pos.x > width - BORDER_LIMIT) {
+            steering.x = -MAX_ACC;
+        }
+        if (this.pos.y < BORDER_LIMIT) {
+            steering.y = MAX_ACC;
+        }
+        if (this.pos.y > height - BORDER_LIMIT) {
+            steering.y = -MAX_ACC;
+        }
+        return steering;
     };
 
     // Uses this.pos to split the flock in several squares on influence
@@ -111,7 +112,11 @@ function Bird(id, pos, vel) {
             return;
         }
 
-        const wiggleSteer = new p5.Vector(random(-width, width), random(-height, height));
+        // const wiggleSteer = new p5.Vector(random(-width, width), random(-height, height));
+        // return wiggleSteer;
+
+        const wiggleAngle = map(random(), 0, 1, -this.MAX_WIGGLE_ANGLE, this.MAX_WIGGLE_ANGLE);
+        const wiggleSteer = this.vel.copy().rotate(wiggleAngle);
         return wiggleSteer;
     };
 
@@ -119,6 +124,8 @@ function Bird(id, pos, vel) {
         // Reset the acceleration after moving to avoid stacking forces of each iteration
         this.acc.mult(0);
 
+        const borderSteer = this.getBorderAvoidingAcceleration();
+        this.applyForce(borderSteer);
         const wiggleSteer = this.getWiggleAcceleration();
         this.applyForce(wiggleSteer);
         const mouseSteer = this.getMouseAcceleration();
@@ -127,8 +134,6 @@ function Bird(id, pos, vel) {
         this.applyForce(alignmentSteer);
         const separationSteer = this.getSeparationAcceleration();
         this.applyForce(separationSteer);
-
-        this.avoidBorders();
 
         this.vel.add(this.acc);
         this.vel.limit(MAX_SPEED);
