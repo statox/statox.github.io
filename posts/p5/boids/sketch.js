@@ -1,5 +1,7 @@
-let MAX_SPEED = 5;
+let TARGET_MAX_SPEED = 12;
+let MAX_SPEED = 10;
 let CROWD_SIZE = 500;
+let TARGET_MAX_ACC = 1.2;
 let MAX_ACC = 1;
 let birds;
 let time=0;
@@ -9,11 +11,17 @@ let enableSeparation = false;
 let enableWiggle = true;
 let enableFollowMouse = false;
 let enableWrapEdges = true;
+let enableFollowTarget = false;
 let SQUARES=10;
 let repartition;
 
+let target;
+
 function resetBirds() {
     birds = [];
+
+    target = new Target(0);
+
     for (let i=0; i<CROWD_SIZE; i++) {
         // Random initial position
         const x = random(0, width);
@@ -48,16 +56,8 @@ function draw() {
     time++;
     background(0, 0, 0);
 
-    // Group the birds by squares of influence (birds in the same section of the screen)
-    // to ease the calculation of orientation influences
-    repartition = {};
-    birds.forEach(b => {
-        const squareId = b.getCurrentSquare();
-        if (!repartition[squareId]) {
-            repartition[squareId] = []
-        }
-        repartition[squareId].push(b.id);
-    });
+    target.x += map(random(), 0, 1, -MAX_SPEED*2, MAX_SPEED*2);
+    target.y += map(random(), 0, 1, -MAX_SPEED*2, MAX_SPEED*2);
 
     birds.forEach(b => {
         b.move();
@@ -72,6 +72,11 @@ function draw() {
         line(width, 0, width, height);
         line(0, height, width, height);
         noStroke();
+    }
+
+    if (enableFollowTarget) {
+        target.move();
+        target.show();
     }
 
     textSize(20);

@@ -1,4 +1,4 @@
-const LIMIT_SIZE = 50;
+const LIMIT_SIZE = 100;
 const BORDER_LIMIT = 20;
 
 function Bird(id, pos, vel) {
@@ -6,9 +6,37 @@ function Bird(id, pos, vel) {
     this.pos = pos;
     this.vel = vel;
     this.acc = new p5.Vector(0, 0);
-    this.r = 10;
+    this.r = 6;
     this.marked = false;
     this.MAX_WIGGLE_ANGLE = HALF_PI;
+    this.ALIGNMENT_FRIENDS_RADIUS = this.r * 5;
+    this.SEPARATION_FRIENDS_RADIUS = this.r * 1.5;
+
+    // Think timer to search for friends idea taken here
+    // https://github.com/jackaperkins/boids
+
+    this.thinkTimer = parseInt(random(10));
+    this.alignmentFriends = [];
+    this.separationFriends = []
+
+    this.updateFriends = () => {
+        const alignment = new Set();
+        const separation = new Set();
+
+        birds.forEach(other => {
+            if (this.id !== other.id) {
+                const distance = dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
+                if ( distance <= this.ALIGNMENT_FRIENDS_RADIUS ) {
+                    alignment.add(other.id);
+                }
+                if ( distance <= this.SEPARATION_FRIENDS_RADIUS ) {
+                    separation.add(other.id);
+                }
+            }
+        });
+        this.alignmentFriends = alignment;
+        this.separationFriends = separation;
+    };
 
     // Either wrap around edges or return an acceleration repealling from edges
     this.getBorderAvoidingAcceleration = () => {
@@ -78,12 +106,11 @@ function Bird(id, pos, vel) {
             return;
         }
 
-        const squareId = this.getCurrentSquare();
-        const alignmentSteer = repartition[squareId]
-            .map(id => birds[id].acc)
-            .reduce((F, acc) => {
-                return F.add(acc);
-            }, new p5.Vector(0,0));
+        const alignmentSteer = new p5.Vector(0, 0);
+        this.alignmentFriends.forEach(id => {
+            const acc = birds[id].acc;
+            alignmentSteer.add(acc);
+        });
         return alignmentSteer;
     };
 
@@ -93,17 +120,14 @@ function Bird(id, pos, vel) {
             return;
         }
 
-        const squareId = this.getCurrentSquare();
-        const localPosition = repartition[squareId]
-            .map(id => birds[id].pos)
-            .reduce((F, pos) => {
-                const f = this.pos.copy().sub(pos);
-                f.limit(MAX_ACC/10);
-                this.applyForce(f);
-                return F.add(pos);
-            }, new p5.Vector(0,0));
-        localPosition.sub(this.pos);
-        return;
+        const separationSteer = new p5.Vector(0, 0);
+        this.separationFriends.forEach(id => {
+            const pos = birds[id].pos;
+            const acc = this.pos.copy().sub(pos);
+            acc.div(2);
+            separationSteer.add(acc);
+        });
+        return separationSteer;
     };
 
     // Compute steering in a random position
@@ -120,9 +144,22 @@ function Bird(id, pos, vel) {
         return wiggleSteer;
     };
 
+    this.getTargetAcceleration = () => {
+        if (!enableFollowTarget) {
+            return;
+        }
+        const targetSteer = target.pos.copy().sub(this.pos);
+        return targetSteer;
+    };
+
     this.move = () => {
         // Reset the acceleration after moving to avoid stacking forces of each iteration
         this.acc.mult(0);
+
+        this.thinkTimer = (this.thinkTimer + 1) % 5;
+        if (this.thinkTimer === 0) {
+            this.updateFriends();
+        }
 
         const borderSteer = this.getBorderAvoidingAcceleration();
         this.applyForce(borderSteer);
@@ -134,6 +171,8 @@ function Bird(id, pos, vel) {
         this.applyForce(alignmentSteer);
         const separationSteer = this.getSeparationAcceleration();
         this.applyForce(separationSteer);
+        const targetSteer = this.getTargetAcceleration();
+        this.applyForce(targetSteer);
 
         this.vel.add(this.acc);
         this.vel.limit(MAX_SPEED);

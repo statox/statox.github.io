@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Birds flock simulation</title>
+    <title>I was read by one million people 😎</title>
     <meta name="description" content="A personal blog where I write about my side projects">
     <meta name="keywords" content="statox blog">
     <meta property="og:title" content="The stuff I do">
@@ -39,33 +39,11 @@
 
     <div class="content-container">
         
-<h2>Birds flock simulation</h2>
+<h2>I was read by one million people 😎</h2>
 <p><a href="/">← Posts</a></p>
 
-
-<div>
-    <button id="wiggleButton" onclick="toggleWiggle()">Toggle wiggle</button>
-    <button id="followButton" onclick="toggleAlignment()">Toggle alignment</button>
-    <button id="followButton" onclick="toggleSeparation()">Toggle separation</button>
-</div>
-<div>
-    <button id="followMouseButton" onclick="toggleFollowMouse()">Follow mouse</button>
-    <button id="followMouseButton" onclick="toggleFollowTarget()">Follow target</button>
-    <button id="wrapEdgesButton" onclick="toggleWrapEdges()">Edge wrapping</button>
-</div>
-<div>
-    <input id="flockSizeInput" type="number">
-    <button id="flockSizeBtn" onclick="updateFlockSize()">Change flock size</button>
-    <button id="markButton" onclick="markRandom()">Mark a random boid</button>
-</div>
-<div oncontextmenu="return false;" id="canvasDiv"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-<script src="sketch.js"></script>
-<script src="Interface.js"></script>
-<script src="Bird.js"></script>
-<script src="Target.js"></script>
-<script src="utils.js"></script>
+<p>I have been an active member of <a href="https://vi.stackexchange.com" target="_blank" rel="noopener noreferrer">vi.stackexchange</a> for more than 5 years and a moderator for a bit more than two and a half years. And recently my profile page let me know that I have reached more than 1 million people.</p>
+<p>This is quite an achievement for me as it is by far the community I'm the most engaged with online.</p>
 
 
 <p><a href="/">← Posts</a></p>
@@ -73,7 +51,7 @@
 <hr>
 <comments>
     <h3>Comments</h3>
-    <a class="add-comment" href="https://github.com/statox/blog-comments/issues/X#new_comment_field"  target="_blank" rel="noopener noreferrer">
+    <a class="add-comment" href="https://github.com/statox/blog-comments/issues/12#new_comment_field"  target="_blank" rel="noopener noreferrer">
         <button>Comment on Github</button>
     </a>
     <br>
@@ -100,7 +78,7 @@ async function getComments(url = '') {
 }
 
 domReady(() => {
-    const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/X/comments';
+    const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/12/comments';
     const appendComments = function (comments) {
         const commentSection = document.querySelector('comments');
         if (!comments || !comments.forEach || comments.length === 0) {
