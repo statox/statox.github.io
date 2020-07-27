@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/material.css">
     <link rel="stylesheet" href="/css/minesweeper.css">
+    <link rel="stylesheet" href="/css/boids.css">
 
 </head>
 <body>
@@ -51,23 +52,81 @@
    - https://github.com/jackaperkins/boids
    -
    -->
+<div class="boids">
 <div>
+    <label>Flock population</label>
     <input id="flockSizeInput" type="number">
-    <button id="flockSizeBtn" onclick="updateFlockSize()">Change flock size</button>
-    <button id="markButton" onclick="markRandom()">Mark a random boid</button>
+    <button id="flockSizeBtn" onclick="updateFlockSize()">Reset flock</button>
+    <button class="active" id="loopButton">Play/pause simulation</button>
 </div>
 <div>
-    <button id="wiggleButton" onclick="toggleWiggle()">Toggle wiggle</button>
-    <button id="followButton" onclick="toggleAlignment()">Toggle alignment</button>
-    <button id="followButton" onclick="toggleSeparation()">Toggle separation</button>
-    <button id="followButton" onclick="toggleCohesion()">Toggle cohesion</button>
+    <table>
+        <tr>
+            <td>
+                <button class='inactive' id="followMouseButton">Follow mouse</button>
+            </td>
+            <td>
+                <button class='inactive' id="followTargetButton">Follow target</button>
+            </td>
+            <td>
+                <button class='inactive' id="wrapEdgesButton">Edge wrapping</button>
+            </td>
+            <td>
+                <button id="markButton">Mark a random boid</button>
+            </td>
+        </tr>
+    </table>
 </div>
 <div>
-    <button id="followMouseButton" onclick="toggleFollowMouse()">Follow mouse</button>
-    <button id="followMouseButton" onclick="toggleFollowTarget()">Follow target</button>
-    <button id="wrapEdgesButton" onclick="toggleWrapEdges()">Edge wrapping</button>
+    <table>
+        <tr>
+            <th>Wiggling</th>
+            <th>Alignement</th>
+            <th>Separation</th>
+            <th>Cohesion</th>
+        </tr>
+        <tr class="settings-table-values">
+            <td>
+                <div>
+                    <button class='active' id="toggleWiggleButton">Toggle wiggling</button>
+                    <p>Allowed angle</p>
+                    <input type="range" min="0" max="180" value="45" step="1" class="slider" id="wiggleAngleSlider">
+                    <p>Max velocity</p>
+                    <input type="range" min="0" max="10" value="5" step="1" class="slider" id="boidSpeedSlider">
+                </div>
+            </td>
+            <td>
+                <div>
+                    <button class='inactive' id="toggleAlignmentButton">Toggle alignment</button>
+                    <p>Perception distance</p>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="alignementPerceptionDistanceSlider">
+                    <p>Intensity</p>
+                    <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="alignementIntensitySlider">
+                </div>
+            </td>
+            <td>
+                <div>
+                    <button class='inactive' id="toggleSeparationButton">Toggle separation</button>
+                    <p>Perception distance</p>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="separationPerceptionDistanceSlider">
+                    <p>Intensity</p>
+                    <input style="direction: rtl" type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="separationIntensitySlider">
+                </div>
+            </td>
+            <td>
+                <div>
+                    <button class='inactive' id="toggleCohesionButton">Toggle cohesion</button>
+                    <p>Perception distance</p>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="cohesionPerceptionDistanceSlider">
+                    <p>Intensity</p>
+                    <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="cohesionIntensitySlider">
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
 <div oncontextmenu="return false;" id="canvasDiv"></div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
 <script src="sketch.js"></script>

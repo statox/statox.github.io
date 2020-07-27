@@ -35,17 +35,31 @@ function Target(id) {
             return steering;
         }
 
+        // Keep the target in the screen
+        if (this.pos.x <= 0 ) {
+            this.pos.x = 0;
+        }
+        if (this.pos.x >= width) {
+            this.pos.x = width;
+        }
+        if (this.pos.y <= 0 ) {
+            this.pos.y = 0;
+        }
+        if (this.pos.y >= height) {
+            this.pos.y = height;
+        }
+
         if (this.pos.x < TARGET_BORDER_LIMIT) {
-            steering.x = TARGET_MAX_ACC;
+            steering.x = TARGET_MAX_ACC*2;
         }
         if (this.pos.x > width - TARGET_BORDER_LIMIT) {
-            steering.x = -TARGET_MAX_ACC;
+            steering.x = -TARGET_MAX_ACC*2;
         }
         if (this.pos.y < TARGET_BORDER_LIMIT) {
-            steering.y = TARGET_MAX_ACC;
+            steering.y = TARGET_MAX_ACC*2;
         }
         if (this.pos.y > height - TARGET_BORDER_LIMIT) {
-            steering.y = -TARGET_MAX_ACC;
+            steering.y = -TARGET_MAX_ACC*2;
         }
         return steering;
     };
@@ -58,10 +72,6 @@ function Target(id) {
 
         const wiggleSteer = new p5.Vector(random(-10, 10), random(-10, 10));
         return wiggleSteer;
-
-        // const wiggleAngle = map(random(), 0, 1, -this.MAX_WIGGLE_ANGLE, this.MAX_WIGGLE_ANGLE);
-        // const wiggleSteer = this.vel.copy().rotate(wiggleAngle);
-        // return wiggleSteer;
     };
 
     // Take a steering force and apply it to the current acceleration
@@ -70,7 +80,7 @@ function Target(id) {
             return;
         }
 
-        force.limit(TARGET_MAX_ACC);
+        // force.limit(TARGET_MAX_ACC);
         this.acc.add(force);
     };
 

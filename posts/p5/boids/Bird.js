@@ -16,12 +16,18 @@ function Bird(id, pos, vel) {
     this.thinkTimer = parseInt(random(10));
     this.ALIGNMENT_FRIENDS_RADIUS = this.r * 5;
     this.SEPARATION_FRIENDS_RADIUS = this.r * 1.5;
+    this.COHESION_FRIENDS_RADIUS = this.r * 5;
+    this.ALIGNMENT_ACC_INTENSITY = 1;
+    this.SEPARATION_ACC_INTENSITY = 1;
+    this.COHESION_ACC_INTENSITY = 1;
     this.alignmentFriends = [];
-    this.separationFriends = []
+    this.separationFriends = [];
+    this.cohesionFriends = [];
 
     this.updateFriends = () => {
         const alignment = new Set();
         const separation = new Set();
+        const cohesion = new Set();
 
         birds.forEach(other => {
             if (this.id !== other.id) {
@@ -32,10 +38,14 @@ function Bird(id, pos, vel) {
                 if ( distance <= this.SEPARATION_FRIENDS_RADIUS ) {
                     separation.add(other.id);
                 }
+                if ( distance <= this.COHESION_FRIENDS_RADIUS ) {
+                    cohesion.add(other.id);
+                }
             }
         });
         this.alignmentFriends = alignment;
         this.separationFriends = separation;
+        this.cohesionFriends = cohesion;
     };
 
     // Either wrap around edges or return an acceleration repealling from edges
@@ -95,6 +105,10 @@ function Bird(id, pos, vel) {
             return;
         }
 
+        if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) {
+            return;
+        }
+
         const mouse = new p5.Vector(mouseX, mouseY);
         const mouseSteer = mouse.sub(this.pos);
         return mouseSteer;
@@ -111,6 +125,7 @@ function Bird(id, pos, vel) {
             const acc = birds[id].acc;
             alignmentSteer.add(acc);
         });
+        alignmentSteer.setMag(this.ALIGNMENT_ACC_INTENSITY);
         return alignmentSteer;
     };
 
@@ -124,9 +139,9 @@ function Bird(id, pos, vel) {
         this.separationFriends.forEach(id => {
             const pos = birds[id].pos;
             const acc = this.pos.copy().sub(pos);
-            acc.div(2);
             separationSteer.add(acc);
         });
+        separationSteer.setMag(this.SEPARATION_ACC_INTENSITY);
         return separationSteer;
     };
 
@@ -137,11 +152,12 @@ function Bird(id, pos, vel) {
         }
 
         const cohesionSteer = new p5.Vector(0, 0);
-        this.alignmentFriends.forEach(id => {
+        this.cohesionFriends.forEach(id => {
             const pos = birds[id].pos;
             cohesionSteer.add(pos);
         });
         cohesionSteer.div(this.alignmentFriends.size);
+        cohesionSteer.setMag(this.COHESION_ACC_INTENSITY);
         return cohesionSteer;
     };
 
@@ -150,9 +166,6 @@ function Bird(id, pos, vel) {
         if (!enableWiggle) {
             return;
         }
-
-        // const wiggleSteer = new p5.Vector(random(-width, width), random(-height, height));
-        // return wiggleSteer;
 
         const wiggleAngle = map(random(), 0, 1, -this.MAX_WIGGLE_ANGLE, this.MAX_WIGGLE_ANGLE);
         const wiggleSteer = this.vel.copy().rotate(wiggleAngle);
@@ -205,8 +218,6 @@ function Bird(id, pos, vel) {
         translate(this.pos.x, this.pos.y);
         rotate(angle);
         fill(255);
-        // fill(this.color);
-        // fill(random(255));
         if (this.marked) {
             fill('red');
         }
