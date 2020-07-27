@@ -1,18 +1,18 @@
-let TARGET_MAX_SPEED = 2;
+let TARGET_MAX_SPEED = 5;
 let MAX_SPEED = 5;
 let CROWD_SIZE = 500;
-let TARGET_MAX_ACC = 1;
+let TARGET_MAX_ACC = 2;
 let MAX_ACC = 1;
 let birds;
-let time=0;
 let ORD;
 let enableAlignment = false;
 let enableSeparation = false;
 let enableWiggle = true;
 let enableFollowMouse = false;
-let enableWrapEdges = true;
+let enableWrapEdges = false;
 let enableFollowTarget = false;
 let enableCohesion = false;
+let enableLoop = true;
 let SQUARES=10;
 let repartition;
 
@@ -48,17 +48,14 @@ function setup() {
     ORD = new p5.Vector(0, 1);
 
     noiseSeed(99);
+    initializeButtons();
 
     resetBirds();
     setFlockSize()
 }
 
 function draw() {
-    time++;
     background(0, 0, 0);
-
-    target.x += map(random(), 0, 1, -MAX_SPEED*2, MAX_SPEED*2);
-    target.y += map(random(), 0, 1, -MAX_SPEED*2, MAX_SPEED*2);
 
     birds.forEach(b => {
         b.move();
@@ -78,20 +75,6 @@ function draw() {
         target.move();
         target.show();
     }
-
-    noStroke();
-    textSize(20);
-    fill(enableWiggle ? 'green' : 'red');
-    text('wiggle ', 100, 100);
-    fill(enableAlignment ? 'green' : 'red');
-    text('alignment ', 100, 150);
-    fill(enableSeparation ? 'green' : 'red');
-    text('separation ', 100, 200);
-    fill(enableCohesion ? 'green' : 'red');
-    text('cohesion ', 100, 250);
-    fill(enableFollowMouse ? 'green' : 'red');
-    text('mouse ', 100, 300);
-    noFill();
 }
 
 function windowResized() {
