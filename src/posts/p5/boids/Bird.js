@@ -11,9 +11,6 @@ function Bird(id, pos, vel) {
     this.marked = false;
     this.MAX_WIGGLE_ANGLE = radians(20);
 
-    // Think timer to search for friends idea taken here
-    // https://github.com/jackaperkins/boids
-    this.thinkTimer = parseInt(random(10));
     this.ALIGNMENT_FRIENDS_RADIUS = 150;
     this.SEPARATION_FRIENDS_RADIUS = 150;
     this.COHESION_FRIENDS_RADIUS = 150;
@@ -28,27 +25,20 @@ function Bird(id, pos, vel) {
     this.MAX_SPEED = 1;
 
     this.updateFriends = () => {
-        const alignment = new Set();
-        const separation = new Set();
-        const cohesion = new Set();
+        const alignment = [];
+        const separation = [];
+        const cohesion = [];
 
-        birds.forEach(other => {
-            if (this.id !== other.id) {
-                const distance = dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
-                if ( distance <= this.ALIGNMENT_FRIENDS_RADIUS ) {
-                    alignment.add(other.id);
-                }
-                if ( distance <= this.SEPARATION_FRIENDS_RADIUS ) {
-                    separation.add(other.id);
-                }
-                if ( distance <= this.COHESION_FRIENDS_RADIUS ) {
-                    cohesion.add(other.id);
-                }
-            }
-        });
-        this.alignmentFriends = alignment;
-        this.separationFriends = separation;
-        this.cohesionFriends = cohesion;
+        const alignmentCircle = new Circle(this.pos.x, this.pos.y, this.ALIGNMENT_FRIENDS_RADIUS);
+        quadtree.query(alignmentCircle, alignment);
+        const separationCircle = new Circle(this.pos.x, this.pos.y, this.SEPARATION_FRIENDS_RADIUS);
+        quadtree.query(alignmentCircle, separation);
+        const cohesionCircle = new Circle(this.pos.x, this.pos.y, this.COHESION_FRIENDS_RADIUS);
+        quadtree.query(alignmentCircle, cohesion);
+
+        this.alignmentFriends = alignment.map(i => i.userData);
+        this.separationFriends = separation.map(i => i.userData);
+        this.cohesionFriends = cohesion.map(i => i.userData);
     };
 
     // Either wrap around edges or return an acceleration repealling from edges
@@ -118,6 +108,9 @@ function Bird(id, pos, vel) {
 
         const alignmentSteer = new p5.Vector(0, 0);
         this.alignmentFriends.forEach(id => {
+            if (id === this.id) {
+                return;
+            }
             const acc = birds[id].acc;
             alignmentSteer.add(acc);
         });
@@ -133,6 +126,9 @@ function Bird(id, pos, vel) {
 
         const separationSteer = new p5.Vector(0, 0);
         this.separationFriends.forEach(id => {
+            if (id === this.id) {
+                return;
+            }
             const pos = birds[id].pos;
             const acc = this.pos.copy().sub(pos);
             const d = dist(this.pos.x, this.pos.y, pos.x, pos.y);
@@ -151,6 +147,9 @@ function Bird(id, pos, vel) {
 
         const cohesionSteer = new p5.Vector(0, 0);
         this.cohesionFriends.forEach(id => {
+            if (id === this.id) {
+                return;
+            }
             const pos = birds[id].pos;
             cohesionSteer.add(pos);
         });
@@ -183,10 +182,7 @@ function Bird(id, pos, vel) {
         // Reset the acceleration after moving to avoid stacking forces of each iteration
         this.acc.mult(0);
 
-        this.thinkTimer = (this.thinkTimer + 1) % 5;
-        if (this.thinkTimer === 0) {
-            this.updateFriends();
-        }
+        this.updateFriends();
 
         const forcesToApply = [
             this.getBorderAvoidingAcceleration(),
@@ -215,22 +211,24 @@ function Bird(id, pos, vel) {
         translate(this.pos.x, this.pos.y);
         noFill();
 
-        if (enableAlignment) {
-            strokeWeight(3);
-            stroke('green');
-            circle(0, 0, this.ALIGNMENT_FRIENDS_RADIUS);
+        if (enableShowPerception) {
+            if (enableAlignment) {
+                strokeWeight(3);
+                stroke('green');
+                circle(0, 0, this.ALIGNMENT_FRIENDS_RADIUS);
+            }
+            if (enableSeparation) {
+                strokeWeight(2);
+                stroke('red');
+                circle(0, 0, this.SEPARATION_FRIENDS_RADIUS);
+            }
+            if (enableCohesion) {
+                strokeWeight(1);
+                stroke('blue');
+                circle(0, 0, this.COHESION_FRIENDS_RADIUS);
+            }
+            noStroke();
         }
-        if (enableSeparation) {
-            strokeWeight(2);
-            stroke('red');
-            circle(0, 0, this.SEPARATION_FRIENDS_RADIUS);
-        }
-        if (enableCohesion) {
-            strokeWeight(1);
-            stroke('blue');
-            circle(0, 0, this.COHESION_FRIENDS_RADIUS);
-        }
-        noStroke();
 
         rotate(angle);
         fill(255);

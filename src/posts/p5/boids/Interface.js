@@ -139,6 +139,11 @@ function initializeButtons() {
         toggleEnabledButton(event.target || event.srcElement);
     });
 
+    document.getElementById('showPerceptionCirclesButton').addEventListener('click', (e) => {
+        enableShowPerception = !enableShowPerception;
+        toggleEnabledButton(event.target || event.srcElement);
+    });
+
     document.getElementById('markButton').addEventListener('click', (e) => {
         birds.forEach(b => b.marked = false);
         const randId = parseInt(random(0, birds.length-1));
