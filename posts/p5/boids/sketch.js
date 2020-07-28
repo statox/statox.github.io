@@ -1,5 +1,5 @@
 let TARGET_MAX_SPEED = 5;
-let CROWD_SIZE = 50;
+let CROWD_SIZE = 2;
 let TARGET_MAX_ACC = 2;
 let birds;
 let ORD;
@@ -11,10 +11,12 @@ let enableWrapEdges = false;
 let enableFollowTarget = false;
 let enableCohesion = false;
 let enableLoop = true;
+let enableShowPerception = false;
 let SQUARES=10;
 let repartition;
 
 let target;
+let quadtree;
 
 function resetBirds() {
     birds = [];
@@ -54,6 +56,15 @@ function setup() {
 
 function draw() {
     background(0, 0, 0);
+
+    const boundaries = new Rectangle(0, 0, width, height);
+    const capacity = 4;
+    quadtree = new QuadTree(boundaries, capacity);
+
+    birds.forEach(b => {
+        const bPosition = new Point(b.pos.x, b.pos.y, b.id);
+        quadtree.insert(bPosition);
+    });
 
     birds.forEach(b => {
         b.move();

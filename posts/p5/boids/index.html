@@ -72,6 +72,9 @@
                 <button class='inactive' id="wrapEdgesButton">Edge wrapping</button>
             </td>
             <td>
+                <button class='inactive' id="showPerceptionCirclesButton">Show perception</button>
+            </td>
+            <td>
                 <button id="markButton">Mark a random boid</button>
             </td>
         </tr>
@@ -98,28 +101,28 @@
             <td>
                 <div>
                     <button class='inactive' id="toggleAlignmentButton">Toggle alignment</button>
-                    <p>Perception distance</p>
+                    <p>Perception distance <span id="alignmentPerceptionMarker">150</span>px</p>
                     <input type="range" min="1" max="500" value="150" class="slider" id="alignementPerceptionDistanceSlider">
-                    <p>Intensity</p>
-                    <input type="range" min="0" max="20" value="10" step="0.1" class="slider" id="alignementIntensitySlider">
+                    <p>Intensity <span id="alignmentIntensityMarker">1</span>N</p>
+                    <input type="range" min="0" max="5" value="1" step="0.1" class="slider" id="alignementIntensitySlider">
                 </div>
             </td>
             <td>
                 <div>
                     <button class='inactive' id="toggleSeparationButton">Toggle separation</button>
-                    <p>Perception distance</p>
+                    <p>Perception distance <span id="separationPerceptionMarker">150</span>px</p>
                     <input type="range" min="1" max="500" value="150" class="slider" id="separationPerceptionDistanceSlider">
-                    <p>Intensity</p>
-                    <input type="range" min="0" max="10" value="0.5" step="0.1" class="slider" id="separationIntensitySlider">
+                    <p>Intensity <span id="separationIntensityMarker">1</span>N</p>
+                    <input type="range" min="0" max="5" value="1" step="0.1" class="slider" id="separationIntensitySlider">
                 </div>
             </td>
             <td>
                 <div>
                     <button class='inactive' id="toggleCohesionButton">Toggle cohesion</button>
-                    <p>Perception distance</p>
+                    <p>Perception distance <span id="cohesionPerceptionMarker">150</span>px</p>
                     <input type="range" min="1" max="500" value="150" class="slider" id="cohesionPerceptionDistanceSlider">
-                    <p>Intensity</p>
-                    <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="cohesionIntensitySlider">
+                    <p>Intensity <span id="cohesionIntensityMarker">1</span>N</p>
+                    <input type="range" min="0" max="5" value="1" step="0.1" class="slider" id="cohesionIntensitySlider">
                 </div>
             </td>
         </tr>
@@ -129,6 +132,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/CodingTrain/QuadTree/quadtree.js"></script>
 <script src="sketch.js"></script>
 <script src="Interface.js"></script>
 <script src="Bird.js"></script>
