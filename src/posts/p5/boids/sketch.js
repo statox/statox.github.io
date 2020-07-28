@@ -1,8 +1,6 @@
 let TARGET_MAX_SPEED = 5;
-let MAX_SPEED = 5;
-let CROWD_SIZE = 500;
+let CROWD_SIZE = 50;
 let TARGET_MAX_ACC = 2;
-let MAX_ACC = 1;
 let birds;
 let ORD;
 let enableAlignment = false;
