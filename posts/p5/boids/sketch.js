@@ -1,8 +1,6 @@
 let TARGET_MAX_SPEED = 5;
-let MAX_SPEED = 5;
-let CROWD_SIZE = 500;
+let CROWD_SIZE = 50;
 let TARGET_MAX_ACC = 2;
-let MAX_ACC = 1;
 let birds;
 let ORD;
 let enableAlignment = false;
@@ -79,4 +77,20 @@ function draw() {
 
 function windowResized() {
     customResizeCanvas();
+}
+
+function mousePressed() {
+    if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) {
+        return;
+    }
+
+    const pos = new p5.Vector(mouseX, mouseY);
+
+    // const dx = random(-1, 1);
+    // const dy = random(-1, 1);
+    // // Constant initial velocity
+    // const vel = new p5.Vector(dx, dy).normalize();
+    const vel = new p5.Vector(1, 0).normalize();
+
+    birds.push(new Bird(birds.length, pos, vel));
 }

@@ -30,6 +30,7 @@ function initializeButtons() {
      */
     document.getElementById('toggleWiggleButton').addEventListener('click', (e) => {
         enableWiggle = !enableWiggle;
+        toggleEnabledButton(event.target || event.srcElement);
     })
 
     document.getElementById('wiggleAngleSlider').addEventListener('input', (e) => {

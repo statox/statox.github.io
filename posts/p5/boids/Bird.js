@@ -6,23 +6,26 @@ function Bird(id, pos, vel) {
     this.pos = pos;
     this.vel = vel;
     this.acc = new p5.Vector(0, 0);
-    this.r = 6;
+    this.r = 15;
     this.color = random(255);
     this.marked = false;
-    this.MAX_WIGGLE_ANGLE = HALF_PI;
+    this.MAX_WIGGLE_ANGLE = radians(20);
 
     // Think timer to search for friends idea taken here
     // https://github.com/jackaperkins/boids
     this.thinkTimer = parseInt(random(10));
-    this.ALIGNMENT_FRIENDS_RADIUS = this.r * 5;
-    this.SEPARATION_FRIENDS_RADIUS = this.r * 1.5;
-    this.COHESION_FRIENDS_RADIUS = this.r * 5;
+    this.ALIGNMENT_FRIENDS_RADIUS = 150;
+    this.SEPARATION_FRIENDS_RADIUS = 150;
+    this.COHESION_FRIENDS_RADIUS = 150;
     this.ALIGNMENT_ACC_INTENSITY = 1;
     this.SEPARATION_ACC_INTENSITY = 1;
     this.COHESION_ACC_INTENSITY = 1;
     this.alignmentFriends = [];
     this.separationFriends = [];
     this.cohesionFriends = [];
+
+    this.MAX_ACC = 0.2;
+    this.MAX_SPEED = 1;
 
     this.updateFriends = () => {
         const alignment = new Set();
@@ -67,26 +70,20 @@ function Bird(id, pos, vel) {
             return steering;
         }
 
+        const maxPullbackAcc = 100;
         if (this.pos.x < BORDER_LIMIT) {
-            steering.x = MAX_ACC;
+            steering.x = maxPullbackAcc;
         }
         if (this.pos.x > width - BORDER_LIMIT) {
-            steering.x = -MAX_ACC;
+            steering.x = -maxPullbackAcc;
         }
         if (this.pos.y < BORDER_LIMIT) {
-            steering.y = MAX_ACC;
+            steering.y = maxPullbackAcc;
         }
         if (this.pos.y > height - BORDER_LIMIT) {
-            steering.y = -MAX_ACC;
+            steering.y = -maxPullbackAcc;
         }
         return steering;
-    };
-
-    // Uses this.pos to split the flock in several squares on influence
-    this.getCurrentSquare = () => {
-        const relativeX = parseInt(map(this.pos.x, 0, width, 0, SQUARES-1));
-        const relativeY = parseInt(map(this.pos.y, 0, height, 0, SQUARES-1));
-        return relativeX + relativeY * SQUARES;
     };
 
     // Take a steering force and apply it to the current acceleration
@@ -95,7 +92,6 @@ function Bird(id, pos, vel) {
             return;
         }
 
-        force.limit(MAX_ACC);
         this.acc.add(force);
     };
 
@@ -139,6 +135,8 @@ function Bird(id, pos, vel) {
         this.separationFriends.forEach(id => {
             const pos = birds[id].pos;
             const acc = this.pos.copy().sub(pos);
+            const d = dist(this.pos.x, this.pos.y, pos.x, pos.y);
+            acc.div(d);
             separationSteer.add(acc);
         });
         separationSteer.setMag(this.SEPARATION_ACC_INTENSITY);
@@ -169,6 +167,7 @@ function Bird(id, pos, vel) {
 
         const wiggleAngle = map(random(), 0, 1, -this.MAX_WIGGLE_ANGLE, this.MAX_WIGGLE_ANGLE);
         const wiggleSteer = this.vel.copy().rotate(wiggleAngle);
+        wiggleSteer.setMag(100);
         return wiggleSteer;
     };
 
@@ -189,25 +188,23 @@ function Bird(id, pos, vel) {
             this.updateFriends();
         }
 
-        const borderSteer = this.getBorderAvoidingAcceleration();
-        this.applyForce(borderSteer);
-        const wiggleSteer = this.getWiggleAcceleration();
-        this.applyForce(wiggleSteer);
+        const forcesToApply = [
+            this.getBorderAvoidingAcceleration(),
+            this.getWiggleAcceleration(),
+            this.getMouseAcceleration(),
+            this.getTargetAcceleration(),
+            this.getAlignmentAcceleration(),
+            this.getSeparationAcceleration(),
+            this.getCohesionAcceleration(),
+        ]
 
-        const mouseSteer = this.getMouseAcceleration();
-        this.applyForce(mouseSteer);
-        const targetSteer = this.getTargetAcceleration();
-        this.applyForce(targetSteer);
-
-        const alignmentSteer = this.getAlignmentAcceleration();
-        this.applyForce(alignmentSteer);
-        const separationSteer = this.getSeparationAcceleration();
-        this.applyForce(separationSteer);
-        const cohesionSteer = this.getCohesionAcceleration();
-        this.applyForce(cohesionSteer);
+        const netAcceleration = new p5.Vector(0, 0);
+        forcesToApply.forEach(f => netAcceleration.add(f));
+        netAcceleration.limit(this.MAX_ACC);
+        this.acc = netAcceleration;
 
         this.vel.add(this.acc);
-        this.vel.limit(MAX_SPEED);
+        this.vel.limit(this.MAX_SPEED);
         this.pos.add(this.vel);
     };
 
@@ -216,6 +213,25 @@ function Bird(id, pos, vel) {
         noStroke();
         push();
         translate(this.pos.x, this.pos.y);
+        noFill();
+
+        if (enableAlignment) {
+            strokeWeight(3);
+            stroke('green');
+            circle(0, 0, this.ALIGNMENT_FRIENDS_RADIUS);
+        }
+        if (enableSeparation) {
+            strokeWeight(2);
+            stroke('red');
+            circle(0, 0, this.SEPARATION_FRIENDS_RADIUS);
+        }
+        if (enableCohesion) {
+            strokeWeight(1);
+            stroke('blue');
+            circle(0, 0, this.COHESION_FRIENDS_RADIUS);
+        }
+        noStroke();
+
         rotate(angle);
         fill(255);
         if (this.marked) {
