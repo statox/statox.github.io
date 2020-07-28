@@ -61,12 +61,14 @@ function initializeButtons() {
     document.getElementById('alignementPerceptionDistanceSlider').addEventListener('input', (e) => {
         const element = document.getElementById('alignementPerceptionDistanceSlider')
         const val = Number(element.value);
+        document.getElementById('alignmentPerceptionMarker').innerHTML = val;
         birds.forEach(b => b.ALIGNMENT_FRIENDS_RADIUS = val);
     });
 
     document.getElementById('alignementIntensitySlider').addEventListener('input', (e) => {
         const element = document.getElementById('alignementIntensitySlider')
         const val = Number(element.value);
+        document.getElementById('alignmentIntensityMarker').innerHTML = val;
         birds.forEach(b => b.ALIGNMENT_ACC_INTENSITY = val);
     });
 
@@ -81,12 +83,14 @@ function initializeButtons() {
     document.getElementById('separationPerceptionDistanceSlider').addEventListener('input', (e) => {
         const element = document.getElementById('separationPerceptionDistanceSlider')
         const val = Number(element.value);
+        document.getElementById('separationPerceptionMarker').innerHTML = val;
         birds.forEach(b => b.SEPARATION_FRIENDS_RADIUS = val);
     });
 
     document.getElementById('separationIntensitySlider').addEventListener('input', (e) => {
         const element = document.getElementById('separationIntensitySlider')
         const val = Number(element.value);
+        document.getElementById('separationIntensityMarker').innerHTML = val;
         birds.forEach(b => b.ALIGNMENT_ACC_INTENSITY = val);
     });
 
@@ -101,12 +105,14 @@ function initializeButtons() {
     document.getElementById('cohesionPerceptionDistanceSlider').addEventListener('input', (e) => {
         const element = document.getElementById('cohesionPerceptionDistanceSlider')
         const val = Number(element.value);
+        document.getElementById('cohesionPerceptionMarker').innerHTML = val;
         birds.forEach(b => b.COHESION_FRIENDS_RADIUS = val);
     });
 
     document.getElementById('cohesionIntensitySlider').addEventListener('input', (e) => {
         const element = document.getElementById('cohesionIntensitySlider')
         const val = Number(element.value);
+        document.getElementById('cohesionIntensityMarker').innerHTML = val;
         birds.forEach(b => b.ALIGNMENT_ACC_INTENSITY = val);
     });
 

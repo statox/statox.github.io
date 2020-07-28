@@ -14,9 +14,11 @@ function Bird(id, pos, vel) {
     this.ALIGNMENT_FRIENDS_RADIUS = 150;
     this.SEPARATION_FRIENDS_RADIUS = 150;
     this.COHESION_FRIENDS_RADIUS = 150;
+
     this.ALIGNMENT_ACC_INTENSITY = 1;
     this.SEPARATION_ACC_INTENSITY = 1;
     this.COHESION_ACC_INTENSITY = 1;
+
     this.alignmentFriends = [];
     this.separationFriends = [];
     this.cohesionFriends = [];
