@@ -6,20 +6,20 @@ function Bird(id, pos, vel) {
     this.pos = pos;
     this.vel = vel;
     this.acc = new p5.Vector(0, 0);
-    this.r = 15;
+    this.r = 20;
     this.color = random(255);
     this.marked = false;
     this.MAX_WIGGLE_ANGLE = radians(20);
 
-    this.ALIGNMENT_FRIENDS_RADIUS = 150;
-    this.SEPARATION_FRIENDS_RADIUS = 150;
-    this.COHESION_FRIENDS_RADIUS = 150;
+    this.ALIGNMENT_FRIENDS_RADIUS = 80;
+    this.SEPARATION_FRIENDS_RADIUS = 80;
+    this.COHESION_FRIENDS_RADIUS = 40;
     this.OBSTACLE_RADIUS = 50;
 
     this.WIGGLE_ACC_INTENSITY = 1;
-    this.ALIGNMENT_ACC_INTENSITY = 1;
-    this.SEPARATION_ACC_INTENSITY = 1;
-    this.COHESION_ACC_INTENSITY = 1;
+    this.ALIGNMENT_ACC_INTENSITY = 2;
+    this.SEPARATION_ACC_INTENSITY = 2;
+    this.COHESION_ACC_INTENSITY = 2;
 
     this.OBSTACLE_ACC_INTENSITY = 5;
 
