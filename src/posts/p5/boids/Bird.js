@@ -12,14 +12,14 @@ function Bird(id, pos, vel) {
     this.MAX_WIGGLE_ANGLE = radians(20);
 
     this.ALIGNMENT_FRIENDS_RADIUS = 80;
-    this.SEPARATION_FRIENDS_RADIUS = 80;
-    this.COHESION_FRIENDS_RADIUS = 40;
+    this.SEPARATION_FRIENDS_RADIUS = 60;
+    this.COHESION_FRIENDS_RADIUS = 80;
     this.OBSTACLE_RADIUS = 50;
 
     this.WIGGLE_ACC_INTENSITY = 1;
     this.ALIGNMENT_ACC_INTENSITY = 2;
     this.SEPARATION_ACC_INTENSITY = 2;
-    this.COHESION_ACC_INTENSITY = 2;
+    this.COHESION_ACC_INTENSITY = 3;
 
     this.OBSTACLE_ACC_INTENSITY = 5;
 
@@ -29,7 +29,7 @@ function Bird(id, pos, vel) {
     this.nearObstacles = [];
 
     this.MAX_ACC = 1;
-    this.MAX_SPEED = 10;
+    this.MAX_SPEED = 6;
 
     this.updateFriends = () => {
         const alignment = [];
@@ -180,7 +180,8 @@ function Bird(id, pos, vel) {
                 return;
             }
             const pos = birds[id].pos;
-            cohesionSteer.add(pos);
+            const steer = this.pos.copy().sub(pos);
+            cohesionSteer.add(steer);
         });
         if (this.cohesionFriends.length > 1) {
             cohesionSteer.div(this.cohesionFriends.length);
