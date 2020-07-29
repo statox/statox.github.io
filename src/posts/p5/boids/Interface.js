@@ -37,16 +37,22 @@ function initializeButtons() {
         const element = document.getElementById('wiggleAngleSlider')
         const val = Number(element.value);
         const rad = radians(val);
+        document.getElementById('wiggleAngleMarker').innerHTML = val;
         birds.forEach(b => b.MAX_WIGGLE_ANGLE = rad);
+    });
+
+    document.getElementById('wiggleIntensitySlider').addEventListener('input', (e) => {
+        const element = document.getElementById('wiggleIntensitySlider')
+        const val = Number(element.value);
+        document.getElementById('wiggleIntensityeMarker').innerHTML = val;
+        birds.forEach(b => b.WIGGLE_ACC_INTENSITY = val);
     });
 
     document.getElementById('boidSpeedSlider').addEventListener('input', (e) => {
         const element = document.getElementById('boidSpeedSlider')
         const val = Number(element.value);
-        if (val === 0) {
-            val = 0.01
-        }
-        birds.forEach(b => MAX_SPEED = val);
+        document.getElementById('maxSpeedMarker').innerHTML = val;
+        birds.forEach(b => b.MAX_SPEED = val);
     });
 
 
@@ -91,7 +97,7 @@ function initializeButtons() {
         const element = document.getElementById('separationIntensitySlider')
         const val = Number(element.value);
         document.getElementById('separationIntensityMarker').innerHTML = val;
-        birds.forEach(b => b.ALIGNMENT_ACC_INTENSITY = val);
+        birds.forEach(b => b.SEPARATION_ACC_INTENSITY = val);
     });
 
     /*
@@ -113,7 +119,7 @@ function initializeButtons() {
         const element = document.getElementById('cohesionIntensitySlider')
         const val = Number(element.value);
         document.getElementById('cohesionIntensityMarker').innerHTML = val;
-        birds.forEach(b => b.ALIGNMENT_ACC_INTENSITY = val);
+        birds.forEach(b => b.COHESION_ACC_INTENSITY = val);
     });
 
     /*

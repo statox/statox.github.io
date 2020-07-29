@@ -2,21 +2,28 @@ let TARGET_MAX_SPEED = 5;
 let CROWD_SIZE = 2;
 let TARGET_MAX_ACC = 2;
 let birds;
+let obstacles;
 let ORD;
 let enableAlignment = false;
 let enableSeparation = false;
 let enableWiggle = true;
 let enableFollowMouse = false;
-let enableWrapEdges = false;
+let enableWrapEdges = true;
 let enableFollowTarget = false;
 let enableCohesion = false;
 let enableLoop = true;
-let enableShowPerception = false;
+let enableShowPerception = true;
 let SQUARES=10;
 let repartition;
 
 let target;
-let quadtree;
+let birdsQTree;
+let obstaclesQTree;
+
+
+function resetObstacles() {
+    obstacles = [];
+}
 
 function resetBirds() {
     birds = [];
@@ -51,19 +58,26 @@ function setup() {
     initializeButtons();
 
     resetBirds();
+    resetObstacles();
     setFlockSize()
 }
 
 function draw() {
     background(0, 0, 0);
 
+
     const boundaries = new Rectangle(0, 0, width, height);
     const capacity = 4;
-    quadtree = new QuadTree(boundaries, capacity);
+    birdsQTree = new QuadTree(boundaries, capacity);
+    obstaclesQTree = new QuadTree(boundaries, capacity);
+
+    obstacles.forEach(o => {
+        obstaclesQTree.insert(new Point(o.pos.x, o.pos.y, o.id));
+        o.show();
+    });
 
     birds.forEach(b => {
-        const bPosition = new Point(b.pos.x, b.pos.y, b.id);
-        quadtree.insert(bPosition);
+        birdsQTree.insert(new Point(b.pos.x, b.pos.y, b.id));
     });
 
     birds.forEach(b => {
@@ -90,18 +104,24 @@ function windowResized() {
     customResizeCanvas();
 }
 
-function mousePressed() {
+function mousePressed(e) {
     if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) {
         return;
     }
+    const mousePosition = new p5.Vector(mouseX, mouseY);
 
-    const pos = new p5.Vector(mouseX, mouseY);
+    if (mouseButton === 'left') {
+        // const dx = random(-1, 1);
+        // const dy = random(-1, 1);
+        // // Constant initial velocity
+        // const vel = new p5.Vector(dx, dy).normalize();
+        const vel = new p5.Vector(1, 0).normalize();
 
-    // const dx = random(-1, 1);
-    // const dy = random(-1, 1);
-    // // Constant initial velocity
-    // const vel = new p5.Vector(dx, dy).normalize();
-    const vel = new p5.Vector(1, 0).normalize();
+        birds.push(new Bird(birds.length, mousePosition, vel));
+    }
 
-    birds.push(new Bird(birds.length, pos, vel));
+    if (mouseButton === 'right') {
+        const obstacle = new Obstacle(obstacles.length, mousePosition, 30);
+        obstacles.push(obstacle);
+    }
 }

@@ -14,33 +14,42 @@ function Bird(id, pos, vel) {
     this.ALIGNMENT_FRIENDS_RADIUS = 150;
     this.SEPARATION_FRIENDS_RADIUS = 150;
     this.COHESION_FRIENDS_RADIUS = 150;
+    this.OBSTACLE_RADIUS = 50;
 
+    this.WIGGLE_ACC_INTENSITY = 1;
     this.ALIGNMENT_ACC_INTENSITY = 1;
     this.SEPARATION_ACC_INTENSITY = 1;
     this.COHESION_ACC_INTENSITY = 1;
 
+    this.OBSTACLE_ACC_INTENSITY = 5;
+
     this.alignmentFriends = [];
     this.separationFriends = [];
     this.cohesionFriends = [];
+    this.nearObstacles = [];
 
-    this.MAX_ACC = 0.2;
-    this.MAX_SPEED = 1;
+    this.MAX_ACC = 1;
+    this.MAX_SPEED = 10;
 
     this.updateFriends = () => {
         const alignment = [];
         const separation = [];
         const cohesion = [];
+        const myobstacles = []; // The name obstacles is already a global variable
 
         const alignmentCircle = new Circle(this.pos.x, this.pos.y, this.ALIGNMENT_FRIENDS_RADIUS);
-        quadtree.query(alignmentCircle, alignment);
+        birdsQTree.query(alignmentCircle, alignment);
         const separationCircle = new Circle(this.pos.x, this.pos.y, this.SEPARATION_FRIENDS_RADIUS);
-        quadtree.query(alignmentCircle, separation);
+        birdsQTree.query(separationCircle, separation);
         const cohesionCircle = new Circle(this.pos.x, this.pos.y, this.COHESION_FRIENDS_RADIUS);
-        quadtree.query(alignmentCircle, cohesion);
+        birdsQTree.query(cohesionCircle, cohesion);
+        const obstaclesCircle = new Circle(this.pos.x, this.pos.y, this.OBSTACLE_RADIUS);
+        obstaclesQTree.query(obstaclesCircle, myobstacles);
 
         this.alignmentFriends = alignment.map(i => i.userData);
         this.separationFriends = separation.map(i => i.userData);
         this.cohesionFriends = cohesion.map(i => i.userData);
+        this.nearObstacles = myobstacles.map(i => i.userData);
     };
 
     // Either wrap around edges or return an acceleration repealling from edges
@@ -64,16 +73,20 @@ function Bird(id, pos, vel) {
 
         const maxPullbackAcc = 100;
         if (this.pos.x < BORDER_LIMIT) {
-            steering.x = maxPullbackAcc;
+            this.vel.x = abs(this.vel.x);
+            // steering.x = maxPullbackAcc;
         }
         if (this.pos.x > width - BORDER_LIMIT) {
-            steering.x = -maxPullbackAcc;
+            this.vel.x = -abs(this.vel.x);
+            // steering.x = -maxPullbackAcc;
         }
         if (this.pos.y < BORDER_LIMIT) {
-            steering.y = maxPullbackAcc;
+            this.vel.y = abs(this.vel.y);
+            // steering.y = maxPullbackAcc;
         }
         if (this.pos.y > height - BORDER_LIMIT) {
-            steering.y = -maxPullbackAcc;
+            this.vel.y = -abs(this.vel.y);
+            // steering.y = -maxPullbackAcc;
         }
         return steering;
     };
@@ -108,15 +121,29 @@ function Bird(id, pos, vel) {
             return;
         }
 
+        if (enableShowPerception && this.id === birds[0].id) {
+            birds.forEach(b => b.marked = false)
+        }
+
         const alignmentSteer = new p5.Vector(0, 0);
         this.alignmentFriends.forEach(id => {
+            if (enableShowPerception && this.id === birds[0].id) {
+                birds[id].marked = true;
+            }
             if (id === this.id) {
                 return;
             }
             const acc = birds[id].acc;
             alignmentSteer.add(acc);
         });
-        alignmentSteer.setMag(this.ALIGNMENT_ACC_INTENSITY);
+
+        if (this.alignmentFriends.length > 1) {
+            alignmentSteer.div(this.alignmentFriends.length);
+            alignmentSteer.sub(this.pos);
+            alignmentSteer.setMag(this.ALIGNMENT_ACC_INTENSITY);
+            alignmentSteer.sub(this.vel);
+            alignmentSteer.limit(this.MAX_ACC);
+        }
         return alignmentSteer;
     };
 
@@ -155,8 +182,13 @@ function Bird(id, pos, vel) {
             const pos = birds[id].pos;
             cohesionSteer.add(pos);
         });
-        cohesionSteer.div(this.alignmentFriends.size);
-        cohesionSteer.setMag(this.COHESION_ACC_INTENSITY);
+        if (this.cohesionFriends.length > 1) {
+            cohesionSteer.div(this.cohesionFriends.length);
+            cohesionSteer.sub(this.pos);
+            cohesionSteer.setMag(this.COHESION_ACC_INTENSITY);
+            cohesionSteer.sub(this.vel);
+            cohesionSteer.limit(this.MAX_ACC);
+        }
         return cohesionSteer;
     };
 
@@ -168,7 +200,7 @@ function Bird(id, pos, vel) {
 
         const wiggleAngle = map(random(), 0, 1, -this.MAX_WIGGLE_ANGLE, this.MAX_WIGGLE_ANGLE);
         const wiggleSteer = this.vel.copy().rotate(wiggleAngle);
-        wiggleSteer.setMag(100);
+        wiggleSteer.setMag(this.WIGGLE_ACC_INTENSITY);
         return wiggleSteer;
     };
 
@@ -179,6 +211,22 @@ function Bird(id, pos, vel) {
         const targetSteer = target.pos.copy().sub(this.pos);
         return targetSteer;
     };
+
+    this.getObstaclesAvoidingAcceleration = () => {
+        const obstacleSteer = new p5.Vector(0, 0);
+        this.nearObstacles.forEach(id => {
+            const o = obstacles[id];
+            const steer = p5.Vector.sub(this.pos, o.pos);
+            obstacleSteer.add(steer);
+        });
+
+        if (this.nearObstacles.length > 0 ) {
+            console.log();
+        }
+
+        obstacleSteer.setMag(this.OBSTACLE_ACC_INTENSITY);
+        return obstacleSteer;
+    }
 
     this.move = () => {
         // Reset the acceleration after moving to avoid stacking forces of each iteration
@@ -194,6 +242,7 @@ function Bird(id, pos, vel) {
             this.getAlignmentAcceleration(),
             this.getSeparationAcceleration(),
             this.getCohesionAcceleration(),
+            this.getObstaclesAvoidingAcceleration(),
         ]
 
         const netAcceleration = new p5.Vector(0, 0);
@@ -213,7 +262,7 @@ function Bird(id, pos, vel) {
         translate(this.pos.x, this.pos.y);
         noFill();
 
-        if (enableShowPerception) {
+        if (enableShowPerception && this.id === birds[0].id) {
             if (enableAlignment) {
                 strokeWeight(3);
                 stroke('green');
