@@ -57,6 +57,7 @@
     <label>Flock population</label>
     <input id="flockSizeInput" type="number">
     <button id="flockSizeBtn" onclick="updateFlockSize()">Reset flock</button>
+    <button id="flockSizeBtn" onclick="resetObstacles()">Reset obstacles</button>
     <button class="active" id="loopButton">Play/pause simulation</button>
 </div>
 <div>
@@ -69,10 +70,10 @@
                 <button class='inactive' id="followTargetButton">Follow target</button>
             </td>
             <td>
-                <button class='inactive' id="wrapEdgesButton">Edge wrapping</button>
+                <button class='active' id="wrapEdgesButton">Edge wrapping</button>
             </td>
             <td>
-                <button class='inactive' id="showPerceptionCirclesButton">Show perception</button>
+                <button class='active' id="showPerceptionCirclesButton">Show perception</button>
             </td>
             <td>
                 <button id="markButton">Mark a random boid</button>
@@ -92,10 +93,12 @@
             <td>
                 <div>
                     <button class='active' id="toggleWiggleButton">Toggle wiggling</button>
-                    <p>Allowed angle</p>
+                    <p>Allowed angle <span id="wiggleAngleMarker">20</span></p>
                     <input type="range" min="0" max="90" value="20" step="0.5" class="slider" id="wiggleAngleSlider">
-                    <p>Max velocity</p>
-                    <input type="range" min="0" max="10" value="5" step="1" class="slider" id="boidSpeedSlider">
+                    <p>Intensity <span id="wiggleIntensityeMarker">1</span></p>
+                    <input type="range" min="0" max="5" value="1" step="0.1" class="slider" id="wiggleIntensitySlider">
+                    <p>Max velocity <span id="maxSpeedMarker">10</span></p>
+                    <input type="range" min="0" max="20" value="10" step="0.1" class="slider" id="boidSpeedSlider">
                 </div>
             </td>
             <td>
@@ -137,6 +140,7 @@
 <script src="Interface.js"></script>
 <script src="Bird.js"></script>
 <script src="Target.js"></script>
+<script src="Obstacle.js"></script>
 <script src="utils.js"></script>
 
 
