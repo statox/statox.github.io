@@ -109,13 +109,17 @@ function mousePressed(e) {
         return;
     }
     const mousePosition = new p5.Vector(mouseX, mouseY);
+    const controlPressed = keyIsDown(CONTROL);
 
     if (mouseButton === 'left') {
-        // const dx = random(-1, 1);
-        // const dy = random(-1, 1);
-        // // Constant initial velocity
-        // const vel = new p5.Vector(dx, dy).normalize();
-        const vel = new p5.Vector(1, 0).normalize();
+        // Constant initial velocity
+        let vel = new p5.Vector(1, 0).normalize();
+
+        if (controlPressed) {
+            const dx = random(-1, 1);
+            const dy = random(-1, 1);
+            vel = new p5.Vector(dx, dy).normalize();
+        }
 
         birds.push(new Bird(birds.length, mousePosition, vel));
     }
