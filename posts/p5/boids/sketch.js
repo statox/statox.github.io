@@ -14,13 +14,14 @@ let app;
 
 let boidsSettings = {
     enableWiggle: true,
+    enableRoundShape: false,
 
     enableAlignment: true,
     enableSeparation: true,
     enableCohesion: true,
 
     enableFollowMouse: false,
-    enableFollowTarget: true,
+    enableFollowTarget: false,
 
     enableWrapEdges: true,
     enableShowPerception: false,

@@ -236,19 +236,19 @@ function Bird(id, pos, vel) {
                     this.alignmentFriends.forEach(id => birds[id].marked = true);
                     strokeWeight(3);
                     stroke('green');
-                    circle(0, 0, boidsSettings.ALIGNMENT_FRIENDS_RADIUS);
+                    circle(0, 0, boidsSettings.ALIGNMENT_FRIENDS_RADIUS*2);
                 }
                 if (boidsSettings.enableSeparation) {
                     this.separationFriends.forEach(id => birds[id].marked = true);
                     strokeWeight(2);
                     stroke('red');
-                    circle(0, 0, boidsSettings.SEPARATION_FRIENDS_RADIUS);
+                    circle(0, 0, boidsSettings.SEPARATION_FRIENDS_RADIUS*2);
                 }
                 if (boidsSettings.enableCohesion) {
                     this.cohesionFriends.forEach(id => birds[id].marked = true);
                     strokeWeight(1);
                     stroke('blue');
-                    circle(0, 0, boidsSettings.COHESION_FRIENDS_RADIUS);
+                    circle(0, 0, boidsSettings.COHESION_FRIENDS_RADIUS*2);
                 }
             }
         }
@@ -259,7 +259,11 @@ function Bird(id, pos, vel) {
         if (this.marked) {
             fill('red');
         }
-        triangle(0, this.r, -this.r/3, 0, this.r/3, 0);
+        if (boidsSettings.enableRoundShape) {
+            ellipse(0, 0, this.r/2);
+        } else {
+            triangle(0, this.r, -this.r/3, 0, this.r/3, 0);
+        }
         pop();
     };
 }
