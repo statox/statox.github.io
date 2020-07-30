@@ -1,25 +1,45 @@
+let target;
 let TARGET_MAX_SPEED = 5;
-let CROWD_SIZE = 100;
 let TARGET_MAX_ACC = 2;
+
 let birds;
+let birdsQTree;
 let obstacles;
-let ORD;
-let enableAlignment = true;
-let enableSeparation = true;
-let enableWiggle = true;
-let enableFollowMouse = false;
-let enableWrapEdges = true;
-let enableFollowTarget = false;
-let enableCohesion = true;
-let enableLoop = true;
-let enableShowPerception = true;
-let SQUARES=10;
-let repartition;
+let obstaclesQTree;
 let obstaclesCreationTimer=0;
 
-let target;
-let birdsQTree;
-let obstaclesQTree;
+let ORD;
+
+let boidsSettings = {
+    enableAlignment: true,
+    enableSeparation: true,
+    enableWiggle: true,
+    enableFollowMouse: false,
+    enableWrapEdges: true,
+    enableFollowTarget: false,
+    enableCohesion: true,
+    enableLoop: true,
+    enableShowPerception: true,
+
+    CROWD_SIZE: 100,
+    MAX_WIGGLE_ANGLE: 10,
+
+    ALIGNMENT_FRIENDS_RADIUS: 100,
+    SEPARATION_FRIENDS_RADIUS: 30,
+    COHESION_FRIENDS_RADIUS: 80,
+    OBSTACLE_RADIUS: 50,
+
+    WIGGLE_ACC_INTENSITY: 3,
+    ALIGNMENT_ACC_INTENSITY: 3,
+    SEPARATION_ACC_INTENSITY: 2,
+    COHESION_ACC_INTENSITY: 3,
+    TARGET_ACC_INTENSITY: 0.5,
+
+    OBSTACLE_ACC_INTENSITY: 5,
+
+    MAX_ACC: 1,
+    MAX_SPEED: 6,
+}
 
 
 function resetObstacles() {
@@ -31,7 +51,7 @@ function resetBirds() {
 
     target = new Target(0);
 
-    for (let i=0; i<CROWD_SIZE; i++) {
+    for (let i=0; i<boidsSettings.CROWD_SIZE; i++) {
         // Random initial position
         const x = random(0, width);
         const y = random(0, height);
@@ -102,7 +122,7 @@ function draw() {
         b.show();
     });
 
-    if (!enableWrapEdges) {
+    if (!boidsSettings.enableWrapEdges) {
         stroke('green');
         strokeWeight(10);
         line(0, 0, width, 0);
@@ -111,7 +131,7 @@ function draw() {
         line(0, height, width, height);
     }
 
-    if (enableFollowTarget) {
+    if (boidsSettings.enableFollowTarget) {
         target.move();
         target.show();
     }

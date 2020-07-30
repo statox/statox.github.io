@@ -19,7 +19,7 @@ function Target(id) {
     // Either wrap around edges or return an acceleration repealling from edges
     this.getBorderAvoidingAcceleration = () => {
         const steering = new p5.Vector(0, 0);
-        if (enableWrapEdges) {
+        if (boidsSettings.enableWrapEdges) {
             if (this.pos.x < 0 ) {
                 this.pos.x = width;
             }
@@ -66,10 +66,6 @@ function Target(id) {
 
     // Compute steering in a random position
     this.getWiggleAcceleration = () => {
-        if (!enableWiggle) {
-            return;
-        }
-
         const wiggleSteer = new p5.Vector(random(-10, 10), random(-10, 10));
         return wiggleSteer;
     };

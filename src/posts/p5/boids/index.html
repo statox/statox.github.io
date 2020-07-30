@@ -38,9 +38,6 @@ eleventyExcludeFromCollections: true
             <td>
                 <button class='active' id="showPerceptionCirclesButton">Show perception</button>
             </td>
-            <td>
-                <button id="markButton">Mark a random boid</button>
-            </td>
         </tr>
     </table>
 </div>
@@ -57,7 +54,7 @@ eleventyExcludeFromCollections: true
                 <div>
                     <button class='active' id="toggleWiggleButton">Toggle wiggling</button>
                     <p>Allowed angle <span id="wiggleAngleMarker">10</span></p>
-                    <input type="range" min="0" max="90" value="10" step="0.5" class="slider" id="wiggleAngleSlider">
+                    <input type="range" min="0" max="180" value="10" step="0.5" class="slider" id="wiggleAngleSlider">
                     <p>Intensity <span id="wiggleIntensityeMarker">3</span></p>
                     <input type="range" min="0" max="5" value="3" step="0.1" class="slider" id="wiggleIntensitySlider">
                     <p>Max velocity <span id="maxSpeedMarker">6</span></p>
