@@ -104,6 +104,15 @@ eleventyExcludeFromCollections: true
     </table>
 </div>
 <div oncontextmenu="return false;" id="canvasDiv"></div>
+<div>
+    <table>
+        <tr>
+            <td>
+                <button v-bind:class="{active: enableRoundShape, inactive: !enableRoundShape}" id="changeShapeButton">•/►</button>
+            </td>
+        </tr>
+    </table>
+</div>
 </div>
 {% endraw %}
 

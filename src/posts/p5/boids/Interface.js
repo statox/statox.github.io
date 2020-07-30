@@ -8,6 +8,10 @@ function initializeButtons() {
         boidsSettings.enableWiggle = !boidsSettings.enableWiggle;
     })
 
+    document.getElementById('changeShapeButton').addEventListener('click', (e) => {
+        boidsSettings.enableRoundShape = !boidsSettings.enableRoundShape;
+    })
+
     document.getElementById('toggleAlignmentButton').addEventListener('click', (e) => {
         boidsSettings.enableAlignment = !boidsSettings.enableAlignment;
     })
