@@ -1,20 +1,21 @@
 let TARGET_MAX_SPEED = 5;
-let CROWD_SIZE = 2;
+let CROWD_SIZE = 100;
 let TARGET_MAX_ACC = 2;
 let birds;
 let obstacles;
 let ORD;
-let enableAlignment = false;
-let enableSeparation = false;
+let enableAlignment = true;
+let enableSeparation = true;
 let enableWiggle = true;
 let enableFollowMouse = false;
 let enableWrapEdges = true;
 let enableFollowTarget = false;
-let enableCohesion = false;
+let enableCohesion = true;
 let enableLoop = true;
 let enableShowPerception = true;
 let SQUARES=10;
 let repartition;
+let obstaclesCreationTimer=0;
 
 let target;
 let birdsQTree;
@@ -40,9 +41,9 @@ function resetBirds() {
         const dy = random(-1, 1);
 
         // Constant initial velocity
-        const vel = new p5.Vector(dx, dy).normalize();
+        // const vel = new p5.Vector(1, 0).normalize();
         // Random initial velocity
-        // const vel = new p5.Vector(dx, dy).normalize().mult(random()*MAX_SPEED);
+        const vel = new p5.Vector(dx, dy).normalize();
 
         birds.push(new Bird(i, pos, vel));
     }
@@ -54,7 +55,6 @@ function setup() {
     myCanvas.parent("canvasDiv");
     ORD = new p5.Vector(0, 1);
 
-    noiseSeed(99);
     initializeButtons();
 
     resetBirds();
@@ -65,19 +65,36 @@ function setup() {
 function draw() {
     background(0, 0, 0);
 
-
     const boundaries = new Rectangle(0, 0, width, height);
     const capacity = 4;
     birdsQTree = new QuadTree(boundaries, capacity);
     obstaclesQTree = new QuadTree(boundaries, capacity);
 
+    if (keyIsDown(CONTROL)) {
+        obstaclesCreationTimer = (obstaclesCreationTimer + 1) % 10;
+        if (obstaclesCreationTimer === 0) {
+            const mousePosition = new p5.Vector(mouseX, mouseY);
+            const obstacle = new Obstacle(obstacles.length, mousePosition, 30);
+            obstacles.push(obstacle);
+        }
+    }
+
     obstacles.forEach(o => {
+        // TODO: I think it's not needed to do that at each iteration
         obstaclesQTree.insert(new Point(o.pos.x, o.pos.y, o.id));
         o.show();
     });
 
     birds.forEach(b => {
         birdsQTree.insert(new Point(b.pos.x, b.pos.y, b.id));
+    });
+
+    // TODO:
+    // I thought there was an issue when the compute and the move were done
+    // at the same time but now I'm not sure I see a visible change when
+    // the computation is done with the move
+    birds.forEach(b => {
+        b.computeMove();
     });
 
     birds.forEach(b => {
@@ -109,17 +126,11 @@ function mousePressed(e) {
         return;
     }
     const mousePosition = new p5.Vector(mouseX, mouseY);
-    const controlPressed = keyIsDown(CONTROL);
 
     if (mouseButton === 'left') {
-        // Constant initial velocity
-        let vel = new p5.Vector(1, 0).normalize();
-
-        if (controlPressed) {
-            const dx = random(-1, 1);
-            const dy = random(-1, 1);
-            vel = new p5.Vector(dx, dy).normalize();
-        }
+        const dx = random(-1, 1);
+        const dy = random(-1, 1);
+        const vel = new p5.Vector(dx, dy).normalize();
 
         birds.push(new Bird(birds.length, mousePosition, vel));
     }
