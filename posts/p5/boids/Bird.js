@@ -6,20 +6,22 @@ function Bird(id, pos, vel) {
     this.pos = pos;
     this.vel = vel;
     this.acc = new p5.Vector(0, 0);
+    this.nextAcc = new p5.Vector(0, 0);
     this.r = 20;
     this.color = random(255);
     this.marked = false;
-    this.MAX_WIGGLE_ANGLE = radians(20);
+    this.MAX_WIGGLE_ANGLE = radians(10);
 
-    this.ALIGNMENT_FRIENDS_RADIUS = 80;
-    this.SEPARATION_FRIENDS_RADIUS = 60;
+    this.ALIGNMENT_FRIENDS_RADIUS = 100;
+    this.SEPARATION_FRIENDS_RADIUS = 30;
     this.COHESION_FRIENDS_RADIUS = 80;
     this.OBSTACLE_RADIUS = 50;
 
-    this.WIGGLE_ACC_INTENSITY = 1;
-    this.ALIGNMENT_ACC_INTENSITY = 2;
+    this.WIGGLE_ACC_INTENSITY = 3;
+    this.ALIGNMENT_ACC_INTENSITY = 3;
     this.SEPARATION_ACC_INTENSITY = 2;
     this.COHESION_ACC_INTENSITY = 3;
+    this.TARGET_ACC_INTENSITY = 0.5;
 
     this.OBSTACLE_ACC_INTENSITY = 5;
 
@@ -31,6 +33,7 @@ function Bird(id, pos, vel) {
     this.MAX_ACC = 1;
     this.MAX_SPEED = 6;
 
+    // Populate the arrays of friends for each force to do the computations efficiently
     this.updateFriends = () => {
         const alignment = [];
         const separation = [];
@@ -74,30 +77,17 @@ function Bird(id, pos, vel) {
         const maxPullbackAcc = 100;
         if (this.pos.x < BORDER_LIMIT) {
             this.vel.x = abs(this.vel.x);
-            // steering.x = maxPullbackAcc;
         }
         if (this.pos.x > width - BORDER_LIMIT) {
             this.vel.x = -abs(this.vel.x);
-            // steering.x = -maxPullbackAcc;
         }
         if (this.pos.y < BORDER_LIMIT) {
             this.vel.y = abs(this.vel.y);
-            // steering.y = maxPullbackAcc;
         }
         if (this.pos.y > height - BORDER_LIMIT) {
             this.vel.y = -abs(this.vel.y);
-            // steering.y = -maxPullbackAcc;
         }
         return steering;
-    };
-
-    // Take a steering force and apply it to the current acceleration
-    this.applyForce = (force) => {
-        if (!force) {
-            return;
-        }
-
-        this.acc.add(force);
     };
 
     // Compute steering force towards the mouse
@@ -112,6 +102,7 @@ function Bird(id, pos, vel) {
 
         const mouse = new p5.Vector(mouseX, mouseY);
         const mouseSteer = mouse.sub(this.pos);
+        mouseSteer.setMag(this.TARGET_ACC_INTENSITY);
         return mouseSteer;
     };
 
@@ -121,15 +112,8 @@ function Bird(id, pos, vel) {
             return;
         }
 
-        if (enableShowPerception && this.id === birds[0].id) {
-            birds.forEach(b => b.marked = false)
-        }
-
         const alignmentSteer = new p5.Vector(0, 0);
         this.alignmentFriends.forEach(id => {
-            if (enableShowPerception && this.id === birds[0].id) {
-                birds[id].marked = true;
-            }
             if (id === this.id) {
                 return;
             }
@@ -139,7 +123,6 @@ function Bird(id, pos, vel) {
 
         if (this.alignmentFriends.length > 1) {
             alignmentSteer.div(this.alignmentFriends.length);
-            alignmentSteer.sub(this.pos);
             alignmentSteer.setMag(this.ALIGNMENT_ACC_INTENSITY);
             alignmentSteer.sub(this.vel);
             alignmentSteer.limit(this.MAX_ACC);
@@ -180,14 +163,13 @@ function Bird(id, pos, vel) {
                 return;
             }
             const pos = birds[id].pos;
-            const steer = this.pos.copy().sub(pos);
+            const steer = pos.copy().sub(this.pos);
             cohesionSteer.add(steer);
         });
+
         if (this.cohesionFriends.length > 1) {
             cohesionSteer.div(this.cohesionFriends.length);
-            cohesionSteer.sub(this.pos);
             cohesionSteer.setMag(this.COHESION_ACC_INTENSITY);
-            cohesionSteer.sub(this.vel);
             cohesionSteer.limit(this.MAX_ACC);
         }
         return cohesionSteer;
@@ -205,34 +187,31 @@ function Bird(id, pos, vel) {
         return wiggleSteer;
     };
 
+    // Compute steering towards the target object
     this.getTargetAcceleration = () => {
         if (!enableFollowTarget) {
             return;
         }
         const targetSteer = target.pos.copy().sub(this.pos);
+        targetSteer.setMag(this.TARGET_ACC_INTENSITY);
         return targetSteer;
     };
 
+    // Compute steering rejecting from obstacles
     this.getObstaclesAvoidingAcceleration = () => {
         const obstacleSteer = new p5.Vector(0, 0);
+
         this.nearObstacles.forEach(id => {
             const o = obstacles[id];
             const steer = p5.Vector.sub(this.pos, o.pos);
             obstacleSteer.add(steer);
         });
 
-        if (this.nearObstacles.length > 0 ) {
-            console.log();
-        }
-
         obstacleSteer.setMag(this.OBSTACLE_ACC_INTENSITY);
         return obstacleSteer;
     }
 
-    this.move = () => {
-        // Reset the acceleration after moving to avoid stacking forces of each iteration
-        this.acc.mult(0);
-
+    this.computeMove = () => {
         this.updateFriends();
 
         const forcesToApply = [
@@ -248,9 +227,13 @@ function Bird(id, pos, vel) {
 
         const netAcceleration = new p5.Vector(0, 0);
         forcesToApply.forEach(f => netAcceleration.add(f));
-        netAcceleration.limit(this.MAX_ACC);
-        this.acc = netAcceleration;
+        this.nextAcc = netAcceleration;
+    };
 
+    this.move = () => {
+        // Reset the acceleration after moving to avoid stacking forces of each iteration
+        this.acc.mult(0);
+        this.acc = this.nextAcc;
         this.vel.add(this.acc);
         this.vel.limit(this.MAX_SPEED);
         this.pos.add(this.vel);
@@ -263,25 +246,32 @@ function Bird(id, pos, vel) {
         translate(this.pos.x, this.pos.y);
         noFill();
 
-        if (enableShowPerception && this.id === birds[0].id) {
-            if (enableAlignment) {
-                strokeWeight(3);
-                stroke('green');
-                circle(0, 0, this.ALIGNMENT_FRIENDS_RADIUS);
+        if (this.id === birds[0].id) {
+            birds.forEach(b => b.marked = false);
+            if (enableShowPerception) {
+                if (enableAlignment) {
+                    this.alignmentFriends.forEach(id => birds[id].marked = true);
+                    console.log(this.alignmentFriends.length);
+                    strokeWeight(3);
+                    stroke('green');
+                    circle(0, 0, this.ALIGNMENT_FRIENDS_RADIUS);
+                }
+                if (enableSeparation) {
+                    this.separationFriends.forEach(id => birds[id].marked = true);
+                    strokeWeight(2);
+                    stroke('red');
+                    circle(0, 0, this.SEPARATION_FRIENDS_RADIUS);
+                }
+                if (enableCohesion) {
+                    this.cohesionFriends.forEach(id => birds[id].marked = true);
+                    strokeWeight(1);
+                    stroke('blue');
+                    circle(0, 0, this.COHESION_FRIENDS_RADIUS);
+                }
             }
-            if (enableSeparation) {
-                strokeWeight(2);
-                stroke('red');
-                circle(0, 0, this.SEPARATION_FRIENDS_RADIUS);
-            }
-            if (enableCohesion) {
-                strokeWeight(1);
-                stroke('blue');
-                circle(0, 0, this.COHESION_FRIENDS_RADIUS);
-            }
-            noStroke();
         }
 
+        noStroke();
         rotate(angle);
         fill(255);
         if (this.marked) {
