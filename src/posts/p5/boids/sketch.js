@@ -10,19 +10,23 @@ let obstaclesCreationTimer=0;
 
 let ORD;
 
+let app;
+
 let boidsSettings = {
+    enableWiggle: true,
+
     enableAlignment: true,
     enableSeparation: true,
-    enableWiggle: true,
-    enableFollowMouse: false,
-    enableWrapEdges: true,
-    enableFollowTarget: false,
     enableCohesion: true,
-    enableLoop: true,
-    enableShowPerception: true,
+
+    enableFollowMouse: false,
+    enableFollowTarget: true,
+
+    enableWrapEdges: true,
+    enableShowPerception: false,
 
     CROWD_SIZE: 100,
-    MAX_WIGGLE_ANGLE: 10,
+    MAX_WIGGLE_ANGLE: 50,
 
     ALIGNMENT_FRIENDS_RADIUS: 100,
     SEPARATION_FRIENDS_RADIUS: 30,
@@ -34,12 +38,16 @@ let boidsSettings = {
     SEPARATION_ACC_INTENSITY: 2,
     COHESION_ACC_INTENSITY: 3,
     TARGET_ACC_INTENSITY: 0.5,
-
     OBSTACLE_ACC_INTENSITY: 5,
 
     MAX_ACC: 1,
     MAX_SPEED: 6,
 }
+
+app = new Vue({
+  el: '#boidsApp',
+  data: boidsSettings
+});
 
 
 function resetObstacles() {
@@ -79,7 +87,6 @@ function setup() {
 
     resetBirds();
     resetObstacles();
-    setFlockSize()
 }
 
 function draw() {
@@ -134,29 +141,5 @@ function draw() {
     if (boidsSettings.enableFollowTarget) {
         target.move();
         target.show();
-    }
-}
-
-function windowResized() {
-    customResizeCanvas();
-}
-
-function mousePressed(e) {
-    if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) {
-        return;
-    }
-    const mousePosition = new p5.Vector(mouseX, mouseY);
-
-    if (mouseButton === 'left') {
-        const dx = random(-1, 1);
-        const dy = random(-1, 1);
-        const vel = new p5.Vector(dx, dy).normalize();
-
-        birds.push(new Bird(birds.length, mousePosition, vel));
-    }
-
-    if (mouseButton === 'right') {
-        const obstacle = new Obstacle(obstacles.length, mousePosition, 30);
-        obstacles.push(obstacle);
     }
 }

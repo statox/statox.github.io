@@ -1,4 +1,3 @@
-const LIMIT_SIZE = 100;
 const BORDER_LIMIT = 20;
 
 function Bird(id, pos, vel) {
