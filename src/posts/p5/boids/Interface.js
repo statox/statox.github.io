@@ -39,6 +39,22 @@ function initializeButtons() {
     document.getElementById('showPerceptionCirclesButton').addEventListener('click', (e) => {
         boidsSettings.enableShowPerception = !boidsSettings.enableShowPerception;
     });
+
+    document.getElementById('obstaclesDrawingButton').addEventListener('click', (e) => {
+        boidsSettings.enableObstaclesDrawing = !boidsSettings.enableObstaclesDrawing;
+    });
+}
+
+function keyPressed() {
+    if (keyCode === CONTROL) {
+        boidsSettings.enableObstaclesDrawing = true;
+    }
+};
+
+function keyReleased() {
+    if (keyCode === CONTROL) {
+        boidsSettings.enableObstaclesDrawing = false;
+    }
 }
 
 function windowResized() {
