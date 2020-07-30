@@ -26,6 +26,8 @@ let boidsSettings = {
     enableWrapEdges: true,
     enableShowPerception: false,
 
+    enableObstaclesDrawing: false,
+
     CROWD_SIZE: 100,
     MAX_WIGGLE_ANGLE: 50,
 
@@ -98,7 +100,7 @@ function draw() {
     birdsQTree = new QuadTree(boundaries, capacity);
     obstaclesQTree = new QuadTree(boundaries, capacity);
 
-    if (keyIsDown(CONTROL)) {
+    if (boidsSettings.enableObstaclesDrawing) {
         obstaclesCreationTimer = (obstaclesCreationTimer + 1) % 10;
         if (obstaclesCreationTimer === 0) {
             const mousePosition = new p5.Vector(mouseX, mouseY);
