@@ -15,44 +15,45 @@ function toggleEnabledButton(btn) {
 
 function updateFlockSize() {
     const newSize = document.getElementById('flockSizeInput').value;
-    CROWD_SIZE = Number(newSize);
+    boidsSettings.CROWD_SIZE = Number(newSize);
     resetBirds();
 }
 
 function setFlockSize() {
-    document.getElementById('flockSizeInput').value = CROWD_SIZE;
+    document.getElementById('flockSizeInput').value = boidsSettings.CROWD_SIZE;
 }
 
+function initializeInterfaceValues() {
+}
 
 function initializeButtons() {
     /*
      * Wiggle settings
      */
     document.getElementById('toggleWiggleButton').addEventListener('click', (e) => {
-        enableWiggle = !enableWiggle;
+        boidsSettings.enableWiggle = !boidsSettings.enableWiggle;
         toggleEnabledButton(event.target || event.srcElement);
     })
 
     document.getElementById('wiggleAngleSlider').addEventListener('input', (e) => {
         const element = document.getElementById('wiggleAngleSlider')
         const val = Number(element.value);
-        const rad = radians(val);
         document.getElementById('wiggleAngleMarker').innerHTML = val;
-        birds.forEach(b => b.MAX_WIGGLE_ANGLE = rad);
+        boidsSettings.MAX_WIGGLE_ANGLE = val;
     });
 
     document.getElementById('wiggleIntensitySlider').addEventListener('input', (e) => {
         const element = document.getElementById('wiggleIntensitySlider')
         const val = Number(element.value);
         document.getElementById('wiggleIntensityeMarker').innerHTML = val;
-        birds.forEach(b => b.WIGGLE_ACC_INTENSITY = val);
+        boidsSettings.WIGGLE_ACC_INTENSITY = val;
     });
 
     document.getElementById('boidSpeedSlider').addEventListener('input', (e) => {
         const element = document.getElementById('boidSpeedSlider')
         const val = Number(element.value);
         document.getElementById('maxSpeedMarker').innerHTML = val;
-        birds.forEach(b => b.MAX_SPEED = val);
+        boidsSettings.MAX_SPEED = val;
     });
 
 
@@ -60,7 +61,7 @@ function initializeButtons() {
      * Alignmement settings
      */
     document.getElementById('toggleAlignmentButton').addEventListener('click', (e) => {
-        enableAlignment = !enableAlignment;
+        boidsSettings.enableAlignment = !boidsSettings.enableAlignment;
         toggleEnabledButton(event.target || event.srcElement);
     })
 
@@ -68,21 +69,21 @@ function initializeButtons() {
         const element = document.getElementById('alignementPerceptionDistanceSlider')
         const val = Number(element.value);
         document.getElementById('alignmentPerceptionMarker').innerHTML = val;
-        birds.forEach(b => b.ALIGNMENT_FRIENDS_RADIUS = val);
+        boidsSettings.ALIGNMENT_FRIENDS_RADIUS = val;
     });
 
     document.getElementById('alignementIntensitySlider').addEventListener('input', (e) => {
         const element = document.getElementById('alignementIntensitySlider')
         const val = Number(element.value);
         document.getElementById('alignmentIntensityMarker').innerHTML = val;
-        birds.forEach(b => b.ALIGNMENT_ACC_INTENSITY = val);
+        boidsSettings.ALIGNMENT_ACC_INTENSITY = val;
     });
 
     /*
      * Separation settings
      */
     document.getElementById('toggleSeparationButton').addEventListener('click', (e) => {
-        enableSeparation = !enableSeparation;
+        boidsSettings.enableSeparation = !boidsSettings.enableSeparation;
         toggleEnabledButton(event.target || event.srcElement);
     })
 
@@ -90,21 +91,21 @@ function initializeButtons() {
         const element = document.getElementById('separationPerceptionDistanceSlider')
         const val = Number(element.value);
         document.getElementById('separationPerceptionMarker').innerHTML = val;
-        birds.forEach(b => b.SEPARATION_FRIENDS_RADIUS = val);
+        boidsSettings.SEPARATION_FRIENDS_RADIUS = val;
     });
 
     document.getElementById('separationIntensitySlider').addEventListener('input', (e) => {
         const element = document.getElementById('separationIntensitySlider')
         const val = Number(element.value);
         document.getElementById('separationIntensityMarker').innerHTML = val;
-        birds.forEach(b => b.SEPARATION_ACC_INTENSITY = val);
+        boidsSettings.SEPARATION_ACC_INTENSITY = val;
     });
 
     /*
      * Cohesion settings
      */
     document.getElementById('toggleCohesionButton').addEventListener('click', (e) => {
-        enableCohesion = !enableCohesion;
+        boidsSettings.enableCohesion = !boidsSettings.enableCohesion;
         toggleEnabledButton(event.target || event.srcElement);
     })
 
@@ -112,24 +113,24 @@ function initializeButtons() {
         const element = document.getElementById('cohesionPerceptionDistanceSlider')
         const val = Number(element.value);
         document.getElementById('cohesionPerceptionMarker').innerHTML = val;
-        birds.forEach(b => b.COHESION_FRIENDS_RADIUS = val);
+        boidsSettings.COHESION_FRIENDS_RADIUS = val;
     });
 
     document.getElementById('cohesionIntensitySlider').addEventListener('input', (e) => {
         const element = document.getElementById('cohesionIntensitySlider')
         const val = Number(element.value);
         document.getElementById('cohesionIntensityMarker').innerHTML = val;
-        birds.forEach(b => b.COHESION_ACC_INTENSITY = val);
+        boidsSettings.COHESION_ACC_INTENSITY = val;
     });
 
     /*
      * Other controls
      */
     document.getElementById('loopButton').addEventListener('click', (e) => {
-        enableLoop = !enableLoop;
+        boidsSettings.enableLoop = !boidsSettings.enableLoop;
         toggleEnabledButton(event.target || event.srcElement);
 
-        if (enableLoop) {
+        if (boidsSettings.enableLoop) {
             loop();
         } else {
             noLoop();
@@ -137,29 +138,22 @@ function initializeButtons() {
     });
 
     document.getElementById('followMouseButton').addEventListener('click', (e) => {
-        enableFollowMouse = !enableFollowMouse;
+        boidsSettings.enableFollowMouse = !boidsSettings.enableFollowMouse;
         toggleEnabledButton(event.target || event.srcElement);
     });
 
     document.getElementById('followTargetButton').addEventListener('click', (e) => {
-        enableFollowTarget = !enableFollowTarget;
+        boidsSettings.enableFollowTarget = !boidsSettings.enableFollowTarget;
         toggleEnabledButton(event.target || event.srcElement);
     });
 
     document.getElementById('wrapEdgesButton').addEventListener('click', (e) => {
-        enableWrapEdges = !enableWrapEdges;
+        boidsSettings.enableWrapEdges = !boidsSettings.enableWrapEdges;
         toggleEnabledButton(event.target || event.srcElement);
     });
 
     document.getElementById('showPerceptionCirclesButton').addEventListener('click', (e) => {
-        enableShowPerception = !enableShowPerception;
+        boidsSettings.enableShowPerception = !boidsSettings.enableShowPerception;
         toggleEnabledButton(event.target || event.srcElement);
-    });
-
-    document.getElementById('markButton').addEventListener('click', (e) => {
-        birds.forEach(b => b.marked = false);
-        const randId = parseInt(random(0, birds.length-1));
-        birds[randId].marked = true;
-        ( event.target || event.srcElement ).classList.add('active');
     });
 }

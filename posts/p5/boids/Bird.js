@@ -10,28 +10,11 @@ function Bird(id, pos, vel) {
     this.r = 20;
     this.color = random(255);
     this.marked = false;
-    this.MAX_WIGGLE_ANGLE = radians(10);
-
-    this.ALIGNMENT_FRIENDS_RADIUS = 100;
-    this.SEPARATION_FRIENDS_RADIUS = 30;
-    this.COHESION_FRIENDS_RADIUS = 80;
-    this.OBSTACLE_RADIUS = 50;
-
-    this.WIGGLE_ACC_INTENSITY = 3;
-    this.ALIGNMENT_ACC_INTENSITY = 3;
-    this.SEPARATION_ACC_INTENSITY = 2;
-    this.COHESION_ACC_INTENSITY = 3;
-    this.TARGET_ACC_INTENSITY = 0.5;
-
-    this.OBSTACLE_ACC_INTENSITY = 5;
 
     this.alignmentFriends = [];
     this.separationFriends = [];
     this.cohesionFriends = [];
     this.nearObstacles = [];
-
-    this.MAX_ACC = 1;
-    this.MAX_SPEED = 6;
 
     // Populate the arrays of friends for each force to do the computations efficiently
     this.updateFriends = () => {
@@ -40,13 +23,13 @@ function Bird(id, pos, vel) {
         const cohesion = [];
         const myobstacles = []; // The name obstacles is already a global variable
 
-        const alignmentCircle = new Circle(this.pos.x, this.pos.y, this.ALIGNMENT_FRIENDS_RADIUS);
+        const alignmentCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.ALIGNMENT_FRIENDS_RADIUS);
         birdsQTree.query(alignmentCircle, alignment);
-        const separationCircle = new Circle(this.pos.x, this.pos.y, this.SEPARATION_FRIENDS_RADIUS);
+        const separationCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.SEPARATION_FRIENDS_RADIUS);
         birdsQTree.query(separationCircle, separation);
-        const cohesionCircle = new Circle(this.pos.x, this.pos.y, this.COHESION_FRIENDS_RADIUS);
+        const cohesionCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.COHESION_FRIENDS_RADIUS);
         birdsQTree.query(cohesionCircle, cohesion);
-        const obstaclesCircle = new Circle(this.pos.x, this.pos.y, this.OBSTACLE_RADIUS);
+        const obstaclesCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.OBSTACLE_RADIUS);
         obstaclesQTree.query(obstaclesCircle, myobstacles);
 
         this.alignmentFriends = alignment.map(i => i.userData);
@@ -58,7 +41,7 @@ function Bird(id, pos, vel) {
     // Either wrap around edges or return an acceleration repealling from edges
     this.getBorderAvoidingAcceleration = () => {
         const steering = new p5.Vector(0, 0);
-        if (enableWrapEdges) {
+        if (boidsSettings.enableWrapEdges) {
             if (this.pos.x < 0 ) {
                 this.pos.x = width;
             }
@@ -92,7 +75,7 @@ function Bird(id, pos, vel) {
 
     // Compute steering force towards the mouse
     this.getMouseAcceleration = () => {
-        if (!enableFollowMouse) {
+        if (!boidsSettings.enableFollowMouse) {
             return;
         }
 
@@ -102,13 +85,13 @@ function Bird(id, pos, vel) {
 
         const mouse = new p5.Vector(mouseX, mouseY);
         const mouseSteer = mouse.sub(this.pos);
-        mouseSteer.setMag(this.TARGET_ACC_INTENSITY);
+        mouseSteer.setMag(boidsSettings.TARGET_ACC_INTENSITY);
         return mouseSteer;
     };
 
     // Compute steering force towards the same direction as the local flock
     this.getAlignmentAcceleration = () => {
-        if (!enableAlignment) {
+        if (!boidsSettings.enableAlignment) {
             return;
         }
 
@@ -123,16 +106,16 @@ function Bird(id, pos, vel) {
 
         if (this.alignmentFriends.length > 1) {
             alignmentSteer.div(this.alignmentFriends.length);
-            alignmentSteer.setMag(this.ALIGNMENT_ACC_INTENSITY);
+            alignmentSteer.setMag(boidsSettings.ALIGNMENT_ACC_INTENSITY);
             alignmentSteer.sub(this.vel);
-            alignmentSteer.limit(this.MAX_ACC);
+            alignmentSteer.limit(boidsSettings.MAX_ACC);
         }
         return alignmentSteer;
     };
 
     // Compute steering force away from neighbors
     this.getSeparationAcceleration = () => {
-        if (!enableSeparation) {
+        if (!boidsSettings.enableSeparation) {
             return;
         }
 
@@ -147,13 +130,13 @@ function Bird(id, pos, vel) {
             acc.div(d);
             separationSteer.add(acc);
         });
-        separationSteer.setMag(this.SEPARATION_ACC_INTENSITY);
+        separationSteer.setMag(boidsSettings.SEPARATION_ACC_INTENSITY);
         return separationSteer;
     };
 
     // Compute steering force towards local center of mass
     this.getCohesionAcceleration = () => {
-        if (!enableCohesion) {
+        if (!boidsSettings.enableCohesion) {
             return
         }
 
@@ -169,31 +152,32 @@ function Bird(id, pos, vel) {
 
         if (this.cohesionFriends.length > 1) {
             cohesionSteer.div(this.cohesionFriends.length);
-            cohesionSteer.setMag(this.COHESION_ACC_INTENSITY);
-            cohesionSteer.limit(this.MAX_ACC);
+            cohesionSteer.setMag(boidsSettings.COHESION_ACC_INTENSITY);
+            cohesionSteer.limit(boidsSettings.MAX_ACC);
         }
         return cohesionSteer;
     };
 
     // Compute steering in a random position
     this.getWiggleAcceleration = () => {
-        if (!enableWiggle) {
+        if (!boidsSettings.enableWiggle) {
             return;
         }
 
-        const wiggleAngle = map(random(), 0, 1, -this.MAX_WIGGLE_ANGLE, this.MAX_WIGGLE_ANGLE);
+        const maxAngleRad = radians(boidsSettings.MAX_WIGGLE_ANGLE);
+        const wiggleAngle = map(random(), 0, 1, -maxAngleRad, maxAngleRad);
         const wiggleSteer = this.vel.copy().rotate(wiggleAngle);
-        wiggleSteer.setMag(this.WIGGLE_ACC_INTENSITY);
+        wiggleSteer.setMag(boidsSettings.WIGGLE_ACC_INTENSITY);
         return wiggleSteer;
     };
 
     // Compute steering towards the target object
     this.getTargetAcceleration = () => {
-        if (!enableFollowTarget) {
+        if (!boidsSettings.enableFollowTarget) {
             return;
         }
         const targetSteer = target.pos.copy().sub(this.pos);
-        targetSteer.setMag(this.TARGET_ACC_INTENSITY);
+        targetSteer.setMag(boidsSettings.TARGET_ACC_INTENSITY);
         return targetSteer;
     };
 
@@ -207,7 +191,7 @@ function Bird(id, pos, vel) {
             obstacleSteer.add(steer);
         });
 
-        obstacleSteer.setMag(this.OBSTACLE_ACC_INTENSITY);
+        obstacleSteer.setMag(boidsSettings.OBSTACLE_ACC_INTENSITY);
         return obstacleSteer;
     }
 
@@ -235,7 +219,7 @@ function Bird(id, pos, vel) {
         this.acc.mult(0);
         this.acc = this.nextAcc;
         this.vel.add(this.acc);
-        this.vel.limit(this.MAX_SPEED);
+        this.vel.limit(boidsSettings.MAX_SPEED);
         this.pos.add(this.vel);
     };
 
@@ -248,25 +232,24 @@ function Bird(id, pos, vel) {
 
         if (this.id === birds[0].id) {
             birds.forEach(b => b.marked = false);
-            if (enableShowPerception) {
-                if (enableAlignment) {
+            if (boidsSettings.enableShowPerception) {
+                if (boidsSettings.enableAlignment) {
                     this.alignmentFriends.forEach(id => birds[id].marked = true);
-                    console.log(this.alignmentFriends.length);
                     strokeWeight(3);
                     stroke('green');
-                    circle(0, 0, this.ALIGNMENT_FRIENDS_RADIUS);
+                    circle(0, 0, boidsSettings.ALIGNMENT_FRIENDS_RADIUS);
                 }
-                if (enableSeparation) {
+                if (boidsSettings.enableSeparation) {
                     this.separationFriends.forEach(id => birds[id].marked = true);
                     strokeWeight(2);
                     stroke('red');
-                    circle(0, 0, this.SEPARATION_FRIENDS_RADIUS);
+                    circle(0, 0, boidsSettings.SEPARATION_FRIENDS_RADIUS);
                 }
-                if (enableCohesion) {
+                if (boidsSettings.enableCohesion) {
                     this.cohesionFriends.forEach(id => birds[id].marked = true);
                     strokeWeight(1);
                     stroke('blue');
-                    circle(0, 0, this.COHESION_FRIENDS_RADIUS);
+                    circle(0, 0, boidsSettings.COHESION_FRIENDS_RADIUS);
                 }
             }
         }
