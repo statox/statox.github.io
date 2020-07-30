@@ -14,7 +14,7 @@ function Target(id) {
     this.pos = pos;
     this.vel = vel;
     this.acc = new p5.Vector(0, 0);
-    this.r = 5;
+    this.r = 30;
 
     // Either wrap around edges or return an acceleration repealling from edges
     this.getBorderAvoidingAcceleration = () => {
@@ -76,7 +76,6 @@ function Target(id) {
             return;
         }
 
-        // force.limit(TARGET_MAX_ACC);
         this.acc.add(force);
     };
 
@@ -94,7 +93,7 @@ function Target(id) {
 
     this.show = () => {
         noStroke();
-        fill('red');
+        fill('green');
         circle(this.pos.x, this.pos.y, this.r);
     }
 }
