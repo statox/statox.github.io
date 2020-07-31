@@ -112,7 +112,8 @@ function Target(id) {
         // this.acc.add(this.getObstaclesAvoidingAcceleration());
 
         this.vel.add(this.acc);
-        this.vel.limit(targetsSettings.MAX_SPEED);
+        // this.vel.limit(targetsSettings.MAX_SPEED);
+        this.vel.limit(boidsSettings.MAX_SPEED * 0.7);
         this.pos.add(this.vel);
     }
 

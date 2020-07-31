@@ -55,7 +55,7 @@ let boidsSettings = {
 
 let targetsSettings = {
     MAX_ACC: 1,
-    MAX_SPEED: 5,
+    MAX_SPEED: 3,
     BORDER_LIMIT: 40,
 
     ALIGNMENT_FRIENDS_RADIUS: 200,
