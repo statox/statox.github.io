@@ -43,17 +43,27 @@ function initializeButtons() {
     document.getElementById('obstaclesDrawingButton').addEventListener('click', (e) => {
         boidsSettings.enableObstaclesDrawing = !boidsSettings.enableObstaclesDrawing;
     });
+
+    document.getElementById('predatorDrawingButton').addEventListener('click', (e) => {
+        boidsSettings.enablePredatorDrawing = !boidsSettings.enablePredatorDrawing;
+    });
 }
 
 function keyPressed() {
     if (keyCode === CONTROL) {
         boidsSettings.enableObstaclesDrawing = true;
     }
+    if (keyCode === SHIFT) {
+        boidsSettings.enablePredatorDrawing = true;
+    }
 };
 
 function keyReleased() {
     if (keyCode === CONTROL) {
         boidsSettings.enableObstaclesDrawing = false;
+    }
+    if (keyCode === SHIFT) {
+        boidsSettings.enablePredatorDrawing = false;
     }
 }
 

@@ -1,5 +1,3 @@
-const TARGET_BORDER_LIMIT = 40;
-
 function Target(id) {
     const x = random(0, width);
     const y = random(0, height);
@@ -8,7 +6,8 @@ function Target(id) {
     const dx = random(-1, 1);
     const dy = random(-1, 1);
     // Constant initial velocity
-    const vel = new p5.Vector(dx, dy).normalize().mult(TARGET_MAX_SPEED);
+    // const vel = new p5.Vector(dx, dy).normalize().mult(TARGET_MAX_SPEED);
+    const vel = new p5.Vector(0, 0);
 
     this.id = id;
     this.pos = pos;
@@ -19,7 +18,7 @@ function Target(id) {
     // Either wrap around edges or return an acceleration repealling from edges
     this.getBorderAvoidingAcceleration = () => {
         const steering = new p5.Vector(0, 0);
-        if (boidsSettings.enableWrapEdges) {
+        // if (boidsSettings.enableWrapEdges) {
             if (this.pos.x < 0 ) {
                 this.pos.x = width;
             }
@@ -33,61 +32,87 @@ function Target(id) {
                 this.pos.y = 0;
             }
             return steering;
-        }
+        // }
 
-        // Keep the target in the screen
-        if (this.pos.x <= 0 ) {
-            this.pos.x = 0;
-        }
-        if (this.pos.x >= width) {
-            this.pos.x = width;
-        }
-        if (this.pos.y <= 0 ) {
-            this.pos.y = 0;
-        }
-        if (this.pos.y >= height) {
-            this.pos.y = height;
-        }
-
-        if (this.pos.x < TARGET_BORDER_LIMIT) {
-            steering.x = TARGET_MAX_ACC*2;
-        }
-        if (this.pos.x > width - TARGET_BORDER_LIMIT) {
-            steering.x = -TARGET_MAX_ACC*2;
-        }
-        if (this.pos.y < TARGET_BORDER_LIMIT) {
-            steering.y = TARGET_MAX_ACC*2;
-        }
-        if (this.pos.y > height - TARGET_BORDER_LIMIT) {
-            steering.y = -TARGET_MAX_ACC*2;
-        }
-        return steering;
+        /*
+         * // Keep the target in the screen
+         * if (this.pos.x < targetsSettings.BORDER_LIMIT) {
+         *     this.vel.x = abs(this.vel.x);
+         * }
+         * if (this.pos.x > width - targetsSettings.BORDER_LIMIT) {
+         *     this.vel.x = -abs(this.vel.x);
+         * }
+         * if (this.pos.y < targetsSettings.BORDER_LIMIT) {
+         *     this.vel.y = abs(this.vel.y);
+         * }
+         * if (this.pos.y > height - targetsSettings.BORDER_LIMIT) {
+         *     this.vel.y = -abs(this.vel.y);
+         * }
+         * return steering;
+         */
     };
 
-    // Compute steering in a random position
     this.getWiggleAcceleration = () => {
-        const wiggleSteer = new p5.Vector(random(-10, 10), random(-10, 10));
+        const maxAngleRad = radians(40);
+        const wiggleSteer = p5.Vector.random2D();
+        wiggleSteer.normalize().setMag(targetsSettings.WIGGLE_ACC_INTENSITY);
         return wiggleSteer;
     };
 
-    // Take a steering force and apply it to the current acceleration
-    this.applyForce = (force) => {
-        if (!force) {
-            return;
-        }
+    // Compute steering force aways from birds acceleration
+    this.getAvoidBirdsAcceleration = () => {
+        const cohesionSteer = new p5.Vector(0, 0);
 
-        this.acc.add(force);
+        const localBirds = [];
+        const nearCircle = new Circle(this.pos.x, this.pos.y, targetsSettings.ALIGNMENT_FRIENDS_RADIUS * 2);
+        birdsQTree.query(nearCircle, localBirds);
+
+        localBirds.forEach(b => {
+            const acc = b.acc;
+            const steer = this.pos.copy().sub(acc);
+            cohesionSteer.add(steer);
+        });
+
+        cohesionSteer.div(birds.length);
+        cohesionSteer.setMag(targetsSettings.AVOID_BIRD_ACC_INTENSITY);
+        return cohesionSteer;
     };
 
+    this.getStayOnFrameAcceleration = () => {
+        const frameSteer = new p5.Vector(width/2, height/2);
+        frameSteer.normalize().setMag(targetsSettings.FRAME_ACC_INTENSITY);
+        return frameSteer;
+    }
+
+    // Compute steering rejecting from obstacles
+    this.getObstaclesAvoidingAcceleration = () => {
+        const myobstacles = []; // The name obstacles is already a global variable
+        const obstaclesCircle = new Circle(this.pos.x, this.pos.y, targetsSettings.OBSTACLE_RADIUS);
+        obstaclesQTree.query(obstaclesCircle, myobstacles);
+
+        const obstacleSteer = new p5.Vector(0, 0);
+        myobstacles.map(i => i.userData).forEach(id => {
+            const o = obstacles[id];
+            const steer = p5.Vector.sub(this.pos, o.pos);
+            obstacleSteer.add(steer);
+        });
+
+        obstacleSteer.setMag(targetsSettings.OBSTACLE_ACC_INTENSITY);
+        return obstacleSteer;
+    }
 
     this.move = () => {
-        const borderSteer = this.getBorderAvoidingAcceleration();
-        this.applyForce(borderSteer);
-        const wiggleSteer = this.getWiggleAcceleration();
-        this.applyForce(wiggleSteer);
+        // Reset the acceleration after moving to avoid stacking forces of each iteration
+        this.acc.mult(0);
+
+        this.acc.add(this.getBorderAvoidingAcceleration());
+        // this.acc.add(this.getWiggleAcceleration());
+        this.acc.add(this.getAvoidBirdsAcceleration());
+        // this.acc.add(this.getStayOnFrameAcceleration());
+        // this.acc.add(this.getObstaclesAvoidingAcceleration());
 
         this.vel.add(this.acc);
-        this.vel.limit(TARGET_MAX_SPEED);
+        this.vel.limit(targetsSettings.MAX_SPEED);
         this.pos.add(this.vel);
     }
 
