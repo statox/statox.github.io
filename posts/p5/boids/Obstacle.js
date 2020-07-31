@@ -6,7 +6,7 @@ function Obstacle(id, pos, r) {
 
     this.show = () => {
         noStroke();
-        fill('red');
+        fill('brown');
         circle(this.pos.x, this.pos.y, this.r);
     }
 }

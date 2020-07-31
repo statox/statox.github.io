@@ -1,12 +1,10 @@
-const BORDER_LIMIT = 20;
-
 function Bird(id, pos, vel) {
     this.id = id;
     this.pos = pos;
     this.vel = vel;
     this.acc = new p5.Vector(0, 0);
     this.nextAcc = new p5.Vector(0, 0);
-    this.r = 20;
+    this.r = 10;
     this.color = random(255);
     this.marked = false;
 
@@ -14,6 +12,7 @@ function Bird(id, pos, vel) {
     this.separationFriends = [];
     this.cohesionFriends = [];
     this.nearObstacles = [];
+    this.nearPredators = [];
 
     // Populate the arrays of friends for each force to do the computations efficiently
     this.updateFriends = () => {
@@ -21,6 +20,7 @@ function Bird(id, pos, vel) {
         const separation = [];
         const cohesion = [];
         const myobstacles = []; // The name obstacles is already a global variable
+        const predators = [];
 
         const alignmentCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.ALIGNMENT_FRIENDS_RADIUS);
         birdsQTree.query(alignmentCircle, alignment);
@@ -30,11 +30,14 @@ function Bird(id, pos, vel) {
         birdsQTree.query(cohesionCircle, cohesion);
         const obstaclesCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.OBSTACLE_RADIUS);
         obstaclesQTree.query(obstaclesCircle, myobstacles);
+        const predatorsCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.PREDATOR_RADIUS);
+        predatorsQTree.query(predatorsCircle, predators);
 
         this.alignmentFriends = alignment.map(i => i.userData);
         this.separationFriends = separation.map(i => i.userData);
         this.cohesionFriends = cohesion.map(i => i.userData);
         this.nearObstacles = myobstacles.map(i => i.userData);
+        this.nearPredators = predators.map(i => i.userData);
     };
 
     // Either wrap around edges or return an acceleration repealling from edges
@@ -57,16 +60,16 @@ function Bird(id, pos, vel) {
         }
 
         const maxPullbackAcc = 100;
-        if (this.pos.x < BORDER_LIMIT) {
+        if (this.pos.x < boidsSettings.BORDER_LIMIT) {
             this.vel.x = abs(this.vel.x);
         }
-        if (this.pos.x > width - BORDER_LIMIT) {
+        if (this.pos.x > width - boidsSettings.BORDER_LIMIT) {
             this.vel.x = -abs(this.vel.x);
         }
-        if (this.pos.y < BORDER_LIMIT) {
+        if (this.pos.y < boidsSettings.BORDER_LIMIT) {
             this.vel.y = abs(this.vel.y);
         }
-        if (this.pos.y > height - BORDER_LIMIT) {
+        if (this.pos.y > height - boidsSettings.BORDER_LIMIT) {
             this.vel.y = -abs(this.vel.y);
         }
         return steering;
@@ -194,6 +197,20 @@ function Bird(id, pos, vel) {
         return obstacleSteer;
     }
 
+    // Compute steering rejecting from obstacles
+    this.getPredatorsAvoidingAcceleration = () => {
+        const predatorSteer = new p5.Vector(0, 0);
+
+        this.nearPredators.forEach(id => {
+            const o = predators[id];
+            const steer = p5.Vector.sub(this.pos, o.pos);
+            predatorSteer.add(steer);
+        });
+
+        predatorSteer.setMag(boidsSettings.PREDATOR_ACC_INTENSITY);
+        return predatorSteer;
+    }
+
     this.computeMove = () => {
         this.updateFriends();
 
@@ -206,6 +223,7 @@ function Bird(id, pos, vel) {
             this.getSeparationAcceleration(),
             this.getCohesionAcceleration(),
             this.getObstaclesAvoidingAcceleration(),
+            this.getPredatorsAvoidingAcceleration(),
         ]
 
         const netAcceleration = new p5.Vector(0, 0);

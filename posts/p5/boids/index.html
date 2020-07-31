@@ -145,16 +145,18 @@
     <table>
         <tr>
             <td>
-                <button v-bind:class="{active: enableRoundShape, inactive: !enableRoundShape}" id="changeShapeButton">•/►</button>
+                <button v-bind:class="{active: enableRoundShape, inactive: !enableRoundShape}" id="changeShapeButton">Change shape</button>
             </td>
             <td>
-                <button v-bind:class="{active: enableObstaclesDrawing, inactive: !enableObstaclesDrawing}" id="obstaclesDrawingButton">🧲</button>
+                <button v-bind:class="{active: enableObstaclesDrawing, inactive: !enableObstaclesDrawing}" id="obstaclesDrawingButton">Obstacles</button>
+            </td>
+            <td>
+                <button v-bind:class="{active: enablePredatorDrawing, inactive: !enablePredatorDrawing}" id="predatorDrawingButton">Predators</button>
             </td>
         </tr>
     </table>
 </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
@@ -162,9 +164,11 @@
 <script src="sketch.js"></script>
 <script src="Interface.js"></script>
 <script src="Bird.js"></script>
+<script src="Predator.js"></script>
 <script src="Target.js"></script>
 <script src="Obstacle.js"></script>
 <script src="utils.js"></script>
+
 
 
 <p><a href="/">← Posts</a></p>
