@@ -5,11 +5,11 @@ let birdsQTree;
 
 let obstacles;
 let obstaclesQTree;
-let obstaclesCreationTimer=0;
+let obstaclesCreationTimer = 0;
 
 let predators;
 let predatorsQTree;
-let predatorsCreationTimer=0;
+let predatorsCreationTimer = 0;
 
 let ORD;
 let app;
@@ -50,8 +50,8 @@ let boidsSettings = {
 
     MAX_ACC: 1,
     MAX_SPEED: 3,
-    BORDER_LIMIT: 20,
-}
+    BORDER_LIMIT: 20
+};
 
 let targetsSettings = {
     MAX_ACC: 1,
@@ -64,9 +64,8 @@ let targetsSettings = {
     WIGGLE_ACC_INTENSITY: 3,
     AVOID_BIRD_ACC_INTENSITY: 1,
     OBSTACLE_ACC_INTENSITY: 15,
-    FRAME_ACC_INTENSITY: 3,
-}
-
+    FRAME_ACC_INTENSITY: 3
+};
 
 function resetObstacles() {
     obstacles = [];
@@ -78,7 +77,7 @@ function resetBirds() {
 
     target = new Target(0);
 
-    for (let i=0; i<boidsSettings.CROWD_SIZE; i++) {
+    for (let i = 0; i < boidsSettings.CROWD_SIZE; i++) {
         // Random initial position
         const x = random(0, width);
         const y = random(0, height);
@@ -104,19 +103,19 @@ function setup() {
     // Create the canvas and put it in its div
     const myCanvas = createCanvas(10, 10);
     customResizeCanvas();
-    myCanvas.parent("canvasDiv");
+    myCanvas.parent('canvasDiv');
     ORD = new p5.Vector(0, 1);
 
     initializeButtons();
     resetBirds();
     resetObstacles();
 
-    for (let i=0; i<2; i++) {
+    for (let i = 0; i < 2; i++) {
         const pos = new p5.Vector(random(0, width), random(0, height));
         predators.push(new Predator(i, pos, 30));
     }
 
-    for (let i=0; i<width; i+=30) {
+    for (let i = 0; i < width; i += 30) {
         const p1 = new p5.Vector(i, 0);
         const obstacle1 = new Obstacle(obstacles.length, p1, 30);
         obstacles.push(obstacle1);
@@ -136,7 +135,7 @@ function draw() {
     obstaclesQTree = new QuadTree(boundaries, capacity);
     predatorsQTree = new QuadTree(boundaries, capacity);
 
-    const mouseInScreen = (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height);
+    const mouseInScreen = mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height;
 
     if (boidsSettings.enableObstaclesDrawing && mouseInScreen) {
         obstaclesCreationTimer = (obstaclesCreationTimer + 1) % 10;

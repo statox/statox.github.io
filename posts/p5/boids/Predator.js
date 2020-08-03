@@ -9,13 +9,13 @@ function Predator(id, pos, vel, r) {
     this.getBorderAvoidingAcceleration = () => {
         const steering = new p5.Vector(0, 0);
         if (boidsSettings.enableWrapEdges) {
-            if (this.pos.x < 0 ) {
+            if (this.pos.x < 0) {
                 this.pos.x = width;
             }
             if (this.pos.x > width) {
                 this.pos.x = 0;
             }
-            if (this.pos.y < 0 ) {
+            if (this.pos.y < 0) {
                 this.pos.y = height;
             }
             if (this.pos.y > height) {
@@ -55,11 +55,13 @@ function Predator(id, pos, vel, r) {
         const nearCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.ALIGNMENT_FRIENDS_RADIUS * 2);
         birdsQTree.query(nearCircle, localBirds);
 
-        localBirds.map(i => i.userData).forEach(id => {
-            const pos = birds[id].pos;
-            const steer = pos.copy().sub(this.pos);
-            cohesionSteer.add(steer);
-        });
+        localBirds
+            .map(i => i.userData)
+            .forEach(id => {
+                const pos = birds[id].pos;
+                const steer = pos.copy().sub(this.pos);
+                cohesionSteer.add(steer);
+            });
 
         cohesionSteer.div(birds.length);
         cohesionSteer.setMag(boidsSettings.COHESION_ACC_INTENSITY);
@@ -78,10 +80,10 @@ function Predator(id, pos, vel, r) {
         this.vel.add(this.acc);
         this.vel.limit(boidsSettings.MAX_SPEED);
         this.pos.add(this.vel);
-    }
+    };
 
     this.show = () => {
         fill('red');
         circle(this.pos.x, this.pos.y, 30);
-    }
+    };
 }
