@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2020-08-03T20:13:32+00:00</updated>
+  <updated>2020-08-03T20:16:28+00:00</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -393,9 +393,291 @@ since it&#39;s a |/zero-width| match it doesn&#39;t include that character.
   </entry>
   
   <entry>
+    <title>Birds flock simulation</title>
+    <link href="https://www.statox.fr/posts/p5/boids/"/>
+    <updated>2020-08-03T00:00:00+00:00</updated>
+    <id>https://www.statox.fr/posts/p5/boids/</id>
+    <content type="html">
+&lt;h3&gt;What is this?&lt;/h3&gt;
+&lt;div&gt;
+    &lt;p&gt;This is a simulation of Boids: some little digital creatures invented by &lt;a href=&quot;http://www.red3d.com/cwr/boids/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Craig Renolds&lt;/a&gt;. Each
+        Boid has its own perception circle i.e. a limited circle around the creature where it has the ability to see its
+        neighbors and how they behave. In addition to this perception circle all the Boids follow the same basic rules
+        depending on their neighbors behavior.&lt;/p&gt;
+    &lt;p&gt;This kind of simple individual rules allow the emerging of group behaviors which are fascinating to
+        observe &lt;i&gt;-at least to me :)-&lt;/i&gt; as they are not lead by a single element of the group but are the result
+        of
+        combined individual
+        behaviors.&lt;/p&gt;
+    &lt;p&gt;This kind of simulation has been used for example to generate crowds of people or flocks of animals in CGI.&lt;/p&gt;
+
+    &lt;pre&gt;TODO: Add a scene of the Uruk Hai walking from LOTR (or something less dorky but still illustrative)&lt;/pre&gt;
+
+    &lt;p&gt;You can play with the different controls over and under the simulation to have a sense of how it works. To get a
+        better understanding you can have a read at &lt;a href=&quot;#explanation&quot;&gt;the explanation&lt;/a&gt; which should help you to
+        understand step by step what is going on here.&lt;/p&gt;
+
+    &lt;p style=&quot;color: red;&quot;&gt;&lt;i&gt;The controls of the simulation are not compatible with mobile devices and prevent some
+            features from working. Namely the creation of Boids, by clicking on the screen.&lt;/i&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- This raw annotation is used to be able to use Vuejs in nunchuck templates --&gt;
+
+&lt;h3&gt;Simulation&lt;/h3&gt;
+&lt;div class=&quot;boids&quot; id=&quot;boidsApp&quot;&gt;
+    &lt;div&gt;
+        &lt;label&gt;Flock population&lt;/label&gt;
+        &lt;input id=&quot;flockSizeInput&quot; type=&quot;number&quot; v-model.number=&quot;CROWD_SIZE&quot;&gt;
+        &lt;button id=&quot;flockSizeBtn&quot; onclick=&quot;resetBirds()&quot;&gt;Reset flock&lt;/button&gt;
+        &lt;button id=&quot;flockSizeBtn&quot; onclick=&quot;resetObstacles()&quot;&gt;Reset obstacles&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;button v-bind:class=&quot;{active: enableFollowMouse, inactive: !enableFollowMouse}&quot; id=&quot;followMouseButton&quot;&gt;Follow mouse&lt;/button&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button v-bind:class=&quot;{active: enableFollowTarget, inactive: !enableFollowTarget}&quot; id=&quot;followTargetButton&quot;&gt;Follow target&lt;/button&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button v-bind:class=&quot;{active: enableWrapEdges, inactive: !enableWrapEdges}&quot; id=&quot;wrapEdgesButton&quot;&gt;Edge wrapping&lt;/button&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button v-bind:class=&quot;{active: enableShowPerception, inactive: !enableShowPerception}&quot; id=&quot;showPerceptionCirclesButton&quot;&gt;Show perception&lt;/button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;table&gt;
+            &lt;tr class=&quot;settings-table-values&quot;&gt;
+                &lt;th&gt;Wiggling&lt;/th&gt;
+                &lt;th&gt;Alignment&lt;/th&gt;
+                &lt;th&gt;Separation&lt;/th&gt;
+                &lt;th&gt;Cohesion&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr class=&quot;settings-table-values&quot;&gt;
+                &lt;td&gt;
+                    &lt;div&gt;
+                        &lt;button v-bind:class=&quot;{active: enableWiggle, inactive: !enableWiggle}&quot; id=&quot;toggleWiggleButton&quot;&gt;Toggle wiggling&lt;/button&gt;
+
+                        &lt;p&gt;Allowed angle &lt;span id=&quot;wiggleAngleMarker&quot;&gt;{{MAX_WIGGLE_ANGLE}}&lt;/span&gt;&lt;/p&gt;
+                        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;180&quot; v-model.number=&quot;MAX_WIGGLE_ANGLE&quot; step=&quot;0.5&quot; class=&quot;slider&quot; id=&quot;wiggleAngleSlider&quot;&gt;
+
+                        &lt;p&gt;Intensity &lt;span id=&quot;wiggleIntensityeMarker&quot;&gt;{{WIGGLE_ACC_INTENSITY}}&lt;/span&gt;&lt;/p&gt;
+                        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;5&quot; v-model.number=&quot;WIGGLE_ACC_INTENSITY&quot; step=&quot;0.1&quot; class=&quot;slider&quot; id=&quot;wiggleIntensitySlider&quot;&gt;
+
+                        &lt;p&gt;Max velocity &lt;span id=&quot;maxSpeedMarker&quot;&gt;{{MAX_SPEED}}&lt;/span&gt;&lt;/p&gt;
+                        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;20&quot; v-model.number=&quot;MAX_SPEED&quot; step=&quot;0.1&quot; class=&quot;slider&quot; id=&quot;boidSpeedSlider&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div&gt;
+                        &lt;button v-bind:class=&quot;{active: enableAlignment, inactive: !enableAlignment}&quot; id=&quot;toggleAlignmentButton&quot;&gt;Toggle alignment&lt;/button&gt;
+
+                        &lt;p&gt;Perception distance &lt;span id=&quot;alignmentPerceptionMarker&quot;&gt;{{ALIGNMENT_FRIENDS_RADIUS}}&lt;/span&gt;px&lt;/p&gt;
+                        &lt;input type=&quot;range&quot; min=&quot;1&quot; max=&quot;500&quot; v-model.number=&quot;ALIGNMENT_FRIENDS_RADIUS&quot; class=&quot;slider&quot; id=&quot;alignementPerceptionDistanceSlider&quot;&gt;
+
+                        &lt;p&gt;Intensity &lt;span id=&quot;alignmentIntensityMarker&quot;&gt;{{ALIGNMENT_ACC_INTENSITY}}&lt;/span&gt;N&lt;/p&gt;
+                        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;5&quot; v-model.number=&quot;ALIGNMENT_ACC_INTENSITY&quot; step=&quot;0.1&quot; class=&quot;slider&quot; id=&quot;alignementIntensitySlider&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div&gt;
+                        &lt;button v-bind:class=&quot;{active: enableSeparation, inactive: !enableSeparation}&quot; id=&quot;toggleSeparationButton&quot;&gt;Toggle separation&lt;/button&gt;
+
+                        &lt;p&gt;Perception distance &lt;span id=&quot;separationPerceptionMarker&quot;&gt;{{SEPARATION_FRIENDS_RADIUS}}&lt;/span&gt;px&lt;/p&gt;
+                        &lt;input type=&quot;range&quot; min=&quot;1&quot; max=&quot;500&quot; v-model.number=&quot;SEPARATION_FRIENDS_RADIUS&quot; class=&quot;slider&quot; id=&quot;separationPerceptionDistanceSlider&quot;&gt;
+
+                        &lt;p&gt;Intensity &lt;span id=&quot;separationIntensityMarker&quot;&gt;{{SEPARATION_ACC_INTENSITY}}&lt;/span&gt;N&lt;/p&gt;
+                        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;5&quot; v-model.number=&quot;SEPARATION_ACC_INTENSITY&quot; step=&quot;0.1&quot; class=&quot;slider&quot; id=&quot;separationIntensitySlider&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div&gt;
+                        &lt;button v-bind:class=&quot;{active: enableCohesion, inactive: !enableCohesion}&quot; id=&quot;toggleCohesionButton&quot;&gt;Toggle cohesion&lt;/button&gt;
+
+                        &lt;p&gt;Perception distance &lt;span id=&quot;cohesionPerceptionMarker&quot;&gt;{{COHESION_FRIENDS_RADIUS}}&lt;/span&gt;px
+                        &lt;/p&gt;
+                        &lt;input type=&quot;range&quot; min=&quot;1&quot; max=&quot;500&quot; v-model.number=&quot;COHESION_FRIENDS_RADIUS&quot; class=&quot;slider&quot; id=&quot;cohesionPerceptionDistanceSlider&quot;&gt;
+
+                        &lt;p&gt;Intensity &lt;span id=&quot;cohesionIntensityMarker&quot;&gt;{{COHESION_ACC_INTENSITY}}&lt;/span&gt;N&lt;/p&gt;
+                        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;5&quot; v-model.number=&quot;COHESION_ACC_INTENSITY&quot; step=&quot;0.1&quot; class=&quot;slider&quot; id=&quot;cohesionIntensitySlider&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div oncontextmenu=&quot;return false;&quot; id=&quot;canvasDiv&quot;&gt;&lt;/div&gt;
+    &lt;div&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;button v-bind:class=&quot;{active: enableRoundShape, inactive: !enableRoundShape}&quot; id=&quot;changeShapeButton&quot;&gt;Change shape&lt;/button&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button v-bind:class=&quot;{active: enableObstaclesDrawing, inactive: !enableObstaclesDrawing}&quot; id=&quot;obstaclesDrawingButton&quot;&gt;Obstacles&lt;/button&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button v-bind:class=&quot;{active: enablePredatorDrawing, inactive: !enablePredatorDrawing}&quot; id=&quot;predatorDrawingButton&quot;&gt;Predators&lt;/button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+        &lt;div&gt;
+            When &quot;obstacles&quot; or &quot;predators&quot; is enabled move your mouse over the screen and the items will pop regularly
+            just under your mouse.
+        &lt;/div&gt;
+        &lt;div v-if=&quot;goBackInInterface&quot;&gt;
+            &lt;a v-bind:href=&quot;&#39;#&#39; + goBackInInterface&quot;&gt;&lt;button&gt;Back to explanation&lt;/button&gt;&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+&lt;h3 id=&quot;explanation&quot;&gt;Explanation&lt;/h3&gt;
+&lt;div&gt;
+    &lt;p&gt;In this part of the page I will detail the different rules followed by the Boids to show how they combine. Each
+        button moves the page to the simulation and sets the rules as I want you to see them when you are reading .&lt;/p&gt;
+    &lt;p&gt;Note that you can use the &quot;Back to explanation&quot; to go back to where you were.&lt;/p&gt;
+    &lt;h4 id=&quot;basicBehaviorTitle&quot;&gt;Basic behavior&lt;/h4&gt;
+    &lt;p&gt;First let&#39;s create a single Boid &lt;a href=&quot;#canvasDiv&quot;&gt;&lt;button onclick=&quot;scenarioOneBoidNoWiggle()&quot;&gt;Click
+                here&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;Our Boid is living a monotonous life randomly flying in its 2 dimensional space.&lt;/p&gt;
+    &lt;p&gt;To move, our Boid has two 2 dimensional vectors with a x and y component. One is its speed which allows it to go
+        forward in a direction. And the second vector is its acceleration which is used to change the direction of the
+        speed, allowing the Boid to move smoothly like an actual object on a 2D plan.&lt;/p&gt;
+    &lt;p&gt;We set its allowed wiggling angle to 0° which means that currently the vector representing its acceleration will
+        not change of direction. Consequently our Boid moves in straight lines.&lt;/p&gt;
+    &lt;p&gt;You can change its &quot;Max velocity&quot; setting to see it moving faster or slower&lt;/p&gt;
+
+    &lt;p&gt;Now let&#39;s change its allowed wiggling angle to 50° &lt;a href=&quot;#canvasDiv&quot;&gt;&lt;button onclick=&quot;scenarioOneBoidWiggle()&quot;&gt;Click here&lt;/button&gt;&lt;/a&gt;.
+        Our Boid is not moving in straight lines anymore: each time it moves the vector representing its acceleration is
+        randomly rotated which gives it this happy wiggling attitude.
+    &lt;/p&gt;
+
+    &lt;p&gt;If you increase its max velocity observe how it seems to wiggle less: This is because its speed vector becomes
+        more important than its acceleration vector. To change that in a limited way you can also increase the intensity
+        of the wiggling vector&lt;/p&gt;
+
+    &lt;p&gt;This is the basic behavior of our Boid, you can click on the screen to add more Boids (or &lt;a href=&quot;#canvasDiv&quot;&gt;&lt;button onclick=&quot;scenarioMultipleBoidsWiggle()&quot;&gt;Click here&lt;/button&gt;&lt;/a&gt;) and you will
+        notice that they all behave as rubber balls bouncing on the edges of the screen... Not really exciting I agree.
+    &lt;/p&gt;
+
+    &lt;h4 id=&quot;alignmentTitle&quot;&gt;Alignment&lt;/h4&gt;
+    &lt;p&gt;To start observing some cool behavior let&#39;s enable the first rule: Alignment &lt;a href=&quot;#canvasDiv&quot;&gt;&lt;button onclick=&quot;scenarioBoidsAlignment()&quot;&gt;Click here&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;The green circle around a Boid is the actual representation of its perception circle for the alignment rule: all
+        the neighbors within this circle are &quot;seen&quot; by the Boids and used in the alignment rule&lt;/p&gt;
+    &lt;p&gt;Now we can see that our flock doesn&#39;t look as random as before: Boids close to each other start going in the same
+        direction. The alignment rule makes each Boid look at its neighbors&#39; acceleration and incorporate the average of
+        their acceleration it its own. Its acceleration is now a mix of both its own random wiggling and the average
+        acceleration of its neighbors, making them following each other.&lt;/p&gt;
+    &lt;p&gt;This is our first emerging behavior!&lt;/p&gt;
+    &lt;p&gt;As there are only a few Boids on the screen they eventually end up going all in the same direction in a pretty
+        compact group.&lt;/p&gt;
+
+    &lt;h4 id=&quot;separationTitle&quot;&gt;Separation&lt;/h4&gt;
+    &lt;p&gt;Having our Boids going in the same direction is great but they are literally walking (Flying? Crawling?) on top
+        of each other. This is not ideal lets give them some individual space!&lt;/p&gt;
+    &lt;p&gt;To do so we can enable the separation rule &lt;a href=&quot;#canvasDiv&quot;&gt;&lt;button onclick=&quot;scenarioBoidsSeparation()&quot;&gt;Click
+                here&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;The perception circle for this rule is shown in red&lt;/p&gt;
+    &lt;p&gt;This adds a new rule to our Boids behavior: They &quot;see&quot; the position of each of their close neighbors and
+        their acceleration is moved towards the least crowded direction. In other words they continue following the same
+        direction as their friends but they also continually move away from them.&lt;/p&gt;
+    &lt;p&gt;With enough time this gives us the same flock as before but this time it is much more spaced out.&lt;/p&gt;
+
+    &lt;h4 id=&quot;cohesionTitle&quot;&gt;Cohesion&lt;/h4&gt;
+    &lt;p&gt;Let&#39;s introduce the last rule of our Boids behavior: Cohesion &lt;a href=&quot;#canvasDiv&quot;&gt;&lt;button onclick=&quot;scenarioBoidsCohesion()&quot;&gt;Click
+                here&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;The perception circle for this rule is shown in blue&lt;/p&gt;
+    &lt;p&gt;This rule is not the most obvious to observe right now. It shifts the acceleration of our Boids towards the
+        center of mass of their local flock.&lt;/p&gt;
+    &lt;p&gt;What that means is that each Boids looks at its close neighbors and move towards the center of this group of
+        Boids.
+        This allow the creation of small groups of Boids going in the same direction and staying together (but still not
+        too close to each other, thanks to the separation rule)&lt;/p&gt;
+
+    &lt;p&gt;That&#39;s it! We now have the basic behavior ruling our Boids moves. Now let&#39;s add some troubles to their life&lt;/p&gt;
+
+    &lt;h4 id=&quot;goalTitle&quot;&gt;Goal&lt;/h4&gt;
+    &lt;p&gt;To be able observe some emerging behavior let&#39;s add a goal to our birds: we will create a target moving
+        randomly on the screen. &lt;a href=&quot;#canvasDiv&quot;&gt;&lt;button onclick=&quot;scenarioTarget()&quot;&gt;Click here&lt;/button&gt;&lt;/a&gt;.
+    &lt;/p&gt;
+    &lt;p&gt;This target attracts the Boids close to its position: we could see it as a prey
+        like a group of insect for a flock of birds.&lt;/p&gt;
+    &lt;p&gt;Our flock now has a goal! Remember than none of the individual members of the flock is programmed to lead its
+        friends they only obey a list of rules working given what they can see in their circle of perception.&lt;/p&gt;
+    &lt;p&gt;So far our little birds are happily floating in their space and reaching their goal, now let&#39;s scare them out!
+    &lt;/p&gt;
+
+    &lt;h4 id=&quot;predatorsTitle&quot;&gt;Predators and obstacles&lt;/h4&gt;
+    &lt;p&gt;To make this visualization more interesting let&#39;s add some obstacles that our birds can&#39;t go through and some
+        predators which will fly through the float and that Boids will try to avoid as much as possible. &lt;a href=&quot;#canvasDiv&quot;&gt;&lt;button onclick=&quot;scenarioPredators()&quot;&gt;Click here&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;Look at our Boids! Trying to reach their target while avoiding these mean red circles, aren&#39;t they the cutest?
+        😍&lt;/p&gt;
+
+    &lt;h4&gt;Playing around&lt;/h4&gt;
+    &lt;p&gt;Now that you understand how these little creature behave don&#39;t hesitate to play with them!&lt;/p&gt;
+    &lt;p&gt;I did this simulation to allow the user to change the perception circle for each rule as well as its intensity
+        (i.e. how strong it is compared to the other rules and to the birds wiggling). And I have spent a faire amount
+        of time changing all these parameters to create different behaviors... If that is your thing you might have
+        some fun, if it&#39;s not you might think that I&#39;m crazy but it&#39;s fine because I had a lot of fun creating this
+        page and in the end that is what matters when you code: Having fun!&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h3&gt;Resources&lt;/h3&gt;
+&lt;div&gt;
+    &lt;p&gt;Here is a bunch of resources I&#39;ve been using to create this page&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;https://youtu.be/w-Oy4TYDnoQ&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;This cool Youtube video (in
+                French) which introduced me to the concept of Boids&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;http://www.red3d.com/cwr/boids/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Craig Renolds&#39; page
+                about his Boids&lt;/a&gt; which is interesting to get an history of his research and an explanation of the
+            rules.
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;https://youtu.be/6vX8wT1G798&quot;&gt;Daniel Shiffman&#39;s amazing Nature of Code video series&lt;/a&gt;. Which is
+            an great resource to get started with simulating &quot;natural&quot; things in the browser.
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;http://www.vergenet.net/~conrad/boids/pseudocode.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;A
+                pseudocode explanation of Boids&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;https://github.com/jackaperkins/boids&quot;&gt;A implementation of Boids in processing&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;https://www.raymondcamden.com/2020/04/03/quick-tip-on-using-vue-with-eleventy&quot;&gt;Nothing to do with
+                Boids but a cool tips about integrating VueJS to an eleventy website&lt;/a&gt; which was pretty helpful to get
+            the controls to work.
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/gh/CodingTrain/QuadTree/quadtree.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/sketch.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Interface.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Bird.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Predator.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Target.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Obstacle.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/utils.js&quot;&gt;&lt;/script&gt;
+
+</content>
+  </entry>
+  
+  <entry>
     <title>Including a p5.js project in this website (Minesweeper 💣)</title>
     <link href="https://www.statox.fr/posts/p5/minesweeper/"/>
-    <updated>2020-08-03T20:13:32+00:00</updated>
+    <updated>2020-08-03T20:16:28+00:00</updated>
     <id>https://www.statox.fr/posts/p5/minesweeper/</id>
     <content type="html">
 &lt;p&gt;

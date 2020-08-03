@@ -352,7 +352,7 @@
 <hr>
 <comments>
     <h3>Comments</h3>
-    <a class="add-comment" href="https://github.com/statox/blog-comments/issues/X#new_comment_field"  target="_blank" rel="noopener noreferrer">
+    <a class="add-comment" href="https://github.com/statox/blog-comments/issues/12#new_comment_field"  target="_blank" rel="noopener noreferrer">
         <button>Comment on Github</button>
     </a>
     <br>
@@ -379,7 +379,7 @@ async function getComments(url = '') {
 }
 
 domReady(() => {
-    const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/X/comments';
+    const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/12/comments';
     const appendComments = function (comments) {
         const commentSection = document.querySelector('comments');
         if (!comments || !comments.forEach || comments.length === 0) {
