@@ -7,22 +7,33 @@ commentIssueId: X
 eleventyExcludeFromCollections: true
 ---
 
-<!--
-   - Resources I used
-   -
-   - https://en.wikipedia.org/wiki/Boids
-   - http://www.vergenet.net/~conrad/boids/pseudocode.html
-   - https://github.com/jackaperkins/boids
-   - https://www.raymondcamden.com/2020/04/03/quick-tip-on-using-vue-with-eleventy
-   -
-   -->
-
-<h3>TL;DR</h3>
+<h3>What is this?</h3>
 <div>
-    <p>First let's create a single Boids <button onclick="scenarioOneBoid()">Click here</button></p>
+    <p>This is a simulation of Boids: some little digital creatures invented by <a
+            href="http://www.red3d.com/cwr/boids/" target="_blank" rel="noopener noreferrer">Craig Renolds</a>. Each
+        Boid has its own perception circle i.e. a limited circle around the creature where it has the ability to see its
+        neighbors and how they behave. In addition to this perception circle all the Boids follow the same basic rules
+        depending on their neighbors behavior.</p>
+    <p>This kind of simple individual rules allow the emerging of group behaviors which are fascinating to
+        observe <i>-at least to me :)-</i> as they are not lead by a single element of the group but are the result
+        of
+        combined individual
+        behaviors.</p>
+    <p>This kind of simulation has been used for example to generate crowds of people or flocks of animals in CGI.</p>
+
+    <pre>TODO: Add a scene of the Uruk Hai walking from LOTR (or something less dorky but still illustrative)</pre>
+
+    <p>You can play with the different controls over and under the simulation to have a sense of how it works. To get a
+        better understanding you can have a read at <a href="#explanation">the explanation</a> which should help you to
+        understand step by step what is going on here.</p>
+
+    <p style="color: red;"><i>The controls of the simulation are not compatible with mobile devices and prevent some
+            features from working. Namely the creation of Boids, by clicking on the screen.</i></p>
 </div>
+
 <!-- This raw annotation is used to be able to use Vuejs in nunchuck templates -->
 {% raw %}
+<h3>Simulation</h3>
 <div class="boids" id="boidsApp">
     <div>
         <label>Flock population</label>
@@ -54,9 +65,9 @@ eleventyExcludeFromCollections: true
     </div>
     <div>
         <table>
-            <tr>
+            <tr class="settings-table-values">
                 <th>Wiggling</th>
-                <th>Alignement</th>
+                <th>Alignment</th>
                 <th>Separation</th>
                 <th>Cohesion</th>
             </tr>
@@ -145,7 +156,145 @@ eleventyExcludeFromCollections: true
                 </td>
             </tr>
         </table>
+        <div>
+            When "obstacles" or "predators" is enabled move your mouse over the screen and the items will pop regularly
+            just under your mouse.
+        </div>
+        <div v-if="goBackInInterface">
+            <a v-bind:href="'#' + goBackInInterface"><button>Back to explanation</button></a>
+        </div>
     </div>
+</div>
+
+<br />
+<h3 id="explanation">Explanation</h3>
+<div>
+    <p>In this part of the page I will detail the different rules followed by the Boids to show how they combine. Each
+        button moves the page to the simulation and sets the rules as I want you to see them when you are reading .</p>
+    <p>Note that you can use the "Back to explanation" to go back to where you were.</p>
+    <h4 id="basicBehaviorTitle">Basic behavior</h4>
+    <p>First let's create a single Boid <a href="#canvasDiv"><button onclick="scenarioOneBoidNoWiggle()">Click
+                here</button></a></p>
+    <p>Our Boid is living a monotonous life randomly flying in its 2 dimensional space.</p>
+    <p>To move, our Boid has two 2 dimensional vectors with a x and y component. One is its speed which allows it to go
+        forward in a direction. And the second vector is its acceleration which is used to change the direction of the
+        speed, allowing the Boid to move smoothly like an actual object on a 2D plan.</p>
+    <p>We set its allowed wiggling angle to 0° which means that currently the vector representing its acceleration will
+        not change of direction. Consequently our Boid moves in straight lines.</p>
+    <p>You can change its "Max velocity" setting to see it moving faster or slower</p>
+
+    <p>Now let's change its allowed wiggling angle to 50° <a href="#canvasDiv"><button
+                onclick="scenarioOneBoidWiggle()">Click here</button></a>.
+        Our Boid is not moving in straight lines anymore: each time it moves the vector representing its acceleration is
+        randomly rotated which gives it this happy wiggling attitude.
+    </p>
+
+    <p>If you increase its max velocity observe how it seems to wiggle less: This is because its speed vector becomes
+        more important than its acceleration vector. To change that in a limited way you can also increase the intensity
+        of the wiggling vector</p>
+
+    <p>This is the basic behavior of our Boid, you can click on the screen to add more Boids (or <a
+            href='#canvasDiv'><button onclick="scenarioMultipleBoidsWiggle()">Click here</button></a>) and you will
+        notice that they all behave as rubber balls bouncing on the edges of the screen... Not really exciting I agree.
+    </p>
+
+    <h4 id="alignmentTitle">Alignment</h4>
+    <p>To start observing some cool behavior let's enable the first rule: Alignment <a href="#canvasDiv"><button
+                onclick="scenarioBoidsAlignment()">Click here</button></a></p>
+    <p>The green circle around a Boid is the actual representation of its perception circle for the alignment rule: all
+        the neighbors within this circle are "seen" by the Boids and used in the alignment rule</p>
+    <p>Now we can see that our flock doesn't look as random as before: Boids close to each other start going in the same
+        direction. The alignment rule makes each Boid look at its neighbors' acceleration and incorporate the average of
+        their acceleration it its own. Its acceleration is now a mix of both its own random wiggling and the average
+        acceleration of its neighbors, making them following each other.</p>
+    <p>This is our first emerging behavior!</p>
+    <p>As there are only a few Boids on the screen they eventually end up going all in the same direction in a pretty
+        compact group.</p>
+
+    <h4 id="separationTitle">Separation</h4>
+    <p>Having our Boids going in the same direction is great but they are literally walking (Flying? Crawling?) on top
+        of each other. This is not ideal lets give them some individual space!</p>
+    <p>To do so we can enable the separation rule <a href="#canvasDiv"><button onclick="scenarioBoidsSeparation()">Click
+                here</button></a></p>
+    <p>The perception circle for this rule is shown in red</p>
+    <p>This adds a new rule to our Boids behavior: They "see" the position of each of their close neighbors and
+        their acceleration is moved towards the least crowded direction. In other words they continue following the same
+        direction as their friends but they also continually move away from them.</p>
+    <p>With enough time this gives us the same flock as before but this time it is much more spaced out.</p>
+
+    <h4 id="cohesionTitle">Cohesion</h4>
+    <p>Let's introduce the last rule of our Boids behavior: Cohesion <a href="#canvasDiv"><button
+                onclick="scenarioBoidsCohesion()">Click
+                here</button></a></p>
+
+    <p>The perception circle for this rule is shown in blue</p>
+    <p>This rule is not the most obvious to observe right now. It shifts the acceleration of our Boids towards the
+        center of mass of their local flock.</p>
+    <p>What that means is that each Boids looks at its close neighbors and move towards the center of this group of
+        Boids.
+        This allow the creation of small groups of Boids going in the same direction and staying together (but still not
+        too close to each other, thanks to the separation rule)</p>
+
+    <p>That's it! We now have the basic behavior ruling our Boids moves. Now let's add some troubles to their life</p>
+
+    <h4 id="goalTitle">Goal</h4>
+    <p>To be able observe some emerging behavior let's add a goal to our birds: we will create a target moving
+        randomly on the screen. <a href="#canvasDiv"><button onclick="scenarioTarget()">Click here</button></a>.
+    </p>
+    <p>This target attracts the Boids close to its position: we could see it as a prey
+        like a group of insect for a flock of birds.</p>
+    <p>Our flock now has a goal! Remember than none of the individual members of the flock is programmed to lead its
+        friends they only obey a list of rules working given what they can see in their circle of perception.</p>
+    <p>So far our little birds are happily floating in their space and reaching their goal, now let's scare them out!
+    </p>
+
+    <h4 id="predatorsTitle">Predators and obstacles</h4>
+    <p>To make this visualization more interesting let's add some obstacles that our birds can't go through and some
+        predators which will fly through the float and that Boids will try to avoid as much as possible. <a
+            href="#canvasDiv"><button onclick="scenarioPredators()">Click here</button></a></p>
+
+    <p>Look at our Boids! Trying to reach their target while avoiding these mean red circles, aren't they the cutest?
+        😍</p>
+
+    <h4>Playing around</h4>
+    <p>Now that you understand how these little creature behave don't hesitate to play with them!</p>
+    <p>I did this simulation to allow the user to change the perception circle for each rule as well as its intensity
+        (i.e. how strong it is compared to the other rules and to the birds wiggling). And I have spent a faire amount
+        of time changing all these parameters to create different behaviors... If that is your thing you might have
+        some fun, if it's not you might think that I'm crazy but it's fine because I had a lot of fun creating this
+        page and in the end that is what matters when you code: Having fun!</p>
+</div>
+
+<h3>Resources</h3>
+<div>
+    <p>Here is a bunch of resources I've been using to create this page</p>
+    <ul>
+        <li>
+            <a href="https://youtu.be/w-Oy4TYDnoQ" target="_blank" rel="noopener noreferrer">This cool Youtube video (in
+                French) which introduced me to the concept of Boids</a>
+        </li>
+        <li>
+            <a href="http://www.red3d.com/cwr/boids/" target="_blank" rel="noopener noreferrer">Craig Renolds' page
+                about his Boids</a> which is interesting to get an history of his research and an explanation of the
+            rules.
+        </li>
+        <li>
+            <a href="https://youtu.be/6vX8wT1G798">Daniel Shiffman's amazing Nature of Code video series</a>. Which is
+            an great resource to get started with simulating "natural" things in the browser.
+        </li>
+        <li>
+            <a href="http://www.vergenet.net/~conrad/boids/pseudocode.html" target="_blank" rel="noopener noreferrer">A
+                pseudocode explanation of Boids</a>
+        </li>
+        <li>
+            <a href="https://github.com/jackaperkins/boids">A implementation of Boids in processing</a>
+        </li>
+        <li>
+            <a href="https://www.raymondcamden.com/2020/04/03/quick-tip-on-using-vue-with-eleventy">Nothing to do with
+                Boids but a cool tips about integrating VueJS to an eleventy website</a> which was pretty helpful to get
+            the controls to work.
+        </li>
+    </ul>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
