@@ -44,13 +44,13 @@ function Bird(id, pos, vel) {
     this.getBorderAvoidingAcceleration = () => {
         const steering = new p5.Vector(0, 0);
         if (boidsSettings.enableWrapEdges) {
-            if (this.pos.x < 0 ) {
+            if (this.pos.x < 0) {
                 this.pos.x = width;
             }
             if (this.pos.x > width) {
                 this.pos.x = 0;
             }
-            if (this.pos.y < 0 ) {
+            if (this.pos.y < 0) {
                 this.pos.y = height;
             }
             if (this.pos.y > height) {
@@ -139,7 +139,7 @@ function Bird(id, pos, vel) {
     // Compute steering force towards local center of mass
     this.getCohesionAcceleration = () => {
         if (!boidsSettings.enableCohesion) {
-            return
+            return;
         }
 
         const cohesionSteer = new p5.Vector(0, 0);
@@ -195,7 +195,7 @@ function Bird(id, pos, vel) {
 
         obstacleSteer.setMag(boidsSettings.OBSTACLE_ACC_INTENSITY);
         return obstacleSteer;
-    }
+    };
 
     // Compute steering rejecting from obstacles
     this.getPredatorsAvoidingAcceleration = () => {
@@ -209,7 +209,7 @@ function Bird(id, pos, vel) {
 
         predatorSteer.setMag(boidsSettings.PREDATOR_ACC_INTENSITY);
         return predatorSteer;
-    }
+    };
 
     this.computeMove = () => {
         this.updateFriends();
@@ -223,8 +223,8 @@ function Bird(id, pos, vel) {
             this.getSeparationAcceleration(),
             this.getCohesionAcceleration(),
             this.getObstaclesAvoidingAcceleration(),
-            this.getPredatorsAvoidingAcceleration(),
-        ]
+            this.getPredatorsAvoidingAcceleration()
+        ];
 
         const netAcceleration = new p5.Vector(0, 0);
         forcesToApply.forEach(f => netAcceleration.add(f));
@@ -248,25 +248,25 @@ function Bird(id, pos, vel) {
         noFill();
 
         if (this.id === birds[0].id) {
-            birds.forEach(b => b.marked = false);
+            birds.forEach(b => (b.marked = false));
             if (boidsSettings.enableShowPerception) {
                 if (boidsSettings.enableAlignment) {
-                    this.alignmentFriends.forEach(id => birds[id].marked = true);
+                    this.alignmentFriends.forEach(id => (birds[id].marked = true));
                     strokeWeight(3);
                     stroke('green');
-                    circle(0, 0, boidsSettings.ALIGNMENT_FRIENDS_RADIUS*2);
+                    circle(0, 0, boidsSettings.ALIGNMENT_FRIENDS_RADIUS * 2);
                 }
                 if (boidsSettings.enableSeparation) {
-                    this.separationFriends.forEach(id => birds[id].marked = true);
+                    this.separationFriends.forEach(id => (birds[id].marked = true));
                     strokeWeight(2);
                     stroke('red');
-                    circle(0, 0, boidsSettings.SEPARATION_FRIENDS_RADIUS*2);
+                    circle(0, 0, boidsSettings.SEPARATION_FRIENDS_RADIUS * 2);
                 }
                 if (boidsSettings.enableCohesion) {
-                    this.cohesionFriends.forEach(id => birds[id].marked = true);
+                    this.cohesionFriends.forEach(id => (birds[id].marked = true));
                     strokeWeight(1);
                     stroke('blue');
-                    circle(0, 0, boidsSettings.COHESION_FRIENDS_RADIUS*2);
+                    circle(0, 0, boidsSettings.COHESION_FRIENDS_RADIUS * 2);
                 }
             }
         }
@@ -278,9 +278,9 @@ function Bird(id, pos, vel) {
             fill('red');
         }
         if (boidsSettings.enableRoundShape) {
-            ellipse(0, 0, this.r/2);
+            ellipse(0, 0, this.r / 2);
         } else {
-            triangle(0, this.r, -this.r/3, 0, this.r/3, 0);
+            triangle(0, this.r, -this.r / 3, 0, this.r / 3, 0);
         }
         pop();
     };

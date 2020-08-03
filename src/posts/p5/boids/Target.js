@@ -19,19 +19,19 @@ function Target(id) {
     this.getBorderAvoidingAcceleration = () => {
         const steering = new p5.Vector(0, 0);
         // if (boidsSettings.enableWrapEdges) {
-            if (this.pos.x < 0 ) {
-                this.pos.x = width;
-            }
-            if (this.pos.x > width) {
-                this.pos.x = 0;
-            }
-            if (this.pos.y < 0 ) {
-                this.pos.y = height;
-            }
-            if (this.pos.y > height) {
-                this.pos.y = 0;
-            }
-            return steering;
+        if (this.pos.x < 0) {
+            this.pos.x = width;
+        }
+        if (this.pos.x > width) {
+            this.pos.x = 0;
+        }
+        if (this.pos.y < 0) {
+            this.pos.y = height;
+        }
+        if (this.pos.y > height) {
+            this.pos.y = 0;
+        }
+        return steering;
         // }
 
         /*
@@ -79,10 +79,10 @@ function Target(id) {
     };
 
     this.getStayOnFrameAcceleration = () => {
-        const frameSteer = new p5.Vector(width/2, height/2);
+        const frameSteer = new p5.Vector(width / 2, height / 2);
         frameSteer.normalize().setMag(targetsSettings.FRAME_ACC_INTENSITY);
         return frameSteer;
-    }
+    };
 
     // Compute steering rejecting from obstacles
     this.getObstaclesAvoidingAcceleration = () => {
@@ -91,15 +91,17 @@ function Target(id) {
         obstaclesQTree.query(obstaclesCircle, myobstacles);
 
         const obstacleSteer = new p5.Vector(0, 0);
-        myobstacles.map(i => i.userData).forEach(id => {
-            const o = obstacles[id];
-            const steer = p5.Vector.sub(this.pos, o.pos);
-            obstacleSteer.add(steer);
-        });
+        myobstacles
+            .map(i => i.userData)
+            .forEach(id => {
+                const o = obstacles[id];
+                const steer = p5.Vector.sub(this.pos, o.pos);
+                obstacleSteer.add(steer);
+            });
 
         obstacleSteer.setMag(targetsSettings.OBSTACLE_ACC_INTENSITY);
         return obstacleSteer;
-    }
+    };
 
     this.move = () => {
         // Reset the acceleration after moving to avoid stacking forces of each iteration
@@ -115,11 +117,11 @@ function Target(id) {
         // this.vel.limit(targetsSettings.MAX_SPEED);
         this.vel.limit(boidsSettings.MAX_SPEED * 0.7);
         this.pos.add(this.vel);
-    }
+    };
 
     this.show = () => {
         noStroke();
         fill('green');
         circle(this.pos.x, this.pos.y, this.r);
-    }
+    };
 }
