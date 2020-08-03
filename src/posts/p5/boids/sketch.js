@@ -15,6 +15,8 @@ let ORD;
 let app;
 
 let boidsSettings = {
+    goBackInInterface: 'explanation',
+
     enableWiggle: true,
     enableRoundShape: true,
 
@@ -65,6 +67,15 @@ let targetsSettings = {
     AVOID_BIRD_ACC_INTENSITY: 1,
     OBSTACLE_ACC_INTENSITY: 15,
     FRAME_ACC_INTENSITY: 3
+};
+
+let predatorsSettings = {
+    MAX_ACC: 1,
+    MAX_SPEED: 5,
+    PERCEPTION_RADIUS: 500,
+    BORDER_LIMIT: 20,
+    WIGGLE_ACC_INTENSITY: 3,
+    COHESION_ACC_INTENSITY: 3
 };
 
 function resetObstacles() {

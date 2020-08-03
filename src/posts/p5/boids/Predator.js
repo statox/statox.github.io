@@ -25,16 +25,16 @@ function Predator(id, pos, vel, r) {
         }
 
         const maxPullbackAcc = 100;
-        if (this.pos.x < boidsSettings.BORDER_LIMIT) {
+        if (this.pos.x < predatorsSettings.BORDER_LIMIT) {
             this.vel.x = abs(this.vel.x);
         }
-        if (this.pos.x > width - boidsSettings.BORDER_LIMIT) {
+        if (this.pos.x > width - predatorsSettings.BORDER_LIMIT) {
             this.vel.x = -abs(this.vel.x);
         }
-        if (this.pos.y < boidsSettings.BORDER_LIMIT) {
+        if (this.pos.y < predatorsSettings.BORDER_LIMIT) {
             this.vel.y = abs(this.vel.y);
         }
-        if (this.pos.y > height - boidsSettings.BORDER_LIMIT) {
+        if (this.pos.y > height - predatorsSettings.BORDER_LIMIT) {
             this.vel.y = -abs(this.vel.y);
         }
         return steering;
@@ -43,7 +43,7 @@ function Predator(id, pos, vel, r) {
     this.getWiggleAcceleration = () => {
         const maxAngleRad = radians(40);
         const wiggleSteer = p5.Vector.random2D();
-        wiggleSteer.normalize().setMag(boidsSettings.WIGGLE_ACC_INTENSITY);
+        wiggleSteer.normalize().setMag(predatorsSettings.WIGGLE_ACC_INTENSITY);
         return wiggleSteer;
     };
 
@@ -52,7 +52,7 @@ function Predator(id, pos, vel, r) {
         const cohesionSteer = new p5.Vector(0, 0);
 
         const localBirds = [];
-        const nearCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.ALIGNMENT_FRIENDS_RADIUS * 2);
+        const nearCircle = new Circle(this.pos.x, this.pos.y, predatorsSettings.PERCEPTION_RADIUS);
         birdsQTree.query(nearCircle, localBirds);
 
         localBirds
@@ -64,8 +64,8 @@ function Predator(id, pos, vel, r) {
             });
 
         cohesionSteer.div(birds.length);
-        cohesionSteer.setMag(boidsSettings.COHESION_ACC_INTENSITY);
-        cohesionSteer.limit(boidsSettings.MAX_ACC);
+        cohesionSteer.setMag(predatorsSettings.COHESION_ACC_INTENSITY);
+        cohesionSteer.limit(predatorsSettings.MAX_ACC);
         return cohesionSteer;
     };
 
@@ -78,7 +78,7 @@ function Predator(id, pos, vel, r) {
         this.acc.add(this.getChaseBirdsAcceleration());
 
         this.vel.add(this.acc);
-        this.vel.limit(boidsSettings.MAX_SPEED);
+        this.vel.limit(predatorsSettings.MAX_SPEED);
         this.pos.add(this.vel);
     };
 
