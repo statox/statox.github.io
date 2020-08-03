@@ -90,3 +90,136 @@ function mousePressed(e) {
         obstacles.push(obstacle);
     }
 }
+
+function scenarioOneBoidNoWiggle() {
+    boidsSettings.goBackInInterface = 'basicBehaviorTitle';
+    boidsSettings.enableAlignment = false;
+    boidsSettings.enableSeparation = false;
+    boidsSettings.enableCohesion = false;
+    boidsSettings.enableWrapEdges = false;
+    boidsSettings.CROWD_SIZE = 1;
+    boidsSettings.enableWiggle = true;
+    boidsSettings.MAX_WIGGLE_ANGLE = 0;
+    boidsSettings.enableFollowTarget = false;
+    boidsSettings.enableFollowMouse = false;
+    boidsSettings.enableShowPerception = false;
+    resetBirds();
+    resetObstacles();
+}
+
+function scenarioOneBoidWiggle() {
+    scenarioOneBoidNoWiggle();
+    boidsSettings.goBackInInterface = 'basicBehaviorTitle';
+    boidsSettings.MAX_WIGGLE_ANGLE = 50;
+}
+
+function scenarioMultipleBoidsWiggle() {
+    boidsSettings.goBackInInterface = 'basicBehaviorTitle';
+    boidsSettings.enableAlignment = false;
+    boidsSettings.enableSeparation = false;
+    boidsSettings.enableCohesion = false;
+    boidsSettings.enableWrapEdges = false;
+    boidsSettings.CROWD_SIZE = 20;
+    boidsSettings.enableWiggle = true;
+    boidsSettings.MAX_WIGGLE_ANGLE = 50;
+    boidsSettings.enableFollowTarget = false;
+    boidsSettings.enableFollowMouse = false;
+    boidsSettings.enableShowPerception = false;
+    resetBirds();
+    resetObstacles();
+}
+
+function scenarioBoidsAlignment() {
+    boidsSettings.goBackInInterface = 'alignmentTitle';
+    boidsSettings.enableAlignment = true;
+    boidsSettings.enableSeparation = false;
+    boidsSettings.enableCohesion = false;
+    boidsSettings.enableWrapEdges = false;
+    boidsSettings.CROWD_SIZE = 20;
+    boidsSettings.enableWiggle = true;
+    boidsSettings.MAX_WIGGLE_ANGLE = 50;
+    boidsSettings.enableFollowTarget = false;
+    boidsSettings.enableFollowMouse = false;
+    boidsSettings.enableShowPerception = true;
+    resetBirds();
+    resetObstacles();
+}
+
+function scenarioBoidsSeparation() {
+    boidsSettings.goBackInInterface = 'separationTitle';
+    boidsSettings.enableAlignment = true;
+    boidsSettings.enableSeparation = true;
+    boidsSettings.enableCohesion = false;
+    boidsSettings.enableWrapEdges = false;
+    boidsSettings.CROWD_SIZE = 20;
+    boidsSettings.enableWiggle = true;
+    boidsSettings.MAX_WIGGLE_ANGLE = 50;
+    boidsSettings.enableFollowTarget = false;
+    boidsSettings.enableFollowMouse = false;
+    boidsSettings.enableShowPerception = true;
+    resetBirds();
+    resetObstacles();
+}
+
+function scenarioBoidsCohesion() {
+    boidsSettings.goBackInInterface = 'cohesionTitle';
+    boidsSettings.enableAlignment = true;
+    boidsSettings.enableSeparation = true;
+    boidsSettings.enableCohesion = true;
+    boidsSettings.enableWrapEdges = false;
+    boidsSettings.CROWD_SIZE = 20;
+    boidsSettings.enableWiggle = true;
+    boidsSettings.MAX_WIGGLE_ANGLE = 50;
+    boidsSettings.enableFollowTarget = false;
+    boidsSettings.enableFollowMouse = false;
+    boidsSettings.enableShowPerception = true;
+    resetBirds();
+    resetObstacles();
+}
+
+function scenarioTarget() {
+    boidsSettings.goBackInInterface = 'goalTitle';
+    boidsSettings.enableAlignment = true;
+    boidsSettings.enableSeparation = true;
+    boidsSettings.enableCohesion = true;
+    boidsSettings.enableWrapEdges = true;
+    boidsSettings.CROWD_SIZE = 20;
+    boidsSettings.enableWiggle = true;
+    boidsSettings.MAX_WIGGLE_ANGLE = 50;
+    boidsSettings.enableFollowTarget = true;
+    boidsSettings.enableFollowMouse = false;
+    boidsSettings.enableShowPerception = false;
+    resetBirds();
+    resetObstacles();
+}
+
+function scenarioPredators() {
+    boidsSettings.goBackInInterface = 'predatorsTitle';
+    boidsSettings.enableAlignment = true;
+    boidsSettings.enableSeparation = true;
+    boidsSettings.enableCohesion = true;
+    boidsSettings.enableWrapEdges = true;
+    boidsSettings.CROWD_SIZE = 100;
+    boidsSettings.enableWiggle = true;
+    boidsSettings.MAX_WIGGLE_ANGLE = 50;
+    boidsSettings.enableFollowTarget = true;
+    boidsSettings.enableFollowMouse = false;
+    boidsSettings.enableShowPerception = false;
+    resetBirds();
+    resetObstacles();
+
+    for (let i = 0; i < 2; i++) {
+        const pos = new p5.Vector(random(0, width), random(0, height));
+        predators.push(new Predator(i, pos, 30));
+    }
+
+    for (let i = 0; i < width; i += 30) {
+        const p1 = new p5.Vector(i, 0);
+        const obstacle1 = new Obstacle(obstacles.length, p1, 30);
+        obstacles.push(obstacle1);
+
+        const p2 = new p5.Vector(i, height);
+        const obstacle2 = new Obstacle(obstacles.length, p2, 30);
+        obstacles.push(obstacle2);
+    }
+}
