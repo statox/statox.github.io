@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A boring jumping game</title>
+    <meta name="description" content="A personal blog where I write about my side projects">
+    <meta name="keywords" content="statox blog">
+    <meta property="og:title" content="The stuff I do">
+    <meta property="og:url" content="https://www.statox.fr">
+    <meta property="og:description" content="A personal blog where I write about my side projects">
+    <meta property="og:type" content="website">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-fonts@1.1.1/fonts/inter.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.20.0/themes/prism-tomorrow.css">
+
+    
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/material.css">
+    <link rel="stylesheet" href="/css/minesweeper.css">
+    <link rel="stylesheet" href="/css/boids.css">
+
+</head>
+<body>
+    <header>
+        <h1>The stuff I do</h1>
+        <nav>
+            <a href="/">Home</a> /
+            <a href="/notes/">Notes</a> /
+            <a href="/about/">About</a> /
+            <a href="/social/">Social</a> /
+            <a href="/feed.xml">RSS</a>
+        </nav>
+    </header>
+
+    <div class="content-container">
+        
+<h2>A boring jumping game</h2>
+<p><a href="/">← Posts</a></p>
+
+<p>I had a bit of free time and wanted to explore <a href="https://molleindustria.github.io/p5.play/" target="_blank" rel="noopener noreferrer">p5.play</a> which is a p5.js library to create simple games. I think it follows pretty well the philosophy of the whole processing ecosystem which is to provide simple tools meant to let people easily and quickly create small projects without caring too much about performance, quality or complexity.</p>
+<p>So I came up with this simple little game. It is ugly (and the code is even worse than the UI), gets boring after two or three rounds and has a weird bug where the player will sometimes get stuck on the top wall, but it was fun to make!</p>
+<p>It was a nice way to start using p5.play Sprite objects which make it very easy to handle collisions, acceleration and all kind of simple physic properties.</p>
+<p>It is also a first try to embed pens from <a href="https://codepen.io" target="_blank" rel="noopener noreferrer">codepen.io</a> in my blog, just to see if that's something I want to do more in the future.</p>
+<p class="codepen" data-height="501" data-theme-id="light" data-default-tab="result" data-user="statox" data-slug-hash="yLOoraP" style="height: 501px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="p5play - jumping">
+    <span>
+    See the Pen <a href="https://codepen.io/statox/pen/yLOoraP">
+    p5play - jumping</a> by Adrien Fabre (<a href="https://codepen.io/statox">@statox</a>)
+    on <a href="https://codepen.io">CodePen</a>.
+    </span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+<p><a href="/">← Posts</a></p>
+
+<hr>
+<comments>
+    <h3>Comments</h3>
+    <a class="add-comment" href="https://github.com/statox/blog-comments/issues/13#new_comment_field"  target="_blank" rel="noopener noreferrer">
+        <button>Comment on Github</button>
+    </a>
+    <br>
+</comments>
+
+<script type="text/javascript">
+
+
+function domReady(fn) {
+    document.addEventListener('DOMContentLoaded', fn);
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        fn();
+    }
+}
+
+async function getComments(url = '') {
+    const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: { Accept: 'application/vnd.github.v3.html+json' },
+    });
+    return response.json();
+}
+
+domReady(() => {
+    const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/13/comments';
+    const appendComments = function (comments) {
+        const commentSection = document.querySelector('comments');
+        if (!comments || !comments.forEach || comments.length === 0) {
+            commentSection.insertAdjacentHTML('beforeend', '<p>No comments yet.</p>');
+            return;
+        }
+        comments.forEach(function (comment) {
+            commentSection.insertAdjacentHTML(
+                'beforeend',
+                '<div class="comment">' +
+                '• <a href="' + comment.user.html_url + '" target="_blank">' + comment.user.login + '</a>' +
+                ' on' +
+                ' <a href="' + comment.html_url + '" target="_blank">' + new Date(comment.created_at).toUTCString() + '</a>' +
+                comment.body_html +
+                '</div>',
+            );
+        });
+    };
+    getComments(apiUrl).then(appendComments);
+});
+</script>
+
+    </div>
+
+    <script data-goatcounter="https://statoxblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script async defer src="https://api.newcss.net/latest.js"></script>
+    <noscript><img src="https://api.newcss.net/noscript.gif" alt=""></noscript>
+</body>
+</html>

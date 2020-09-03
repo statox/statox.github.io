@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2020-07-22T00:00:00+00:00</updated>
+  <updated>2020-09-03T00:00:00+00:00</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -447,6 +447,26 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;script src=&quot;https://www.statox.fr/posts/p5/minesweeper/interface.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://www.statox.fr/posts/p5/minesweeper/utils.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://www.statox.fr/posts/p5/minesweeper/Game.js&quot;&gt;&lt;/script&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>A boring jumping game</title>
+    <link href="https://www.statox.fr/posts/p5/p5-jump/"/>
+    <updated>2020-09-03T00:00:00+00:00</updated>
+    <id>https://www.statox.fr/posts/p5/p5-jump/</id>
+    <content type="html">&lt;p&gt;I had a bit of free time and wanted to explore &lt;a href=&quot;https://molleindustria.github.io/p5.play/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;p5.play&lt;/a&gt; which is a p5.js library to create simple games. I think it follows pretty well the philosophy of the whole processing ecosystem which is to provide simple tools meant to let people easily and quickly create small projects without caring too much about performance, quality or complexity.&lt;/p&gt;
+&lt;p&gt;So I came up with this simple little game. It is ugly (and the code is even worse than the UI), gets boring after two or three rounds and has a weird bug where the player will sometimes get stuck on the top wall, but it was fun to make!&lt;/p&gt;
+&lt;p&gt;It was a nice way to start using p5.play Sprite objects which make it very easy to handle collisions, acceleration and all kind of simple physic properties.&lt;/p&gt;
+&lt;p&gt;It is also a first try to embed pens from &lt;a href=&quot;https://codepen.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;codepen.io&lt;/a&gt; in my blog, just to see if that&#39;s something I want to do more in the future.&lt;/p&gt;
+&lt;p class=&quot;codepen&quot; data-height=&quot;501&quot; data-theme-id=&quot;light&quot; data-default-tab=&quot;result&quot; data-user=&quot;statox&quot; data-slug-hash=&quot;yLOoraP&quot; style=&quot;height: 501px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot; data-pen-title=&quot;p5play - jumping&quot;&gt;
+    &lt;span&gt;
+    See the Pen &lt;a href=&quot;https://codepen.io/statox/pen/yLOoraP&quot;&gt;
+    p5play - jumping&lt;/a&gt; by Adrien Fabre (&lt;a href=&quot;https://codepen.io/statox&quot;&gt;@statox&lt;/a&gt;)
+    on &lt;a href=&quot;https://codepen.io/&quot;&gt;CodePen&lt;/a&gt;.
+    &lt;/span&gt;
+&lt;/p&gt;
+&lt;script async=&quot;&quot; src=&quot;https://static.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
 </content>
   </entry>
 </feed>
