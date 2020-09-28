@@ -19,3 +19,12 @@ Remove the last commit of the history completely **and discard changes**
 Remove the last commit from history but keep the working tree
 
     git reset HEAD^
+
+### Sign an older commit in your branch
+
+This will do an interactive rebase, playing `git commit --amend --no-edit -n -S`
+after each commit
+
+_(Check if `-n` is useful I can't find it in the man)_
+
+    git rebase --exec 'git commit --amend --no-edit -n -S' -i my-branch
