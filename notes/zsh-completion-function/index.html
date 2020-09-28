@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>The stuff I do</title>
+    <title>Creating zsh completion function</title>
     <meta name="description" content="A personal blog where I write about my side projects">
     <meta name="keywords" content="statox blog">
     <meta property="og:title" content="The stuff I do">
@@ -39,14 +39,13 @@
     </header>
 
     <div class="content-container">
-        <div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/zsh-completion-function/>Creating zsh completion function</a>
-                <span class="note-tags">[shell][zsh]</span>
-            </summary>
-            
-            <p>A quick trick to have custom completion on the aliases I create.</p>
+        
+<h2>Creating zsh completion function</h2>
+<p><a href="/notes/">← Notes</a></p>
+<p>Tags: <span class="note-tags">[shell][zsh]</span></p>
+
+
+<p>A quick trick to have custom completion on the aliases I create.</p>
 <p>First create the function and the alias, they can be in <code>~/.bash_aliases</code> or whatever.</p>
 <pre class="language-bash"><code class="language-bash"><span class="token function-name function">myCoolFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token builtin class-name">echo</span> <span class="token string">"Here are the args from my function <span class="token variable">$@</span>"</span><br><span class="token punctuation">}</span><br><span class="token builtin class-name">alias</span> <span class="token assign-left variable">mcf</span><span class="token operator">=</span><span class="token string">'myCoolFunction'</span></code></pre>
 <p>Then create the completion function (best practice <code>underscore+function name</code>) which can be anywhere too. An interesting list of the helpers provided by zsh for the completion functions is <a href="https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org" target="_blank" rel="noopener noreferrer">here</a>.</p>
@@ -60,84 +59,9 @@
 <pre class="language-bash"><code class="language-bash">functions <span class="token variable">$_comps</span><span class="token punctuation">[</span>myCoolFunction<span class="token punctuation">]</span></code></pre>
 <p>Finally I should check how to make it work with the defined files (<code>~/.oh-my-zsh/completions</code>) and understand why the <code>compdef</code> command only works when put in <code>.zshrc</code>.</p>
 
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/git-commits/>Fixing commits in git</a>
-                <span class="note-tags">[git][commit]</span>
-            </summary>
-            
-            <p>This link is dope <a href="https://sethrobertson.github.io/GitFixUm/fixup.html" target="_blank" rel="noopener noreferrer">https://sethrobertson.github.io/GitFixUm/fixup.html</a></p>
-<p>TODO: Extract the ones I need but can never remember</p>
-<h3>Remove commit from history</h3>
-<p><em>Reminder on zsh escape <code>^</code> in <code>HEAD^</code> with <code>HEAD\^</code></em></p>
-<p>Remove the last commit of the history completely <strong>and discard changes</strong></p>
-<pre><code>git reset --hard HEAD^
-</code></pre>
-<p>Remove the last commit from history but keep the working tree</p>
-<pre><code>git reset HEAD^
-</code></pre>
-<h3>Sign an older commit in your branch</h3>
-<p>This will do an interactive rebase, playing <code>git commit --amend --no-edit -n -S</code><br>
-after each commit</p>
-<p><em>(Check if <code>-n</code> is useful I can't find it in the man)</em></p>
-<pre><code>git rebase --exec 'git commit --amend --no-edit -n -S' -i my-branch
-</code></pre>
 
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/screen/>Screen</a>
-                <span class="note-tags">[screen]</span>
-            </summary>
-            
-            <h3>Basic usage</h3>
-<table>
-<thead>
-<tr>
-<th>Description</th>
-<th>Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Start a new session with session name</td>
-<td><code>screen -S &lt;session_name&gt;</code></td>
-</tr>
-<tr>
-<td>List running sessions / screens</td>
-<td><code>screen -ls</code></td>
-</tr>
-<tr>
-<td>Attach to a running session</td>
-<td><code>screen -x</code></td>
-</tr>
-<tr>
-<td>Attach to a running session with name</td>
-<td><code>screen -r &lt;session_name&gt;</code></td>
-</tr>
-<tr>
-<td>Detach a running session</td>
-<td><code>screen -d &lt;session_name&gt;</code></td>
-</tr>
-</tbody>
-</table>
+<p><a href="/notes/">← Notes</a></p>
 
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/shell-redirection/>Shell redirections</a>
-                <span class="note-tags">[bash][shell][output]</span>
-            </summary>
-            
-            <h3>Redirect stdout and stderr to a file</h3>
-<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">command</span> <span class="token operator">></span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span></code></pre>
-
-        </details>
-    </div>
     </div>
 
     <script data-goatcounter="https://statoxblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
