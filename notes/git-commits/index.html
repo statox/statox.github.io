@@ -55,6 +55,12 @@
 <p>Remove the last commit from history but keep the working tree</p>
 <pre><code>git reset HEAD^
 </code></pre>
+<h3>Sign an older commit in your branch</h3>
+<p>This will do an interactive rebase, playing <code>git commit --amend --no-edit -n -S</code><br>
+after each commit</p>
+<p><em>(Check if <code>-n</code> is useful I can't find it in the man)</em></p>
+<pre><code>git rebase --exec 'git commit --amend --no-edit -n -S' -i my-branch
+</code></pre>
 
 
 <p><a href="/notes/">← Notes</a></p>
