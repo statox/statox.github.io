@@ -64,7 +64,7 @@ function Target(id) {
         const cohesionSteer = new p5.Vector(0, 0);
 
         const localBirds = [];
-        const nearCircle = new Circle(this.pos.x, this.pos.y, targetsSettings.ALIGNMENT_FRIENDS_RADIUS * 2);
+        const nearCircle = new Circle(this.pos.x, this.pos.y, targetsSettings.AVOID_BIRD_RADIUS);
         birdsQTree.query(nearCircle, localBirds);
 
         localBirds.forEach(b => {
@@ -123,5 +123,11 @@ function Target(id) {
         noStroke();
         fill('green');
         circle(this.pos.x, this.pos.y, this.r);
+        if (boidsSettings.enableShowPerception) {
+            strokeWeight(3);
+            stroke('rgba(0,255,0,0.15)');
+            noFill();
+            circle(this.pos.x, this.pos.y, boidsSettings.TARGET_RADIUS * 2);
+        }
     };
 }

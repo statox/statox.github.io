@@ -92,7 +92,7 @@ function mousePressed(e) {
 }
 
 function scenarioOneBoidNoWiggle() {
-    boidsSettings.goBackInInterface = 'basicBehaviorTitle';
+    boidsSettings.goBackInInterface = 'basicBehaviorAnchor';
     boidsSettings.enableAlignment = false;
     boidsSettings.enableSeparation = false;
     boidsSettings.enableCohesion = false;
@@ -109,12 +109,12 @@ function scenarioOneBoidNoWiggle() {
 
 function scenarioOneBoidWiggle() {
     scenarioOneBoidNoWiggle();
-    boidsSettings.goBackInInterface = 'basicBehaviorTitle';
+    boidsSettings.goBackInInterface = 'basicBehavior2Anchor';
     boidsSettings.MAX_WIGGLE_ANGLE = 50;
 }
 
 function scenarioMultipleBoidsWiggle() {
-    boidsSettings.goBackInInterface = 'basicBehaviorTitle';
+    boidsSettings.goBackInInterface = 'basicBehavior3Anchor';
     boidsSettings.enableAlignment = false;
     boidsSettings.enableSeparation = false;
     boidsSettings.enableCohesion = false;
@@ -130,7 +130,7 @@ function scenarioMultipleBoidsWiggle() {
 }
 
 function scenarioBoidsAlignment() {
-    boidsSettings.goBackInInterface = 'alignmentTitle';
+    boidsSettings.goBackInInterface = 'alignmentAnchor';
     boidsSettings.enableAlignment = true;
     boidsSettings.enableSeparation = false;
     boidsSettings.enableCohesion = false;
@@ -146,7 +146,7 @@ function scenarioBoidsAlignment() {
 }
 
 function scenarioBoidsSeparation() {
-    boidsSettings.goBackInInterface = 'separationTitle';
+    boidsSettings.goBackInInterface = 'separationAnchor';
     boidsSettings.enableAlignment = true;
     boidsSettings.enableSeparation = true;
     boidsSettings.enableCohesion = false;
@@ -162,7 +162,7 @@ function scenarioBoidsSeparation() {
 }
 
 function scenarioBoidsCohesion() {
-    boidsSettings.goBackInInterface = 'cohesionTitle';
+    boidsSettings.goBackInInterface = 'cohesionAnchor';
     boidsSettings.enableAlignment = true;
     boidsSettings.enableSeparation = true;
     boidsSettings.enableCohesion = true;
@@ -178,7 +178,7 @@ function scenarioBoidsCohesion() {
 }
 
 function scenarioTarget() {
-    boidsSettings.goBackInInterface = 'goalTitle';
+    boidsSettings.goBackInInterface = 'targetAnchor';
     boidsSettings.enableAlignment = true;
     boidsSettings.enableSeparation = true;
     boidsSettings.enableCohesion = true;
@@ -188,13 +188,13 @@ function scenarioTarget() {
     boidsSettings.MAX_WIGGLE_ANGLE = 50;
     boidsSettings.enableFollowTarget = true;
     boidsSettings.enableFollowMouse = false;
-    boidsSettings.enableShowPerception = false;
+    boidsSettings.enableShowPerception = true;
     resetBirds();
     resetObstacles();
 }
 
 function scenarioPredators() {
-    boidsSettings.goBackInInterface = 'predatorsTitle';
+    boidsSettings.goBackInInterface = 'predatorsAnchor';
     boidsSettings.enableAlignment = true;
     boidsSettings.enableSeparation = true;
     boidsSettings.enableCohesion = true;

@@ -18,40 +18,41 @@ let boidsSettings = {
     goBackInInterface: 'explanation',
 
     enableWiggle: true,
-    enableRoundShape: true,
+    enableRoundShape: false,
 
     enableAlignment: true,
     enableSeparation: true,
     enableCohesion: true,
 
     enableFollowMouse: false,
-    enableFollowTarget: true,
+    enableFollowTarget: false,
 
     enableWrapEdges: true,
-    enableShowPerception: false,
+    enableShowPerception: true,
 
     enableObstaclesDrawing: false,
     enablePredatorDrawing: false,
 
     CROWD_SIZE: 100,
-    MAX_WIGGLE_ANGLE: 50,
+    MAX_WIGGLE_ANGLE: 100,
 
     ALIGNMENT_FRIENDS_RADIUS: 100,
-    SEPARATION_FRIENDS_RADIUS: 30,
+    SEPARATION_FRIENDS_RADIUS: 150,
     COHESION_FRIENDS_RADIUS: 80,
     OBSTACLE_RADIUS: 30,
     PREDATOR_RADIUS: 50,
+    TARGET_RADIUS: 300,
 
     WIGGLE_ACC_INTENSITY: 3,
     ALIGNMENT_ACC_INTENSITY: 3,
-    SEPARATION_ACC_INTENSITY: 2,
+    SEPARATION_ACC_INTENSITY: 5,
     COHESION_ACC_INTENSITY: 3,
-    TARGET_ACC_INTENSITY: 0.5,
+    TARGET_ACC_INTENSITY: 1,
     OBSTACLE_ACC_INTENSITY: 5,
     PREDATOR_ACC_INTENSITY: 7,
 
     MAX_ACC: 1,
-    MAX_SPEED: 3,
+    MAX_SPEED: 7,
     BORDER_LIMIT: 20
 };
 
@@ -60,7 +61,7 @@ let targetsSettings = {
     MAX_SPEED: 3,
     BORDER_LIMIT: 40,
 
-    ALIGNMENT_FRIENDS_RADIUS: 200,
+    AVOID_BIRD_RADIUS: 200,
     OBSTACLE_RADIUS: 30,
 
     WIGGLE_ACC_INTENSITY: 3,
@@ -121,24 +122,26 @@ function setup() {
     resetBirds();
     resetObstacles();
 
-    for (let i = 0; i < 2; i++) {
-        const pos = new p5.Vector(random(0, width), random(0, height));
-        predators.push(new Predator(i, pos, 30));
-    }
-
-    for (let i = 0; i < width; i += 30) {
-        const p1 = new p5.Vector(i, 0);
-        const obstacle1 = new Obstacle(obstacles.length, p1, 30);
-        obstacles.push(obstacle1);
-
-        const p2 = new p5.Vector(i, height);
-        const obstacle2 = new Obstacle(obstacles.length, p2, 30);
-        obstacles.push(obstacle2);
-    }
+    /*
+     *     for (let i = 0; i < 2; i++) {
+     *         const pos = new p5.Vector(random(0, width), random(0, height));
+     *         predators.push(new Predator(i, pos, 30));
+     *     }
+     *
+     *     for (let i = 0; i < width; i += 30) {
+     *         const p1 = new p5.Vector(i, 0);
+     *         const obstacle1 = new Obstacle(obstacles.length, p1, 30);
+     *         obstacles.push(obstacle1);
+     *
+     *         const p2 = new p5.Vector(i, height);
+     *         const obstacle2 = new Obstacle(obstacles.length, p2, 30);
+     *         obstacles.push(obstacle2);
+     *     }
+     */
 }
 
 function draw() {
-    background(0, 0, 0);
+    background(150, 150, 150);
 
     const boundaries = new Rectangle(0, 0, width, height);
     const capacity = 4;

@@ -1,10 +1,9 @@
 ---
 layout: layouts/post.njk
 tags: ['post', 'p5']
-date: 2020-08-03
+date: 2020-09-03
 title: Birds flock simulation
 commentIssueId: 12
-eleventyExcludeFromCollections: true
 ---
 
 <h3>What is this?</h3>
@@ -29,6 +28,9 @@ eleventyExcludeFromCollections: true
 
     <p style="color: red;"><i>The controls of the simulation are not compatible with mobile devices and prevent some
             features from working. Namely the creation of Boids, by clicking on the screen.</i></p>
+
+    <p><i>This page is a work in progress which might never get finished as I'm planning another implementation with a
+            different framework, so... to be continued.</i></p>
 </div>
 
 <!-- This raw annotation is used to be able to use Vuejs in nunchuck templates -->
@@ -78,7 +80,7 @@ eleventyExcludeFromCollections: true
                             id="toggleWiggleButton">Toggle wiggling</button>
 
                         <p>Allowed angle <span id="wiggleAngleMarker">{{MAX_WIGGLE_ANGLE}}</span></p>
-                        <input type="range" min="0" max="180" v-model.number="MAX_WIGGLE_ANGLE" step="0.5"
+                        <input type="range" min="0" max="360" v-model.number="MAX_WIGGLE_ANGLE" step="0.5"
                             class="slider" id="wiggleAngleSlider">
 
                         <p>Intensity <span id="wiggleIntensityeMarker">{{WIGGLE_ACC_INTENSITY}}</span></p>
@@ -156,12 +158,12 @@ eleventyExcludeFromCollections: true
                 </td>
             </tr>
         </table>
-        <div>
+        <div v-if="enableObstaclesDrawing || enablePredatorDrawing">
             When "obstacles" or "predators" is enabled move your mouse over the screen and the items will pop regularly
             just under your mouse.
         </div>
         <div v-if="goBackInInterface">
-            <a v-bind:href="'#' + goBackInInterface"><button>Back to explanation</button></a>
+            <a style="width: 100%" v-bind:href="'#' + goBackInInterface"><button>Back to explanation</button></a>
         </div>
     </div>
 </div>
@@ -172,9 +174,9 @@ eleventyExcludeFromCollections: true
     <p>In this part of the page I will detail the different rules followed by the Boids to show how they combine. Each
         button moves the page to the simulation and sets the rules as I want you to see them when you are reading .</p>
     <p>Note that you can use the "Back to explanation" to go back to where you were.</p>
-    <h4 id="basicBehaviorTitle">Basic behavior</h4>
-    <p>First let's create a single Boid <a href="#canvasDiv"><button onclick="scenarioOneBoidNoWiggle()">Click
-                here</button></a></p>
+    <h4>Basic behavior</h4>
+    <p id="basicBehaviorAnchor">First let's create a single Boid (<a href="#canvasDiv"
+            onclick="scenarioOneBoidNoWiggle()">Click here</a>)</p>
     <p>Our Boid is living a monotonous life randomly flying in its 2 dimensional space.</p>
     <p>To move, our Boid has two 2 dimensional vectors with a x and y component. One is its speed which allows it to go
         forward in a direction. And the second vector is its acceleration which is used to change the direction of the
@@ -183,8 +185,8 @@ eleventyExcludeFromCollections: true
         not change of direction. Consequently our Boid moves in straight lines.</p>
     <p>You can change its "Max velocity" setting to see it moving faster or slower</p>
 
-    <p>Now let's change its allowed wiggling angle to 50° <a href="#canvasDiv"><button
-                onclick="scenarioOneBoidWiggle()">Click here</button></a>.
+    <p id="basicBehavior2Anchor">Now let's change its allowed wiggling angle to 50° (<a href="#canvasDiv"
+            onclick="scenarioOneBoidWiggle()">Click here</a>).
         Our Boid is not moving in straight lines anymore: each time it moves the vector representing its acceleration is
         randomly rotated which gives it this happy wiggling attitude.
     </p>
@@ -193,14 +195,14 @@ eleventyExcludeFromCollections: true
         more important than its acceleration vector. To change that in a limited way you can also increase the intensity
         of the wiggling vector</p>
 
-    <p>This is the basic behavior of our Boid, you can click on the screen to add more Boids (or <a
-            href='#canvasDiv'><button onclick="scenarioMultipleBoidsWiggle()">Click here</button></a>) and you will
+    <p id="basicBehavior3Anchor">This is the basic behavior of our Boid, you can click on the screen to add more Boids
+        (or <a href='#canvasDiv' onclick="scenarioMultipleBoidsWiggle()">Click here</a>) and you will
         notice that they all behave as rubber balls bouncing on the edges of the screen... Not really exciting I agree.
     </p>
 
-    <h4 id="alignmentTitle">Alignment</h4>
-    <p>To start observing some cool behavior let's enable the first rule: Alignment <a href="#canvasDiv"><button
-                onclick="scenarioBoidsAlignment()">Click here</button></a></p>
+    <h4>Alignment</h4>
+    <p id="alignmentAnchor">To start observing some cool behavior let's enable the first rule: Alignment (<a
+            href="#canvasDiv" onclick="scenarioBoidsAlignment()">Click here</a>)</p>
     <p>The green circle around a Boid is the actual representation of its perception circle for the alignment rule: all
         the neighbors within this circle are "seen" by the Boids and used in the alignment rule</p>
     <p>Now we can see that our flock doesn't look as random as before: Boids close to each other start going in the same
@@ -211,21 +213,20 @@ eleventyExcludeFromCollections: true
     <p>As there are only a few Boids on the screen they eventually end up going all in the same direction in a pretty
         compact group.</p>
 
-    <h4 id="separationTitle">Separation</h4>
+    <h4>Separation</h4>
     <p>Having our Boids going in the same direction is great but they are literally walking (Flying? Crawling?) on top
         of each other. This is not ideal lets give them some individual space!</p>
-    <p>To do so we can enable the separation rule <a href="#canvasDiv"><button onclick="scenarioBoidsSeparation()">Click
-                here</button></a></p>
+    <p id="separationAnchor">To do so we can enable the separation rule (<a href="#canvasDiv"
+            onclick="scenarioBoidsSeparation()">Click here</a>)</p>
     <p>The perception circle for this rule is shown in red</p>
     <p>This adds a new rule to our Boids behavior: They "see" the position of each of their close neighbors and
         their acceleration is moved towards the least crowded direction. In other words they continue following the same
         direction as their friends but they also continually move away from them.</p>
     <p>With enough time this gives us the same flock as before but this time it is much more spaced out.</p>
 
-    <h4 id="cohesionTitle">Cohesion</h4>
-    <p>Let's introduce the last rule of our Boids behavior: Cohesion <a href="#canvasDiv"><button
-                onclick="scenarioBoidsCohesion()">Click
-                here</button></a></p>
+    <h4>Cohesion</h4>
+    <p id="cohesionAnchor">Let's introduce the last rule of our Boids behavior: Cohesion (<a href="#canvasDiv"
+            onclick="scenarioBoidsCohesion()">Click here</a>)</p>
 
     <p>The perception circle for this rule is shown in blue</p>
     <p>This rule is not the most obvious to observe right now. It shifts the acceleration of our Boids towards the
@@ -237,9 +238,10 @@ eleventyExcludeFromCollections: true
 
     <p>That's it! We now have the basic behavior ruling our Boids moves. Now let's add some troubles to their life</p>
 
-    <h4 id="goalTitle">Goal</h4>
-    <p>To be able observe some emerging behavior let's add a goal to our birds: we will create a target moving
-        randomly on the screen. <a href="#canvasDiv"><button onclick="scenarioTarget()">Click here</button></a>.
+    <h4>Goal</h4>
+    <p id="targetAnchor">To be able observe some emerging behavior let's add a goal to our birds: we will create a
+        target moving
+        randomly on the screen. (<a href="#canvasDiv" onclick="scenarioTarget()">Click here</a>).
     </p>
     <p>This target attracts the Boids close to its position: we could see it as a prey
         like a group of insect for a flock of birds.</p>
@@ -248,10 +250,11 @@ eleventyExcludeFromCollections: true
     <p>So far our little birds are happily floating in their space and reaching their goal, now let's scare them out!
     </p>
 
-    <h4 id="predatorsTitle">Predators and obstacles</h4>
-    <p>To make this visualization more interesting let's add some obstacles that our birds can't go through and some
-        predators which will fly through the float and that Boids will try to avoid as much as possible. <a
-            href="#canvasDiv"><button onclick="scenarioPredators()">Click here</button></a></p>
+    <h4>Predators and obstacles</h4>
+    <p id="predatorsAnchor">To make this visualization more interesting let's add some obstacles that our birds can't go
+        through and some
+        predators which will fly through the float and that Boids will try to avoid as much as possible. (<a
+            href="#canvasDiv" onclick="scenarioPredators()">Click here</a>)</p>
 
     <p>Look at our Boids! Trying to reach their target while avoiding these mean red circles, aren't they the cutest?
         😍</p>
