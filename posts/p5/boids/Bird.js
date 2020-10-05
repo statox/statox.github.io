@@ -33,11 +33,21 @@ function Bird(id, pos, vel) {
         const predatorsCircle = new Circle(this.pos.x, this.pos.y, boidsSettings.PREDATOR_RADIUS);
         predatorsQTree.query(predatorsCircle, predators);
 
-        this.alignmentFriends = alignment.map(i => i.userData);
-        this.separationFriends = separation.map(i => i.userData);
-        this.cohesionFriends = cohesion.map(i => i.userData);
-        this.nearObstacles = myobstacles.map(i => i.userData);
-        this.nearPredators = predators.map(i => i.userData);
+        const isInFieldOfView = otherPos => {
+            const directionToOther = this.pos.copy().sub(otherPos);
+            const angleToOther = this.vel.angleBetween(directionToOther);
+            return Math.abs(angleToOther) >= PI - radians(boidsSettings.MAX_WIGGLE_ANGLE / 2);
+        };
+
+        this.alignmentFriends = alignment.map(i => i.userData).filter(id => isInFieldOfView(birds[id].pos));
+        this.separationFriends = separation.map(i => i.userData).filter(id => isInFieldOfView(birds[id].pos));
+        this.cohesionFriends = cohesion.map(i => i.userData).filter(id => isInFieldOfView(birds[id].pos));
+        this.nearObstacles = myobstacles.map(i => i.userData).filter(id => isInFieldOfView(obstacles[id].pos));
+        try {
+            this.nearPredators = predators.map(i => i.userData).filter(id => isInFieldOfView(predators[id].pos));
+        } catch (e) {
+            debugger; // AFA
+        }
     };
 
     // Either wrap around edges or return an acceleration repealling from edges
@@ -129,7 +139,11 @@ function Bird(id, pos, vel) {
             const pos = birds[id].pos;
             const acc = this.pos.copy().sub(pos);
             const d = dist(this.pos.x, this.pos.y, pos.x, pos.y);
+            // acc.normalize();
             acc.div(d);
+
+            // const acc = pos.copy().sub(this.pos);
+            // acc.rotate((Math.random() > 0.5 ? 1 : -1) * radians(20));
             separationSteer.add(acc);
         });
         separationSteer.setMag(boidsSettings.SEPARATION_ACC_INTENSITY);
@@ -166,9 +180,10 @@ function Bird(id, pos, vel) {
             return;
         }
 
-        const maxAngleRad = radians(boidsSettings.MAX_WIGGLE_ANGLE);
-        const wiggleAngle = map(random(), 0, 1, -maxAngleRad, maxAngleRad);
-        const wiggleSteer = this.vel.copy().rotate(wiggleAngle);
+        // const maxAngleRad = radians(boidsSettings.MAX_WIGGLE_ANGLE);
+        // const wiggleAngle = map(random(), 0, 1, -maxAngleRad, maxAngleRad);
+        // const wiggleSteer = this.vel.copy().rotate(wiggleAngle);
+        const wiggleSteer = this.vel.copy();
         wiggleSteer.setMag(boidsSettings.WIGGLE_ACC_INTENSITY);
         return wiggleSteer;
     };
@@ -176,6 +191,10 @@ function Bird(id, pos, vel) {
     // Compute steering towards the target object
     this.getTargetAcceleration = () => {
         if (!boidsSettings.enableFollowTarget) {
+            return;
+        }
+        const distance = p5.Vector.dist(this.pos, target.pos);
+        if (distance > boidsSettings.TARGET_RADIUS) {
             return;
         }
         const targetSteer = target.pos.copy().sub(this.pos);
@@ -227,7 +246,11 @@ function Bird(id, pos, vel) {
         ];
 
         const netAcceleration = new p5.Vector(0, 0);
-        forcesToApply.forEach(f => netAcceleration.add(f));
+        forcesToApply.forEach(f => {
+            if (f) {
+                netAcceleration.add(f.limit(2));
+            }
+        });
         this.nextAcc = netAcceleration;
     };
 
@@ -248,35 +271,88 @@ function Bird(id, pos, vel) {
         noFill();
 
         if (this.id === birds[0].id) {
-            birds.forEach(b => (b.marked = false));
+            birds.forEach(b => {
+                b.marked = false;
+                b.color = null;
+            });
             if (boidsSettings.enableShowPerception) {
                 if (boidsSettings.enableAlignment) {
-                    this.alignmentFriends.forEach(id => (birds[id].marked = true));
+                    this.alignmentFriends.forEach(id => {
+                        birds[id].marked = true;
+                        birds[id].color = 'rgba(100,255,100,0.5)';
+                    });
                     strokeWeight(3);
-                    stroke('green');
+                    stroke('rgba(100,255,100,0.5)');
                     circle(0, 0, boidsSettings.ALIGNMENT_FRIENDS_RADIUS * 2);
                 }
                 if (boidsSettings.enableSeparation) {
-                    this.separationFriends.forEach(id => (birds[id].marked = true));
+                    this.separationFriends.forEach(id => {
+                        birds[id].marked = true;
+                        birds[id].color = 'rgba(255,100,100,0.5)';
+                    });
                     strokeWeight(2);
-                    stroke('red');
+                    stroke('rgba(255,100,100,0.5)');
                     circle(0, 0, boidsSettings.SEPARATION_FRIENDS_RADIUS * 2);
                 }
                 if (boidsSettings.enableCohesion) {
-                    this.cohesionFriends.forEach(id => (birds[id].marked = true));
+                    this.cohesionFriends.forEach(id => {
+                        birds[id].marked = true;
+                        birds[id].color = 'rgba(100,100,255,0.5)';
+                    });
                     strokeWeight(1);
-                    stroke('blue');
+                    stroke('rgba(100,100,255,0.5)');
                     circle(0, 0, boidsSettings.COHESION_FRIENDS_RADIUS * 2);
                 }
             }
         }
 
         noStroke();
-        rotate(angle);
         fill(255);
         if (this.marked) {
             fill('red');
+            if (this.color) {
+                fill(this.color);
+            }
         }
+        if (this.id === birds[0].id && boidsSettings.enableShowPerception) {
+            strokeWeight(2);
+
+            const velocityScreenMag = map(this.vel.mag(), 0, boidsSettings.MAX_SPEED, this.r, this.r * 5);
+            const velocityLine = this.vel.copy().setMag(velocityScreenMag);
+            stroke('yellow');
+            line(0, 0, velocityLine.x, velocityLine.y);
+
+            const accelerationScreenMag = map(this.acc.mag(), 0, boidsSettings.MAX_ACC, this.r, this.r * 2);
+            const accelerationLine = this.acc.copy().setMag(accelerationScreenMag);
+            stroke('red');
+            line(
+                velocityLine.x,
+                velocityLine.y,
+                velocityLine.x + accelerationLine.x,
+                velocityLine.y + accelerationLine.y
+            );
+
+            const fovScreenMag = Math.max(
+                boidsSettings.enableAlignment ? boidsSettings.ALIGNMENT_FRIENDS_RADIUS : 0,
+                boidsSettings.enableSeparation ? boidsSettings.SEPARATION_FRIENDS_RADIUS : 0,
+                boidsSettings.enableCohesion ? boidsSettings.COHESION_FRIENDS_RADIUS : 0
+            );
+            const fovLeftLine = this.vel
+                .copy()
+                .rotate(radians(boidsSettings.MAX_WIGGLE_ANGLE / 2))
+                .setMag(fovScreenMag);
+            const fovRightLine = this.vel
+                .copy()
+                .rotate(-radians(boidsSettings.MAX_WIGGLE_ANGLE / 2))
+                .setMag(fovScreenMag);
+            stroke('orange');
+            line(0, 0, fovLeftLine.x, fovLeftLine.y);
+            line(0, 0, fovRightLine.x, fovRightLine.y);
+
+            noStroke();
+            fill('orange');
+        }
+        rotate(angle);
         if (boidsSettings.enableRoundShape) {
             ellipse(0, 0, this.r / 2);
         } else {
