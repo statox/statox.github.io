@@ -12,7 +12,7 @@
         "axios": "^0.20.0",
         "markdown-it-emoji": "^1.4.0",
         "markdown-it-external-links": "0.0.6",
-        "moment": "^2.29.0"
+        "moment": "^2.29.1"
     },
     "homepage": "www.statox.fr",
     "keywords": [],
