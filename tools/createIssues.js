@@ -5,7 +5,6 @@ const https = require('follow-redirects').https;
 const fs = require('fs');
 const path = require('path');
 const async = require('async');
-const Axios = require('axios');
 
 /*
  * Script to be run by the CI to create the issues used for comments for each published posts
