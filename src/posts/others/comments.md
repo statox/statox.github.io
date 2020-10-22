@@ -23,6 +23,14 @@ Here are the important steps to make all of this working:
  - Make the script parsing all the published posts, listing the posts without an associated issue and creating the issues;
  - Change the posts source code to inject the comments.
 
+### A quick update
+
+_November 2020 -_ When I originally wrote the script I didn't want to think too much about the authentication to Github API and chose to go the simple way using a login/password basic auth header. This worked well until Github decided to deprecate this authentication mode.
+
+So I replaced the calls made to Github API via axios by the [octokit](https://github.com/octokit/rest.js) library. It wraps the calls to the API and it handles the authentication really simply and replacing the axios calls were only a matter of minutes _(I take that as a sign that my script was decently architectured 😎)_.
+
+The complete version of the script is still [on Github](https://github.com/statox/blog/blob/061b79001fda91c7c8b4bb72147247a4e24eff11/tools/createIssues.js).
+
 ### Configuring travis-ci
 
 Running a script at build time with travis-ci is fairly straight forward. I added a new step in the `script` job looking like this:
