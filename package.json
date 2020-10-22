@@ -27,5 +27,8 @@
         "build": "npx 11ty/eleventy --input=src --output=docs",
         "create-issues": "node tools/createIssues.js"
     },
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "dependencies": {
+        "@octokit/rest": "^18.0.6"
+    }
 }

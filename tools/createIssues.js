@@ -1,5 +1,6 @@
 #!/usr/env/node
 
+const {Octokit} = require('@octokit/rest');
 const https = require('follow-redirects').https;
 const fs = require('fs');
 const path = require('path');
@@ -13,36 +14,33 @@ const Axios = require('axios');
 if (process.argv.length < 3 || process.argv.length > 5) {
     console.error('Incorrect number of arguments');
     console.error('Usage:');
-    console.error('node createIssues.js BASIC_AUTH_HEADER [DRY_RUN]');
-    console.error('    BASIC_AUTH_HEADER - Base64 string representing the Authentication Header to use for Github');
+    console.error('node createIssues.js ACCESS_TOKEN [DRY_RUN]');
+    console.error('    ACCESS_TOKEN - Base64 string representing the Authentication Header to use for Github');
     console.error("    [DRY_RUN] - Prevent creating actual issues. Only the value 'false' allow the creation");
     process.exit(1);
 }
 
-const REPO_NAME = 'statox/blog-comments';
-const BASIC_AUTH_HEADER = process.argv[2]; // [0] is "node", [1] is scriptname
+const OWNER = 'statox';
+const REPO_NAME = 'blog-comments';
+const ACCESS_TOKEN = process.argv[2]; // [0] is "node", [1] is scriptname
 const DRY_RUN = !(process.argv.length >= 4 && process.argv[3] === 'false');
 
-const axios = Axios.create({
-    baseURL: 'https://api.github.com/',
-    headers: {
-        'User-Agent': 'statox',
-        Authorization: `basic ${BASIC_AUTH_HEADER}`
-    }
+const octokit = new Octokit({
+    auth: ACCESS_TOKEN,
+    userAgent: 'statox/blog/createIssues 1.0'
 });
 
 /*
  * Get all the issues open in a github repo
  */
 function getIssues(cb) {
-    return axios
-        .get(`repos/${REPO_NAME}/issues`)
-        .then(response => {
-            return cb(null, response.data);
+    return octokit.issues
+        .listForRepo({
+            owner: OWNER,
+            repo: REPO_NAME
         })
-        .catch(error => {
-            return cb(error);
-        });
+        .then(({data}) => cb(null, data))
+        .catch(e => cb(e));
 }
 
 /*
@@ -135,19 +133,14 @@ function createIssue(issue, cb) {
         return cb();
     }
 
-    return axios
-        .post(
-            `repos/${REPO_NAME}/issues`,
-            JSON.stringify({
-                title: JSON.stringify(issue.title)
-            })
-        )
-        .then(response => {
-            return cb(null, response.data);
+    return octokit.issues
+        .create({
+            owner: OWNER,
+            repo: REPO_NAME,
+            title: JSON.stringify(issue.title)
         })
-        .catch(error => {
-            return cb(error);
-        });
+        .then(response => cb(null, response))
+        .catch(e => cb(e));
 }
 
 /*
