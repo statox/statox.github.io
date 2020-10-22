@@ -15,7 +15,7 @@ if (process.argv.length < 3 || process.argv.length > 5) {
     console.error('Usage:');
     console.error('node createIssues.js BASIC_AUTH_HEADER [DRY_RUN]');
     console.error('    BASIC_AUTH_HEADER - Base64 string representing the Authentication Header to use for Github');
-    console.error('    [DRY_RUN] - Prevent creating actual issues. Only the value \'false\' allow the creation');
+    console.error("    [DRY_RUN] - Prevent creating actual issues. Only the value 'false' allow the creation");
     process.exit(1);
 }
 
@@ -27,7 +27,7 @@ const axios = Axios.create({
     baseURL: 'https://api.github.com/',
     headers: {
         'User-Agent': 'statox',
-        'Authorization': `basic ${BASIC_AUTH_HEADER}`
+        Authorization: `basic ${BASIC_AUTH_HEADER}`
     }
 });
 
@@ -35,22 +35,23 @@ const axios = Axios.create({
  * Get all the issues open in a github repo
  */
 function getIssues(cb) {
-    return axios.get(
-        `repos/${REPO_NAME}/issues`
-    ).then((response) => {
-        return cb(null, response.data)
-    }).catch((error) => {
-        return cb(error);
-    });
+    return axios
+        .get(`repos/${REPO_NAME}/issues`)
+        .then(response => {
+            return cb(null, response.data);
+        })
+        .catch(error => {
+            return cb(error);
+        });
 }
 
 /*
  * Synchronously list all files in a directory recursively
  */
-var walkSync = function(dir, filelist) {
+var walkSync = function (dir, filelist) {
     const files = fs.readdirSync(dir);
     filelist = filelist || [];
-    files.forEach((file) => {
+    files.forEach(file => {
         if (fs.statSync(dir + file).isDirectory()) {
             filelist = walkSync(dir + file + '/', filelist);
         } else {
@@ -65,23 +66,24 @@ var walkSync = function(dir, filelist) {
  * and return a nicely formatted object
  */
 function convertPostHeader(postHeader) {
-    return postHeader.filter(l => l.length > 0)
-    .map(l => l.split(': '))
-    .reduce((o, l) => {
-        if (l && l[0] === 'commentIssueId') {
-            o['commentIssueId'] = Number(l[1]);
+    return postHeader
+        .filter(l => l.length > 0)
+        .map(l => l.split(': '))
+        .reduce((o, l) => {
+            if (l && l[0] === 'commentIssueId') {
+                o['commentIssueId'] = Number(l[1]);
+                return o;
+            }
+            if (l && l[0] === 'eleventyExcludeFromCollections') {
+                o['eleventyExcludeFromCollections'] = l[1] === 'true';
+                return o;
+            }
+            if (l && l[0] === 'title') {
+                o['title'] = l[1];
+                return o;
+            }
             return o;
-        }
-        if (l && l[0] === 'eleventyExcludeFromCollections') {
-            o['eleventyExcludeFromCollections'] = l[1] === 'true';
-            return o;
-        }
-        if (l && l[0] === 'title') {
-            o['title'] = l[1];
-            return o;
-        }
-        return o;
-    }, {});
+        }, {});
 }
 
 /*
@@ -92,30 +94,36 @@ function convertPostHeader(postHeader) {
 function getPosts(cb) {
     const files = walkSync('src/posts/');
 
-    async.map(files, (file, cb) => {
-        return fs.readFile(file, {encoding: 'utf-8'}, (error, content) => {
+    async.map(
+        files,
+        (file, cb) => {
+            return fs.readFile(file, {encoding: 'utf-8'}, (error, content) => {
+                if (error) {
+                    return cb(error);
+                }
+
+                // Only keep the part between the two '---' lines
+                if (content.match('---')) {
+                    const postHeader = content.split('---')[1].split('\n');
+                    return cb(null, convertPostHeader(postHeader));
+                } else {
+                    console.log('ignoring', file);
+                    return cb(null, {});
+                }
+            });
+        },
+        (error, results) => {
             if (error) {
                 return cb(error);
             }
 
-            // Only keep the part between the two '---' lines
-            if (content.match('---')) {
-                const postHeader = content.split('---')[1].split('\n')
-                return cb(null, convertPostHeader(postHeader));
-            } else {
-                console.log('ignoring', file);
-                return cb(null, {});
-            }
-        });
-    },
-    (error, results) => {
-        if (error) {
-            return cb(error);
+            // Only keep the published posts
+            return cb(
+                null,
+                results.filter(p => p.eleventyExcludeFromCollections !== true && p.title)
+            );
         }
-
-        // Only keep the published posts
-        return cb(null, results.filter(p => p.eleventyExcludeFromCollections !== true && p.title));
-    });
+    );
 }
 
 /*
@@ -127,78 +135,91 @@ function createIssue(issue, cb) {
         return cb();
     }
 
-    return axios.post(
-        `repos/${REPO_NAME}/issues`, 
-        JSON.stringify({
-            title: JSON.stringify(issue.title),
+    return axios
+        .post(
+            `repos/${REPO_NAME}/issues`,
+            JSON.stringify({
+                title: JSON.stringify(issue.title)
+            })
+        )
+        .then(response => {
+            return cb(null, response.data);
         })
-    ).then((response) => {
-        return cb(null, response.data)
-    }).catch((error) => {
-        return cb(error);
-    });
+        .catch(error => {
+            return cb(error);
+        });
 }
 
 /*
  * Create a list of issues in github in the order they are in the array
  */
 function createMissingIssues(issuesToCreate, cb) {
-    async.eachSeries(issuesToCreate, (issue, cb) => {
-        return createIssue(issue, (error) => {
-            if (error) {
-                return cb(error);
-            }
+    async.eachSeries(
+        issuesToCreate,
+        (issue, cb) => {
+            return createIssue(issue, error => {
+                if (error) {
+                    return cb(error);
+                }
 
-            console.log('Issue created ', issue.expectedNumber, issue.title);
-            return cb();
-        });
-    }, cb);
+                console.log('Issue created ', issue.expectedNumber, issue.title);
+                return cb();
+            });
+        },
+        cb
+    );
 }
 
 if (require.main === module) {
-    async.auto({
-        issues: (cb) => getIssues(cb),
-        posts: (cb) => getPosts(cb)
-    }, (error, result) => {
-        if (error) {
-            console.error(error);
-            process.exit(1);
-        }
-
-        const { issues, posts } = result;
-        const sortedIssues = issues.sort((a, b) => a.number - b.number);
-        const sortedPosts = posts.sort((a, b) => a.commentIssueId - b.commentIssueId);
-
-        // Get the index of the first post which doesn't have a corresponding issue
-        let notCreatedPostsIndex = 0;
-        const lastIssueNumber = sortedIssues.length ? sortedIssues[sortedIssues.length - 1].number : 0;
-        while (notCreatedPostsIndex <= sortedPosts.length-1 && sortedPosts[notCreatedPostsIndex].commentIssueId <= lastIssueNumber) {
-            notCreatedPostsIndex++;
-        }
-
-        const issuesToCreate = [];
-        for (let i = notCreatedPostsIndex; i<sortedPosts.length; i++) {
-            const post = sortedPosts[i];
-            issuesToCreate.push({
-                title: post.title,
-                expectedNumber: post.commentIssueId
-            });
-        }
-
-        if (!issuesToCreate.length) {
-            console.log('No missing issues to create');
-            process.exit(0);
-        }
-
-        createMissingIssues(issuesToCreate, (error) => {
+    async.auto(
+        {
+            issues: cb => getIssues(cb),
+            posts: cb => getPosts(cb)
+        },
+        (error, result) => {
             if (error) {
-                console.log('Error creating issues');
-                console.log(error);
+                console.error(error);
                 process.exit(1);
             }
 
-            console.log('Issues created');
-            process.exit(0);
-        });
-    })
+            const {issues, posts} = result;
+            const sortedIssues = issues.sort((a, b) => a.number - b.number);
+            const sortedPosts = posts.sort((a, b) => a.commentIssueId - b.commentIssueId);
+
+            // Get the index of the first post which doesn't have a corresponding issue
+            let notCreatedPostsIndex = 0;
+            const lastIssueNumber = sortedIssues.length ? sortedIssues[sortedIssues.length - 1].number : 0;
+            while (
+                notCreatedPostsIndex <= sortedPosts.length - 1 &&
+                sortedPosts[notCreatedPostsIndex].commentIssueId <= lastIssueNumber
+            ) {
+                notCreatedPostsIndex++;
+            }
+
+            const issuesToCreate = [];
+            for (let i = notCreatedPostsIndex; i < sortedPosts.length; i++) {
+                const post = sortedPosts[i];
+                issuesToCreate.push({
+                    title: post.title,
+                    expectedNumber: post.commentIssueId
+                });
+            }
+
+            if (!issuesToCreate.length) {
+                console.log('No missing issues to create');
+                process.exit(0);
+            }
+
+            createMissingIssues(issuesToCreate, error => {
+                if (error) {
+                    console.log('Error creating issues');
+                    console.log(error);
+                    process.exit(1);
+                }
+
+                console.log('Issues created');
+                process.exit(0);
+            });
+        }
+    );
 }
