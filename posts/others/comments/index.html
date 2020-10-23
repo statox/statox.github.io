@@ -56,6 +56,10 @@
 <li>Make the script parsing all the published posts, listing the posts without an associated issue and creating the issues;</li>
 <li>Change the posts source code to inject the comments.</li>
 </ul>
+<h3>A quick update</h3>
+<p><em>November 2020 -</em> When I originally wrote the script I didn't want to think too much about the authentication to Github API and chose to go the simple way using a login/password basic auth header. This worked well until Github decided to deprecate this authentication mode.</p>
+<p>So I replaced the calls made to Github API via axios by the <a href="https://github.com/octokit/rest.js" target="_blank" rel="noopener noreferrer">octokit</a> library. It wraps the calls to the API and it handles the authentication really simply and replacing the axios calls were only a matter of minutes <em>(I take that as a sign that my script was decently architectured 😎)</em>.</p>
+<p>The complete version of the script is still <a href="https://github.com/statox/blog/blob/061b79001fda91c7c8b4bb72147247a4e24eff11/tools/createIssues.js" target="_blank" rel="noopener noreferrer">on Github</a>.</p>
 <h3>Configuring travis-ci</h3>
 <p>Running a script at build time with travis-ci is fairly straight forward. I added a new step in the <code>script</code> job looking like this:</p>
 <pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">script</span><span class="token punctuation">:</span><br>  <span class="token punctuation">-</span> npm run create<span class="token punctuation">-</span>issues <span class="token punctuation">-</span><span class="token punctuation">-</span> $BASIC_AUTH_HEADER</code></pre>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Algorithmically guided breathing</title>
+    <meta name="description" content="A personal blog where I write about my side projects">
+    <meta name="keywords" content="statox blog">
+    <meta property="og:title" content="The stuff I do">
+    <meta property="og:url" content="https://www.statox.fr">
+    <meta property="og:description" content="A personal blog where I write about my side projects">
+    <meta property="og:type" content="website">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-fonts@1.1.1/fonts/inter.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.20.0/themes/prism-tomorrow.css">
+
+    
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/material.css">
+    <link rel="stylesheet" href="/css/minesweeper.css">
+    <link rel="stylesheet" href="/css/boids.css">
+
+</head>
+<body>
+    <header>
+        <h1>The stuff I do</h1>
+        <nav>
+            <a href="/">Home</a> /
+            <a href="/notes/">Notes</a> /
+            <a href="/about/">About</a> /
+            <a href="/social/">Social</a> /
+            <a href="/feed.xml">RSS</a>
+        </nav>
+    </header>
+
+    <div class="content-container">
+        
+<h2>Algorithmically guided breathing</h2>
+<p><a href="/">← Posts</a></p>
+
+<p>I am not really knowledgeable about yoga, mediation and all this kind of well being topics, but I recently realized that following breathing exercises is actually a great way to quickly reduce my stress level. What I am talking about is simply taking a few minutes to focus on the way you breath and force yourself to breath deeply and regularly.</p>
+<p>Also <a href="https://breathe.ersjournals.com/content/13/4/298" target="_blank" rel="noopener noreferrer">some people who seem very serious</a> say that it's acutally good for your health.</p>
+<p>The internet being full of wonders, I also had seen several gifs like the following one and really wanted to give a try at creating perfectly looped animations.</p>
+<p><img src="https://media.giphy.com/media/krP2NRkLqnKEg/giphy.gif" alt="Animation of shapes to guide your breathing"></p>
+<p>So being a developer and having a bit of free time, I had found my new side project! I decided to create a webpage which would show some beautiful looped animations and would be useful to practice deep breathing.</p>
+<p>Before reading what follow you should have a look at the result, I looks kinda good actually: <a href="https://breath.statox.fr" target="_blank" rel="noopener noreferrer">https://breath.statox.fr</a></p>
+<p><em>Note that the application is much more fluid on Chrome than on Firefox. This is because of Firefox's default value for its setting <code>privacy.resistFingerprinting</code> which messes up with the canvas to limit fingerprinting. Nothing much I can do about that but keep using firefox, the net neutrality needs it</em></p>
+<h3>Prototyping time!</h3>
+<p>The first step was to create a <a href="https://codepen.io/statox/pen/abNVYZZ" target="_blank" rel="noopener noreferrer">codepen</a> loading my favorite graphic library <a href="https://p5js.org/" target="_blank" rel="noopener noreferrer">p5.js</a> and to start experimenting.</p>
+<p>That resulted in some pretty rough animations and a not very well organized code, but at least it allowed me to validate what are the two main components I would need to implement in my project:</p>
+<ul>
+<li>Some kind of state processing to handle the transitions between the &quot;breath in&quot; and &quot;breath out&quot; phases (as well as two additional &quot;pause&quot; phases, which I find more comfortable to add);</li>
+<li>A &quot;pluggable architecture&quot; where I can write independent functions for different animations and only have to plug them in the existing canvas.</li>
+</ul>
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="js,result" data-user="statox" data-slug-hash="abNVYZZ" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="p5 - breathing">
+  <span>See the Pen <a href="https://codepen.io/statox/pen/abNVYZZ">
+  p5 - breathing</a> by Adrien Fabre (<a href="https://codepen.io/statox">@statox</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<h3>Making it real</h3>
+<p>Once I had a working proof of concept in codepen I created a <a href="https://github.com/statox/breath" target="_blank" rel="noopener noreferrer">more structured project</a> on Github which would also allow me to host the application via the Github Pages feature.</p>
+<h4>Managing transitions</h4>
+<p>The first module I needed to implement was my <code>StateComputer</code> which is used to keep track of where the program is in the animation.</p>
+<p>To do so it has an array of state representing the different steps and how long they should last:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex<span class="token punctuation">;</span> <span class="token comment">// keep track of the current state</span><br><span class="token keyword">this</span><span class="token punctuation">.</span>states <span class="token operator">=</span> <span class="token punctuation">[</span><br>    <span class="token comment">// durations are in milliseconds</span><br>    <span class="token punctuation">{</span><br>        action<span class="token operator">:</span> <span class="token string">'inhale'</span><span class="token punctuation">,</span><br>        text<span class="token operator">:</span> <span class="token string">'Breath in'</span><span class="token punctuation">,</span><br>        duration<span class="token operator">:</span> <span class="token number">4000</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token punctuation">{</span><br>        action<span class="token operator">:</span> <span class="token string">'inhale pause'</span><span class="token punctuation">,</span><br>        text<span class="token operator">:</span> <span class="token string">'Breath in'</span><span class="token punctuation">,</span><br>        duration<span class="token operator">:</span> <span class="token number">500</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token punctuation">{</span><br>        action<span class="token operator">:</span> <span class="token string">'exhale'</span><span class="token punctuation">,</span><br>        text<span class="token operator">:</span> <span class="token string">'Breath out'</span><span class="token punctuation">,</span><br>        duration<span class="token operator">:</span> <span class="token number">6000</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token punctuation">{</span><br>        action<span class="token operator">:</span> <span class="token string">'exhale pause'</span><span class="token punctuation">,</span><br>        text<span class="token operator">:</span> <span class="token string">'Breath out'</span><span class="token punctuation">,</span><br>        duration<span class="token operator">:</span> <span class="token number">200</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+<p>A function is also called at the beginning of the session and use a timeout to update the state for each transition:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">updateState</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token keyword">this</span><span class="token punctuation">.</span>states<span class="token punctuation">.</span>length <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>lastMark <span class="token operator">=</span> <span class="token function">millis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">const</span> timeout <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>states<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex<span class="token punctuation">]</span><span class="token punctuation">.</span>duration<span class="token punctuation">;</span><br><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>playing<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">this</span><span class="token punctuation">.</span>currentInterval <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>updateState<span class="token punctuation">,</span> timeout<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token comment">// Stop the animations once the time of the session is elapsed</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>remainingMs <span class="token operator">&lt;</span> <span class="token number">1000</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>states<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">this</span><span class="token punctuation">.</span>playing <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>And finally a function call for each frame indicate where we are in percentage of the current step:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getCurrentPercentage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>playing<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">const</span> currentlyElapsed <span class="token operator">=</span> <span class="token function">millis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>lastMark<span class="token punctuation">;</span><br>    <span class="token keyword">const</span> currentDuration <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>states<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex<span class="token punctuation">]</span><span class="token operator">?.</span>duration<span class="token punctuation">;</span><br><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">const</span> r <span class="token operator">=</span> <span class="token function">map</span><span class="token punctuation">(</span>currentlyElapsed<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> currentDuration<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">return</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token number">100</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex <span class="token operator">===</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">const</span> r <span class="token operator">=</span> <span class="token function">map</span><span class="token punctuation">(</span>currentlyElapsed<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> currentDuration<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">return</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentStateIndex <span class="token operator">===</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Now that we are able to get the percentage of the step we can have some fun and start writing our animation functions which will draw shapes progressively.</p>
+<h4>Making animations</h4>
+<p>First in our <code>sketch.js</code> file we can define the <code>setup()</code> and <code>draw()</code> function used by p5 respectively to initialize the application and then to refresh the canvas at each frame.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// Create the canvas and put it in its div</span><br>    <span class="token keyword">const</span> myCanvas <span class="token operator">=</span> <span class="token function">createCanvas</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    myCanvas<span class="token punctuation">.</span><span class="token function">parent</span><span class="token punctuation">(</span><span class="token string">'canvasDiv'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    stateComputer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StateComputer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    animations <span class="token operator">=</span> <span class="token punctuation">[</span><br>        <span class="token keyword">new</span> <span class="token class-name">AnimationClass1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>        <span class="token keyword">new</span> <span class="token class-name">AnimationClass2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>        <span class="token operator">...</span><br>    <span class="token punctuation">]</span><span class="token punctuation">;</span><br>    animationsIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><br>    animation <span class="token operator">=</span> animations<span class="token punctuation">[</span>animationsIndex<span class="token punctuation">]</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">function</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">const</span> <span class="token punctuation">{</span>percentage<span class="token punctuation">}</span> <span class="token operator">=</span> stateComputer<span class="token punctuation">.</span><span class="token function">getUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    <span class="token function">background</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    animation<span class="token punctuation">.</span><span class="token function">draw</span><span class="token punctuation">(</span>percentage<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>With this structure we can simply add more classes to our <code>animations</code> array and as long as the class has a <code>draw()</code> method accepting a percentage as a parameter it will be shown.</p>
+<p>(Some omitted code handles the incrementation of <code>animationsIndex</code> to change the currently displayed animation.)</p>
+<p>One such class is shown here:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">SimpleCircleAlpha</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>minR <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>maxR <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">draw</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">percentage</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>        <span class="token keyword">this</span><span class="token punctuation">.</span>maxR <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.8</span><span class="token punctuation">;</span><br>        <span class="token keyword">this</span><span class="token punctuation">.</span>minR <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.3</span><span class="token punctuation">;</span><br>        <span class="token keyword">const</span> alpha <span class="token operator">=</span> <span class="token function">map</span><span class="token punctuation">(</span>percentage<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">,</span> <span class="token number">0.7</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">const</span> paint <span class="token operator">=</span> <span class="token function">map</span><span class="token punctuation">(</span>percentage<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>        <span class="token function">background</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">fill</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">rgba(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>paint<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>paint<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>paint<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>alpha<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>        <span class="token keyword">const</span> r <span class="token operator">=</span> <span class="token function">map</span><span class="token punctuation">(</span>percentage<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>minR<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>maxR<span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token function">circle</span><span class="token punctuation">(</span>width <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">,</span> height <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Here we draw a circle whose radius and color change depending on the progress of the state.</p>
+<h3>Meditative coding</h3>
+<p>Once the skeleton of the app was made (i.e. adding some buttons, a UI based on Vue.js to choose the duration of the session, playing with a &quot;fullscreen&quot; button, some CSS media queries and all the other boring details I didn't include here) all that is left for me to do is to add more animations. And, weirdly, spending time just creating some pleasing visuals on the rythm of a slow breathing really has something close to meditation.</p>
+<p>So that was a fun and relaxing project and I really hope I will continue to take some time to regularly create new animations because so far that has been a very calming experience.</p>
+<p>Here is a (very crappy) gif of some of the visuals I created and the full application is available <a href="https://breath.statox.fr" target="_blank" rel="noopener noreferrer">on this page</a></p>
+<p><img src="./demo.gif" alt="spoiler"></p>
+
+
+<p><a href="/">← Posts</a></p>
+
+<hr>
+<comments>
+    <h3>Comments</h3>
+    <a class="add-comment" href="https://github.com/statox/blog-comments/issues/14#new_comment_field"  target="_blank" rel="noopener noreferrer">
+        <button>Comment on Github</button>
+    </a>
+    <br>
+</comments>
+
+<script type="text/javascript">
+
+
+function domReady(fn) {
+    document.addEventListener('DOMContentLoaded', fn);
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        fn();
+    }
+}
+
+async function getComments(url = '') {
+    const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: { Accept: 'application/vnd.github.v3.html+json' },
+    });
+    return response.json();
+}
+
+domReady(() => {
+    const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/14/comments';
+    const appendComments = function (comments) {
+        const commentSection = document.querySelector('comments');
+        if (!comments || !comments.forEach || comments.length === 0) {
+            commentSection.insertAdjacentHTML('beforeend', '<p>No comments yet.</p>');
+            return;
+        }
+        comments.forEach(function (comment) {
+            commentSection.insertAdjacentHTML(
+                'beforeend',
+                '<div class="comment">' +
+                '• <a href="' + comment.user.html_url + '" target="_blank">' + comment.user.login + '</a>' +
+                ' on' +
+                ' <a href="' + comment.html_url + '" target="_blank">' + new Date(comment.created_at).toUTCString() + '</a>' +
+                comment.body_html +
+                '</div>',
+            );
+        });
+    };
+    getComments(apiUrl).then(appendComments);
+});
+</script>
+
+    </div>
+
+    <script data-goatcounter="https://statoxblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script async defer src="https://api.newcss.net/latest.js"></script>
+    <noscript><img src="https://api.newcss.net/noscript.gif" alt=""></noscript>
+</body>
+</html>
