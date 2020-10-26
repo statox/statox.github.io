@@ -42,6 +42,24 @@
         <div>
         <details>
             <summary>
+                <a class="note-link" href=/notes/bash-arrays/>Bash arrays</a>
+                <span class="note-tags">[bash][array]</span>
+            </summary>
+            
+            <h3>Initiate an array</h3>
+<pre class="language-bash"><code class="language-bash"><span class="token assign-left variable">myArray</span><span class="token operator">=</span><span class="token punctuation">(</span> element_1 element_2 element_n <span class="token punctuation">)</span><br><span class="token assign-left variable">myArray2</span><span class="token operator">=</span><span class="token punctuation">(</span><br>    element_1<br>    element_2<br>    element_n<br><span class="token punctuation">)</span></code></pre>
+<h3>Access item by index</h3>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token variable">${myArray<span class="token punctuation">[</span>2<span class="token punctuation">]</span>}</span></code></pre>
+<h3>Iterate through array</h3>
+<p>To iterate over the elements:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">element</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">${array<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>"</span><br><span class="token keyword">do</span><br>    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$element</span>"</span><br><span class="token keyword">done</span></code></pre>
+<p>To get both the index and the value:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">index</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">${<span class="token operator">!</span>array<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>"</span><br><span class="token keyword">do</span><br>    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$index</span> <span class="token variable">${array<span class="token punctuation">[</span>index<span class="token punctuation">]</span>}</span>"</span><br><span class="token keyword">done</span></code></pre>
+
+        </details>
+    </div><div>
+        <details>
+            <summary>
                 <a class="note-link" href=/notes/zsh-completion-function/>Creating zsh completion function</a>
                 <span class="note-tags">[shell][zsh]</span>
             </summary>
