@@ -16,17 +16,16 @@
 /*
  * Justify all texts excepted the 404 page
  * cf. https://stackoverflow.com/a/35734554/4194289
+ * (Temporarily (?) removed trying to evaluate what's best
  */
-*:not(.not-found) {
-    text-align: justify;
-}
+/*
+ * *:not(.not-found) {
+ *     text-align: justify;
+ * }
+*/
 
 .post-date {
     font-family: var(--nc-font-mono);
-}
-
-.add-comment {
-    float: right;
 }
 
 .note-tags {
