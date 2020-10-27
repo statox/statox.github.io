@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/css/material.css">
     <link rel="stylesheet" href="/css/minesweeper.css">
     <link rel="stylesheet" href="/css/boids.css">
+    <link rel="stylesheet" href="/css/comments.css">
 
 </head>
 <body>
@@ -97,62 +98,15 @@
 <hr>
 <comments>
     <h3>Comments</h3>
-    <a class="add-comment" href="https://github.com/statox/blog-comments/issues/10#new_comment_field"  target="_blank" rel="noopener noreferrer">
+    <a class="add-comment-btn" href="https://github.com/statox/blog-comments/issues/10#new_comment_field"  target="_blank" rel="noopener noreferrer">
         <button>Comment on Github</button>
     </a>
     <br>
 </comments>
 
+<script type="text/javascript" src="/scripts/githubComments.js"></script>
 <script type="text/javascript">
-
-
-function domReady(fn) {
-    document.addEventListener('DOMContentLoaded', fn);
-    if (document.readyState === 'interactive' || document.readyState === 'complete') {
-        fn();
-    }
-}
-
-async function getComments(url = '') {
-    const response = await fetch(url, {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: { Accept: 'application/vnd.github.v3.html+json' },
-    });
-    return response.json();
-}
-
-function formatCommentDate(i) {
-    const d = i.getDate();
-    const M = i.getUTCMonth()+1;
-    const Y = i.getFullYear();
-
-    return `${d}/${M}/${Y}`;
-}
-
-domReady(() => {
-    const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/10/comments';
-    const appendComments = function (comments) {
-        const commentSection = document.querySelector('comments');
-        if (!comments || !comments.forEach || comments.length === 0) {
-            commentSection.insertAdjacentHTML('beforeend', '<p>No comments yet.</p>');
-            return;
-        }
-        comments.forEach(function (comment) {
-            commentSection.insertAdjacentHTML(
-                'beforeend',
-                '<div class="comment">' +
-                '• <a href="' + comment.user.html_url + '" target="_blank">' + comment.user.login + '</a>' +
-                ' on' +
-                ' <a href="' + comment.html_url + '" target="_blank">' + formatCommentDate(new Date(comment.created_at)) + '</a>' +
-                comment.body_html +
-                '</div>',
-            );
-        });
-    };
-    getComments(apiUrl).then(appendComments);
-});
+    setupCommentsInPage(10);
 </script>
 
     </div>
