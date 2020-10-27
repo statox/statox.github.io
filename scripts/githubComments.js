@@ -39,12 +39,10 @@ function formatReactions(reactions) {
     }
 
     const items = countReactions(reactions);
-    let r = '';
-    Object.keys(items).forEach(k => {
+    return Object.keys(items).reduce((r, k) => {
         const s = reactionEmojis[k] || `:${k}:`;
-        r += '<span class="comment-reaction-item">' + s + '&nbsp' + items[k] + '</span>';
-    });
-    return r;
+        return r + '<span class="comment-reaction-item">' + s + '&nbsp' + items[k] + '</span>';
+    }, '');
 }
 
 function appendComments(comments) {
