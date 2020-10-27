@@ -120,6 +120,14 @@ async function getComments(url = '') {
     return response.json();
 }
 
+function formatCommentDate(i) {
+    const d = i.getDate();
+    const M = i.getUTCMonth()+1;
+    const Y = i.getFullYear();
+
+    return `${d}/${M}/${Y}`;
+}
+
 domReady(() => {
     const apiUrl = 'https://api.github.com/repos/statox/blog-comments/issues/14/comments';
     const appendComments = function (comments) {
@@ -134,7 +142,7 @@ domReady(() => {
                 '<div class="comment">' +
                 '• <a href="' + comment.user.html_url + '" target="_blank">' + comment.user.login + '</a>' +
                 ' on' +
-                ' <a href="' + comment.html_url + '" target="_blank">' + new Date(comment.created_at).toUTCString() + '</a>' +
+                ' <a href="' + comment.html_url + '" target="_blank">' + formatCommentDate(new Date(comment.created_at)) + '</a>' +
                 comment.body_html +
                 '</div>',
             );
