@@ -1,6 +1,6 @@
 /*
  * Script to inject comments based on github issues
- * Shamelessly inspired from https://25.wf/posts/2020-06-21-comments.html
+ * Largely inspired from https://25.wf/posts/2020-06-21-comments.html
  */
 
 const reactionEmojis = {
@@ -42,7 +42,7 @@ function formatReactions(reactions) {
     let r = '';
     Object.keys(items).forEach(k => {
         const s = reactionEmojis[k] || `:${k}:`;
-        r += '<span class="comment-reaction-item">' + s + ' ' + items[k] + '</span>';
+        r += '<span class="comment-reaction-item">' + s + '&nbsp' + items[k] + '</span>';
     });
     return r;
 }
