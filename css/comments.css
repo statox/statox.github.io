@@ -19,17 +19,18 @@
 }
 
 .comment-content {
-    padding-right: 10px;
-    padding-left: 10px;
     border: 2px solid var(--comment-bg);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
+.comment-text {
+    padding: 10px;
+}
+
 .comment-reactions {
     border-top: 2px solid var(--comment-bg);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    padding: 5px;
 }
 
 .comment-reaction-item {

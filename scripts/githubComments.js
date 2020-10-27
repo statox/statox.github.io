@@ -64,8 +64,10 @@ function appendComments(comments) {
         result += '<div class="comment">';
         result += '    <div class="comment-header">' + commentHeader + '</div>';
         result += '    <div class="comment-content">';
-        result += comment.body_html;
-        result += '        <div class="comment-reactions">' + formatReactions(comment.reactions) + '</div>';
+        result += '        <div class="comment-text">' + comment.body_html + '</div>';
+        if (comment.reactions.length > 0) {
+            result += '        <div class="comment-reactions">' + formatReactions(comment.reactions) + '</div>';
+        }
         result += '    </div>';
         result += '</div>';
 
