@@ -8,7 +8,7 @@ commentIssueId: 10
 
 Recently, a former coworker of mine [published his solution](https://25.wf/posts/2020-06-21-comments.html) to implement comments on his personal website via Github issues. I was looking for a solution to add comments on this site and decided to ~~shamelessly copy~~ get inspiration from his post.
 
-So I reformatted a bit his script, added it to my posts and realized that this solution implied to create a new issue on Github each time I created a new post. As I already use [travis-ci](https://travis-ci.org/github/statox/blog) to build this website I thought it would be a nice addition to create a script to automatically create these issues for me.
+So I reformatted a bit his script, added it to my posts and realized that this solution implied to create a new issue on Github each time I created a new post. As I already use [travis-ci](https://travis-ci.com/github/statox/blog) to build this website I thought it would be a nice addition to create a script to automatically create these issues for me.
 
 The full source of the script is included in the site repository [here](https://github.com/statox/blog/blob/master/tools/createIssues.js), in this article I will show how I configured everything.
 

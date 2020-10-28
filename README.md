@@ -1,4 +1,4 @@
-# Blog [![Build Status](https://travis-ci.org/statox/blog.svg?branch=master)](https://travis-ci.org/statox/blog)
+# Blog [![Build Status](https://travis-ci.com/statox/blog.svg?branch=master)](https://travis-ci.org/statox/blog)
 
 I'm trying to do a minimal blog hoping that having it very simple will motivate me to put new stuff regularly.
 For now the rest of this readme will probably be my cheatsheet/todo list.
@@ -24,7 +24,7 @@ Will build the site in `docs/` which is served by github pages. (This is actuall
 
 ## Publishing the site
 
-Github pages serves the `gh-pages` branch. The deployment is automated with travis-ci. (The job is [here](https://travis-ci.org/github/statox/blog))
+Github pages serves the `gh-pages` branch. The deployment is automated with travis-ci. (The job is [here](https://travis-ci.com/github/statox/blog))
 
 In `.travis.yml` I use the github pages provider which does the following:
 
