@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Asteroids... with real pew pews</title>
+    <meta name="description" content="A personal blog where I write about my side projects">
+    <meta name="keywords" content="statox blog">
+    <meta property="og:title" content="The stuff I do">
+    <meta property="og:url" content="https://www.statox.fr">
+    <meta property="og:description" content="A personal blog where I write about my side projects">
+    <meta property="og:type" content="website">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-fonts@1.1.1/fonts/inter.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.20.0/themes/prism-tomorrow.css">
+
+    
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/material.css">
+    <link rel="stylesheet" href="/css/minesweeper.css">
+    <link rel="stylesheet" href="/css/boids.css">
+    <link rel="stylesheet" href="/css/comments.css">
+
+</head>
+<body>
+    <header>
+        <h1>The stuff I do</h1>
+        <nav>
+            <a href="/">Home</a> /
+            <a href="/notes/">Notes</a> /
+            <a href="/about/">About</a> /
+            <a href="/social/">Social</a> /
+            <a href="/feed.xml">RSS</a>
+        </nav>
+    </header>
+
+    <div class="content-container">
+        
+<h2>Asteroids... with real pew pews</h2>
+<p><a href="/">← Posts</a></p>
+
+<p>Asteroids! The game is as old as the world (well almost, it was <a href="https://en.wikipedia.org/wiki/Asteroids_(video_game)" target="_blank" rel="noopener noreferrer">released in 1979</a>) and is an iconic figure of the golden era of the video game.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Asteroi1.png" alt="Original asteroids screenshot"></p>
+<p>Over a lazy Sunday I decided to implement my own version because why not? And, to make it more fun, my girlfriend gave me the idea to make the sound effects myself, idea that I really liked!</p>
+<p>So after a few hours of code and some really crappy recording on my phone <a href="https://asteroides.statox.fr/?utm_campaign=blog" target="_blank" rel="noopener noreferrer">here is what I came up with</a>.</p>
+<p><img src="./asteroids.png" alt="My own asteroids version screenshot"></p>
+<p>No technological innovation or mind blowing creativity here but the result still amuses me more than I would be willing to admit. I feel like I am re-discovering the early 2000's flash games and that's fun!</p>
+<p>To make it a complete game I still implemented some bonuses, like the autopews and the triple pew which allow respectively to continuously shoot at the asteroids and to shoot in 3 directions, as well as some maluses like slowing down the spaceship rotation speed or locking its engine on to force the player to get good at slaloming between the rocks at full speed. I also used my own noise function (actually a wrapper around p5js's <code>noise()</code> function) to generate random rocks which <em>kinda</em> look like asteroids.</p>
+<p>But let's be real despite all these amazing features the main interest of the game is hearing my dumb &quot;pew pew&quot; and &quot;boum&quot; for five minutes before it gets annoying.</p>
+<p>The game is playable online <a href="https://asteroides.statox.fr/?utm_campaign=blog" target="_blank" rel="noopener noreferrer">on this page</a> but it doesn't support mobile browsers (since it's played with the keyboard) and runs terribly slowly in some version of Firefox (because of a privacy setting which doesn't play well with p5js).</p>
+
+
+<p><a href="/">← Posts</a></p>
+
+<hr>
+<comments>
+    <h3>Comments</h3>
+    <a class="add-comment-btn" href="https://github.com/statox/blog-comments/issues/15#new_comment_field"  target="_blank" rel="noopener noreferrer">
+        <button>Comment on Github</button>
+    </a>
+    <br>
+</comments>
+
+<script type="text/javascript" src="/scripts/githubComments.js"></script>
+<script type="text/javascript">
+    setupCommentsInPage(15);
+</script>
+
+    </div>
+
+    <script data-goatcounter="https://statoxblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script async defer src="https://api.newcss.net/latest.js"></script>
+    <noscript><img src="https://api.newcss.net/noscript.gif" alt=""></noscript>
+</body>
+</html>
