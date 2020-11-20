@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2020-10-25T00:00:00+00:00</updated>
+  <updated>2020-11-09T00:00:00+00:00</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -825,6 +825,82 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;p&gt;To make it a complete game I still implemented some bonuses, like the autopews and the triple pew which allow respectively to continuously shoot at the asteroids and to shoot in 3 directions, as well as some maluses like slowing down the spaceship rotation speed or locking its engine on to force the player to get good at slaloming between the rocks at full speed. I also used my own noise function (actually a wrapper around p5js&#39;s &lt;code&gt;noise()&lt;/code&gt; function) to generate random rocks which &lt;em&gt;kinda&lt;/em&gt; look like asteroids.&lt;/p&gt;
 &lt;p&gt;But let&#39;s be real despite all these amazing features the main interest of the game is hearing my dumb &amp;quot;pew pew&amp;quot; and &amp;quot;boum&amp;quot; for five minutes before it gets annoying.&lt;/p&gt;
 &lt;p&gt;The game is playable online &lt;a href=&quot;https://asteroides.statox.fr/?utm_campaign=blog&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on this page&lt;/a&gt; but it doesn&#39;t support mobile browsers (since it&#39;s played with the keyboard) and runs terribly slowly in some version of Firefox (because of a privacy setting which doesn&#39;t play well with p5js).&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Ants colony algorithm visualization</title>
+    <link href="https://www.statox.fr/posts/p5/ants/"/>
+    <updated>2020-11-09T00:00:00+00:00</updated>
+    <id>https://www.statox.fr/posts/p5/ants/</id>
+    <content type="html">&lt;p&gt;A few months ago I read about the &lt;a href=&quot;https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Ant colony optimization&lt;br&gt;
+algorithms&lt;/a&gt; and since then I really wanted to give a&lt;br&gt;
+shot at doing my own implementation. This algorithm is cool because this is a different kind of emerging behavior which&lt;br&gt;
+&lt;a href=&quot;https://www.statox.fr/posts/p5/boids/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;I already experimented with&lt;/a&gt; and find fascinating.&lt;/p&gt;
+&lt;p&gt;So I came up with &lt;a href=&quot;https://statox.github.io/ants-colony/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;this web page&lt;/a&gt; which works reasonably well 🎉. However,&lt;br&gt;
+after working on this project for a few days I realized that I messed up my architecture and that I will not be able to&lt;br&gt;
+extend the project as I want to without refactoring heavily the code. And since I have other shiny other project ideas&lt;br&gt;
+I want to play with, I&#39;ll just add this project to my big collection of unfinished side projects and maybe get back at&lt;br&gt;
+it when I have time.&lt;/p&gt;
+&lt;p&gt;This kind of posts is probably not very useful nor interesting for anyone other than me, but I see it as some kind of&lt;br&gt;
+journal that I&#39;ll probably be happy to look at one day.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/ants/ants.gif&quot; alt=&quot;Visualization of several food sources&quot;&gt;&lt;/p&gt;
+&lt;center&gt;
+    &lt;i&gt;This visualization shows the green pheromone trail being updated for a few different food sources. The ants are
+    not shown.&lt;/i&gt;
+&lt;/center&gt;
+&lt;h3&gt;Ants behavior&lt;/h3&gt;
+&lt;p&gt;The idea here is to have a colony of autonomous ants all starting at the same point -the anthill- and moving on a grid,&lt;br&gt;
+looking for food.&lt;br&gt;
+Each ant can walk on the grid with the only constraint that they can&#39;t go twice on the same cell in one trip.&lt;/p&gt;
+&lt;p&gt;During its trip an ant can either:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find a spot with some food and stop moving;&lt;/li&gt;
+&lt;li&gt;Get stuck because it surrounded itself with cells it already walked on;&lt;/li&gt;
+&lt;li&gt;Never get stuck and not find food, in this case it will walk until its time to live (the preset duration of the trip)&lt;br&gt;
+is reached.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the case where an ant finds some food, it will go back to the anthill and lay down some amount of pheromones on all&lt;br&gt;
+the cells it visited during this trip. The amount of pheromones an ant lays down is inversely proportional to the length&lt;br&gt;
+of its path, meaning that the ant finding the shortest path to food will leave the strongest trail.&lt;/p&gt;
+&lt;p&gt;When it walks an ant will follow the pheromones: Each surrounding case is evaluated and attributed a probability to be&lt;br&gt;
+chosen depending on its amount of pheromones and whether or not it contains food. The ant will then &amp;quot;throw a dice&amp;quot; and&lt;br&gt;
+choose a cell following the probabilities and the result of the dice.&lt;/p&gt;
+&lt;p&gt;For the first few iterations the ants just walk randomly on the grid until one finds some food and start creating a&lt;br&gt;
+trail. Then for the next iterations the ants will generally follow this trails more or less closely, allowing some ants&lt;br&gt;
+to find a better solution and gradually optimizing their way. That&#39;s what we can observe  in the following gif.&lt;/p&gt;
+&lt;p&gt;The cells outlined in a greyish color indicate the cells where some ants walked but didn&#39;t found any food, on the first&lt;br&gt;
+iterations there are a lot of these cells and they get fewer once ants find the food source. In this example the&lt;br&gt;
+convergence could happen sooner if the time to live of the ants and their attraction to pheromones were tweaked.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/ants/ants_walk.gif&quot; alt=&quot;Visualization of ants walking&quot;&gt; &lt;em&gt;This visualization shows the ants (blue dots) refining the pheromone&lt;br&gt;
+trail for one food source&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Improvement points&lt;/h3&gt;
+&lt;p&gt;There are a few things I want to change in the app:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Obstacles: For now I am able to say that a cell is an obstacle, and I created a function to create some random&lt;br&gt;
+obstacles on the grid. That works quite well for now, but I would like to improve that to create actual mazes &lt;a href=&quot;https://www.statox.fr/posts/p5/p5-maze/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;as I&lt;br&gt;
+did in another project&lt;/a&gt;. This could be done but that would mean changing how&lt;br&gt;
+I handle the grid and the ants moving.&lt;/li&gt;
+&lt;li&gt;Perception radius: The main issue with the current state of the project is that ants have a defined perception radius&lt;br&gt;
+representing the cells they can see around them. However due to the way I implemented my neighbors search and my&lt;br&gt;
+obstacles this doesn&#39;t work well with radius &amp;gt; 2.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Maybe a V2&lt;/h3&gt;
+&lt;p&gt;I&#39;ll see if I take time to create a v2 of this project. If I do I&#39;ll think from the beginning of how to implement the&lt;br&gt;
+ants &amp;quot;vision&amp;quot; (how they detect obstacles and where they can move) which should allow me to have a more efficient&lt;br&gt;
+neighbor selection algorithm.&lt;/p&gt;
+&lt;p&gt;I would also like to add some feature which shouldn&#39;t be too hard to implement:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatic TTL: The ants could increase their TTL automatically if they don&#39;t find anything for a few iterations&lt;br&gt;
+allowing a more efficient exploration of the map.&lt;/li&gt;
+&lt;li&gt;Ant selection: Instead of having all the ants which find food to leave a trail, I could use some min-max algorithm or&lt;br&gt;
+another way to select the best ant to have only one trail.&lt;/li&gt;
+&lt;li&gt;Bees battle: When ants leave a trail when they go back to the anthill, bees remember their position and communicate it&lt;br&gt;
+to the other insects. This would create a different approach to the path finding algorithm and it would be interesting&lt;br&gt;
+to see both types of insect running for the same food source and battling to get more than the others.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the meantime I still have fun looking at my little insects finding their way in this small virtual and meaningless&lt;br&gt;
+world 🐜&lt;/p&gt;
 </content>
   </entry>
 </feed>
