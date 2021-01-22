@@ -20,6 +20,11 @@ As the name of the project suggest I was aiming for an IA mastering the Triomino
 
 When I started thinking about this project I had in mind a [great article on redblobgame](http://www-cs-students.stanford.edu/~amitp/game-programming/grids/) about different kind of grids and how to implement them I had read several months ago and thought it would be useful. But being impatient to start coding I went straight in and didn't read it again, probably making some mistakes which I could have avoided.
 
+![Screenshot of my Triomino implementation](./triomino.png)
+<center>
+    <i>Another obvious proof of my UX/UI designer genius</i>
+</center>
+
 #### Grid system
 
 I ended up with a two dimensional array containing consecutive `Cell` objects. These objects have a `pointsDown` property set at the creation of the grid and used to determine how the tile is displayed (pointing up or down). When a tile is placed on it, the object also have a reference to a `Triomino` object holding the actual values of the tile and which is responsible for checking which other triominos are allowed to connect or not. With a bit of math (and a lot of poking around to find the correct formula) I was able to show triangles adjacent one to another pointing alternatively up and down.

@@ -10,7 +10,7 @@ commentIssueId: 18
 
 After not finishing my [triomino project](../winter-holiday-triomino/) I started working on an implementation of the [Reversi game](https://en.wikipedia.org/wiki/Reversi). According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my _amazing_ implementation of his game).
 
-![Screenshot of my Reversi implementation](../reversi.jpg)
+![Screenshot of my Reversi implementation](./reversi.png)
 <center>
     <i>My patent infrigement material</i>
 </center>
@@ -25,7 +25,7 @@ Once all the tooling is in place to spot the playable cells on the grid, impleme
 
 With these AI implemented I spent a bit of time to add a "hint" button which uses the AI to play for the player and an "autoplay" button which makes the AI play the whole game for the player. Watching my programmed piece of silicon playing against itself amuse me to no end and I can stay hours watching it tirelessly placing disks on the board (Ok, not hours but at least five good minutes).
 
-#### A refreshed on MinMax algorithm
+#### A refresher on MinMax algorithm
 
 After creating my basic AIs I went one step further and implemented a new one with the [minmax algorithm](https://en.wikipedia.org/wiki/Minimax). I had already implemented one on a student project for a tic-tac-toe game and I wanted to do that on something more complex ever since, that was a great opportunity.
 
