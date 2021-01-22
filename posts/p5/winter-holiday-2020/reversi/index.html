@@ -46,7 +46,7 @@
 
 <h3>Board games are fun!</h3>
 <p>After not finishing my <a href="../winter-holiday-triomino/">triomino project</a> I started working on an implementation of the <a href="https://en.wikipedia.org/wiki/Reversi" target="_blank" rel="noopener noreferrer">Reversi game</a>. According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my <em>amazing</em> implementation of his game).</p>
-<p><img src="../reversi.jpg" alt="Screenshot of my Reversi implementation"></p>
+<p><img src="./reversi.png" alt="Screenshot of my Reversi implementation"></p>
 <center>
     <i>My patent infrigement material</i>
 </center>
@@ -55,7 +55,7 @@
 <p>The rules being pretty simple and the grid a traditional square, implementing the game wasn't the most interesting part of this project. Implementing the AI however was pretty fun. At first I went with the most basic method possible: The Great Random!</p>
 <p>Once all the tooling is in place to spot the playable cells on the grid, implementing an AI which chose one spot randomly is pretty straight forward. It then quickly evolved to a slightly less dumb AI which choose the spot where it will turn the most possible disks.</p>
 <p>With these AI implemented I spent a bit of time to add a &quot;hint&quot; button which uses the AI to play for the player and an &quot;autoplay&quot; button which makes the AI play the whole game for the player. Watching my programmed piece of silicon playing against itself amuse me to no end and I can stay hours watching it tirelessly placing disks on the board (Ok, not hours but at least five good minutes).</p>
-<h4>A refreshed on MinMax algorithm</h4>
+<h4>A refresher on MinMax algorithm</h4>
 <p>After creating my basic AIs I went one step further and implemented a new one with the <a href="https://en.wikipedia.org/wiki/Minimax" target="_blank" rel="noopener noreferrer">minmax algorithm</a>. I had already implemented one on a student project for a tic-tac-toe game and I wanted to do that on something more complex ever since, that was a great opportunity.</p>
 <p>Although the algorithm itself isn't really groundbreaking I got to learn something pretty interesting during its implementation: I got pretty quickly a first working version but I quickly realized that my implementation had a memory leak, after a few turns the memory usage of the page would grow up and never go down. I spent two days debugging my code in a lot of different ways, trying to use the Chrome debugging tools to inspect memory snapshots.</p>
 <p>I quickly understood that my issue was that my <code>Board</code> objects were not garbage collected: To create the different nodes of the algorithm I copy the <code>Board</code> object holding the current state of the game, add a new disk, turn the other disks accordingly and iterate on these new boards. These <code>Board</code> object hold an array of <code>Cells</code> representing the different spots and the disks played on them. As my boards were not garbage collected I suspected that when I was done using them I didn't released the references to these cells and so I spent hours trying different things to make sure that all the child references were deleted.</p>
