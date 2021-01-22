@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2020-11-09T00:00:00+00:00</updated>
+  <updated>2021-01-21T00:00:00+00:00</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -901,6 +901,167 @@ to see both types of insect running for the same food source and battling to get
 &lt;/ul&gt;
 &lt;p&gt;In the meantime I still have fun looking at my little insects finding their way in this small virtual and meaningless&lt;br&gt;
 world 🐜&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Winter holidays unfinished projects (1/2) - Triomino</title>
+    <link href="https://www.statox.fr/posts/p5/winter-holiday-2020/triomino/"/>
+    <updated>2021-01-20T00:00:00+00:00</updated>
+    <id>https://www.statox.fr/posts/p5/winter-holiday-2020/triomino/</id>
+    <content type="html">&lt;h3&gt;Board games are fun!&lt;/h3&gt;
+&lt;p&gt;During the winter holidays I played some games of Triomino and Reversi, which I hadn&#39;t done in an eternity. This reminded me that the first programs I enjoyed coding were some board game and it gave me the motivation to get back on some side projects.&lt;/p&gt;
+&lt;p&gt;So once again I cloned my boilerplate git repo with an html page and the p5.js library imported and started coding.&lt;/p&gt;
+&lt;p&gt;Even though I didn&#39;t finished any of these projects they were still fun to work on and worth a short blogpost, for the posterity.&lt;/p&gt;
+&lt;h3&gt;Triomaster&lt;/h3&gt;
+&lt;p&gt;As the name of the project suggest I was aiming for an IA mastering the Triomino game... I ended up with an IA playing the Triomino game.&lt;/p&gt;
+&lt;p&gt;When I started thinking about this project I had in mind a &lt;a href=&quot;http://www-cs-students.stanford.edu/~amitp/game-programming/grids/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;great article on redblobgame&lt;/a&gt; about different kind of grids and how to implement them I had read several months ago and thought it would be useful. But being impatient to start coding I went straight in and didn&#39;t read it again, probably making some mistakes which I could have avoided.&lt;/p&gt;
+&lt;h4&gt;Grid system&lt;/h4&gt;
+&lt;p&gt;I ended up with a two dimensional array containing consecutive &lt;code&gt;Cell&lt;/code&gt; objects. These objects have a &lt;code&gt;pointsDown&lt;/code&gt; property set at the creation of the grid and used to determine how the tile is displayed (pointing up or down). When a tile is placed on it, the object also have a reference to a &lt;code&gt;Triomino&lt;/code&gt; object holding the actual values of the tile and which is responsible for checking which other triominos are allowed to connect or not. With a bit of math (and a lot of poking around to find the correct formula) I was able to show triangles adjacent one to another pointing alternatively up and down.&lt;/p&gt;
+&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;show&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;stroke&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;rgba(0, 0, 0, 0.1)&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;strokeWeight&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;noFill&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;// Show the user which cell is clicked&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;selected&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token function&quot;&gt;fill&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;rgba(50, 200, 50, 0.3)&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;// Move to the right position and rotate to point up&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;pos&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;x&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;pos&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;y&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;// If needed rotate again to point down and translate so that we are aligned with those pointing up&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;pointsDown&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token function&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;r &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;PI&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token function&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;PI&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;PI&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;// Draw the triangle shape&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;beginShape&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;vertex&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;r&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;vertex&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;r &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;PI&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;r &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;PI&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;vertex&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;r &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;PI&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;r &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;PI&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;endShape&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;CLOSE&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;triomino&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;triomino&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Things got messy when I finished displaying the triangles and started thinking about how to click on them (to select the triomino to play and where to place it). I didn&#39;t felt like doing the math to determine when the mouse is in a particular triangle, so I thought I would be smart and lazy using the &lt;a href=&quot;https://molleindustria.github.io/p5.play/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;p5play&lt;/a&gt; library. It provides the ability to create some sprites and to attach an event when the sprite is clicked, offloading the burden of calculating mouse-to-sprite collisions. I choose to go quick and dirty, adding a &lt;code&gt;Sprite&lt;/code&gt; object to each &lt;code&gt;Cell&lt;/code&gt; and &lt;code&gt;Triomino&lt;/code&gt; objects with nothing in the &lt;code&gt;draw()&lt;/code&gt; function of the &lt;code&gt;Sprite&lt;/code&gt; because I already had a nice &lt;code&gt;draw()&lt;/code&gt; function in the &lt;code&gt;Cell&lt;/code&gt;. Of course after several iterations when the project got more complex it just added more complexity and was probably not the smartest choice.&lt;/p&gt;
+&lt;p&gt;One of the main issue was to keep the &lt;code&gt;Sprite&lt;/code&gt; position synced with its parent object position (mainly because I handled the &lt;code&gt;Triomino&lt;/code&gt; moves terribly). After some tweaks it ended up working.&lt;/p&gt;
+&lt;h4&gt;AI&lt;/h4&gt;
+&lt;p&gt;At first I wanted to go with a clever AI which would use some kind of A* algorithm to find the best possible move to do.  However my first AI version was much more simple: Looking for all the possible moves and placing the triomino with the highest score.&lt;/p&gt;
+&lt;p&gt;To have a working AI I needed to implement the &lt;a href=&quot;https://www.pressmantoy.com/wp-content/uploads/2018/01/Tri-Ominos.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;complete set of scoring rules&lt;/a&gt;, but I only implemented the basic rule of &amp;quot;when the player places a tile her score is incremented by the sum of the digits on the tile&amp;quot; and the bonus points at the beginning of the game. I didn&#39;t implement bonuses when completing some shapes.  implemented the bonus points when a shape is completed&lt;/p&gt;
+&lt;p&gt;So given my incomplete set of rules I played a few game against my basic AI and I realized that it is still pretty good, actually as good as a human who would play the game for the first time without thinking of the strategy but never missing a possible spot.&lt;/p&gt;
+&lt;p&gt;After these few games I realized that Triomino quickly gets boring and that luck is a big factor anyway so I decided to switch to my next project.&lt;/p&gt;
+&lt;h4&gt;Online demo&lt;/h4&gt;
+&lt;p&gt;I&#39;m still happy with the result of this project: One can play a complete game against the computer, the scores are keept track of an a winner is declared before the game starts again.&lt;/p&gt;
+&lt;p&gt;There are still a tons of features which I would want to add, especially the ability to scroll over the board to avoid being blocked by its small dimension but the way I handled sprites makes it pretty hard to do and that would probably require a complete refactoring.&lt;/p&gt;
+&lt;p&gt;A demo is hosted on github pages and available &lt;a href=&quot;https://statox.github.io/triomaster/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;here&lt;/a&gt; and the code is &lt;a href=&quot;https://github.com/statox/triomaster&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on&lt;br&gt;
+Github&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Winter holidays unfinished projects (2/2) - Reversi</title>
+    <link href="https://www.statox.fr/posts/p5/winter-holiday-2020/reversi/"/>
+    <updated>2021-01-21T00:00:00+00:00</updated>
+    <id>https://www.statox.fr/posts/p5/winter-holiday-2020/reversi/</id>
+    <content type="html">&lt;h3&gt;Board games are fun!&lt;/h3&gt;
+&lt;p&gt;After not finishing my &lt;a href=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/winter-holiday-triomino/&quot;&gt;triomino project&lt;/a&gt; I started working on an implementation of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Reversi&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Reversi game&lt;/a&gt;. According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my &lt;em&gt;amazing&lt;/em&gt; implementation of his game).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/reversi.jpg&quot; alt=&quot;Screenshot of my Reversi implementation&quot;&gt;&lt;/p&gt;
+&lt;center&gt;
+    &lt;i&gt;My patent infrigement material&lt;/i&gt;
+&lt;/center&gt;
+&lt;p&gt;Despite not being finished I really loved doing this project because it was the first time I used typescript instead of javascript for a personal project. I am well used to typescript on the backend since it&#39;s the language I use daily in my job at Dashlane but I had never took the time to add the tooling to use it in my frontend side projects. This is now done and with no surprise it greatly helped me to get quick results.&lt;/p&gt;
+&lt;h4&gt;A new dumb AI&lt;/h4&gt;
+&lt;p&gt;The rules being pretty simple and the grid a traditional square, implementing the game wasn&#39;t the most interesting part of this project. Implementing the AI however was pretty fun. At first I went with the most basic method possible: The Great Random!&lt;/p&gt;
+&lt;p&gt;Once all the tooling is in place to spot the playable cells on the grid, implementing an AI which chose one spot randomly is pretty straight forward. It then quickly evolved to a slightly less dumb AI which choose the spot where it will turn the most possible disks.&lt;/p&gt;
+&lt;p&gt;With these AI implemented I spent a bit of time to add a &amp;quot;hint&amp;quot; button which uses the AI to play for the player and an &amp;quot;autoplay&amp;quot; button which makes the AI play the whole game for the player. Watching my programmed piece of silicon playing against itself amuse me to no end and I can stay hours watching it tirelessly placing disks on the board (Ok, not hours but at least five good minutes).&lt;/p&gt;
+&lt;h4&gt;A refreshed on MinMax algorithm&lt;/h4&gt;
+&lt;p&gt;After creating my basic AIs I went one step further and implemented a new one with the &lt;a href=&quot;https://en.wikipedia.org/wiki/Minimax&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;minmax algorithm&lt;/a&gt;. I had already implemented one on a student project for a tic-tac-toe game and I wanted to do that on something more complex ever since, that was a great opportunity.&lt;/p&gt;
+&lt;p&gt;Although the algorithm itself isn&#39;t really groundbreaking I got to learn something pretty interesting during its implementation: I got pretty quickly a first working version but I quickly realized that my implementation had a memory leak, after a few turns the memory usage of the page would grow up and never go down. I spent two days debugging my code in a lot of different ways, trying to use the Chrome debugging tools to inspect memory snapshots.&lt;/p&gt;
+&lt;p&gt;I quickly understood that my issue was that my &lt;code&gt;Board&lt;/code&gt; objects were not garbage collected: To create the different nodes of the algorithm I copy the &lt;code&gt;Board&lt;/code&gt; object holding the current state of the game, add a new disk, turn the other disks accordingly and iterate on these new boards. These &lt;code&gt;Board&lt;/code&gt; object hold an array of &lt;code&gt;Cells&lt;/code&gt; representing the different spots and the disks played on them. As my boards were not garbage collected I suspected that when I was done using them I didn&#39;t released the references to these cells and so I spent hours trying different things to make sure that all the child references were deleted.&lt;/p&gt;
+&lt;p&gt;After a couple of days of debugging, a copious amount of absolutely useless changes, the reading of numerous of articles about javascript memory leaks and some tears of blood I decided to just let it go and switch to another project. That the moment where, in my shower, I had an epiphany: To days before I had read a list of tips about javascript memory leaks and one of them was &amp;quot;Be cautious with your &lt;code&gt;setTimeout&lt;/code&gt; they create global references and that&#39;s no good&amp;quot; which I had immediately dismissed since I always try to be cautious about my &lt;code&gt;setTimeout&lt;/code&gt;... Except I hadn&#39;t :🤦&lt;/p&gt;
+&lt;p&gt;My &lt;code&gt;Board&lt;/code&gt; objects have a &lt;code&gt;lastPlayed&lt;/code&gt; property which is used by the GUI to show the user which disk they have placed last. And being an amazing UX designer I thought it would be nice to highlight this cell and stop highlighting it after a few seconds... Sure enough I had used a &lt;code&gt;setTimeout&lt;/code&gt; to do that and each time the AI placed a disk on a Board it created this timeout, preventing the garbage collector to get rid of the board. After getting rid of that my algorithm worked like a charm... Almost.&lt;/p&gt;
+&lt;p&gt;It turns out that for a game of Othello there are a lot of different possibilities so I couldn&#39;t run my MinMax with a depth greater than 3 to keep the execution time under a few seconds. That was something I had anticipated and that lead me to implementing an Alpha Beta pruning algorithm to improve the performances. Unfortunately, this kind of algorithm requires a heuristic function in addition of the evaluation function used by MinMax. That&#39;s when I stopped working on this project, I have quite a good idea of the different heuristic I want to create (mainly thanks to a great research paper I can&#39;t find back at the time of this writing) but I&#39;ll have to spend more time on this project and I&#39;m not sure when that will happen.&lt;/p&gt;
+&lt;h4&gt;Comparing the IA&lt;/h4&gt;
+&lt;p&gt;While I was implementing my different AIs I needed to compare them together to make sure I was heading in the right direction, so in addition of the GUI I also developed a testing program which runs thousands of game a do simple simple statistics. Here are some results:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Random vs. Random&lt;/th&gt;
+&lt;th&gt;win percentages&lt;/th&gt;
+&lt;th&gt;nb of games won&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;player 1 (Random)&lt;/td&gt;
+&lt;td&gt;49.11%&lt;/td&gt;
+&lt;td&gt;4911&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;player 2 (Random)&lt;/td&gt;
+&lt;td&gt;50.89%&lt;/td&gt;
+&lt;td&gt;5089&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Random vs. Most disks&lt;/th&gt;
+&lt;th&gt;win percentages&lt;/th&gt;
+&lt;th&gt;nb of games won&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;player 1 (Random)&lt;/td&gt;
+&lt;td&gt;42.82%&lt;/td&gt;
+&lt;td&gt;4282&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;player 2 (Most disks)&lt;/td&gt;
+&lt;td&gt;57.18%&lt;/td&gt;
+&lt;td&gt;5718&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Random vs. MinMax (depth 3)&lt;/th&gt;
+&lt;th&gt;win percentages&lt;/th&gt;
+&lt;th&gt;nb of games won&lt;/th&gt;
+&lt;th&gt;avg. nodes evaluated by turn&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;player 1 (Random)&lt;/td&gt;
+&lt;td&gt;26.55%&lt;/td&gt;
+&lt;td&gt;478&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;player 2 (MinMax)&lt;/td&gt;
+&lt;td&gt;73.44%&lt;/td&gt;
+&lt;td&gt;1322&lt;/td&gt;
+&lt;td&gt;12 179 319&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Random vs. AlphaBeta (depth 3)&lt;/th&gt;
+&lt;th&gt;win percentages&lt;/th&gt;
+&lt;th&gt;nb of games won&lt;/th&gt;
+&lt;th&gt;avg. nodes evaluated by turn&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;player 1 (Random)&lt;/td&gt;
+&lt;td&gt;35.33%&lt;/td&gt;
+&lt;td&gt;1590&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;player 2 (AlphaBeta)&lt;/td&gt;
+&lt;td&gt;64.66%&lt;/td&gt;
+&lt;td&gt;2910&lt;/td&gt;
+&lt;td&gt;2 785 672&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Nothing really surprising here but at least the results seem to be pretty coherent with what I was expecting:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When two player play randomly they roughly have a 50% rate of victory, at least &lt;code&gt;Math.random()&lt;/code&gt; seems to be working good enough for this use case&lt;/li&gt;
+&lt;li&gt;Trying to always flip as many disks as possible is a bit more efficient than playing randomly, that is it your opponent plays randomly.&lt;/li&gt;
+&lt;li&gt;My MinMax implementation is pretty effective against a random user, incrementing the depth would make it pretty good.  However given the time it takes to run I couldn&#39;t run as many games as for the other AIs.&lt;/li&gt;
+&lt;li&gt;My AlphaBeta pruning without a good heuristic is just a semi-broken MinMax: it&#39;s better and a random player but it prunes some valid nodes which makes it not as efficient as it could be.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Demo&lt;/h4&gt;
+&lt;p&gt;I am really please with this project because it was a nice opportunity to get back to a bit of game theory and some&lt;br&gt;
+decision algorithm which I really enjoy playing with. Also it was pretty cool to finally add Typescript to my toolbox&lt;br&gt;
+for side projects and I&#39;m looking forward to continue using it in my next coding adventure.&lt;/p&gt;
+&lt;p&gt;As usual the demo is hosted &lt;a href=&quot;https://statox.github.io/reversi/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on Github pages&lt;/a&gt; and the code is &lt;a href=&quot;https://github.com/statox/reversi&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;right next to&lt;br&gt;
+it&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>
