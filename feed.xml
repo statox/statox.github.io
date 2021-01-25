@@ -916,7 +916,7 @@ world 🐜&lt;/p&gt;
 &lt;h3&gt;Triomaster&lt;/h3&gt;
 &lt;p&gt;As the name of the project suggest I was aiming for an IA mastering the Triomino game... I ended up with an IA playing the Triomino game.&lt;/p&gt;
 &lt;p&gt;When I started thinking about this project I had in mind a &lt;a href=&quot;http://www-cs-students.stanford.edu/~amitp/game-programming/grids/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;great article on redblobgame&lt;/a&gt; about different kind of grids and how to implement them I had read several months ago and thought it would be useful. But being impatient to start coding I went straight in and didn&#39;t read it again, probably making some mistakes which I could have avoided.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/triomino/&quot; alt=&quot;Screenshot of my Triomino implementation&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/triomino/triomino.png&quot; alt=&quot;Screenshot of my Triomino implementation&quot;&gt;&lt;/p&gt;
 &lt;center&gt;
     &lt;i&gt;Another obvious proof of my UX/UI designer genius&lt;/i&gt;
 &lt;/center&gt;
@@ -945,7 +945,7 @@ Github&lt;/a&gt;.&lt;/p&gt;
     <id>https://www.statox.fr/posts/p5/winter-holiday-2020/reversi/</id>
     <content type="html">&lt;h3&gt;Board games are fun!&lt;/h3&gt;
 &lt;p&gt;After not finishing my &lt;a href=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/winter-holiday-triomino/&quot;&gt;triomino project&lt;/a&gt; I started working on an implementation of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Reversi&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Reversi game&lt;/a&gt;. According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my &lt;em&gt;amazing&lt;/em&gt; implementation of his game).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/reversi/&quot; alt=&quot;Screenshot of my Reversi implementation&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/reversi/reversi.png&quot; alt=&quot;Screenshot of my Reversi implementation&quot;&gt;&lt;/p&gt;
 &lt;center&gt;
     &lt;i&gt;My patent infrigement material&lt;/i&gt;
 &lt;/center&gt;
