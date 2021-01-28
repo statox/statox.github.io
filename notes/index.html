@@ -119,6 +119,40 @@ after each commit</p>
     </div><div>
         <details>
             <summary>
+                <a class="note-link" href=/notes/scp/>Scp</a>
+                <span class="note-tags">[bash][scp]</span>
+            </summary>
+            
+            <p>Basically the same syntax as <code>cp</code> (i.e. <code>scp [source] [dest]</code>)</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># Local to remote</span><br><span class="token function">scp</span> ./local/path user@remote-host:/home/user<br><br><span class="token comment"># Remote to local</span><br><span class="token function">scp</span> user@remote-host:/home/user ./local/path </code></pre>
+<h3>Useful options</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-r</code></td>
+<td>Copy directories</td>
+</tr>
+<tr>
+<td><code>-i</code></td>
+<td>Provide identity file</td>
+</tr>
+<tr>
+<td><code>-P</code></td>
+<td>Specify port</td>
+</tr>
+</tbody>
+</table>
+
+        </details>
+    </div><div>
+        <details>
+            <summary>
                 <a class="note-link" href=/notes/screen/>Screen</a>
                 <span class="note-tags">[screen]</span>
             </summary>

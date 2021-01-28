@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scp</title>
+    <meta name="description" content="A personal blog where I write about my side projects">
+    <meta name="keywords" content="statox blog">
+    <meta property="og:title" content="The stuff I do">
+    <meta property="og:url" content="https://www.statox.fr">
+    <meta property="og:description" content="A personal blog where I write about my side projects">
+    <meta property="og:type" content="website">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-fonts@1.1.1/fonts/inter.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.20.0/themes/prism-tomorrow.css">
+
+    
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/material.css">
+    <link rel="stylesheet" href="/css/minesweeper.css">
+    <link rel="stylesheet" href="/css/boids.css">
+    <link rel="stylesheet" href="/css/comments.css">
+
+</head>
+<body>
+    <header>
+        <h1>The stuff I do</h1>
+        <nav>
+            <a href="/">Home</a> /
+            <a href="/notes/">Notes</a> /
+            <a href="/about/">About</a> /
+            <a href="/social/">Social</a> /
+            <a href="/feed.xml">RSS</a>
+        </nav>
+    </header>
+
+    <div class="content-container">
+        
+<h2>Scp</h2>
+<p><a href="/notes/">← Notes</a></p>
+<p>Tags: <span class="note-tags">[bash][scp]</span></p>
+
+
+<p>Basically the same syntax as <code>cp</code> (i.e. <code>scp [source] [dest]</code>)</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># Local to remote</span><br><span class="token function">scp</span> ./local/path user@remote-host:/home/user<br><br><span class="token comment"># Remote to local</span><br><span class="token function">scp</span> user@remote-host:/home/user ./local/path </code></pre>
+<h3>Useful options</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-r</code></td>
+<td>Copy directories</td>
+</tr>
+<tr>
+<td><code>-i</code></td>
+<td>Provide identity file</td>
+</tr>
+<tr>
+<td><code>-P</code></td>
+<td>Specify port</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><a href="/notes/">← Notes</a></p>
+
+    </div>
+
+    <script data-goatcounter="https://statoxblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script async defer src="https://api.newcss.net/latest.js"></script>
+    <noscript><img src="https://api.newcss.net/noscript.gif" alt=""></noscript>
+</body>
+</html>
