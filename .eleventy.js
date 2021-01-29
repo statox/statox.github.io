@@ -2,6 +2,7 @@
  * Eleventy configuration file
  */
 
+const {wordCount} = require('eleventy-plugin-wordcount');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const moment = require('moment');
@@ -47,6 +48,8 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(syntaxHighlight);
     // RSS feed plugin
     eleventyConfig.addPlugin(pluginRss);
+    // Word count plugin
+    eleventyConfig.addPlugin(wordCount);
 
     /*
      * Markdown parsing configuration
