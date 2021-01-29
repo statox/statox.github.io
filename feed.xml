@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2021-01-21T00:00:00Z</updated>
+  <updated>2021-01-29T18:08:19Z</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -1031,6 +1031,43 @@ Github&lt;/a&gt;.&lt;/p&gt;
 &lt;h4&gt;Demo&lt;/h4&gt;
 &lt;p&gt;I am really pleased with this project because it was a nice opportunity to get back to a bit of game theory and some decision algorithm which I really enjoy playing with. Also it was pretty cool to finally add Typescript to my toolbox for side projects and I&#39;m looking forward to continue using it in my next coding adventure.&lt;/p&gt;
 &lt;p&gt;As usual the demo is hosted &lt;a href=&quot;https://statox.github.io/reversi/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on Github pages&lt;/a&gt; and the code is &lt;a href=&quot;https://github.com/statox/reversi&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;right next to it&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Cool covers</title>
+    <link href="https://www.statox.fr/posts/music/cool_covers/"/>
+    <updated>2021-01-29T18:08:19Z</updated>
+    <id>https://www.statox.fr/posts/music/cool_covers/</id>
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;This page is a work in progress, I&#39;ll try to add more content and think of a better way to show the different songs.&lt;br /&gt;
+Also it was the opportunity to test &lt;a href=&quot;https://www.npmjs.com/package/eleventy-plugin-embed-spotify&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;this eleventy plugin&lt;/a&gt; for embed spotify links&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Cool covers&lt;/h3&gt;
+&lt;p&gt;When I was a teenager and I started actively listen to a lot of music and exploring my tastes, one thing I would always be adamant about was how cover songs were &lt;em&gt;the worst&lt;/em&gt;. I think I was mostly trying to show everybody how vast and impressive my musical knowledge was and what a better way would there be than dismissing a song someone likes &amp;quot;because the original is so much better&amp;quot;?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sorry Jeff Buckley, Leonard Cohen was so much better!&lt;br /&gt;
+How did Nirvana dare singing &amp;quot;The man who saved the world&amp;quot;, what an insult to Bowie??&lt;br /&gt;
+What? How can&#39;t you know that &amp;quot;Sing for the moment&amp;quot; is from Aerosmith, not Eminem 🙄&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Fortunately I grew up and got &lt;em&gt;a little&lt;/em&gt; less dumb. I realized that making a cover of a song is an amazing exercise of creativity and sure enough I developed &lt;s&gt;a weird obsession&lt;/s&gt; a wild interest in cover songs (take that teenage me). I love to see how some artists are able to take a song and transform it completely using their own universe to make something entirely new. The history of covered songs are also sometimes completely fascinating: How many times have I realized that this song I&#39;ve been listening for years is actually a cover of an obscure band which never reached success?&lt;/p&gt;
+&lt;p&gt;That&#39;s how on June 2018 I created my &amp;quot;Cool Covers&amp;quot; playlist on Spotify, I compile in it the covers that I like and I usually try to learn a thing or two about this History of music. The playlist contains well known covers, some more obscure ones, some songs which subtly sample parts of others and sometimes original songs that I thought were covers.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://open.spotify.com/playlist/3TJOn16SJVMokdHnP61iT0&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://open.spotify.com/playlist/3TJOn16SJVMokdHnP61iT0&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In this page I&#39;ll try to write a little bit about my favorite ones, or the ones I find the more interesting. I&#39;m not sure how long I&#39;ll manage to keep it updated but we&#39;ll see!&lt;/p&gt;
+&lt;h4&gt;Dubber side of the moon - Easy Start All-Stars vs. Pink Floyd&lt;/h4&gt;
+&lt;p&gt;Some of the first albums I discovered on Spotify were the compilations &amp;quot;Dub side of the moon&amp;quot; and &amp;quot;Dubber side of the moon&amp;quot; by the reggae collective &lt;a href=&quot;https://en.wikipedia.org/wiki/Easy_Star_All-Stars&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Easy Star All-Stars&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://open.spotify.com/album/2w9qrrsJaLRQuZPJeI9acc?si=yh3vF7DLTlycH5GgaEkr5g&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://open.spotify.com/album/2w9qrrsJaLRQuZPJeI9acc?si=yh3vF7DLTlycH5GgaEkr5g&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As you would have never guessed from the title, this is a tribute to Pink Floyd&#39;s Dark side of the moon. The collective pushed the tribute as far as publishing the instructions to synchronize the album with the movie Wizard of Oz from 1939 like Pink Floyd&#39;s fan have been doing with the original album.&lt;/p&gt;
+&lt;p&gt;In this album I especially enjoy Brain Damage, which is I dare to say, at least as good as the original song with its echoed voices and its rhythm section which makes you happily bounce your shoulders.&lt;/p&gt;
+&lt;h4&gt;California dreamin&#39; - Baby Huey vs. The Mamas &amp;amp; The Papas&lt;/h4&gt;
+&lt;p&gt;Baby Huey and his band took one of the best songs ever written and turned it into a majestic piece of instrumental music. They used the same kind of flute which makes the solo of the original song so joyful and exciting and gave it its place in the whole song.&lt;/p&gt;
+&lt;p&gt;The introduction really translate the melancholic side of the song until the brass section enters in a psychedelic explosion which sends you directly back to the 60&#39;s (or what I imagine the 60&#39;s to be).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://open.spotify.com/track/1HzIPQceSx4GYLUyag9EPm?si=gGG_fxmAQ7S2GI5gjohw_Q&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://open.spotify.com/track/1HzIPQceSx4GYLUyag9EPm?si=gGG_fxmAQ7S2GI5gjohw_Q&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;California Dreamin&#39; is one of the songs with the most occurrences in my playlist but I think this version is by far my favorite.&lt;/p&gt;
+&lt;h4&gt;Ca plane pour moi - The Presidents Of The United States Of America vs. Plastic Bertrand&lt;/h4&gt;
+&lt;p&gt;When an American punk band from the 90s make a cover of an eccentric Belgian punk from the 70s the result is dumb, messy and a ton of fun!&lt;/p&gt;
+&lt;p&gt;Clearly The Presidents never took a lesson of French but they completely understood the energy of the song, the classical shuffle riff they aggressively added makes a cover a wonderful mix of retro rock&amp;amp;roll and 90s punk bands like the Offsring and NoFX, a masterpiece.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://open.spotify.com/track/2qUcyIoQ74y4epSmYk77Az?si=MTcQt_9qS5GUwIyQuax6Og&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://open.spotify.com/track/2qUcyIoQ74y4epSmYk77Az?si=MTcQt_9qS5GUwIyQuax6Og&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
