@@ -29,6 +29,7 @@
     "version": "1.0.0",
     "dependencies": {
         "@octokit/rest": "^18.0.15",
+        "eleventy-plugin-embed-spotify": "^1.2.0",
         "eleventy-plugin-wordcount": "^1.0.5"
     }
 }

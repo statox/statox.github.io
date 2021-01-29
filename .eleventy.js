@@ -2,6 +2,7 @@
  * Eleventy configuration file
  */
 
+const embedSpotify = require('eleventy-plugin-embed-spotify');
 const {wordCount} = require('eleventy-plugin-wordcount');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
@@ -50,6 +51,8 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginRss);
     // Word count plugin
     eleventyConfig.addPlugin(wordCount);
+    // Spotify plugin
+    eleventyConfig.addPlugin(embedSpotify);
 
     /*
      * Markdown parsing configuration
