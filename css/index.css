@@ -24,6 +24,11 @@
  * }
 */
 
+.post-subheader {
+    font-style: italic;
+    color: #80837c;
+}
+
 .post-date {
     font-family: var(--nc-font-mono);
 }
