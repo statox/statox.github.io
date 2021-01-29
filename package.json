@@ -6,8 +6,8 @@
     "description": "My blog attempt",
     "devDependencies": {
         "@11ty/eleventy": "^0.11.1",
-        "@11ty/eleventy-plugin-rss": "^1.0.9",
-        "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
+        "@11ty/eleventy-plugin-rss": "^1.1.0",
+        "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.6",
         "async": "^3.2.0",
         "markdown-it-emoji": "^2.0.0",
         "markdown-it-external-links": "0.0.6",
@@ -28,7 +28,7 @@
     },
     "version": "1.0.0",
     "dependencies": {
-        "@octokit/rest": "^18.0.12",
+        "@octokit/rest": "^18.0.15",
         "eleventy-plugin-wordcount": "^1.0.5"
     }
 }
