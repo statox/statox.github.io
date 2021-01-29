@@ -834,7 +834,7 @@ There are still a number of features I&#39;d like to implement even in this squa
     <updated>2020-11-09T00:00:00+00:00</updated>
     <id>https://www.statox.fr/posts/p5/ants/</id>
     <content type="html">&lt;p&gt;A few months ago I read about the &lt;a href=&quot;https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Ant colony optimization algorithms&lt;/a&gt; and since then I really wanted to give a shot at doing my own implementation. This algorithm is cool because this is a different kind of emerging behavior which &lt;a href=&quot;https://www.statox.fr/posts/p5/boids/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;I already experimented with&lt;/a&gt; and find fascinating.&lt;/p&gt;
-&lt;p&gt;So I came up with &lt;a href=&quot;https://statox.github.io/ants-colony/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;this web page&lt;/a&gt; which works reasonably well 🎉. However, after working on this project for a few days I realized that I messed up my architecture and that I will not be able to extend the project as I want to without refactoring heavily the code. And since I have other shiny other project ideas I want to play with, I&#39;ll just add this project to my big collection of unfinished side projects and maybe get back at it when I have time.&lt;/p&gt;
+&lt;p&gt;So I came up with &lt;a href=&quot;https://statox.github.io/ants-colony/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;this web page&lt;/a&gt; which works reasonably well 🎉. However, after working on this project for a few days I realized that I messed up my architecture and that I will not be able to extend the project as I want to without an heavy refactoring of the code. And since I have other shiny other project ideas I want to play with, I&#39;ll just add this project to my big collection of unfinished side projects and maybe get back at it when I have time.&lt;/p&gt;
 &lt;p&gt;This kind of posts is probably not very useful nor interesting for anyone other than me, but I see it as some kind of journal that I&#39;ll probably be happy to look at one day.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/ants/ants.gif&quot; alt=&quot;Visualization of several food sources&quot;&gt;&lt;/p&gt;
 &lt;center&gt;
@@ -842,13 +842,12 @@ There are still a number of features I&#39;d like to implement even in this squa
     not shown.&lt;/i&gt;
 &lt;/center&gt;
 &lt;h3&gt;Ants behavior&lt;/h3&gt;
-&lt;p&gt;The idea here is to have a colony of autonomous ants all starting at the same point -the anthill- and moving on a grid,looking for food. Each ant can walk on the grid with the only constraint that they can&#39;t go twice on the same cell in one trip.&lt;/p&gt;
+&lt;p&gt;The idea here is to have a colony of autonomous ants all starting on the same point -the anthill- and moving on a grid,looking for food. Each ant can walk on the grid with the only constraint that they can&#39;t go twice on the same cell in one trip.&lt;/p&gt;
 &lt;p&gt;During its trip an ant can either:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Find a spot with some food and stop moving;&lt;/li&gt;
 &lt;li&gt;Get stuck because it surrounded itself with cells it already walked on;&lt;/li&gt;
-&lt;li&gt;Never get stuck and not find food, in this case it will walk until its time to live (the preset duration of the trip)&lt;br&gt;
-is reached.&lt;/li&gt;
+&lt;li&gt;Never get stuck and not find food, in this case it will walk until its time to live (the preset duration of the trip) is reached.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the case where an ant finds some food, it will go back to the anthill and lay down some amount of pheromones on all the cells it visited during this trip. The amount of pheromones an ant lays down is inversely proportional to the length of its path, meaning that the ant finding the shortest path to food will leave the strongest trail.&lt;/p&gt;
 &lt;p&gt;When it walks an ant will follow the pheromones: Each surrounding case is evaluated and attributed a probability to be chosen depending on its amount of pheromones and whether or not it contains food. The ant will then &amp;quot;throw a dice&amp;quot; and choose a cell following the probabilities and the result of the dice.&lt;/p&gt;
@@ -862,7 +861,7 @@ is reached.&lt;/li&gt;
 &lt;li&gt;Perception radius: The main issue with the current state of the project is that ants have a defined perception radius representing the cells they can see around them. However due to the way I implemented my neighbors search and my obstacles this doesn&#39;t work well with radius &amp;gt; 2.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Maybe a V2&lt;/h3&gt;
-&lt;p&gt;I&#39;ll see if I take time to create a v2 of this project. If I do I&#39;ll think from the beginning of how to implement the ants &amp;quot;vision&amp;quot; (how they detect obstacles and where they can move) which should allow me to have a more efficient neighbor selection algorithm.&lt;/p&gt;
+&lt;p&gt;Maybe I will do a v2 of this project. If I do I&#39;ll think from the beginning of how to implement the ants &amp;quot;vision&amp;quot; (how they detect obstacles and where they can move) which should allow me to have a more efficient neighbor selection algorithm.&lt;/p&gt;
 &lt;p&gt;I would also like to add some feature which shouldn&#39;t be too hard to implement:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Automatic TTL: The ants could increase their TTL automatically if they don&#39;t find anything for a few iterations allowing a more efficient exploration of the map.&lt;/li&gt;
