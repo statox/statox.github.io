@@ -8,7 +8,7 @@ title: Ants colony algorithm visualization
 
 A few months ago I read about the [Ant colony optimization algorithms](https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms) and since then I really wanted to give a shot at doing my own implementation. This algorithm is cool because this is a different kind of emerging behavior which [I already experimented with](https://www.statox.fr/posts/p5/boids/) and find fascinating.
 
-So I came up with [this web page](https://statox.github.io/ants-colony/) which works reasonably well :tada:. However, after working on this project for a few days I realized that I messed up my architecture and that I will not be able to extend the project as I want to without refactoring heavily the code. And since I have other shiny other project ideas I want to play with, I'll just add this project to my big collection of unfinished side projects and maybe get back at it when I have time.
+So I came up with [this web page](https://statox.github.io/ants-colony/) which works reasonably well :tada:. However, after working on this project for a few days I realized that I messed up my architecture and that I will not be able to extend the project as I want to without an heavy refactoring of the code. And since I have other shiny other project ideas I want to play with, I'll just add this project to my big collection of unfinished side projects and maybe get back at it when I have time.
 
 This kind of posts is probably not very useful nor interesting for anyone other than me, but I see it as some kind of journal that I'll probably be happy to look at one day.
 
@@ -21,14 +21,13 @@ This kind of posts is probably not very useful nor interesting for anyone other 
 
 ### Ants behavior
 
-The idea here is to have a colony of autonomous ants all starting at the same point -the anthill- and moving on a grid,looking for food. Each ant can walk on the grid with the only constraint that they can't go twice on the same cell in one trip.
+The idea here is to have a colony of autonomous ants all starting on the same point -the anthill- and moving on a grid,looking for food. Each ant can walk on the grid with the only constraint that they can't go twice on the same cell in one trip.
 
 During its trip an ant can either:
 
  - Find a spot with some food and stop moving;
  - Get stuck because it surrounded itself with cells it already walked on;
- - Never get stuck and not find food, in this case it will walk until its time to live (the preset duration of the trip)
-   is reached.
+ - Never get stuck and not find food, in this case it will walk until its time to live (the preset duration of the trip) is reached.
 
 In the case where an ant finds some food, it will go back to the anthill and lay down some amount of pheromones on all the cells it visited during this trip. The amount of pheromones an ant lays down is inversely proportional to the length of its path, meaning that the ant finding the shortest path to food will leave the strongest trail.
 
@@ -49,7 +48,7 @@ There are a few things I want to change in the app:
 
 ### Maybe a V2
 
-I'll see if I take time to create a v2 of this project. If I do I'll think from the beginning of how to implement the ants "vision" (how they detect obstacles and where they can move) which should allow me to have a more efficient neighbor selection algorithm.
+Maybe I will do a v2 of this project. If I do I'll think from the beginning of how to implement the ants "vision" (how they detect obstacles and where they can move) which should allow me to have a more efficient neighbor selection algorithm.
 
 I would also like to add some feature which shouldn't be too hard to implement:
 
