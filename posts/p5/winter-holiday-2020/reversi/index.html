@@ -45,7 +45,7 @@
 <p><a href="/">← Posts</a></p>
 
 <h3>Board games are fun!</h3>
-<p>After not finishing my <a href="../winter-holiday-triomino/">triomino project</a> I started working on an implementation of the <a href="https://en.wikipedia.org/wiki/Reversi" target="_blank" rel="noopener noreferrer">Reversi game</a>. According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my <em>amazing</em> implementation of his game).</p>
+<p>After not finishing my <a href="../triomino/">triomino project</a> I started working on an implementation of the <a href="https://en.wikipedia.org/wiki/Reversi" target="_blank" rel="noopener noreferrer">Reversi game</a>. According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my <em>amazing</em> implementation of his game).</p>
 <p><img src="./reversi.png" alt="Screenshot of my Reversi implementation"></p>
 <center>
     <i>My patent infrigement material</i>
@@ -59,11 +59,11 @@
 <p>After creating my basic AIs I went one step further and implemented a new one with the <a href="https://en.wikipedia.org/wiki/Minimax" target="_blank" rel="noopener noreferrer">minmax algorithm</a>. I had already implemented one on a student project for a tic-tac-toe game and I wanted to do that on something more complex ever since, that was a great opportunity.</p>
 <p>Although the algorithm itself isn't really groundbreaking I got to learn something pretty interesting during its implementation: I got pretty quickly a first working version but I quickly realized that my implementation had a memory leak, after a few turns the memory usage of the page would grow up and never go down. I spent two days debugging my code in a lot of different ways, trying to use the Chrome debugging tools to inspect memory snapshots.</p>
 <p>I quickly understood that my issue was that my <code>Board</code> objects were not garbage collected: To create the different nodes of the algorithm I copy the <code>Board</code> object holding the current state of the game, add a new disk, turn the other disks accordingly and iterate on these new boards. These <code>Board</code> object hold an array of <code>Cells</code> representing the different spots and the disks played on them. As my boards were not garbage collected I suspected that when I was done using them I didn't released the references to these cells and so I spent hours trying different things to make sure that all the child references were deleted.</p>
-<p>After a couple of days of debugging, a copious amount of absolutely useless changes, the reading of numerous of articles about javascript memory leaks and some tears of blood I decided to just let it go and switch to another project. That the moment where, in my shower, I had an epiphany: To days before I had read a list of tips about javascript memory leaks and one of them was &quot;Be cautious with your <code>setTimeout</code> they create global references and that's no good&quot; which I had immediately dismissed since I always try to be cautious about my <code>setTimeout</code>... Except I hadn't :🤦</p>
+<p>After a couple of days of debugging, a copious amount of absolutely useless changes, the reading of numerous articles about javascript memory leaks and some tears of blood I decided to just let it go and switch to another project. That the moment where, in my shower, I had an epiphany: Two days before I had read a list of tips about javascript memory leaks and one of them was &quot;Be cautious with your <code>setTimeout</code> they create global references and that's no good&quot; which I had immediately dismissed since I always try to be cautious about my <code>setTimeout</code>... Except I hadn't :🤦</p>
 <p>My <code>Board</code> objects have a <code>lastPlayed</code> property which is used by the GUI to show the user which disk they have placed last. And being an amazing UX designer I thought it would be nice to highlight this cell and stop highlighting it after a few seconds... Sure enough I had used a <code>setTimeout</code> to do that and each time the AI placed a disk on a Board it created this timeout, preventing the garbage collector to get rid of the board. After getting rid of that my algorithm worked like a charm... Almost.</p>
 <p>It turns out that for a game of Othello there are a lot of different possibilities so I couldn't run my MinMax with a depth greater than 3 to keep the execution time under a few seconds. That was something I had anticipated and that lead me to implementing an Alpha Beta pruning algorithm to improve the performances. Unfortunately, this kind of algorithm requires a heuristic function in addition of the evaluation function used by MinMax. That's when I stopped working on this project, I have quite a good idea of the different heuristic I want to create (mainly thanks to a great research paper I can't find back at the time of this writing) but I'll have to spend more time on this project and I'm not sure when that will happen.</p>
 <h4>Comparing the IA</h4>
-<p>While I was implementing my different AIs I needed to compare them together to make sure I was heading in the right direction, so in addition of the GUI I also developed a testing program which runs thousands of game a do simple simple statistics. Here are some results:</p>
+<p>While I was implementing my different AIs I needed to compare them together to make sure I was heading in the right direction, so in addition of the GUI I also developed a testing program which runs thousands of games and collects some simple statistics. Here are some results:</p>
 <table>
 <thead>
 <tr>
@@ -157,16 +157,13 @@
 <p>Nothing really surprising here but at least the results seem to be pretty coherent with what I was expecting:</p>
 <ul>
 <li>When two player play randomly they roughly have a 50% rate of victory, at least <code>Math.random()</code> seems to be working good enough for this use case</li>
-<li>Trying to always flip as many disks as possible is a bit more efficient than playing randomly, that is it your opponent plays randomly.</li>
-<li>My MinMax implementation is pretty effective against a random user, incrementing the depth would make it pretty good.  However given the time it takes to run I couldn't run as many games as for the other AIs.</li>
-<li>My AlphaBeta pruning without a good heuristic is just a semi-broken MinMax: it's better and a random player but it prunes some valid nodes which makes it not as efficient as it could be.</li>
+<li>Trying to always flip as many disks as possible is a bit more efficient than playing randomly, at least if your opponent plays randomly.</li>
+<li>My MinMax implementation is pretty effective against a random user, increasing the maximal depth would make it pretty good.  However given the time it takes to run I couldn't run as many games as for the other AIs.</li>
+<li>My AlphaBeta pruning without a good heuristic is just a semi-broken MinMax: it's better than a random player but it prunes some valid nodes which makes it not as efficient as it could be.</li>
 </ul>
 <h4>Demo</h4>
-<p>I am really please with this project because it was a nice opportunity to get back to a bit of game theory and some<br>
-decision algorithm which I really enjoy playing with. Also it was pretty cool to finally add Typescript to my toolbox<br>
-for side projects and I'm looking forward to continue using it in my next coding adventure.</p>
-<p>As usual the demo is hosted <a href="https://statox.github.io/reversi/" target="_blank" rel="noopener noreferrer">on Github pages</a> and the code is <a href="https://github.com/statox/reversi" target="_blank" rel="noopener noreferrer">right next to<br>
-it</a>.</p>
+<p>I am really pleased with this project because it was a nice opportunity to get back to a bit of game theory and some decision algorithm which I really enjoy playing with. Also it was pretty cool to finally add Typescript to my toolbox for side projects and I'm looking forward to continue using it in my next coding adventure.</p>
+<p>As usual the demo is hosted <a href="https://statox.github.io/reversi/" target="_blank" rel="noopener noreferrer">on Github pages</a> and the code is <a href="https://github.com/statox/reversi" target="_blank" rel="noopener noreferrer">right next to it</a>.</p>
 
 
 <p><a href="/">← Posts</a></p>
