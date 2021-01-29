@@ -8,7 +8,7 @@ commentIssueId: 18
 
 ### Board games are fun!
 
-After not finishing my [triomino project](../winter-holiday-triomino/) I started working on an implementation of the [Reversi game](https://en.wikipedia.org/wiki/Reversi). According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my _amazing_ implementation of his game).
+After not finishing my [triomino project](../triomino/) I started working on an implementation of the [Reversi game](https://en.wikipedia.org/wiki/Reversi). According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my _amazing_ implementation of his game).
 
 ![Screenshot of my Reversi implementation](./reversi.png)
 <center>
@@ -33,7 +33,7 @@ Although the algorithm itself isn't really groundbreaking I got to learn somethi
 
 I quickly understood that my issue was that my `Board` objects were not garbage collected: To create the different nodes of the algorithm I copy the `Board` object holding the current state of the game, add a new disk, turn the other disks accordingly and iterate on these new boards. These `Board` object hold an array of `Cells` representing the different spots and the disks played on them. As my boards were not garbage collected I suspected that when I was done using them I didn't released the references to these cells and so I spent hours trying different things to make sure that all the child references were deleted.
 
-After a couple of days of debugging, a copious amount of absolutely useless changes, the reading of numerous of articles about javascript memory leaks and some tears of blood I decided to just let it go and switch to another project. That the moment where, in my shower, I had an epiphany: To days before I had read a list of tips about javascript memory leaks and one of them was "Be cautious with your `setTimeout` they create global references and that's no good" which I had immediately dismissed since I always try to be cautious about my `setTimeout`... Except I hadn't :🤦
+After a couple of days of debugging, a copious amount of absolutely useless changes, the reading of numerous articles about javascript memory leaks and some tears of blood I decided to just let it go and switch to another project. That the moment where, in my shower, I had an epiphany: Two days before I had read a list of tips about javascript memory leaks and one of them was "Be cautious with your `setTimeout` they create global references and that's no good" which I had immediately dismissed since I always try to be cautious about my `setTimeout`... Except I hadn't :🤦
 
 My `Board` objects have a `lastPlayed` property which is used by the GUI to show the user which disk they have placed last. And being an amazing UX designer I thought it would be nice to highlight this cell and stop highlighting it after a few seconds... Sure enough I had used a `setTimeout` to do that and each time the AI placed a disk on a Board it created this timeout, preventing the garbage collector to get rid of the board. After getting rid of that my algorithm worked like a charm... Almost.
 
@@ -41,7 +41,7 @@ It turns out that for a game of Othello there are a lot of different possibiliti
 
 #### Comparing the IA
 
-While I was implementing my different AIs I needed to compare them together to make sure I was heading in the right direction, so in addition of the GUI I also developed a testing program which runs thousands of game a do simple simple statistics. Here are some results:
+While I was implementing my different AIs I needed to compare them together to make sure I was heading in the right direction, so in addition of the GUI I also developed a testing program which runs thousands of games and collects some simple statistics. Here are some results:
 
 |Random vs. Random | win percentages | nb of games won|
 |------------------|-----------------|----------------|
@@ -66,15 +66,12 @@ While I was implementing my different AIs I needed to compare them together to m
 Nothing really surprising here but at least the results seem to be pretty coherent with what I was expecting:
 
 - When two player play randomly they roughly have a 50% rate of victory, at least `Math.random()` seems to be working good enough for this use case
-- Trying to always flip as many disks as possible is a bit more efficient than playing randomly, that is it your opponent plays randomly.
-- My MinMax implementation is pretty effective against a random user, incrementing the depth would make it pretty good.  However given the time it takes to run I couldn't run as many games as for the other AIs.
-- My AlphaBeta pruning without a good heuristic is just a semi-broken MinMax: it's better and a random player but it prunes some valid nodes which makes it not as efficient as it could be.
+- Trying to always flip as many disks as possible is a bit more efficient than playing randomly, at least if your opponent plays randomly.
+- My MinMax implementation is pretty effective against a random user, increasing the maximal depth would make it pretty good.  However given the time it takes to run I couldn't run as many games as for the other AIs.
+- My AlphaBeta pruning without a good heuristic is just a semi-broken MinMax: it's better than a random player but it prunes some valid nodes which makes it not as efficient as it could be.
 
 #### Demo
 
-I am really please with this project because it was a nice opportunity to get back to a bit of game theory and some
-decision algorithm which I really enjoy playing with. Also it was pretty cool to finally add Typescript to my toolbox
-for side projects and I'm looking forward to continue using it in my next coding adventure.
+I am really pleased with this project because it was a nice opportunity to get back to a bit of game theory and some decision algorithm which I really enjoy playing with. Also it was pretty cool to finally add Typescript to my toolbox for side projects and I'm looking forward to continue using it in my next coding adventure.
 
-As usual the demo is hosted [on Github pages](https://statox.github.io/reversi/) and the code is [right next to
-it](https://github.com/statox/reversi).
+As usual the demo is hosted [on Github pages](https://statox.github.io/reversi/) and the code is [right next to it](https://github.com/statox/reversi).
