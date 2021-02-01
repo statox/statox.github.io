@@ -9,6 +9,8 @@ eleventyNavigation:
 
 I am Adrien (aka statox), a server software engineer at [Dashlane](https://www.dashlane.com/) in Paris, France.
 
+<img class="profile-picture" src="{{ '/images/me.jpg' | url }}" alt="My face"/>
+
 This website is just a place for me to talk a bit about my side projects and keep a few notes for myself. You will find stuff about the topics that I like (in no particular order): Vim, Linux and system administration, doing fun simulations and games in the browser, DIY projects, improving people's privacy on the internet and software development in general.
 
 You can check [my social page]({{ '/social/' | url}}) to contact me.

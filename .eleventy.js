@@ -92,10 +92,11 @@ module.exports = function (eleventyConfig) {
      */
     eleventyConfig.addPassthroughCopy('css');
     eleventyConfig.addPassthroughCopy('fonts');
+    eleventyConfig.addPassthroughCopy({'./assets/images': '/images'});
 
     if (env === 'prod') {
-        eleventyConfig.addPassthroughCopy({'./assets/images/favicons_prod': '/favicon'});
+        eleventyConfig.addPassthroughCopy({'./assets/favicons_prod': '/favicon'});
     } else {
-        eleventyConfig.addPassthroughCopy({'./assets/images/favicons_dev': '/favicon'});
+        eleventyConfig.addPassthroughCopy({'./assets/favicons_dev': '/favicon'});
     }
 };
