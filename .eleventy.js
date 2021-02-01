@@ -11,6 +11,7 @@ moment.locale('en');
 
 module.exports = function (eleventyConfig) {
     const env = process.env.ELEVENTY_ENV;
+
     /*
      * Posts collections by category
      * TODO: I'll probably need to update that to have dynamical lists based on a list of categories

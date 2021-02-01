@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="{{ '/css/minesweeper.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/boids.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/comments.css' | url }}">
+    {% if site.env === "dev" %}
+    <link rel="stylesheet" href="{{ '/css/ribbon.css' | url }}">
+    {% endif %}
 
     {# Favicon #}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/favicon/apple-touch-icon.png' | url }}">
@@ -43,6 +46,10 @@
             <a href="/feed.xml">RSS</a>
         </nav>
     </header>
+
+    {% if site.env === "dev" %}
+        <p class="ribbon" data-ribbon="Dev environment" title="Dev environment">Dev environment</p>
+    {% endif %}
 
     <div class="content-container">
         {{ content | safe }}
