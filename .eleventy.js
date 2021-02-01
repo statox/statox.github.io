@@ -10,6 +10,7 @@ const moment = require('moment');
 moment.locale('en');
 
 module.exports = function (eleventyConfig) {
+    const env = process.env.ELEVENTY_ENV;
     /*
      * Posts collections by category
      * TODO: I'll probably need to update that to have dynamical lists based on a list of categories
@@ -90,4 +91,10 @@ module.exports = function (eleventyConfig) {
      */
     eleventyConfig.addPassthroughCopy('css');
     eleventyConfig.addPassthroughCopy('fonts');
+
+    if (env === 'prod') {
+        eleventyConfig.addPassthroughCopy({'./assets/images/favicons_prod': '/favicon'});
+    } else {
+        eleventyConfig.addPassthroughCopy({'./assets/images/favicons_dev': '/favicon'});
+    }
 };
