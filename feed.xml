@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2021-02-01T20:41:05Z</updated>
+  <updated>2021-02-04T15:56:49Z</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -1035,9 +1035,121 @@ Github&lt;/a&gt;.&lt;/p&gt;
   </entry>
   
   <entry>
+    <title>Reaching 1.2m readers and stepping down from my moderator position on vi.se</title>
+    <link href="https://www.statox.fr/posts/vim/stepping-down-vi-se/"/>
+    <updated>2021-02-04T00:00:00Z</updated>
+    <id>https://www.statox.fr/posts/vim/stepping-down-vi-se/</id>
+    <content type="html">&lt;p&gt;This week I sent an email to the Stack Exchange team to let them know that I was stepping down from my moderator position on &lt;a href=&quot;https://vi.meta.stackexchange.com/q/1542/1841&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.se&lt;/a&gt; and asking them to remove my diamond.&lt;/p&gt;
+&lt;p&gt;In 2015 I was in my last year of school and I was maintaining a small CRM project with 7 other students. One of them introduced me to Vim during this project and that was the beginning of my love story with this text editor which is still my daily driver today.&lt;/p&gt;
+&lt;p&gt;One day this friend of mine, Nobe4, created &lt;a href=&quot;https://vi.stackexchange.com/users/1821/nobe4?tab=profile&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;his account&lt;/a&gt; and told me about it. The next day I was creating mine and I have to admit that, for me, it started a &amp;quot;who would get the most reputation points&amp;quot; competition against this fellow whom I consider as a very strong technical person. It turned out that after a year or two Nobe4 stopped participating on the website but for me it was too late: I was hooked and I was already enjoying helping other people more than getting imaginary points from the internet.&lt;/p&gt;
+&lt;p&gt;I have been a member of this community since April 2015 and I&#39;ve been appointed as a moderator in December 2017. Over these past 6 years I have learned a lot about Vim and I think that I had the opportunity to share some pieces of interesting knowledges. As I am stepping down I thought it would be interesting to have a look at how the site grew up and what I have done to contribute in my own way to this growth.&lt;/p&gt;
+&lt;h3&gt;Some numbers about the site&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://vim.stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vim.stackexchange.com&lt;/a&gt; (or &lt;a href=&quot;http://vi.se/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.se&lt;/a&gt;, for the connoiseurs) is a relatively small website from the well known &lt;a href=&quot;https://stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;stack exchange network&lt;/a&gt;. It was originally proposed on &lt;a href=&quot;https://area51.stackexchange.com/proposals/80441/vi-and-vim&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;area51&lt;/a&gt; in November 2014 and the public beta was launched in February 2015.&lt;/p&gt;
+&lt;p&gt;In its 6 years of existence the community has grown significantly and became one of the online reference for all things about vim, neovim and their sister editors.&lt;/p&gt;
+&lt;p&gt;Here is are a few general numbers that I pulled from &lt;a href=&quot;https://data.stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;data.se&lt;/a&gt; to illustrate this growth:&lt;/p&gt;
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;&lt;/th&gt;
+            &lt;th&gt;April 2015&lt;/th&gt;
+            &lt;th&gt;February 2021&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Number of users&lt;/td&gt;
+            &lt;td&gt;1773&lt;/td&gt;
+            &lt;td&gt;29745&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Number of posts&lt;/td&gt;
+            &lt;td&gt;
+                &lt;table&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Type of post&lt;/th&gt;
+                            &lt;th&gt;Count&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;thead&gt;
+                    &lt;/thead&gt;&lt;/thead&gt;&lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Question&lt;/td&gt;
+                            &lt;td&gt;643&lt;/td&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                            &lt;td&gt;Answer&lt;/td&gt;
+                            &lt;td&gt;1146&lt;/td&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                            &lt;td&gt;Tag wiki&lt;/td&gt;
+                            &lt;td&gt;81&lt;/td&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                    &lt;/tr&gt;&lt;/tbody&gt;
+                &lt;/table&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;table&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Type of post&lt;/th&gt;
+                            &lt;th&gt;Count&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;thead&gt;
+                    &lt;/thead&gt;&lt;/thead&gt;&lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;Question&lt;/td&gt;
+                            &lt;td&gt;10405&lt;/td&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                            &lt;td&gt;Answer&lt;/td&gt;
+                            &lt;td&gt;13747&lt;/td&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                            &lt;td&gt;Tag wiki&lt;/td&gt;
+                            &lt;td&gt;229&lt;/td&gt;
+                        &lt;/tr&gt;&lt;tr&gt;
+                    &lt;/tr&gt;&lt;/tbody&gt;
+                &lt;/table&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;&lt;tr&gt;
+    &lt;/tr&gt;&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In the moderator dashboard (&lt;em&gt;which displays a big shiny warning &amp;quot;analytics data is intended for moderators only; please don&#39;t share the specifics of this data in public&amp;quot;&lt;/em&gt;) we (the mods) can see the average number of posts by months has been pretty steady since the creation of the site, excepted for the Spring of 2020 which saw a significant spike which I don&#39;t really have an explanation for other than people got bored because of the various lock downs and started using Vim).&lt;/p&gt;
+&lt;p&gt;The number of page views however has been steadily increasing. For a reason I don&#39;t know the stats of page views starts in February 2018 with about 180.000 pages viewed each month and have been linearly growing ever since to reach about 260.000 monthly page views.&lt;/p&gt;
+&lt;p&gt;As we can see the community has grown quite a lot, today it drives about 7000 visitors each day for an average of 6.3 questions a day. Here are more numbers from the area51 website:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/vim/stepping-down-vi-se/are51-stats.png&quot; alt=&quot;area51 stats&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;As we can see the stats are flirting with the out-of-beta thresholds, even thought I don&#39;t think they will reach these thresholds any time soon. As it is the case for a lot of smaller websites dedicated to niche topics on stackexchange, &lt;a href=&quot;http://vi.se/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.se&lt;/a&gt; might very well stay in beta all of its life. And that&#39;s great! A smaller community is friendlier and usually easier to moderate which is a nice way to generate some interesting content.&lt;/p&gt;
+&lt;h3&gt;Moderator actions&lt;/h3&gt;
+&lt;p&gt;Due to the relatively small size of the site, the community is quite easy to moderate. In my 3 years of moderation duty I have encountered only one or two problematic users who required the moderation team to take an action against them.&lt;/p&gt;
+&lt;p&gt;Most of the time the moderator duty is just doing the janitor job of handling the few flags coming each day, editing or deleting a post once in a while and helping the new comers to create better posts.&lt;/p&gt;
+&lt;p&gt;Here is an insight on the number of actions I&#39;ve taken during my duty. My two fellow moderators &lt;a href=&quot;https://vi.stackexchange.com/users/10604/d-ben-knoble&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Ben&lt;/a&gt; and &lt;a href=&quot;https://vi.stackexchange.com/users/18609/filbranden&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Fill&lt;/a&gt; are quickly catching up on these metrics since they have been appointed about one year ago and have been doing an amazing job during these last months when I have been less active on the site.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/vim/stepping-down-vi-se/moderator_dashboard.png&quot; alt=&quot;moderator dashboard&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;A bit about my work&lt;/h3&gt;
+&lt;p&gt;Now I want to write a bit about me, not that it will be useful to anyone but at least to make me feeling good about myself which is still pretty important.&lt;/p&gt;
+&lt;p&gt;Let&#39;s start with the public overview of &lt;a href=&quot;https://vi.stackexchange.com/users/1841/statox&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;my profile&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/vim/stepping-down-vi-se/statox_stats.png&quot; alt=&quot;my stats&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Of all of these numbers the one I&#39;m definitely the most proud of is the &lt;strong&gt;~1.2m people reached&lt;/strong&gt; 🎉&lt;/p&gt;
+&lt;p&gt;This metric is not exactly accurate &lt;a href=&quot;https://meta.stackoverflow.com/q/290491/4194289&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;as explained here&lt;/a&gt; but knowing that roughly 1 million people have read what I wrote and hopefully got some useful information out of that fills me with pride and happiness. Being able to help other people fixing their problems, learning about a new tool and improving their daily computer life has been really rewarding for me, and despite leaving my moderator position I still intend to continue helping people on the internet.&lt;/p&gt;
+&lt;p&gt;Another metric I am really pleased about is my reputation count. I reached about 39.7k reputation points placing me in the second position in the site-wide ranking, well behind our historical moderator Martin. This ranking has been pretty stable for a year or two now and I believe this is mainly due to a few historical posts which were posted in the early days of the site and continue to gather reputation pretty regularly (as an example romainl the 3rd top user stopped participating on the site in December 2016 and it took me about 4 years after that to reach his score)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/vim/stepping-down-vi-se/reputation_board.png&quot; alt=&quot;reputation ranking&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;What about my actual posts?&lt;/p&gt;
+&lt;p&gt;Amongst the 60 questions and 500+ answers I wrote, some of them are more important to me than the others.Firstly, I pride myself in having two of my questions in the Top &lt;s&gt;10&lt;/s&gt; 11 &lt;a href=&quot;https://vi.stackexchange.com/questions?tab=Frequent&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;most frequently visited questions&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://vi.stackexchange.com/q/7722/1841&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;How to debug a mapping&lt;/a&gt; which is a question I decided to create when I saw how common were questions about mappings misunderstandings. I also self answered this question with a completely methodology which is my highest voted answer with 117 votes and around 18k views.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://vi.stackexchange.com/q/7466/1841&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;What is the difference between the vim snippets plugins?&lt;/a&gt; which was an actual question I had when I tried different snippets plugins (which I ditched from my &lt;code&gt;.vimrc&lt;/code&gt; since).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My most upvoted question is &lt;a href=&quot;https://vi.stackexchange.com/q/9522/1841&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;What is the Vim8 package feature and how should I use it?&lt;/a&gt; which is another question I self answered. When Vim8 was released the new package feature which is a new way to install your plugins was not entirely trivial to understand, so once I had spent a bit of time reading the doc and testing the feature by myself I thought it would be useful for other people too. My 41k page views seems to say I was right 😎 (Yes, this is me openly bragging).&lt;/p&gt;
+&lt;p&gt;Finally my favorite answer is probably the one I wrote in &lt;a href=&quot;https://vi.stackexchange.com/a/15674/1841&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Why is using arrow keys in normal mode considered bad practice?&lt;/a&gt; because this is such a non important topic which blocks so many new Vimmers and I believe it is important to remind everyone who start using this tool that they should not blindly follow some cargo cult advises.&lt;/p&gt;
+&lt;h3&gt;:x&lt;/h3&gt;
+&lt;p&gt;These past 6 years as a member of such a great community have been full of learning and were also the opportunity to discuss with some really smart and well intended Vimmers and I think that&#39;s what made me enjoy this website so much.&lt;/p&gt;
+&lt;p&gt;Also even if I step down from my moderator position I will probably continue to hang out a bit on this website because I still enjoy sharing knowledge as much as I enjoy using Vim.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
     <title>Cool covers</title>
     <link href="https://www.statox.fr/posts/music/cool_covers/"/>
-    <updated>2021-02-01T20:41:05Z</updated>
+    <updated>2021-02-04T15:56:49Z</updated>
     <id>https://www.statox.fr/posts/music/cool_covers/</id>
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;This page is a work in progress, I&#39;ll try to add more content and think of a better way to show the different songs.&lt;br /&gt;
