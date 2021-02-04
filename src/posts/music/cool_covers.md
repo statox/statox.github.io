@@ -2,6 +2,7 @@
 layout: layouts/post.njk
 tags: ['post', 'music']
 title: Cool covers
+date: 2021-02-01
 commentIssueId: 19
 ---
 
