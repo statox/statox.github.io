@@ -2,6 +2,8 @@
  * Eleventy configuration file
  */
 
+const sitemap = require('@quasibit/eleventy-plugin-sitemap');
+const pluginSEO = require('eleventy-plugin-seo');
 const embedSpotify = require('eleventy-plugin-embed-spotify');
 const {wordCount} = require('eleventy-plugin-wordcount');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
@@ -55,6 +57,14 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(wordCount);
     // Spotify plugin
     eleventyConfig.addPlugin(embedSpotify);
+    // SEO plugin
+    eleventyConfig.addPlugin(pluginSEO, require('./src/_data/seo.json'));
+    // Sitemap plugin
+    eleventyConfig.addPlugin(sitemap, {
+        sitemap: {
+            hostname: 'https://www.statox.fr'
+        }
+    });
 
     /*
      * Markdown parsing configuration
