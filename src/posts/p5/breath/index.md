@@ -188,6 +188,6 @@ Once the skeleton of the app was made (i.e. adding some buttons, a UI based on V
 
 So that was a fun and relaxing project and I really hope I will continue to take some time to regularly create new animations because so far that has been a very calming experience.
 
-Here is a (very crappy) gif of some of the visuals I created and the full application is available [on this page](https://breath.statox.fr)
+Here is a gif of some of the visuals I created and the full application is available [on this page](https://breath.statox.fr)
 
 ![spoiler](./demo.gif)
