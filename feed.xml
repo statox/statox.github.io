@@ -806,7 +806,7 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;h3&gt;Meditative coding&lt;/h3&gt;
 &lt;p&gt;Once the skeleton of the app was made (i.e. adding some buttons, a UI based on Vue.js to choose the duration of the session, playing with a &amp;quot;fullscreen&amp;quot; button, some CSS media queries and all the other boring details I didn&#39;t include here) all that is left for me to do is to add more animations. And, weirdly, spending time just creating some pleasing visuals on the rythm of a slow breathing really has something close to meditation.&lt;/p&gt;
 &lt;p&gt;So that was a fun and relaxing project and I really hope I will continue to take some time to regularly create new animations because so far that has been a very calming experience.&lt;/p&gt;
-&lt;p&gt;Here is a (very crappy) gif of some of the visuals I created and the full application is available &lt;a href=&quot;https://breath.statox.fr/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on this page&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here is a gif of some of the visuals I created and the full application is available &lt;a href=&quot;https://breath.statox.fr/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on this page&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/breath/demo.gif&quot; alt=&quot;spoiler&quot; /&gt;&lt;/p&gt;
 </content>
   </entry>
