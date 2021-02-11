@@ -2,7 +2,7 @@
 layout: layouts/page.njk
 title: About
 eleventyNavigation:
-  key: about
+  key: About
   order: 3
 ---
 
@@ -34,6 +34,6 @@ The source code of the site is [on Github](https://github.com/statox/blog/) and 
 
 #### CI status
 
+[travis job](https://travis-ci.com/github/statox/blog)
 [![Build Status](https://travis-ci.com/statox/blog.svg?branch=master)](https://travis-ci.com/statox/blog)
 
-[travis job](https://travis-ci.com/github/statox/blog)

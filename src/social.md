@@ -2,7 +2,7 @@
 layout: layouts/page.njk
 title: Social
 eleventyNavigation:
-  key: social
+  key: Social
   order: 4
 ---
 

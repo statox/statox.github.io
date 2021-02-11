@@ -49,7 +49,7 @@
 }
 
 /* Remove underline added by newcss under links */
-a:-webkit-any-link {
+a {
     text-decoration: none;
 }
 
@@ -65,4 +65,23 @@ pre {
   max-width: 200px;
   max-height: 200px;
   float: right;
+}
+
+.nav-item {
+    text-decoration: none;
+}
+.nav-item.active {
+    color: var(--nc-lk-2);
+    text-decoration: underline;
+}
+
+/* Center all images */
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul {
+    list-style-type: circle;
 }

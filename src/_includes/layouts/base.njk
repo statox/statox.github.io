@@ -40,12 +40,18 @@
     <header>
         <h1>The stuff I do</h1>
         <nav>
-            <a href="/">Home</a> /
-            <a href="/notes/">Notes</a> /
-            <a href="/about/">About</a> /
-            <a href="/social/">Social</a> /
-            <a href="/ring/">Ring</a> /
-            <a href="/feed.xml">RSS</a>
+            {# Make use of the eleventyNavigation plugin, get the pages #}
+            {# with an eleventyNavigation section in their meta data #}
+            {% set navPages = collections.all | eleventyNavigation %}
+
+            {% for i in range(0, navPages.length) %}
+                {% set entry = navPages[i] %}
+                {# Detecting the current page is a bit messed up by the home page which url is '/' and #}
+                {# is thus included in all the pages #}
+                {% set isCurrentPage = entry.url == page.url or (entry.url != '/' and entry.url in page.url) %}
+                <a class="nav-item {{'active' if isCurrentPage }}" href="{{ entry.url | url }}">{{ entry.title }}</a>
+                {% if i !== navPages.length - 1 %} ♢ {% endif %}
+            {% endfor %}
         </nav>
     </header>
 

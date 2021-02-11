@@ -2,7 +2,7 @@
 layout: layouts/page.njk
 title: Ring
 eleventyNavigation:
-  key: about
+  key: Ring
   order: 5
 ---
 

@@ -8,6 +8,7 @@ const embedSpotify = require('eleventy-plugin-embed-spotify');
 const {wordCount} = require('eleventy-plugin-wordcount');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
+const eleventyNavigation = require('@11ty/eleventy-navigation');
 const moment = require('moment');
 moment.locale('en');
 
@@ -65,6 +66,8 @@ module.exports = function (eleventyConfig) {
             hostname: 'https://www.statox.fr'
         }
     });
+    // Navigation
+    eleventyConfig.addPlugin(eleventyNavigation);
 
     /*
      * Markdown parsing configuration
