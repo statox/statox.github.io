@@ -901,8 +901,7 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;h4&gt;Online demo&lt;/h4&gt;
 &lt;p&gt;I&#39;m still happy with the result of this project: One can play a complete game against the computer, the scores are kept track of and a winner is declared before the game starts again.&lt;/p&gt;
 &lt;p&gt;There are still a tons of features which I would want to add, especially the ability to scroll over the board to avoid being blocked by its small dimension but the way I handled sprites makes it pretty hard to do and that would probably require a complete refactoring.&lt;/p&gt;
-&lt;p&gt;A demo is hosted on github pages and available &lt;a href=&quot;https://statox.github.io/triomaster/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;here&lt;/a&gt; and the code is &lt;a href=&quot;https://github.com/statox/triomaster&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on&lt;br /&gt;
-Github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A demo is hosted on github pages and available &lt;a href=&quot;https://statox.github.io/triomaster/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;here&lt;/a&gt; and the code is &lt;a href=&quot;https://github.com/statox/triomaster&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on Github&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
   
