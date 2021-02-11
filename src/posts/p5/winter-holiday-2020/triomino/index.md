@@ -85,5 +85,4 @@ I'm still happy with the result of this project: One can play a complete game ag
 
 There are still a tons of features which I would want to add, especially the ability to scroll over the board to avoid being blocked by its small dimension but the way I handled sprites makes it pretty hard to do and that would probably require a complete refactoring.
 
-A demo is hosted on github pages and available [here](https://statox.github.io/triomaster/) and the code is [on
-Github](https://github.com/statox/triomaster).
+A demo is hosted on github pages and available [here](https://statox.github.io/triomaster/) and the code is [on Github](https://github.com/statox/triomaster).

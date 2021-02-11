@@ -12,13 +12,13 @@ TODO: Extract the ones I need but can never remember
 
 _Reminder on zsh escape `^` in `HEAD^` with `HEAD\^`_
 
-Remove the last commit of the history completely **and discard changes**
-
-    git reset --hard HEAD^
-
 Remove the last commit from history but keep the working tree
 
     git reset HEAD^
+
+Remove the last commit of the history completely **and discard changes**
+
+    git reset --hard HEAD^ # THIS DISCARDS CHANGES
 
 ### Sign an older commit in your branch
 
