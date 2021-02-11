@@ -1,5 +1,6 @@
 ---
-layout: layouts/about.njk
+layout: layouts/page.njk
+title: About
 eleventyNavigation:
   key: about
   order: 3
