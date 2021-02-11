@@ -49,7 +49,9 @@ function appendComments(comments) {
     const commentSection = document.querySelector('comments');
 
     const commentCountSpan = document.getElementById('commentCounter');
-    commentCountSpan.innerText = comments.length || 0;
+    if (commentCountSpan) {
+        commentCountSpan.innerText = comments.length || 0;
+    }
 
     if (!comments || !comments.forEach || comments.length === 0) {
         commentSection.insertAdjacentHTML('beforeend', '<p>No comments yet.</p>');
