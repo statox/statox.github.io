@@ -1,0 +1,139 @@
+---json
+{
+"layout": "layouts/page.njk",
+"title": "CV"
+}
+---
+
+<!-- Line to be added to add to the navigation panel -->
+<!-- "eleventyNavigation": { "key": "CV", "order": 7 } -->
+
+<div class="cv">
+    <blockquote>
+        <p style="text-align: center;"><b>WORK IN PROGRESS</b></p>
+        <p style="text-align: center;">
+            I am in the process of migrating my CV to HTML (to then generate a PDF) it is not a finished work. Also I am
+            not currently looking for a new position.
+        </p>
+    </blockquote>
+    <h2>Adrien Fabre</h2>
+
+    <div class="cv-contact">
+        <div>
+            <a href="mailto:adrienfabre@pm.me">adrienfabre@pm.me</a>
+            <br>
+            <a href="tel:+33626554879">+33 6 26 55 48 79</a>
+        </div>
+        <div class="cv-contact-right">
+            <a href="https://www.statox.fr">statox.fr</a>
+            <br>
+            <a href="https://github.com/statox/">github.com/statox</a>
+            <br>
+            <a href="https://www.linkedin.com/in/adrien-fabre-7a30994b/">linkedin.com/in/adrien-fabre-7a30994b</a>
+        </div>
+    </div>
+
+    <br>
+    <div class="cv-info">
+        <p>
+            Ingénieur logiciel Français a Paris. Orienté développement serveur et gestion de l'infrastructure selon la
+            philosophie DevOps.
+        </p>
+    </div>
+
+    <div class="cv-work-experience">
+        <h3>Expérience professionnelle</h3>
+        <div>
+        </div>
+        <h4>Depuis Février 2019: Ingénieur Logiciel Serveur, Dashlane, CDI</h4>
+        <h5>Server Squad - Développeur et scrum master</h5>
+        <ul>
+            <li>Migration de notre cluster de monitoring Elasticsearch 5 vers Elasticsearch 7</li>
+            <ul>
+                <li>Création des scripts Terraform et Ansible pour créer et déployer les machines</li>
+                <li>Configuration du nouveau cluster Elasticsearch</li>
+                <li>Configuration de l'ingestion des logs vers differents index via logstash</li>
+                <li>Configuration de Kibana pour les différents utilisateurs</li>
+                <li>Gestion de la phase de migration entre les deux clusters</li>
+            </ul>
+            <li>Migration de notre BDD MySQL entre deux comptes AWS</li>
+            <ul>
+                <li>Création de la nouvelle instance MySQL et de ses security groups via Terraform</li>
+                <li>Création et test de la réplication entre les instances MySQL</li>
+                <li>Test du bon fonctionnement des applications avec la nouvelle BDD</li>
+                <li>Réalisation de la migration, temps d'indisponibilité &lt; 5mn</li>
+            </ul>
+            <li>En tant que Scrum Master</li>
+            <ul>
+                <li>Présentation de la review aux stackholders a chaque sprint</li>
+                <li>Mise en place de cérémonies régulières (Rétrospectives, refinement, planning)</li>
+                <li>Gestion des priorités des requêtes externes (support utilisateurs, équipes clients, équipe sécurité,
+                    ...)</li>
+            </ul>
+        </ul>
+        <h5>Mission team "Synchronisation" - Développeur</h5>
+        <ul>
+            <li>Participation aux spécifications et développement de nouveaux flots d'authentification</li>
+            <li>Analyse de l'architecture existante de la synchronisation et des problèmes de performances</li>
+            <li>Résolution des principaux bugs de la synchronisation pour en améliorer la fiabilité</li>
+            <li>Échanges constants avec les équipes de développeurs clients</li>
+        </ul>
+        <div>
+            <h4>2016-2018: Consultant, Nexworld, CDI</h4>
+            <h5>Développeur Full Stack, Elis, 2 ans</h5>
+            <ul>
+                <li>Réalisation et maintenance du système de création de devis et de rémunération des commerciaux Elis.
+                </li>
+                <li>Développement backend Java (Spring/Hibernate/Maven)</li>
+                <li>Développement mobile et frontend (Cordova/AngularJS)</li>
+                <li>Conception et développement d’une application desktop (NW.js/AngularJS)</li>
+                <li>Conception et recette des flux ESB liés aux backends</li>
+                <li>Accompagnement et formation des nouveaux développeurs dans l’équipe</li>
+                <li>Configuration et utilisation d'outils d’intégration continue (Git/Jenkins/Nexus/Sonarr)</li>
+                <li>Administration système (CentOS/tomcat/postgres/docker)</li>
+            </ul>
+            <h5>Consultant API Management, Sanofi, Engie, Caisse d'épargne, 1 an</h5>
+            <ul>
+                <li>Installation de CA API Management Gateway et Portail Développeur</li>
+                <li>Développements des expositions de webservices sur des plateformes d’API Management</li>
+                <li>Développements des policies de sécurité et scripts de migration API Management</li>
+                <li>Rédaction des documents d’architectures et d’exploitation (Anglais et Français)</li>
+                <li>Rédaction de guides de bonnes pratiques d'administration et de développement (Anglais et Français)
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4>2015: Ingénieur Qualité Junior, Enablon, Stage de 5 mois</h4>
+            <ul>
+                <li>Développement de tests d’API et de tests d’intégration au sein des applications</li>
+                <li>Etude sur le Framework de test intégré aux applications</li>
+                <li>Analyse et production de code en langage propriétaire Nabsic</li>
+                <li>Echange avec l’équipe de d’Assurance Qualité à Chicago</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="cv-education">
+        <h3>Formation</h3>
+        <h4>2016: Diplôme d'ingénieur CTI: Majeure Ingénierie Logicielle</h4>
+        <p>
+            Efrei, école d'ingénieur en informatique – Villejuif (94)
+            <br>
+            Semestre d’étude à l’étranger - Polytechnique Montréal, Montréal, Canada
+        </p>
+        <h4>2014: Licence sciences et technologies : mathématiques et informatique</h4>
+        <p>
+            Mention Très Bien
+            <br>
+            Partenariat Efrei/Université Paris-Est Marne-La-Vallée
+            <br>
+            Semestre d’étude à l’étranger - Asia Pacific University, Kuala Lumpur, Malaisie
+        </p>
+    </div>
+    <div>
+        <h3>Compétences</h3>
+    </div>
+    <div>
+        <h3>Activités personnelles</h3>
+    </div>
+</div>
