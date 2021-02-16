@@ -16,7 +16,7 @@ I have been a member of this community since April 2015 and I've been appointed 
 
 ### Some numbers about the site
 
-[vim.stackexchange.com](https://vim.stackexchange.com) (or vi.se, for the connoiseurs) is a relatively small website from the well known [stack exchange network](https://stackexchange.com/). It was originally proposed on [area51](https://area51.stackexchange.com/proposals/80441/vi-and-vim) in November 2014 and the public beta was launched in February 2015.
+[vim.stackexchange.com](https://vim.stackexchange.com) (or [vi.se](https://vim.stackexchange.com), for the connoiseurs) is a relatively small website from the well known [stack exchange network](https://stackexchange.com/). It was originally proposed on [area51](https://area51.stackexchange.com/proposals/80441/vi-and-vim) in November 2014 and the public beta was launched in February 2015.
 
 In its 6 years of existence the community has grown significantly and became one of the online reference for all things about vim, neovim and their sister editors.
 
@@ -98,7 +98,7 @@ As we can see the community has grown quite a lot, today it drives about 7000 vi
 
 ![area51 stats](./are51-stats.png)
 
-As we can see the stats are flirting with the out-of-beta thresholds, even thought I don't think they will reach these thresholds any time soon. As it is the case for a lot of smaller websites dedicated to niche topics on stackexchange, vi.se might very well stay in beta all of its life. And that's great! A smaller community is friendlier and usually easier to moderate which is a nice way to generate some interesting content.
+As we can see the stats are flirting with the out-of-beta thresholds, even thought I don't think they will reach these thresholds any time soon. As it is the case for a lot of smaller websites dedicated to niche topics on stackexchange, [vi.se](https://vim.stackexchange.com) might very well stay in beta all of its life. And that's great! A smaller community is friendlier and usually easier to moderate which is a nice way to generate some interesting content.
 
 
 ### Moderator actions
