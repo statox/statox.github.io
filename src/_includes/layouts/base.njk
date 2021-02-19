@@ -23,10 +23,20 @@
     {# Custom css #}
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/material.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/minesweeper.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/boids.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/comments.css' | url }}">
+
+    {% if 'minesweeper' in page.url %}
+    <link rel="stylesheet" href="{{ '/css/minesweeper.css' | url }}">
+    {% endif %}
+
+    {% if 'boids' in page.url %}
+    <link rel="stylesheet" href="{{ '/css/boids.css' | url }}">
+    {% endif %}
+
+    {% if page.url == '/CV/' %}
     <link rel="stylesheet" href="{{ '/css/CV.css' | url }}">
+    {% endif %}
+
     {% if site.env === "dev" %}
     <link rel="stylesheet" href="{{ '/css/ribbon.css' | url }}">
     {% endif %}
