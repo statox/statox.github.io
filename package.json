@@ -23,8 +23,8 @@
         "url": "git+https://github.com/statox/blog.git"
     },
     "scripts": {
-        "dev": "ELEVENTY_ENV=dev npx 11ty/eleventy --input=src --output=docs --serve",
-        "build": "ELEVENTY_ENV=prod npx 11ty/eleventy --input=src --output=docs",
+        "dev": "ELEVENTY_ENV=dev npx @11ty/eleventy --input=src --output=docs --serve",
+        "build": "ELEVENTY_ENV=prod npx @11ty/eleventy --input=src --output=docs",
         "create-issues": "node tools/createIssues.js"
     },
     "version": "1.0.0",
