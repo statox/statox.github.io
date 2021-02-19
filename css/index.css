@@ -13,17 +13,6 @@
  * --nc-ac-1: Accent color for <mark> and text selection background
  */
 
-/*
- * Justify all texts excepted the 404 page
- * cf. https://stackoverflow.com/a/35734554/4194289
- * (Temporarily (?) removed trying to evaluate what's best
- */
-/*
- * *:not(.not-found) {
- *     text-align: justify;
- * }
-*/
-
 .post-subheader {
     font-style: italic;
     color: #80837c;
@@ -31,6 +20,13 @@
 
 .post-date {
     font-family: var(--nc-font-mono);
+}
+
+/* Don't show the post date on smaller screens */
+@media screen and (max-width: 600px) {
+    .post-date {
+        display: none;
+    }
 }
 
 .note-tags {
@@ -65,14 +61,6 @@ pre {
   max-width: 200px;
   max-height: 200px;
   float: right;
-}
-
-.nav-item {
-    text-decoration: none;
-}
-.nav-item.active {
-    color: var(--nc-lk-2);
-    text-decoration: underline;
 }
 
 /* Center all images */
