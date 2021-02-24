@@ -76,7 +76,11 @@
 <body>
     <header>
         <h1>The stuff I do</h1>
-        <nav class="topnav" id="header-navbar">
+        <!--
+           - Make the whole navbar clickable: It doesn't change anything on desktop
+           - and makes it easier to open the menu on mobile
+           -->
+        <nav class="topnav" id="header-navbar" onclick="navbarToggle()">
             
             
             
@@ -192,6 +196,53 @@
 <p>and the implementation with</p>
 <pre class="language-bash"><code class="language-bash">functions <span class="token variable">$_comps</span><span class="token punctuation">[</span>myCoolFunction<span class="token punctuation">]</span></code></pre>
 <p>Finally I should check how to make it work with the defined files (<code>~/.oh-my-zsh/completions</code>) and understand why the <code>compdef</code> command only works when put in <code>.zshrc</code>.</p>
+
+        </details>
+    </div><div>
+        <details>
+            <summary>
+                <a class="note-link" href=/notes/firefox/>Firefox shortcuts</a>
+                <span class="note-tags">[firefox]</span>
+            </summary>
+            
+            <h3>Built-in shortcuts</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Move tab left/right</td>
+<td><code>&lt;</code>/<code>&gt;</code></td>
+</tr>
+<tr>
+<td>Focus address bar</td>
+<td><code>&lt;C-j&gt;</code>/<code>&lt;C-k&gt;</code></td>
+</tr>
+<tr>
+<td>Backwards/Forward navigation</td>
+<td><code>&lt;A-Left&gt;</code>/<code>&lt;A-Right&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Vimium config</h3>
+<p>Custom key mappings</p>
+<pre><code>map l nextTab
+map h previousTab
+map d removeTab
+</code></pre>
+<h3>Custom search engine</h3>
+<p>To use search engines <code>site:</code> filter automatically:</p>
+<ul>
+<li>Create a bookmark with the the url and <code>%s</code> for the query string like this:<br>
+<code>https://www.google.com/search?q=site%3Avi.stackexchange.com%20%s</code><br>
+<code>https://duckduckgo.com/?t=canonical&amp;q=site%3Avi.stackexchange.com%20%s</code></li>
+<li>Add a keyword to the bookmark e.g. <code>v</code></li>
+<li>In the address bar search with <code>v my query</code></li>
+</ul>
 
         </details>
     </div><div>
