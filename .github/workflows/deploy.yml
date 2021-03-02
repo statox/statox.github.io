@@ -4,26 +4,23 @@ on:
   push:
     branches: [ master ]
   workflow_dispatch:
-    inputs:
-      name:
-        description: 'Deploy to github pages'
 jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: 🔀 Checkout
         uses: actions/checkout@v2
-      - name: Configure node
+      - name: 🚩 Configure node
         uses: actions/setup-node@v1
         with:
           node-version: '12'
-      - name: Install and build
+      - name: 🔧 Install and build
         run: |
           npm ci
           npm run build
-      - name: Create issues for comments
+      - name: 💬 Create issues for comments
         run: npm run create-issues -- ${{ secrets.TRAVIS_ACCESS_TOKEN }} false
-      - name: Deploy
+      - name: 🚀 Deploy
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
           branch: gh-pages # The branch the action should deploy to.
