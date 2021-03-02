@@ -10,8 +10,13 @@ const pluginRss = require('@11ty/eleventy-plugin-rss');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const eleventyNavigation = require('@11ty/eleventy-navigation');
 const cleanCSS = require('clean-css');
-const moment = require('moment');
-moment.locale('en');
+
+const formatPostDate = date => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${months[month]} ${year}`;
+};
 
 module.exports = function (eleventyConfig) {
     const env = process.env.ELEVENTY_ENV;
@@ -34,7 +39,7 @@ module.exports = function (eleventyConfig) {
      */
     // Posts dates in home page
     eleventyConfig.addFilter('datePost', date => {
-        return moment(date).utc().format('MMM YYYY');
+        return formatPostDate(date);
     });
 
     // Format tags of notes
