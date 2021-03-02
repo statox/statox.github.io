@@ -9,6 +9,7 @@ const {wordCount} = require('eleventy-plugin-wordcount');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const eleventyNavigation = require('@11ty/eleventy-navigation');
+const cleanCSS = require('clean-css');
 const moment = require('moment');
 moment.locale('en');
 
@@ -46,6 +47,11 @@ module.exports = function (eleventyConfig) {
 
     // Change the tab title to the tittle of the post or the tittle of the site
     eleventyConfig.addFilter('pageTitle', tittle => tittle || 'The stuff I do');
+
+    // CSS minifier filter
+    eleventyConfig.addFilter('cssmin', function (code) {
+        return new cleanCSS({}).minify(code).styles;
+    });
 
     /*
      * Plugins
@@ -103,7 +109,6 @@ module.exports = function (eleventyConfig) {
     /*
      * Passthroughs: Copy ./dir/ to docs/dir/
      */
-    eleventyConfig.addPassthroughCopy('css');
     eleventyConfig.addPassthroughCopy('fonts');
     eleventyConfig.addPassthroughCopy({'./assets/images': '/images'});
 

@@ -54,15 +54,6 @@ pre {
     max-height: 50rem
 }
 
-.profile-picture {
-  border-radius: 50%;
-  height: auto;
-  width: auto;
-  max-width: 200px;
-  max-height: 200px;
-  float: right;
-}
-
 /* Center all images */
 img {
   display: block;

@@ -21,26 +21,12 @@
     <link rel="stylesheet" href="https://unpkg.com/prismjs@1.20.0/themes/prism-tomorrow.css">
 
     {# Custom css #}
-    <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/navbar.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/material.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/comments.css' | url }}">
-
-    {% if 'minesweeper' in page.url %}
-    <link rel="stylesheet" href="{{ '/css/minesweeper.css' | url }}">
-    {% endif %}
-
-    {% if 'boids' in page.url %}
-    <link rel="stylesheet" href="{{ '/css/boids.css' | url }}">
-    {% endif %}
-
-    {% if page.url == '/CV/' %}
-    <link rel="stylesheet" href="{{ '/css/CV.css' | url }}">
-    {% endif %}
-
-    {% if site.env === "dev" %}
-    <link rel="stylesheet" href="{{ '/css/ribbon.css' | url }}">
-    {% endif %}
+    {% set css %}
+      {% include "main_css.njk" %}
+    {% endset %}
+    <style>
+      {{ css | cssmin | safe }}
+    </style>
 
     {# Favicon #}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/favicon/apple-touch-icon.png' | url }}">
