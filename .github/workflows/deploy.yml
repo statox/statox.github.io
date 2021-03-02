@@ -20,8 +20,9 @@ jobs:
       - name: Install and build
         run: |
           npm ci
-          # npm run create-issues -- $GITHUB_TOKEN false
           npm run build
+      - name: Create issues for comments
+        run: npm run create-issues -- ${{ secrets.TRAVIS_ACCESS_TOKEN }} false
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
