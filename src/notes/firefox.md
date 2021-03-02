@@ -7,7 +7,7 @@ title: Firefox shortcuts
 ### Built-in shortcuts
 |   Action                     | Shortcut               |
 |------------------------------|------------------------|
-| Move tab left/right          | `<`/`>`                |
+| Move tab left/right (vimium) | `<`/`>`                |
 | Focus address bar            | `<C-j>`/`<C-k>`        |
 | Backwards/Forward navigation | `<A-Left>`/`<A-Right>` |
 
