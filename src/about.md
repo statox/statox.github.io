@@ -30,10 +30,9 @@ My professional experience is mainly focused on backend development: Maintaining
 
 And as I'm not exactly a css expert and wanted something simpler than bootstrap I went with [newcss](https://newcss.net/) a very simple css framework.
 
-The source code of the site is [on Github](https://github.com/statox/blog/) and uses [travis ci](https://travis-ci.com/) to automatically build and publish each update to Github Pages.
+The source code of the site is [on Github](https://github.com/statox/blog/) and [uses Github Actions](../posts/others/travis-to-githubactions/) to automatically build and publish each update to Github Pages.
 
 #### CI status
 
-[travis job](https://travis-ci.com/github/statox/blog)
-[![Build Status](https://travis-ci.com/statox/blog.svg?branch=master)](https://travis-ci.com/statox/blog)
-
+[CI On Github Actions](https://github.com/statox/blog/actions/)
+![Build Status](https://github.com/statox/blog/actions/workflows/deploy.yml/badge.svg)

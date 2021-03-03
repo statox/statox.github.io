@@ -1,4 +1,4 @@
-# Blog [![Build Status](https://travis-ci.com/statox/blog.svg?branch=master)](https://travis-ci.org/statox/blog)
+# Blog [![Build Status](https://github.com/statox/blog/actions/workflows/deploy.yml/badge.svg)](https://github.com/statox/blog/actions/)
 
 I'm trying to do a minimal blog hoping that having it very simple will motivate me to put new stuff regularly.
 For now the rest of this readme will probably be my cheatsheet/todo list.
@@ -24,17 +24,13 @@ Will build the site in `docs/` which is served by github pages. (This is actuall
 
 ## Publishing the site
 
-Github pages serves the `gh-pages` branch. The deployment is automated with travis-ci. (The job is [here](https://travis-ci.com/github/statox/blog))
+Github pages serves the `gh-pages` branch. The deployment is automated with Github Actions. (The job is [here](https://github.com/statox/blog/actions/))
 
-In `.travis.yml` I use the github pages provider which does the following:
+In [`.deploy.yml`](https://github.com/statox/blog/blob/master/.github/workflows/deploy.yml) I use the github pages provider which does the following:
 
  - Install everything
  - Use `npm run build` to generate the site in the `docs/` directory
  - Checkout the result on the `gh-pages` branch
-
-The job needs an access token generated like so:
- - On Github: Account > Settings > Developer settings > Personal access token
- - In the travis job settings I added its value
 
 ## Analytics
 
