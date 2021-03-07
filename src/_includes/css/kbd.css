@@ -1,0 +1,36 @@
+/*
+ * Inspired by stackoverflow.com <kbd> tag borrowed from their source code
+ */
+kbd {
+    --black-800: #242729;
+    --white: #fff;
+    --black-075: #e4e6e8;
+    --black-300: #9fa6ad;
+    --s-prose-line-height: 1.5;
+    --ff-sans: Arial,"Helvetica Neue",Helvetica,sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    kbd {
+        --black-800: #e7e8eb;
+        --white: #2d2d2d;
+        --black-075: #404345;
+        --black-300: #7d848d;
+    }
+}
+
+kbd {
+    display: inline-block;
+    margin: 0 .1em;
+    padding: .1em .6em;
+    font-family: var(--ff-sans);
+    font-size: 11px;
+    line-height: var(--s-prose-line-height);
+    color: var(--black-800);
+    text-shadow: 0 1px 0 var(--white);
+    background-color: var(--black-075);
+    border: 1px solid var(--black-300);
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(12,13,14,0.15),inset 0 1px 0 0 #fff;
+    overflow-wrap: break-word;
+}
