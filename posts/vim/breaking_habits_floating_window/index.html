@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Using Neovim&apos;s floating window to break bad habits - The stuff I do</title>
+<title>Using Neovim floating window to break bad habits - The stuff I do</title>
 
 <meta name="description" content="A personal blog where I write about my side projects">
 <meta name="robots" content="index,follow">
@@ -8,7 +8,7 @@
 
 <link rel="canonical" href="https://www.statox.fr/posts/vim/breaking_habits_floating_window/">
 
-<meta property="og:title" content="Using Neovim&apos;s floating window to break bad habits - The stuff I do">
+<meta property="og:title" content="Using Neovim floating window to break bad habits - The stuff I do">
 <meta property="og:type" content="article">
 
 <meta property="og:url" content="https://www.statox.fr/posts/vim/breaking_habits_floating_window/">
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary">
 
 <meta name="twitter:url" content="https://www.statox.fr/posts/vim/breaking_habits_floating_window/">
-<meta name="twitter:title" content="Using Neovim&apos;s floating window to break bad habits - The stuff I do">
+<meta name="twitter:title" content="Using Neovim floating window to break bad habits - The stuff I do">
 <meta name="twitter:description" content="A personal blog where I write about my side projects">
 
 
@@ -27,7 +27,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Using Neovim&#39;s floating window to break bad habits</title>
+    <title>Using Neovim floating window to break bad habits</title>
     <meta name="description" content="A personal blog where I write about my side projects">
     <meta name="keywords" content="statox blog">
     <meta property="og:title" content="The stuff I do">
@@ -151,7 +151,7 @@
 
     <div class="content-container">
         
-<h2>Using Neovim&#39;s floating window to break bad habits</h2>
+<h2>Using Neovim floating window to break bad habits</h2>
 <p class="post-subheader">
     March 8, 2021
     - 2162 words
@@ -160,7 +160,7 @@
 </p>
 <p><a href="/">← Posts</a></p>
 
-<p>In 2016 I added to my <code>.vimrc</code> a mapping to get easier access to window commands in normal mode. I was pretty happy with it in my local setup but it broke my workflow when I edited files on remote servers. Over time this got pestering enough for me to take action and decide to solve the issue. I thought it was a good opportunity to experiment with neovim's <a href="https://neovim.io/doc/user/api.html#api-floatwin" target="_blank" rel="noopener noreferrer">floating windows</a>.</p>
+<p>In 2016 I added to my <code>.vimrc</code> a mapping to get easier access to window commands in normal mode. I was pretty happy with it in my local setup but it broke my workflow when I edited files on remote servers. Over time this got pestering enough for me to take action and decide to solve the issue. I thought it was a good opportunity to experiment with Neovim <a href="https://neovim.io/doc/user/api.html#api-floatwin" target="_blank" rel="noopener noreferrer">floating windows</a>.</p>
 <p>In this article I'll show how I used some of the Neovim features to create a quick way to get rid of my bad habits. If you never used the floating window it should be an introduction to get started with this feature and give you some inspiration to use it for your own needs.</p>
 <h3>The problem</h3>
 <p>The problematic mapping I added to my <code>.vimrc</code> is the following:</p>
@@ -172,13 +172,13 @@
 			(not linewise).
 </code></pre>
 <p>I've never found a use case where this is actually helpful (as the doc says, <code>cl</code> does almost the same thing) so remapping it didn't really affect my productivity. However when I edit files on remote severs where I haven't uploaded my config my muscle memory makes me press <kbd>s</kbd> and I end up editing the current buffer instead of manipulating my windows which is irritating.</p>
-<p>When I decided to get rid of this nasty habit I removed the mapping from my <code>.vimrc</code> but I also needed something to annoy me out of using it. An easy solution would have been to remap the key to <a href="https://neovim.io/doc/user/intro.html#%3cNop%3e" target="_blank" rel="noopener noreferrer"><code>&lt;Nop&gt;</code></a> so that it does nothing but then the command silently fails and I end up executing the second part of the command (<code>v</code>, <code>s</code>, <code>o</code>...) which is not ideal for my workflow. That's when Neovim's floating window comes useful. I wanted to have a very visible graphical warning that I used a command I shouldn't have and that I should try again with the right command.</p>
+<p>When I decided to get rid of this nasty habit I removed the mapping from my <code>.vimrc</code> but I also needed something to annoy me out of using it. An easy solution would have been to remap the key to <a href="https://neovim.io/doc/user/intro.html#%3cNop%3e" target="_blank" rel="noopener noreferrer"><code>&lt;Nop&gt;</code></a> so that it does nothing but then the command silently fails and I end up executing the second part of the command (<code>v</code>, <code>s</code>, <code>o</code>...) which is not ideal for my workflow. That's when the floating window comes useful. I wanted to have a very visible graphical warning that I used a command I shouldn't have and that I should try again with the right command.</p>
 <h3>Specifying the solution</h3>
 <p>Here is the solution I came up with:</p>
 <p><img src="../../../images/vim_breaking_habits/floating_window_notice.png" alt="Floating window notice"></p>
 <p>This floating window is shown when I press a command I want to avoid. There are a few features I wanted to have in this solution:</p>
 <ul>
-<li>The window is spawned in the middle of neovim UI;</li>
+<li>The window is spawned in the middle of Neovim UI;</li>
 <li>The borders of the window are delimited with ascii characters to make it more visible;</li>
 <li>It should be easy to close the window both with regular commands (like <code>:close</code>) and with specific keys like <kbd>Escape</kbd>, <kbd>Enter</kbd> or <kbd>Space</kbd> (which is my leader key);</li>
 <li>I should have a convenient command to &quot;disable&quot; several normal mode commands with this window;</li>
@@ -189,7 +189,7 @@
 <p>The first step to create this solution is to create a function spawning a new floating window:</p>
 <pre class="language-vim"><code class="language-vim"><span class="token keyword">function</span><span class="token operator">!</span> <span class="token function">BreakHabitsWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> abort<br>    <span class="token comment">" Define the size of the floating window</span><br>    <span class="token keyword">let</span> width <span class="token operator">=</span> <span class="token number">50</span><br>    <span class="token keyword">let</span> height <span class="token operator">=</span> <span class="token number">10</span><br><br>    <span class="token comment">" Create the scratch buffer displayed in the floating window</span><br>    <span class="token keyword">let</span> buf <span class="token operator">=</span> <span class="token function">nvim_create_buf</span><span class="token punctuation">(</span>v<span class="token punctuation">:</span>false<span class="token punctuation">,</span> v<span class="token punctuation">:</span>true<span class="token punctuation">)</span><br><br>    <span class="token comment">" Get the current UI</span><br>    <span class="token keyword">let</span> ui <span class="token operator">=</span> <span class="token function">nvim_list_uis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><br><br>    <span class="token comment">" Create the floating window</span><br>    <span class="token keyword">let</span> opts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'relative'</span><span class="token punctuation">:</span> <span class="token string">'editor'</span><span class="token punctuation">,</span><br>                \ <span class="token string">'width'</span><span class="token punctuation">:</span> width<span class="token punctuation">,</span><br>                \ <span class="token string">'height'</span><span class="token punctuation">:</span> height<span class="token punctuation">,</span><br>                \ <span class="token string">'col'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>ui<span class="token operator">.</span>width<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span>width<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>                \ <span class="token string">'row'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>ui<span class="token operator">.</span>height<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span>height<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>                \ <span class="token string">'anchor'</span><span class="token punctuation">:</span> <span class="token string">'NW'</span><span class="token punctuation">,</span><br>                \ <span class="token string">'style'</span><span class="token punctuation">:</span> <span class="token string">'minimal'</span><span class="token punctuation">,</span><br>                \ <span class="token punctuation">}</span><br>    <span class="token keyword">let</span> <span class="token keyword">win</span> <span class="token operator">=</span> <span class="token function">nvim_open_win</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> opts<span class="token punctuation">)</span><br><span class="token keyword">endfunction</span></code></pre>
 <p>We begin by creating the buffer which will be shown in the floating window. Neovim provides the <a href="https://neovim.io/doc/user/api.html#nvim_create_buf%28%29" target="_blank" rel="noopener noreferrer"><code>nvim_create_buf()</code></a> function to create an unlisted buffer and get its handle.</p>
-<p>We then need to call <a href="https://neovim.io/doc/user/api.html#nvim_list_uis%28%29" target="_blank" rel="noopener noreferrer"><code>nvim_list_uis()</code></a> to get the currently attached UIs. In my case I only have one UI (the neovim instance open in my terminal) so I can directly access the first item of the returned list, there are probably some cases where one would want to be more thoughtful about the way to get this info but for now we want to keep things simple. We will then use <code>ui.width</code> and <code>ui.height</code> to get its size.</p>
+<p>We then need to call <a href="https://neovim.io/doc/user/api.html#nvim_list_uis%28%29" target="_blank" rel="noopener noreferrer"><code>nvim_list_uis()</code></a> to get the currently attached UIs. In my case I only have one UI (the Neovim instance open in my terminal) so I can directly access the first item of the returned list, there are probably some cases where one would want to be more thoughtful about the way to get this info but for now we want to keep things simple. We will then use <code>ui.width</code> and <code>ui.height</code> to get its size.</p>
 <p>Finally we can use <code>nvim_open_win()</code> to open the floating window. The function takes three arguments:</p>
 <ul>
 <li>The handle of the buffer we previously created and which will be used in the window.</li>
@@ -199,7 +199,7 @@
 <p>Calling this function with <code>:call BreakHabitsWindow()</code> will spawn a simple empty floating window:</p>
 <p><img src="../../../images/vim_breaking_habits/simple_floating_window.png" alt="Simple floating window"></p>
 <h4>Showing the window borders</h4>
-<p>My second requirement is to have a box drawn in the buffer to show the borders of the window. There are a lot of different ways to achieve this but neovim provides a convenient <a href="https://neovim.io/doc/user/api.html#nvim_buf_set_lines%28%29" target="_blank" rel="noopener noreferrer"><code>nvim_buf_set_lines()</code></a> function to set the lines of a buffer.</p>
+<p>My second requirement is to have a box drawn in the buffer to show the borders of the window. There are a lot of different ways to achieve this but Neovim provides a convenient <a href="https://neovim.io/doc/user/api.html#nvim_buf_set_lines%28%29" target="_blank" rel="noopener noreferrer"><code>nvim_buf_set_lines()</code></a> function to set the lines of a buffer.</p>
 <p>We start by creating the strings to use as the first and last lines and the ones in between thanks to <a href="http://vimhelp.appspot.com/eval.txt.html#repeat%28%29" target="_blank" rel="noopener noreferrer"><code>repeat()</code></a> and put them in a list:</p>
 <pre class="language-vim"><code class="language-vim"><span class="token comment">" create the lines to draw a box</span><br><span class="token keyword">let</span> horizontal_border <span class="token operator">=</span> <span class="token string">'+'</span> <span class="token operator">.</span> <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">,</span> width <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">.</span> <span class="token string">'+'</span><br><span class="token keyword">let</span> empty_line <span class="token operator">=</span> <span class="token string">'|'</span> <span class="token operator">.</span> <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">,</span> width <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">.</span> <span class="token string">'|'</span><br><span class="token keyword">let</span> <span class="token builtin">lines</span> <span class="token operator">=</span> <span class="token function">flatten</span><span class="token punctuation">(</span><span class="token punctuation">[</span>horizontal_border<span class="token punctuation">,</span> <span class="token function">map</span><span class="token punctuation">(</span><span class="token function">range</span><span class="token punctuation">(</span>height<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'empty_line'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> horizontal_border<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
 <p>We can then use this list with the <code>nvim_buf_set_lines</code> function:</p>
@@ -245,7 +245,7 @@
 <p>Firstly this is my first time messing with these Neovim features and I'm not entirely sure that I followed every best practices with them. I don't feel like maintaining a public plugin with this code.</p>
 <p>Secondly -and this is more important- I think that this kind of feature is pretty sensitive. I have seen countless new vim users following ill-advised plugins like <a href="https://github.com/takac/vim-hardtime" target="_blank" rel="noopener noreferrer">vim-hardtime</a> or <em>worse</em> <a href="https://github.com/wikitopian/hardmode" target="_blank" rel="noopener noreferrer">vim-hardmode</a>. More often than not people using them don't understand the larger picture of their issue and these plugins get in there way instead of helping them improving their workflow. I don't want to create another instance of this kind of plugin.</p>
 <h3>Call for actions</h3>
-<p>I hope that this article was useful for you if you never used neovim's floating window. There are already some plugins making use of this feature like <a href="https://www.reddit.com/r/neovim/comments/b1pctc/float_window_support_with_cocnvim/" target="_blank" rel="noopener noreferrer">coc</a> or <a href="https://github.com/junegunn/fzf.vim/issues/664" target="_blank" rel="noopener noreferrer">fzf</a> but I'm sure there are other less bloated usages out there: Don't hesitate to share them with me!</p>
+<p>I hope that this article was useful for you if you never used the floating window. There are already some plugins making use of this feature like <a href="https://www.reddit.com/r/neovim/comments/b1pctc/float_window_support_with_cocnvim/" target="_blank" rel="noopener noreferrer">coc</a> or <a href="https://github.com/junegunn/fzf.vim/issues/664" target="_blank" rel="noopener noreferrer">fzf</a> but I'm sure there are other less bloated usages out there: Don't hesitate to share them with me!</p>
 
 
 <p><a href="/">← Posts</a></p>
