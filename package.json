@@ -3,7 +3,7 @@
     "bugs": {
         "url": "https://github.com/statox/blog/issues"
     },
-    "description": "My blog attempt",
+    "description": "A personal blog where I write about my side projects",
     "devDependencies": {
         "@11ty/eleventy": "^0.11.1",
         "@11ty/eleventy-navigation": "^0.1.6",

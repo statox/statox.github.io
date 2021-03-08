@@ -38,9 +38,7 @@ module.exports = function (eleventyConfig) {
      * Filters
      */
     // Posts dates in home page
-    eleventyConfig.addFilter('datePost', date => {
-        return formatPostDate(date);
-    });
+    eleventyConfig.addFilter('datePost', formatPostDate);
 
     // Format tags of notes
     eleventyConfig.addFilter('noteTags', tags => {
