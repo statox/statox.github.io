@@ -273,4 +273,4 @@ Secondly -and this is more important- I think that this kind of feature is prett
 
 ### Make it yours!
 
-I hope that this article was useful for you if you never used the floating window. There are already some plugins making use of this feature like [coc](https://www.reddit.com/r/neovim/comments/b1pctc/float_window_support_with_cocnvim/) or [fzf](https://github.com/junegunn/fzf.vim/issues/664) but I'm sure there are other more lightweight usages you can add to your config: Don't hesitate to share them with me!
+I hope that this article was useful for you if you never used the floating window. There are already some plugins making use of this feature like [coc](https://www.reddit.com/r/neovim/comments/b1pctc/float_window_support_with_cocnvim/) or [fzf](https://github.com/junegunn/fzf.vim/issues/664) but I'm sure there are other more lightweight usages you can add to your config: Don't hesitate to share them with me either [on Reddit](https://www.reddit.com/r/neovim/comments/m0hyig/using_neovim_floating_window_to_break_bad_habits/) or in [the comments](https://github.com/statox/blog-comments/issues/23)!
