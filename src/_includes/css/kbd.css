@@ -23,7 +23,7 @@ kbd {
     display: inline-block;
     margin: 0 .1em;
     padding: .1em .6em;
-    font-family: var(--ff-sans);
+    font-family: var(--nc-font-sans);
     font-size: 11px;
     line-height: var(--s-prose-line-height);
     color: var(--black-800);
