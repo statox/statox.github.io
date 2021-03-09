@@ -1,9 +1,12 @@
+/*!
+ * prism.js tomorrow night eighties for javascript, coffeescript, css and html
+ * based on https://github.com/chriskempson/tomorrow-theme
+ * Author: Rose Pritchard
+ */
 /*
  * prism.js code theme forked from Rose Pritchard work
  * I copied it directly it because I plan to diverge from the original in the future
  * but I don't know when this will happen
- * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
- * Based on https://github.com/chriskempson/tomorrow-theme
  */
 
 code[class*="language-"],
