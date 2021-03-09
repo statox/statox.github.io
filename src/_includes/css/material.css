@@ -1,12 +1,12 @@
-/*
- * Inspired from material theme
- * https://www.material-theme.com/docs/reference/color-palette/
+/*!
+ * Inspired by material theme https://www.material-theme.com/docs/reference/color-palette/
  */
 
 :root {
     /* Light theme */
     --nc-tx-1: #546e7a;
     --nc-tx-2: #161d21;
+    --nc-tx-3: #6d7169;
     --nc-bg-1: #F4F4F4;
     --nc-bg-2: #eae8e8;
     --nc-bg-3: #FAFAFA;
@@ -19,6 +19,7 @@
     /* Dark theme */
     --nc-d-tx-1: #FFFFFF;
     --nc-d-tx-2: #B7B7B7;
+    --nc-d-tx-3: #8a8d87;
     --nc-d-bg-1: #1E272C;
     --nc-d-bg-2: #161d21;
     --nc-d-bg-3: #263238;
@@ -38,6 +39,7 @@
     :root {
         --nc-tx-1: var(--nc-d-tx-1);
         --nc-tx-2: var(--nc-d-tx-2);
+        --nc-tx-3: var(--nc-d-tx-3);
         --nc-bg-1: var(--nc-d-bg-1);
         --nc-bg-2: var(--nc-d-bg-2);
         --nc-bg-3: var(--nc-d-bg-3);

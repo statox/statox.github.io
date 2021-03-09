@@ -1,9 +1,20 @@
 /*!
- * new.css framework taken from https://github.com/xz/new.css
+ * new.css framework forked from https://github.com/xz/new.css
  */
 /*
- * I copied it directly it because I plan to diverge from the original in the future
- * but I don't know when this will happen
+ * Colors usage
+ *
+ * --nc-font-sans: Font for all text besides code or preformatted
+ * --nc-font-mono: Font for <code>, <pre>, <kbd>, <samp>
+ * --nc-tx-1: Heading text color
+ * --nc-tx-2: Body text color
+ * --nc-tx-3: Subheading text color
+ * --nc-bg-1: Base background color
+ * --nc-bg-2: Slightly darker background color
+ * --nc-bg-3: Even slightly darker background color
+ * --nc-lk-1: Action color for links and buttons
+ * --nc-lk-2: Link and buttons on mouse hover and active
+ * --nc-ac-1: Accent color for <mark> and text selection background
  */
 
 :root {
@@ -13,6 +24,7 @@
     /* Light theme */
     --nc-tx-1: #000000;
     --nc-tx-2: #1A1A1A;
+    --nc-tx-3: #6d7169;
     --nc-bg-1: #FFFFFF;
     --nc-bg-2: #F6F8FA;
     --nc-bg-3: #E5E7EB;
@@ -25,6 +37,7 @@
     /* Dark theme */
     --nc-d-tx-1: #ffffff;
     --nc-d-tx-2: #eeeeee;
+    --nc-d-tx-3: #8a8d87;
     --nc-d-bg-1: #000000;
     --nc-d-bg-2: #111111;
     --nc-d-bg-3: #222222;

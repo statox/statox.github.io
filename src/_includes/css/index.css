@@ -1,21 +1,6 @@
-/*
- * Reminder on newcss colors
- *
- * --nc-font-sans: Font for all text besides code or preformatted
- * --nc-font-mono: Font for <code>, <pre>, <kbd>, <samp>
- * --nc-tx-1: Heading text color
- * --nc-tx-2: Body text color
- * --nc-bg-1: Base background color
- * --nc-bg-2: Slightly darker background color
- * --nc-bg-3: Even slightly darker background color
- * --nc-lk-1: Action color for links and buttons
- * --nc-lk-2: Link and buttons on mouse hover and active
- * --nc-ac-1: Accent color for <mark> and text selection background
- */
-
 .post-subheader {
     font-style: italic;
-    color: #80837c;
+    color: var(--nc-tx-3);
 }
 
 .post-date {
