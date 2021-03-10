@@ -1,14 +1,6 @@
 ---
-layout: layouts/page.njk
+layout: layouts/posts.njk
 eleventyNavigation:
   key: Home
   order: 1
 ---
-
-<ul>
-    {%- for post in collections.post reversed -%}
-    <li>
-        <span class="post-date">{{ post.date | datePost }}</span> <a class="post-link" href={{post.url}}>{{ post.data.title }}</a>
-    </li>
-    {%- endfor -%}
-</ul>
