@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Example - The stuff I do</title>
+<title>The golden rule to create vim mappings - The stuff I do</title>
 
 <meta name="description" content="A personal blog where I write about my side projects">
 <meta name="robots" content="index,follow">
 <meta name="author" content="statox">
 
-<link rel="canonical" href="https://www.statox.fr/posts/example/">
+<link rel="canonical" href="https://www.statox.fr/drafts/vim_mappings_golden_rule/">
 
-<meta property="og:title" content="Example - The stuff I do">
+<meta property="og:title" content="The golden rule to create vim mappings - The stuff I do">
 <meta property="og:type" content="article">
 
-<meta property="og:url" content="https://www.statox.fr/posts/example/">
+<meta property="og:url" content="https://www.statox.fr/drafts/vim_mappings_golden_rule/">
 <meta property="og:description" content="A personal blog where I write about my side projects">
 
 
 <meta name="twitter:card" content="summary">
 
-<meta name="twitter:url" content="https://www.statox.fr/posts/example/">
-<meta name="twitter:title" content="Example - The stuff I do">
+<meta name="twitter:url" content="https://www.statox.fr/drafts/vim_mappings_golden_rule/">
+<meta name="twitter:title" content="The golden rule to create vim mappings - The stuff I do">
 <meta name="twitter:description" content="A personal blog where I write about my side projects">
 
 
@@ -27,7 +27,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Example</title>
+    <title>The golden rule to create vim mappings</title>
     <meta name="description" content="A personal blog where I write about my side projects">
     <meta name="keywords" content="statox blog">
     <meta property="og:title" content="The stuff I do">
@@ -155,17 +155,57 @@
 
     <div class="content-container">
         
-<h2>Example</h2>
+<h2>The golden rule to create vim mappings</h2>
 <p class="post-subheader">
-    January 1, 1970
-    - 18 words
+    March 10, 2021
+    - 214 words
     - <span id="commentCounter"></span> comments
 
 </p>
 <p><a href="/">← Posts</a></p>
 
-<h3>This is a sample post.</h3>
-<p>It will not be shown until the property <code>eleventyExcludeFromCollections</code> is set to <code>false</code>;</p>
+<h3>Intro</h3>
+<ul>
+<li>Vim is powerful and let users customize it to there needs</li>
+<li>The issue is that being free with your customizations can make you shoot yourself in the foot</li>
+<li>I've been using Vim as a daily driver for about 6 years now and helped people on vi.stackexchange</li>
+<li>One of the most common cause of troubles is mappings</li>
+<li>I want to show the rules I try to apply when I create a mapping to minimize the potential issues</li>
+<li>This is an opinionated post: Some might disagree and some might do differently without issues<br>
+But still this should avoid some troubles to new vimmers</li>
+</ul>
+<h3>Definitions</h3>
+<p><a href="https://vi.stackexchange.com/q/10249/1841" target="_blank" rel="noopener noreferrer">https://vi.stackexchange.com/q/10249/1841</a></p>
+<ul>
+<li>Command: Distinction between ex commands and normal mode commands</li>
+<li>Key Mapping (Mapping for short): Change the meaning of typed keys</li>
+<li>lhs, rhs</li>
+<li>Keycode: Name for keys as used in the documentation and :map commands</li>
+</ul>
+<h3>Rules</h3>
+<ul>
+<li>The golden rule: Never remap a built-in command
+<ul>
+<li>How to check if a key sequence is a built-in command</li>
+<li>A word about expanding a built-in command (example <code>&lt;C-l&gt;</code>, <code>h/l</code>, <code>*</code>, <code>&lt;C-J&gt;</code>)</li>
+</ul>
+</li>
+<li>Always create mode specific mappings
+<ul>
+<li>Find a post on <a href="http://vi.se" target="_blank" rel="noopener noreferrer">vi.se</a> about that</li>
+</ul>
+</li>
+<li>Be careful about recursive mappings</li>
+<li>Something about <code>&lt;leader&gt;</code></li>
+<li>Something about how to find keys to remap</li>
+<li>Something about <code>timeoulen</code> and <code>ttimeoutlen</code></li>
+<li>Learn to debug your mappings/Be aware of the pitfalls
+<ul>
+<li><a href="https://vi.stackexchange.com/q/7722/1841" target="_blank" rel="noopener noreferrer">https://vi.stackexchange.com/q/7722/1841</a></li>
+</ul>
+</li>
+</ul>
+<h3>Conclusion</h3>
 <!-- vim: set spell: -->
 
 
