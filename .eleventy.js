@@ -2,14 +2,18 @@
  * Eleventy configuration file
  */
 
-const sitemap = require('@quasibit/eleventy-plugin-sitemap');
-const pluginSEO = require('eleventy-plugin-seo');
-const embedSpotify = require('eleventy-plugin-embed-spotify');
-const {wordCount} = require('eleventy-plugin-wordcount');
-const pluginRss = require('@11ty/eleventy-plugin-rss');
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
-const eleventyNavigation = require('@11ty/eleventy-navigation');
 const cleanCSS = require('clean-css');
+const eleventyNavigation = require('@11ty/eleventy-navigation');
+const embedSpotify = require('eleventy-plugin-embed-spotify');
+const markdownIt = require('markdown-it');
+const markdownItEmoji = require('markdown-it-emoji');
+const markdownItExternalLinks = require('markdown-it-external-links');
+const pluginRss = require('@11ty/eleventy-plugin-rss');
+const pluginSEO = require('eleventy-plugin-seo');
+const seoConfig = require('./src/_data/seo.json');
+const sitemap = require('@quasibit/eleventy-plugin-sitemap');
+const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
+const wordCount = require('eleventy-plugin-wordcount').wordCount;
 
 const formatPostDate = date => {
     const year = date.getFullYear();
@@ -68,7 +72,7 @@ module.exports = function (eleventyConfig) {
     // Spotify plugin
     eleventyConfig.addPlugin(embedSpotify);
     // SEO plugin
-    eleventyConfig.addPlugin(pluginSEO, require('./src/_data/seo.json'));
+    eleventyConfig.addPlugin(pluginSEO, seoConfig);
     // Sitemap plugin
     eleventyConfig.addPlugin(sitemap, {
         sitemap: {
@@ -81,10 +85,6 @@ module.exports = function (eleventyConfig) {
     /*
      * Markdown parsing configuration
      */
-    let markdownIt = require('markdown-it');
-    let markdownItExternalLinks = require('markdown-it-external-links');
-    let markdownItEmoji = require('markdown-it-emoji');
-
     let markdownItOptions = {
         html: true, // Enable HTML tags in source
         breaks: true, // Convert '\n' in paragraphs into <br>
