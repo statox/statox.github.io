@@ -14,7 +14,7 @@
     }
 }
 
-.note-tags {
+.formatted-tag {
     font-family: var(--nc-font-mono);
     /* Graying out https://stackoverflow.com/a/5081723/4194289 */
     opacity: 0.6; /* Real browsers */

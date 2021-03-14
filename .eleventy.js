@@ -25,10 +25,6 @@ const formatPostDate = date => {
 module.exports = function (eleventyConfig) {
     const env = process.env.ELEVENTY_ENV;
 
-    /*
-     * Posts collections by category
-     * TODO: I'll probably need to update that to have dynamical lists based on a list of categories
-     */
     // Notes sorted alphabetically by their title
     eleventyConfig.addCollection('notesAlphabetical', collection =>
         collection.getFilteredByGlob('src/notes/*.md').sort((a, b) => {
@@ -50,6 +46,32 @@ module.exports = function (eleventyConfig) {
             .filter(t => t !== 'note')
             .map(t => '[' + t + ']')
             .join('');
+    });
+
+    // Filter to get posts related to the current one
+    // TODO: To be refactored to better use eleventy collections
+    eleventyConfig.addFilter('relatedPosts', (collection, currentPost) => {
+        const currentPostIndex = collection.findIndex(p => p.url === currentPost.url);
+        const relatedPosts = [];
+        const transformPost = post => {
+            return {
+                date: post.date,
+                url: post.url,
+                title: post.data.title
+            };
+        };
+
+        if (currentPostIndex > 0) {
+            const prevPost = collection[currentPostIndex - 1];
+            relatedPosts.push(transformPost(prevPost));
+        }
+        if (currentPostIndex < collection.length - 1) {
+            const nextPost = collection[currentPostIndex + 1];
+            if (!nextPost.data.tags.includes('draft')) {
+                relatedPosts.push(transformPost(nextPost));
+            }
+        }
+        return relatedPosts;
     });
 
     // Change the tab title to the tittle of the post or the tittle of the site

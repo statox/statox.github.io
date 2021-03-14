@@ -5,7 +5,7 @@ templateClass: tmpl-note
 
 <h2>{{ title }}</h2>
 <p><a href="{{ '/notes/' | url }}">← Notes</a></p>
-<p>Tags: <span class="note-tags">{{ tags | noteTags}}</span></p>
+<p>Tags: <span class="formatted-tag">{{ tags | noteTags}}</span></p>
 
 
 {{ content | safe }}

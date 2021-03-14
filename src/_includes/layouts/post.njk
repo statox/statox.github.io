@@ -16,6 +16,28 @@ templateClass: tmpl-post
 
 <p><a href="{{ '/' | url }}">← Posts</a></p>
 
+{# Related posts section #}
+{# TODO: Refactor that, this is not robust #}
+<hr>
+{% set currentTag = tags[1]  %}
+{% set related = collections[currentTag] | relatedPosts(page) %}
+<p>
+<h3>Related posts</h3>
+{% if related.length > 0 %}
+<p>Posts in the same category: <span class='formatted-tag'>[{{currentTag}}]<span><p>
+<ul>
+    {%- for post in related -%}
+        <li>
+            <a class="post-link" href={{post.url}}>{{ post.title }}</a>
+        </li>
+    {%- endfor -%}
+</ul>
+<p>
+{% else %}
+<p>No other posts in the category <span class='formatted-tag'>[{{currentTag}}]<span></p>
+{% endif %}
+
+{# Comments section #}
 <hr>
 <comments>
     <h3>Comments</h3>

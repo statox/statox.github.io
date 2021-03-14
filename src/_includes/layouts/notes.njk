@@ -9,7 +9,7 @@ title: Notes
         <details>
             <summary>
                 <a class="note-link" href={{note.url}}>{{ note.data.title }}</a>
-                <span class="note-tags">{{ note.data.tags | noteTags}}</span>
+                <span class="formatted-tag">{{ note.data.tags | noteTags}}</span>
             </summary>
             {# If needed check how to limit the size of the preview here #}
             {{ note.templateContent | safe }}
