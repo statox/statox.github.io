@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Notes - The stuff I do</title>
+<title>Bash dates - The stuff I do</title>
 
 <meta name="description" content="A personal blog where I write about my side projects">
 <meta name="robots" content="index,follow">
 <meta name="author" content="statox">
 
-<link rel="canonical" href="https://www.statox.fr/notes/">
+<link rel="canonical" href="https://www.statox.fr/notes/bash-date/">
 
-<meta property="og:title" content="Notes - The stuff I do">
+<meta property="og:title" content="Bash dates - The stuff I do">
 <meta property="og:type" content="article">
 
-<meta property="og:url" content="https://www.statox.fr/notes/">
+<meta property="og:url" content="https://www.statox.fr/notes/bash-date/">
 <meta property="og:description" content="A personal blog where I write about my side projects">
 
 
 <meta name="twitter:card" content="summary">
 
-<meta name="twitter:url" content="https://www.statox.fr/notes/">
-<meta name="twitter:title" content="Notes - The stuff I do">
+<meta name="twitter:url" content="https://www.statox.fr/notes/bash-date/">
+<meta name="twitter:title" content="Bash dates - The stuff I do">
 <meta name="twitter:description" content="A personal blog where I write about my side projects">
 
 
@@ -27,7 +27,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Notes</title>
+    <title>Bash dates</title>
     <meta name="description" content="A personal blog where I write about my side projects">
     <meta name="keywords" content="statox blog">
     <meta property="og:title" content="The stuff I do">
@@ -154,230 +154,20 @@
     
 
     <div class="content-container">
-        <div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/bash-arrays/>Bash arrays</a>
-                <span class="formatted-tag">[bash][array]</span>
-            </summary>
-            
-            <h3>Initiate an array</h3>
-<pre class="language-bash"><code class="language-bash"><span class="token assign-left variable">myArray</span><span class="token operator">=</span><span class="token punctuation">(</span> element_1 element_2 element_n <span class="token punctuation">)</span><br><span class="token assign-left variable">myArray2</span><span class="token operator">=</span><span class="token punctuation">(</span><br>    element_1<br>    element_2<br>    element_n<br><span class="token punctuation">)</span></code></pre>
-<h3>Access item by index</h3>
-<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token variable">${myArray<span class="token punctuation">[</span>2<span class="token punctuation">]</span>}</span></code></pre>
-<h3>Iterate through array</h3>
-<p>To iterate over the elements:</p>
-<pre class="language-bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">element</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">${array<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>"</span><br><span class="token keyword">do</span><br>    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$element</span>"</span><br><span class="token keyword">done</span></code></pre>
-<p>To get both the index and the value:</p>
-<pre class="language-bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">index</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">${<span class="token operator">!</span>array<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span>"</span><br><span class="token keyword">do</span><br>    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$index</span> <span class="token variable">${array<span class="token punctuation">[</span>index<span class="token punctuation">]</span>}</span>"</span><br><span class="token keyword">done</span></code></pre>
+        
+<h2>Bash dates</h2>
+<p><a href="/notes/">← Notes</a></p>
+<p>Tags: <span class="formatted-tag">[bash][date]</span></p>
 
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/bash-date/>Bash dates</a>
-                <span class="formatted-tag">[bash][date]</span>
-            </summary>
-            
-            <p><em>All of these notes are about <code>date</code> from GNU coreutils on Linux. I believe some parameters are diferent on MacOS.</em></p>
+
+<p><em>All of these notes are about <code>date</code> from GNU coreutils on Linux. I believe some parameters are diferent on MacOS.</em></p>
 <p>Everything in there is basically a rehash of <code>man date</code>.</p>
 <h3>Timestamp / Date conversions</h3>
 <pre class="language-bash"><code class="language-bash"><span class="token function">date</span> +<span class="token string">"%s"</span>  <span class="token comment"># Get current date as timestamp</span><br><br><span class="token builtin class-name">alias</span> <span class="token assign-left variable">ts2date</span><span class="token operator">=</span><span class="token string">'timestamp2date'</span> <span class="token comment"># Parse timestamp as date</span><br><span class="token keyword">function</span> <span class="token function-name function">timestamp2date</span> <span class="token punctuation">{</span><br>    <span class="token builtin class-name">echo</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> -d @$1<span class="token variable">)</span></span><br><span class="token punctuation">}</span></code></pre>
 
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/zsh-completion-function/>Creating zsh completion function</a>
-                <span class="formatted-tag">[shell][zsh]</span>
-            </summary>
-            
-            <p>A quick trick to have custom completion on the aliases I create.</p>
-<p>First create the function and the alias, they can be in <code>~/.bash_aliases</code> or whatever.</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function-name function">myCoolFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token builtin class-name">echo</span> <span class="token string">"Here are the args from my function <span class="token variable">$@</span>"</span><br><span class="token punctuation">}</span><br><span class="token builtin class-name">alias</span> <span class="token assign-left variable">mcf</span><span class="token operator">=</span><span class="token string">'myCoolFunction'</span></code></pre>
-<p>Then create the completion function (best practice <code>underscore+function name</code>) which can be anywhere too. An interesting list of the helpers provided by zsh for the completion functions is <a href="https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org" target="_blank" rel="noopener noreferrer">here</a>.</p>
-<pre class="language-bash"><code class="language-bash"><span class="token function-name function">_myCoolFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    compadd <span class="token string">"<span class="token variable">$@</span>"</span> foo bar baz<br><span class="token punctuation">}</span></code></pre>
-<p>Finally <em>in <code>~/.zshrc</code></em> we can register <code>_myCoolFunction</code> as the completion function of <code>myCoolFunction</code>:</p>
-<pre class="language-bash"><code class="language-bash">compdef _myCoolFunction myCoolFunction</code></pre>
-<p>Once everything is ready in a new shell typing <code>mcf &lt;TAB&gt;</code> should yield the 3 completions options.</p>
-<p>If things don't work one can check the completion function for a particular function <em>(It does not work with the alias)</em> with:</p>
-<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token variable">$_comps</span><span class="token punctuation">[</span>myCoolFunction<span class="token punctuation">]</span></code></pre>
-<p>and the implementation with</p>
-<pre class="language-bash"><code class="language-bash">functions <span class="token variable">$_comps</span><span class="token punctuation">[</span>myCoolFunction<span class="token punctuation">]</span></code></pre>
-<p>Finally I should check how to make it work with the defined files (<code>~/.oh-my-zsh/completions</code>) and understand why the <code>compdef</code> command only works when put in <code>.zshrc</code>.</p>
 
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/firefox/>Firefox shortcuts</a>
-                <span class="formatted-tag">[firefox]</span>
-            </summary>
-            
-            <h3>Built-in shortcuts</h3>
-<table>
-<thead>
-<tr>
-<th>Action</th>
-<th>Shortcut</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Move tab left/right (vimium)</td>
-<td><code>&lt;</code>/<code>&gt;</code></td>
-</tr>
-<tr>
-<td>Focus address bar</td>
-<td><code>&lt;C-j&gt;</code>/<code>&lt;C-k&gt;</code></td>
-</tr>
-<tr>
-<td>Backwards/Forward navigation</td>
-<td><code>&lt;A-Left&gt;</code>/<code>&lt;A-Right&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h3>Vimium config</h3>
-<p>Custom key mappings</p>
-<pre><code>map l nextTab
-map h previousTab
-map d removeTab
-</code></pre>
-<h3>Custom search engine</h3>
-<p>To use search engines <code>site:</code> filter automatically:</p>
-<ul>
-<li>Create a bookmark with the the url and <code>%s</code> for the query string like this:<br>
-<code>https://www.google.com/search?q=site%3Avi.stackexchange.com%20%s</code><br>
-<code>https://duckduckgo.com/?t=canonical&amp;q=site%3Avi.stackexchange.com%20%s</code></li>
-<li>Add a keyword to the bookmark e.g. <code>v</code></li>
-<li>In the address bar search with <code>v my query</code></li>
-</ul>
+<p><a href="/notes/">← Notes</a></p>
 
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/git-commits/>Fixing commits in git</a>
-                <span class="formatted-tag">[git][commit]</span>
-            </summary>
-            
-            <p>This link is dope <a href="https://sethrobertson.github.io/GitFixUm/fixup.html" target="_blank" rel="noopener noreferrer">https://sethrobertson.github.io/GitFixUm/fixup.html</a></p>
-<p>TODO: Extract the ones I need but can never remember</p>
-<h3>Remove commit from history</h3>
-<p><em>Reminder on zsh escape <code>^</code> in <code>HEAD^</code> with <code>HEAD\^</code></em></p>
-<p>Remove the last commit from history but keep the working tree</p>
-<pre><code>git reset HEAD^
-</code></pre>
-<p>Remove the last commit of the history completely <strong>and discard changes</strong></p>
-<pre><code>git reset --hard HEAD^ # THIS DISCARDS CHANGES
-</code></pre>
-<h3>Sign an older commit in your branch</h3>
-<p>This will do an interactive rebase, playing <code>git commit --amend --no-edit -n -S</code><br>
-after each commit</p>
-<p><em>(Check if <code>-n</code> is useful I can't find it in the man)</em></p>
-<pre><code>git rebase --exec 'git commit --amend --no-edit -n -S' -i my-branch
-</code></pre>
-
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/grep/>Grep</a>
-                <span class="formatted-tag">[bash][grep]</span>
-            </summary>
-            
-            <h3>Exclude multiple directories</h3>
-<pre class="language-bash"><code class="language-bash"><span class="token function">grep</span> --exclude-dir<span class="token operator">=</span><span class="token punctuation">{</span>node_modules,src<span class="token punctuation">}</span></code></pre>
-<h3>Have grep colors in less</h3>
-<pre class="language-bash"><code class="language-bash"><span class="token function">grep</span> --color<span class="token operator">=</span>always <span class="token operator">|</span> <span class="token function">less</span> -r</code></pre>
-
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/scp/>Scp</a>
-                <span class="formatted-tag">[bash][scp]</span>
-            </summary>
-            
-            <p>Basically the same syntax as <code>cp</code> (i.e. <code>scp [source] [dest]</code>)</p>
-<pre class="language-bash"><code class="language-bash"><span class="token comment"># Local to remote</span><br><span class="token function">scp</span> ./local/path user@remote-host:/home/user<br><br><span class="token comment"># Remote to local</span><br><span class="token function">scp</span> user@remote-host:/home/user ./local/path </code></pre>
-<h3>Useful options</h3>
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>-r</code></td>
-<td>Copy directories</td>
-</tr>
-<tr>
-<td><code>-i</code></td>
-<td>Provide identity file</td>
-</tr>
-<tr>
-<td><code>-P</code></td>
-<td>Specify port</td>
-</tr>
-</tbody>
-</table>
-
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/screen/>Screen</a>
-                <span class="formatted-tag">[screen]</span>
-            </summary>
-            
-            <h3>Basic usage</h3>
-<table>
-<thead>
-<tr>
-<th>Description</th>
-<th>Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Start a new session with session name</td>
-<td><code>screen -S &lt;session_name&gt;</code></td>
-</tr>
-<tr>
-<td>List running sessions / screens</td>
-<td><code>screen -ls</code></td>
-</tr>
-<tr>
-<td>Attach to a running session</td>
-<td><code>screen -x</code></td>
-</tr>
-<tr>
-<td>Attach to a running session with name</td>
-<td><code>screen -r &lt;session_name&gt;</code></td>
-</tr>
-<tr>
-<td>Detach a running session</td>
-<td><code>screen -d &lt;session_name&gt;</code></td>
-</tr>
-</tbody>
-</table>
-
-        </details>
-    </div><div>
-        <details>
-            <summary>
-                <a class="note-link" href=/notes/shell-redirection/>Shell redirections</a>
-                <span class="formatted-tag">[bash][shell][output]</span>
-            </summary>
-            
-            <h3>Redirect stdout and stderr to a file</h3>
-<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">command</span> <span class="token operator">></span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span></code></pre>
-
-        </details>
-    </div>
     </div>
 
     <script data-goatcounter="https://statoxblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
