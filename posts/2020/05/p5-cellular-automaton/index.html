@@ -157,9 +157,9 @@
         
 <h2>Cellular automata - Digital life and death</h2>
 <p class="post-subheader">
-    May 13, 2020
+    <span id="post_date"></span>
     - 444 words
-    - <span id="commentCounter"></span> comments
+    - <span id="commentCounter"></span> <span id="comment_word"></span>
 
 </p>
 <p><a href="/">← Posts</a></p>
@@ -223,7 +223,27 @@ The first CA I heard about was John Conway's game of life and it was something l
 
 <script type="text/javascript" src="/scripts/githubComments.js"></script>
 <script type="text/javascript">
-    setupCommentsInPage(7);
+setupCommentsInPage(7);
+
+/* Use a media query to change the content of the interface for smaller screens */
+function adaptToScreenSize(x) {
+    const postDate = new Date('Wed May 13 2020 00:00:00 GMT+0000 (Coordinated Universal Time)');
+
+    let datePostContent = postDate.toLocaleDateString(undefined,  { year: 'numeric', month: 'long', day: 'numeric' });
+    let commentWordSpanContent = 'comments';
+
+    if (x.matches) { // Small screens
+        datePostContent = postDate.toLocaleDateString(undefined,  { year: 'numeric', month: 'numeric', day: 'numeric' });
+        commentWordSpanContent = '💬';
+    }
+
+    document.getElementById('post_date').textContent = datePostContent;
+    document.getElementById('comment_word').textContent = commentWordSpanContent;
+}
+
+var x = window.matchMedia("(max-width: 700px)")
+adaptToScreenSize(x) // Call listener function at run time
+x.addListener(adaptToScreenSize) // Attach listener function on state changes 
 </script>
 
     </div>
