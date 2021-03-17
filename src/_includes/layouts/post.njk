@@ -47,27 +47,12 @@ templateClass: tmpl-post
     <br>
 </comments>
 
-<script type="text/javascript" src="{{ '/scripts/githubComments.js' | url }}"></script>
-<script type="text/javascript">
-setupCommentsInPage({{commentIssueId}});
+{# Include inline JS from _includes/scripts files #}
+{% set inlineJS %}
+      {% include "scripts/githubComments.js" %}
+      {% include "scripts/responsivePost.js" %}
+{% endset %}
 
-/* Use a media query to change the content of the interface for smaller screens */
-function adaptToScreenSize(x) {
-    const postDate = new Date('{{page.date}}');
-
-    let datePostContent = postDate.toLocaleDateString(undefined,  { year: 'numeric', month: 'long', day: 'numeric' });
-    let commentWordSpanContent = 'comments';
-
-    if (x.matches) { // Small screens
-        datePostContent = postDate.toLocaleDateString(undefined,  { year: 'numeric', month: 'numeric', day: 'numeric' });
-        commentWordSpanContent = '💬';
-    }
-
-    document.getElementById('post_date').textContent = datePostContent;
-    document.getElementById('comment_word').textContent = commentWordSpanContent;
-}
-
-var x = window.matchMedia("(max-width: 500px)")
-adaptToScreenSize(x) // Call listener function at run time
-x.addListener(adaptToScreenSize) // Attach listener function on state changes 
+<script>
+    {{ inlineJS | safe }}
 </script>

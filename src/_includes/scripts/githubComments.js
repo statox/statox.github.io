@@ -122,3 +122,5 @@ function setupCommentsInPage(commentIssueId) {
         appendComments(comments);
     });
 }
+
+setupCommentsInPage({{commentIssueId}});
