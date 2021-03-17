@@ -28,7 +28,11 @@ commentIssueId: 19
     <br>
 </comments>
 
-<script type="text/javascript" src="{{ '/scripts/githubComments.js' | url }}"></script>
-<script type="text/javascript">
-    setupCommentsInPage({{commentIssueId}});
+{# Include inline JS from _includes/scripts files #}
+{% set inlineJS %}
+      {% include "scripts/githubComments.js" %}
+{% endset %}
+
+<script>
+    {{ inlineJS | jsmin | safe }}
 </script>
