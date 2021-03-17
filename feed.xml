@@ -12,9 +12,9 @@
   
   <entry>
     <title>How to debug a mapping before asking for help on the internet</title>
-    <link href="https://www.statox.fr/posts/vim/vim_debug_mapping/"/>
+    <link href="https://www.statox.fr/posts/2016/05/vim_debug_mapping/"/>
     <updated>2016-05-10T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/vim/vim_debug_mapping/</id>
+    <id>https://www.statox.fr/posts/2016/05/vim_debug_mapping/</id>
     <content type="html">&lt;p&gt;After participating on &lt;a href=&quot;https://vi.stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.stackexchange&lt;/a&gt; for a few years as well as lurking &lt;a href=&quot;https://reddit.com/r/vim&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;/r/vim&lt;/a&gt; I noticed that creating mappings in Vim is not completely trivial for a new user.&lt;/p&gt;
 &lt;p&gt;As Vim has been my favorite text editor since around 2015 I really enjoy helping new users getting more comfortable with it and creating their config just the way they want. That&#39;s why I read and answered quite a few questions about Vim mappings. Eventually, I noticed some recurring patterns and decided that I wanted to address the most common errors. To do so I wrote a generic question on vi.stackexchange and tried to explain the root causes of the most common issues when one creates a mapping in vim.&lt;/p&gt;
 &lt;p&gt;It was fun to write but it is also pretty satisfying to see that this is my most read and upvoted answer! I believe that as long as new people will learn to use Vim these issues will still need to be addressed and I hope that what this post will do.&lt;/p&gt;
@@ -25,9 +25,9 @@
   
   <entry>
     <title>GOD.vim - The easiest way to quote Vim&#39;s help</title>
-    <link href="https://www.statox.fr/posts/vim/GOD_vim/"/>
+    <link href="https://www.statox.fr/posts/2017/02/GOD_vim/"/>
     <updated>2017-02-01T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/vim/GOD_vim/</id>
+    <id>https://www.statox.fr/posts/2017/02/GOD_vim/</id>
     <content type="html">&lt;h3&gt;I love to Quote the doc&lt;/h3&gt;
 &lt;p&gt;I often participate on the &lt;a href=&quot;https://vi.stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.stackexchange&lt;/a&gt; website because this community really helped me to get going with Vim when I first started using it and because it feels great to be able to help new vimmers.&lt;/p&gt;
 &lt;p&gt;When I write an answer I always try to think about how I can not only help the user to achieve what they want to do, but more importantly how I can help them to answer their own question next time they have one. And the best way to do that is to help them getting comfortable with the help.&lt;/p&gt;
@@ -79,9 +79,9 @@
   
   <entry>
     <title>Changing my Vim colorscheme depending on the time of the day</title>
-    <link href="https://www.statox.fr/posts/vim/vim_colorscheme_changer/"/>
+    <link href="https://www.statox.fr/posts/2017/09/vim_colorscheme_changer/"/>
     <updated>2017-09-22T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/vim/vim_colorscheme_changer/</id>
+    <id>https://www.statox.fr/posts/2017/09/vim_colorscheme_changer/</id>
     <content type="html">&lt;h3&gt;Automatic colorscheme changer&lt;/h3&gt;
 &lt;p&gt;A few years ago, &lt;a href=&quot;https://vi.stackexchange.com/q/13660/1841&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;a question on vi.stackexchange&lt;/a&gt; caught my attention. @oarfish wanted a way to change their colorscheme depending on the time of the day.&lt;/p&gt;
 &lt;p&gt;In a world where Apple has a tool by default on most of its devices to change the colorscheme from dark to light during the day and where a lot of developpers use extensively &lt;a href=&quot;https://justgetflux.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;f.lux&lt;/a&gt; or &lt;a href=&quot;http://jonls.dk/redshift/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;redshift&lt;/a&gt; it does make sense to be able to change your favorite text editor colorscheme automatically too.&lt;/p&gt;
@@ -107,9 +107,9 @@
   
   <entry>
     <title>A pool game with my own physic engine</title>
-    <link href="https://www.statox.fr/posts/p5/p5-pool/"/>
+    <link href="https://www.statox.fr/posts/2019/01/p5-pool/"/>
     <updated>2019-01-10T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/p5-pool/</id>
+    <id>https://www.statox.fr/posts/2019/01/p5-pool/</id>
     <content type="html">&lt;p&gt;Go grab a beer and play the pool &lt;a href=&quot;https://statox.github.io/p5-pool/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;in the demo&lt;/a&gt;!&lt;/p&gt;
 &lt;p&gt;And if that&#39;s your thing you can see the code &lt;a href=&quot;https://github.com/statox/p5-pool&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on Github&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Pool, snooker, billiard?&lt;/h3&gt;
@@ -132,9 +132,9 @@
   
   <entry>
     <title>Genetic algorithms or how I made a bunch of smart robots</title>
-    <link href="https://www.statox.fr/posts/p5/p5-genetic-algorithms/"/>
+    <link href="https://www.statox.fr/posts/2020/01/p5-genetic-algorithms/"/>
     <updated>2020-01-23T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/p5-genetic-algorithms/</id>
+    <id>https://www.statox.fr/posts/2020/01/p5-genetic-algorithms/</id>
     <content type="html">&lt;p&gt;If you want to see a bunch of robots blindly running toward a black dot, here is &lt;a href=&quot;https://statox.github.io/p5-genetics/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;the demo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;And &lt;a href=&quot;https://github.com/statox/p5-genetics&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;the code&lt;/a&gt; is on Github, it&#39;s not beautiful but it&#39;s free. Now let&#39;s see what I did here.&lt;/p&gt;
 &lt;h3&gt;Teaching a machine to do stuff&lt;/h3&gt;
@@ -166,9 +166,9 @@
   
   <entry>
     <title>Generating a maze... and then solving it</title>
-    <link href="https://www.statox.fr/posts/p5/p5-maze/"/>
+    <link href="https://www.statox.fr/posts/2020/03/p5-maze/"/>
     <updated>2020-03-03T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/p5-maze/</id>
+    <id>https://www.statox.fr/posts/2020/03/p5-maze/</id>
     <content type="html">&lt;p&gt;Quick, no time to explain! Have a look at how a computer goes out of a maze &lt;a href=&quot;https://statox.github.io/p5-maze/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;in the demo&lt;/a&gt;!&lt;/p&gt;
 &lt;p&gt;And check out &lt;a href=&quot;https://github.com/statox/p5-maze/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Github&lt;/a&gt; if you want to see the code.&lt;/p&gt;
 &lt;h3&gt;Getting out of the maze&lt;/h3&gt;
@@ -194,9 +194,9 @@
   
   <entry>
     <title>Cellular automata - Digital life and death</title>
-    <link href="https://www.statox.fr/posts/p5/p5-cellular-automaton/"/>
+    <link href="https://www.statox.fr/posts/2020/05/p5-cellular-automaton/"/>
     <updated>2020-05-13T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/p5-cellular-automaton/</id>
+    <id>https://www.statox.fr/posts/2020/05/p5-cellular-automaton/</id>
     <content type="html">&lt;p&gt;This has been one of my most satisfying project recently so if you want to see cool visualisations of digital life the demo is live &lt;a href=&quot;https://statox.github.io/p5-cellular-automaton/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The code of this project is &lt;a href=&quot;https://github.com/statox/p5-cellular-automaton&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on Github&lt;/a&gt;, now let me tell you what this is about.&lt;/p&gt;
 &lt;h3&gt;Cellular automata are cool!&lt;/h3&gt;
@@ -228,9 +228,9 @@ The first CA I heard about was John Conway&#39;s game of life and it was somethi
   
   <entry>
     <title>Circle packing algorithm (with kittens 🐱)</title>
-    <link href="https://www.statox.fr/posts/p5/p5-circle-packing/"/>
+    <link href="https://www.statox.fr/posts/2020/06/p5-circle-packing/"/>
     <updated>2020-06-21T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/p5-circle-packing/</id>
+    <id>https://www.statox.fr/posts/2020/06/p5-circle-packing/</id>
     <content type="html">&lt;p&gt;Inspired by a video by &lt;a href=&quot;https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Daniel Shiffman on YouTube&lt;/a&gt; I decided to create a short little project involving circle packing and kittens.&lt;/p&gt;
 &lt;p&gt;Before reading my rambling go and watch the kitties &lt;a href=&quot;https://statox.github.io/p5-circles/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;in the demo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Note that for a reason that I don&#39;t understand for now, the demo seems to be working only with chromium/chrome... Maybe I&#39;ll investigate that later on&lt;/em&gt;&lt;/p&gt;
@@ -264,15 +264,15 @@ The first CA I heard about was John Conway&#39;s game of life and it was somethi
   
   <entry>
     <title>Highlighting yanked text with pure vimscript</title>
-    <link href="https://www.statox.fr/posts/vim/vim_flash_yanked_text/"/>
+    <link href="https://www.statox.fr/posts/2020/07/vim_flash_yanked_text/"/>
     <updated>2020-07-04T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/vim/vim_flash_yanked_text/</id>
+    <id>https://www.statox.fr/posts/2020/07/vim_flash_yanked_text/</id>
     <content type="html">&lt;p&gt;A few days ago I saw &lt;a href=&quot;https://blog.kdheepak.com/three-built-in-neovim-features.html#highlight-yanked-text&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;a blog post&lt;/a&gt; showing a built-in way to highlight yanked text on neovim. The author uses neovim&#39;s lua integration combined with the &lt;a href=&quot;https://neovim.io/doc/user/autocmd.html#TextYankPost&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;code&gt;:h TextYankPost&lt;/code&gt;&lt;/a&gt; autocommand event:&lt;/p&gt;
 &lt;pre class=&quot;language-vim&quot;&gt;&lt;code class=&quot;language-vim&quot;&gt;augroup highlightYankedText&lt;br /&gt;    &lt;span class=&quot;token builtin&quot;&gt;autocmd&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token builtin&quot;&gt;autocmd&lt;/span&gt; TextYankPost &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;  &lt;span class=&quot;token keyword&quot;&gt;silent&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; lua require&lt;span class=&quot;token string&quot;&gt;&#39;vim.highlight&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on_yank&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br /&gt;augroup END&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I liked the idea of having visual feedback on my yanks but I am still reluctant to use the lua integration. Despite all the bad things you can read about vimscript online I like to keep my configuration in pure vimscript as much as possible mostly for portability reasons.&lt;/p&gt;
 &lt;p&gt;So I decided to &lt;s&gt;reinvent the wheel&lt;/s&gt; replicate this behavior with pure vimscript! This was interesting to do because it involves playing with patterns and matches which are the basic building bricks of Vim&#39;s highlighting function. And because these are not tools that I need to use regularly so I am not very familiar with them.&lt;/p&gt;
 &lt;p&gt;So here is the result I am looking for: In this screen cap you can see me first yanking the word &amp;quot;filetype&amp;quot; with &lt;code&gt;yiw&lt;/code&gt;, then the full line with &lt;code&gt;yy&lt;/code&gt; and finally several lines:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/vim/vim_flash_yanked_text/flash_yanked_text.gif&quot; alt=&quot;Demo of highlighted text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2020/07/vim_flash_yanked_text/flash_yanked_text.gif&quot; alt=&quot;Demo of highlighted text&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;In this article I will to relate the main steps I followed to get this feature working. To keep it readable I will not follow all the best practices or go into all the details to make it flawless but I hope this kind of iteration process can help new vimmers to get into vimscript by demonstrating some useful concepts.&lt;/p&gt;
 &lt;h3&gt;A reminder on how to highlight stuff&lt;/h3&gt;
 &lt;p&gt;First a bit of Vim terminology about highlighting:&lt;/p&gt;
@@ -343,9 +343,9 @@ since it&#39;s a |/zero-width| match it doesn&#39;t include that character.
   
   <entry>
     <title>Comments via Github issues</title>
-    <link href="https://www.statox.fr/posts/others/comments/"/>
+    <link href="https://www.statox.fr/posts/2020/07/comments/"/>
     <updated>2020-07-14T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/others/comments/</id>
+    <id>https://www.statox.fr/posts/2020/07/comments/</id>
     <content type="html">&lt;p&gt;Recently, a former coworker of mine &lt;a href=&quot;https://25.wf/posts/2020-06-21-comments.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;published his solution&lt;/a&gt; to implement comments on his personal website via Github issues. I was looking for a solution to add comments on this site and decided to &lt;s&gt;shamelessly copy&lt;/s&gt; get inspiration from his post.&lt;/p&gt;
 &lt;p&gt;So I reformatted a bit his script, added it to my posts and realized that this solution implied to create a new issue on Github each time I created a new post. As I already use &lt;a href=&quot;https://travis-ci.com/github/statox/blog&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;travis-ci&lt;/a&gt; to build this website I thought it would be a nice addition to create a script to automatically create these issues for me.&lt;/p&gt;
 &lt;p&gt;The full source of the script is included in the site repository &lt;a href=&quot;https://github.com/statox/blog/blob/master/tools/createIssues.js&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;here&lt;/a&gt;, in this article I will show how I configured everything.&lt;/p&gt;
@@ -398,12 +398,12 @@ since it&#39;s a |/zero-width| match it doesn&#39;t include that character.
   
   <entry>
     <title>Including a p5.js project in this website (Minesweeper 💣)</title>
-    <link href="https://www.statox.fr/posts/p5/minesweeper/"/>
+    <link href="https://www.statox.fr/posts/2020/07/minesweeper/"/>
     <updated>2020-07-22T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/minesweeper/</id>
+    <id>https://www.statox.fr/posts/2020/07/minesweeper/</id>
     <content type="html">
 &lt;p&gt;
-The first posts I wrote on this site and which were about p5.js applications are based on code that I wrote before creating the site. As I already hosted the applications on their own Github pages it was easier to simply have a link to these pages in the posts. For example check my &lt;a href=&quot;https://www.statox.fr/posts/p5/p5-cellular-automaton/&quot;&gt;cellular automata post&lt;/a&gt;.
+The first posts I wrote on this site and which were about p5.js applications are based on code that I wrote before creating the site. As I already hosted the applications on their own Github pages it was easier to simply have a link to these pages in the posts. For example check my &lt;a href=&quot;https://www.statox.fr/posts/2020/07/p5-cellular-automaton/&quot;&gt;cellular automata post&lt;/a&gt;.
 &lt;/p&gt;
 &lt;p&gt;
 Now that this site is created I wanted to see how I could integrate a p5.js application directly in its pages. This is now done with this simple minesweeper demo. It didn&#39;t required a lot of work other than adding a call to a cdn in the post source to get p5.js and updating my &lt;code&gt;.eleventy.js&lt;/code&gt; to add &lt;code&gt;.js&lt;/code&gt; files to the list of template files to compile.
@@ -445,20 +445,20 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;/div&gt;
 
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/minesweeper/sketch.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/minesweeper/Cell.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/minesweeper/CellSquare.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/minesweeper/interface.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/minesweeper/utils.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/minesweeper/Game.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/07/minesweeper/sketch.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/07/minesweeper/Cell.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/07/minesweeper/CellSquare.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/07/minesweeper/interface.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/07/minesweeper/utils.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/07/minesweeper/Game.js&quot;&gt;&lt;/script&gt;
 </content>
   </entry>
   
   <entry>
     <title>Birds flock simulation</title>
-    <link href="https://www.statox.fr/posts/p5/boids/"/>
+    <link href="https://www.statox.fr/posts/2020/09/boids/"/>
     <updated>2020-09-03T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/boids/</id>
+    <id>https://www.statox.fr/posts/2020/09/boids/</id>
     <content type="html">
 &lt;h3&gt;What is this?&lt;/h3&gt;
 &lt;div&gt;
@@ -476,7 +476,7 @@ There are still a number of features I&#39;d like to implement even in this squa
     &lt;pre&gt;TODO: Add a scene of the Uruk Hai walking from LOTR (or something less dorky but still illustrative)&lt;/pre&gt;
 
     &lt;p&gt;You can play with the different controls over and under the simulation to have a sense of how it works. To get a
-        better understanding you can have a read at &lt;a href=&quot;https://www.statox.fr/posts/p5/boids/#explanation&quot;&gt;the explanation&lt;/a&gt; which should help you to
+        better understanding you can have a read at &lt;a href=&quot;https://www.statox.fr/posts/2020/09/boids/#explanation&quot;&gt;the explanation&lt;/a&gt; which should help you to
         understand step by step what is going on here.&lt;/p&gt;
 
     &lt;p style=&quot;color: red;&quot;&gt;&lt;i&gt;The controls of the simulation are not compatible with mobile devices and prevent some
@@ -606,7 +606,7 @@ There are still a number of features I&#39;d like to implement even in this squa
         button moves the page to the simulation and sets the rules as I want you to see them when you are reading .&lt;/p&gt;
     &lt;p&gt;Note that you can use the &quot;Back to explanation&quot; to go back to where you were.&lt;/p&gt;
     &lt;h4&gt;Basic behavior&lt;/h4&gt;
-    &lt;p id=&quot;basicBehaviorAnchor&quot;&gt;First let&#39;s create a single Boid (&lt;a href=&quot;https://www.statox.fr/posts/p5/boids/#canvasDiv&quot; onclick=&quot;scenarioOneBoidNoWiggle()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
+    &lt;p id=&quot;basicBehaviorAnchor&quot;&gt;First let&#39;s create a single Boid (&lt;a href=&quot;https://www.statox.fr/posts/2020/09/boids/#canvasDiv&quot; onclick=&quot;scenarioOneBoidNoWiggle()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
     &lt;p&gt;Our Boid is living a monotonous life randomly flying in its 2 dimensional space.&lt;/p&gt;
     &lt;p&gt;To move, our Boid has two 2 dimensional vectors with a x and y component. One is its speed which allows it to go
         forward in a direction. And the second vector is its acceleration which is used to change the direction of the
@@ -615,7 +615,7 @@ There are still a number of features I&#39;d like to implement even in this squa
         not change of direction. Consequently our Boid moves in straight lines.&lt;/p&gt;
     &lt;p&gt;You can change its &quot;Max velocity&quot; setting to see it moving faster or slower&lt;/p&gt;
 
-    &lt;p id=&quot;basicBehavior2Anchor&quot;&gt;Now let&#39;s change its allowed wiggling angle to 50° (&lt;a href=&quot;https://www.statox.fr/posts/p5/boids/#canvasDiv&quot; onclick=&quot;scenarioOneBoidWiggle()&quot;&gt;Click here&lt;/a&gt;).
+    &lt;p id=&quot;basicBehavior2Anchor&quot;&gt;Now let&#39;s change its allowed wiggling angle to 50° (&lt;a href=&quot;https://www.statox.fr/posts/2020/09/boids/#canvasDiv&quot; onclick=&quot;scenarioOneBoidWiggle()&quot;&gt;Click here&lt;/a&gt;).
         Our Boid is not moving in straight lines anymore: each time it moves the vector representing its acceleration is
         randomly rotated which gives it this happy wiggling attitude.
     &lt;/p&gt;
@@ -625,12 +625,12 @@ There are still a number of features I&#39;d like to implement even in this squa
         of the wiggling vector&lt;/p&gt;
 
     &lt;p id=&quot;basicBehavior3Anchor&quot;&gt;This is the basic behavior of our Boid, you can click on the screen to add more Boids
-        (or &lt;a href=&quot;https://www.statox.fr/posts/p5/boids/#canvasDiv&quot; onclick=&quot;scenarioMultipleBoidsWiggle()&quot;&gt;Click here&lt;/a&gt;) and you will
+        (or &lt;a href=&quot;https://www.statox.fr/posts/2020/09/boids/#canvasDiv&quot; onclick=&quot;scenarioMultipleBoidsWiggle()&quot;&gt;Click here&lt;/a&gt;) and you will
         notice that they all behave as rubber balls bouncing on the edges of the screen... Not really exciting I agree.
     &lt;/p&gt;
 
     &lt;h4&gt;Alignment&lt;/h4&gt;
-    &lt;p id=&quot;alignmentAnchor&quot;&gt;To start observing some cool behavior let&#39;s enable the first rule: Alignment (&lt;a href=&quot;https://www.statox.fr/posts/p5/boids/#canvasDiv&quot; onclick=&quot;scenarioBoidsAlignment()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
+    &lt;p id=&quot;alignmentAnchor&quot;&gt;To start observing some cool behavior let&#39;s enable the first rule: Alignment (&lt;a href=&quot;https://www.statox.fr/posts/2020/09/boids/#canvasDiv&quot; onclick=&quot;scenarioBoidsAlignment()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
     &lt;p&gt;The green circle around a Boid is the actual representation of its perception circle for the alignment rule: all
         the neighbors within this circle are &quot;seen&quot; by the Boids and used in the alignment rule&lt;/p&gt;
     &lt;p&gt;Now we can see that our flock doesn&#39;t look as random as before: Boids close to each other start going in the same
@@ -644,7 +644,7 @@ There are still a number of features I&#39;d like to implement even in this squa
     &lt;h4&gt;Separation&lt;/h4&gt;
     &lt;p&gt;Having our Boids going in the same direction is great but they are literally walking (Flying? Crawling?) on top
         of each other. This is not ideal lets give them some individual space!&lt;/p&gt;
-    &lt;p id=&quot;separationAnchor&quot;&gt;To do so we can enable the separation rule (&lt;a href=&quot;https://www.statox.fr/posts/p5/boids/#canvasDiv&quot; onclick=&quot;scenarioBoidsSeparation()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
+    &lt;p id=&quot;separationAnchor&quot;&gt;To do so we can enable the separation rule (&lt;a href=&quot;https://www.statox.fr/posts/2020/09/boids/#canvasDiv&quot; onclick=&quot;scenarioBoidsSeparation()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
     &lt;p&gt;The perception circle for this rule is shown in red&lt;/p&gt;
     &lt;p&gt;This adds a new rule to our Boids behavior: They &quot;see&quot; the position of each of their close neighbors and
         their acceleration is moved towards the least crowded direction. In other words they continue following the same
@@ -652,7 +652,7 @@ There are still a number of features I&#39;d like to implement even in this squa
     &lt;p&gt;With enough time this gives us the same flock as before but this time it is much more spaced out.&lt;/p&gt;
 
     &lt;h4&gt;Cohesion&lt;/h4&gt;
-    &lt;p id=&quot;cohesionAnchor&quot;&gt;Let&#39;s introduce the last rule of our Boids behavior: Cohesion (&lt;a href=&quot;https://www.statox.fr/posts/p5/boids/#canvasDiv&quot; onclick=&quot;scenarioBoidsCohesion()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
+    &lt;p id=&quot;cohesionAnchor&quot;&gt;Let&#39;s introduce the last rule of our Boids behavior: Cohesion (&lt;a href=&quot;https://www.statox.fr/posts/2020/09/boids/#canvasDiv&quot; onclick=&quot;scenarioBoidsCohesion()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
 
     &lt;p&gt;The perception circle for this rule is shown in blue&lt;/p&gt;
     &lt;p&gt;This rule is not the most obvious to observe right now. It shifts the acceleration of our Boids towards the
@@ -667,7 +667,7 @@ There are still a number of features I&#39;d like to implement even in this squa
     &lt;h4&gt;Goal&lt;/h4&gt;
     &lt;p id=&quot;targetAnchor&quot;&gt;To be able observe some emerging behavior let&#39;s add a goal to our birds: we will create a
         target moving
-        randomly on the screen. (&lt;a href=&quot;https://www.statox.fr/posts/p5/boids/#canvasDiv&quot; onclick=&quot;scenarioTarget()&quot;&gt;Click here&lt;/a&gt;).
+        randomly on the screen. (&lt;a href=&quot;https://www.statox.fr/posts/2020/09/boids/#canvasDiv&quot; onclick=&quot;scenarioTarget()&quot;&gt;Click here&lt;/a&gt;).
     &lt;/p&gt;
     &lt;p&gt;This target attracts the Boids close to its position: we could see it as a prey
         like a group of insect for a flock of birds.&lt;/p&gt;
@@ -679,7 +679,7 @@ There are still a number of features I&#39;d like to implement even in this squa
     &lt;h4&gt;Predators and obstacles&lt;/h4&gt;
     &lt;p id=&quot;predatorsAnchor&quot;&gt;To make this visualization more interesting let&#39;s add some obstacles that our birds can&#39;t go
         through and some
-        predators which will fly through the float and that Boids will try to avoid as much as possible. (&lt;a href=&quot;https://www.statox.fr/posts/p5/boids/#canvasDiv&quot; onclick=&quot;scenarioPredators()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
+        predators which will fly through the float and that Boids will try to avoid as much as possible. (&lt;a href=&quot;https://www.statox.fr/posts/2020/09/boids/#canvasDiv&quot; onclick=&quot;scenarioPredators()&quot;&gt;Click here&lt;/a&gt;)&lt;/p&gt;
 
     &lt;p&gt;Look at our Boids! Trying to reach their target while avoiding these mean red circles, aren&#39;t they the cutest?
         😍&lt;/p&gt;
@@ -728,22 +728,22 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/gh/CodingTrain/QuadTree/quadtree.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/sketch.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Interface.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Bird.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Predator.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Target.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/Obstacle.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://www.statox.fr/posts/p5/boids/utils.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/09/boids/sketch.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/09/boids/Interface.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/09/boids/Bird.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/09/boids/Predator.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/09/boids/Target.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/09/boids/Obstacle.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://www.statox.fr/posts/2020/09/boids/utils.js&quot;&gt;&lt;/script&gt;
 
 </content>
   </entry>
   
   <entry>
     <title>A boring jumping game</title>
-    <link href="https://www.statox.fr/posts/p5/p5-jump/"/>
+    <link href="https://www.statox.fr/posts/2020/09/p5-jump/"/>
     <updated>2020-09-03T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/p5-jump/</id>
+    <id>https://www.statox.fr/posts/2020/09/p5-jump/</id>
     <content type="html">&lt;p&gt;I had a bit of free time and wanted to explore &lt;a href=&quot;https://molleindustria.github.io/p5.play/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;p5.play&lt;/a&gt; which is a p5.js library to create simple games. I think it follows pretty well the philosophy of the whole processing ecosystem which is to provide simple tools meant to let people easily and quickly create small projects without caring too much about performance, quality or complexity.&lt;/p&gt;
 &lt;p&gt;So I came up with this simple little game. It is ugly (and the code is even worse than the UI), gets boring after two or three rounds and has a weird bug where the player will sometimes get stuck on the top wall, but it was fun to make!&lt;/p&gt;
 &lt;p&gt;It was a nice way to start using p5.play Sprite objects which make it very easy to handle collisions, acceleration and all kind of simple physic properties.&lt;/p&gt;
@@ -761,9 +761,9 @@ There are still a number of features I&#39;d like to implement even in this squa
   
   <entry>
     <title>Algorithmically guided breathing</title>
-    <link href="https://www.statox.fr/breath/"/>
+    <link href="https://www.statox.fr/posts/2020/10/breath/"/>
     <updated>2020-10-22T00:00:00Z</updated>
-    <id>https://www.statox.fr/breath/</id>
+    <id>https://www.statox.fr/posts/2020/10/breath/</id>
     <content type="html">&lt;p&gt;I am not really knowledgeable about yoga, mediation and all this kind of well being topics, but I recently realized that following breathing exercises is actually a great way to quickly reduce my stress level. What I am talking about is simply taking a few minutes to focus on the way you breath and force yourself to breath deeply and regularly.&lt;/p&gt;
 &lt;p&gt;Also &lt;a href=&quot;https://breathe.ersjournals.com/content/13/4/298&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;some people who seem very serious&lt;/a&gt; say that it&#39;s acutally good for your health.&lt;/p&gt;
 &lt;p&gt;The internet being full of wonders, I also had seen several gifs like the following one and really wanted to give a try at creating perfectly looped animations.&lt;/p&gt;
@@ -813,14 +813,14 @@ There are still a number of features I&#39;d like to implement even in this squa
   
   <entry>
     <title>Asteroids... with real pew pews</title>
-    <link href="https://www.statox.fr/posts/p5/asteroids/"/>
+    <link href="https://www.statox.fr/posts/2020/10/asteroids/"/>
     <updated>2020-10-25T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/asteroids/</id>
+    <id>https://www.statox.fr/posts/2020/10/asteroids/</id>
     <content type="html">&lt;p&gt;Asteroids! The game is as old as the world (well almost, it was &lt;a href=&quot;https://en.wikipedia.org/wiki/Asteroids_(video_game)&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;released in 1979&lt;/a&gt;) and is an iconic figure of the golden era of the video game.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/en/1/13/Asteroi1.png&quot; alt=&quot;Original asteroids screenshot&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Over a lazy Sunday I decided to implement my own version because why not? And, to make it more fun, my girlfriend gave me the idea to make the sound effects myself, idea that I really liked!&lt;/p&gt;
 &lt;p&gt;So after a few hours of code and some really crappy recording on my phone &lt;a href=&quot;https://asteroides.statox.fr/?utm_campaign=blog&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;here is what I came up with&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/asteroids/asteroids.png&quot; alt=&quot;My own asteroids version screenshot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2020/10/asteroids/asteroids.png&quot; alt=&quot;My own asteroids version screenshot&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;No technological innovation or mind blowing creativity here but the result still amuses me more than I would be willing to admit. I feel like I am re-discovering the early 2000&#39;s flash games and that&#39;s fun!&lt;/p&gt;
 &lt;p&gt;To make it a complete game I still implemented some bonuses, like the autopews and the triple pew which allow respectively to continuously shoot at the asteroids and to shoot in 3 directions, as well as some maluses like slowing down the spaceship rotation speed or locking its engine on to force the player to get good at slaloming between the rocks at full speed. I also used my own noise function (actually a wrapper around p5js&#39;s &lt;code&gt;noise()&lt;/code&gt; function) to generate random rocks which &lt;em&gt;kinda&lt;/em&gt; look like asteroids.&lt;/p&gt;
 &lt;p&gt;But let&#39;s be real despite all these amazing features the main interest of the game is hearing my dumb &amp;quot;pew pew&amp;quot; and &amp;quot;boum&amp;quot; for five minutes before it gets annoying.&lt;/p&gt;
@@ -830,13 +830,13 @@ There are still a number of features I&#39;d like to implement even in this squa
   
   <entry>
     <title>Ants colony algorithm visualization</title>
-    <link href="https://www.statox.fr/posts/p5/ants/"/>
+    <link href="https://www.statox.fr/posts/2020/11/ants/"/>
     <updated>2020-11-09T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/ants/</id>
+    <id>https://www.statox.fr/posts/2020/11/ants/</id>
     <content type="html">&lt;p&gt;A few months ago I read about the &lt;a href=&quot;https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Ant colony optimization algorithms&lt;/a&gt; and since then I really wanted to give a shot at doing my own implementation. This algorithm is cool because this is a different kind of emerging behavior which &lt;a href=&quot;https://www.statox.fr/posts/p5/boids/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;I already experimented with&lt;/a&gt; and find fascinating.&lt;/p&gt;
 &lt;p&gt;So I came up with &lt;a href=&quot;https://statox.github.io/ants-colony/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;this web page&lt;/a&gt; which works reasonably well 🎉. However, after working on this project for a few days I realized that I messed up my architecture and that I will not be able to extend the project as I want to without an heavy refactoring of the code. And since I have other shiny other project ideas I want to play with, I&#39;ll just add this project to my big collection of unfinished side projects and maybe get back at it when I have time.&lt;/p&gt;
 &lt;p&gt;This kind of posts is probably not very useful nor interesting for anyone other than me, but I see it as some kind of journal that I&#39;ll probably be happy to look at one day.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/ants/ants.gif&quot; alt=&quot;Visualization of several food sources&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2020/11/ants/ants.gif&quot; alt=&quot;Visualization of several food sources&quot; /&gt;&lt;/p&gt;
 &lt;center&gt;
     &lt;i&gt;This visualization shows the green pheromone trail being updated for a few different food sources. The ants are
     not shown.&lt;/i&gt;
@@ -853,7 +853,7 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;p&gt;When it walks an ant will follow the pheromones: Each surrounding case is evaluated and attributed a probability to be chosen depending on its amount of pheromones and whether or not it contains food. The ant will then &amp;quot;throw a dice&amp;quot; and choose a cell following the probabilities and the result of the dice.&lt;/p&gt;
 &lt;p&gt;For the first few iterations the ants just walk randomly on the grid until one finds some food and start creating a trail. Then for the next iterations the ants will generally follow this trails more or less closely, allowing some ants to find a better solution and gradually optimizing their way. That&#39;s what we can observe  in the following gif.&lt;/p&gt;
 &lt;p&gt;The cells outlined in a greyish color indicate the cells where some ants walked but didn&#39;t found any food, on the first iterations there are a lot of these cells and they get fewer once ants find the food source. In this example the convergence could happen sooner if the time to live of the ants and their attraction to pheromones were tweaked.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/ants/ants_walk.gif&quot; alt=&quot;Visualization of ants walking&quot; /&gt; &lt;em&gt;This visualization shows the ants (blue dots) refining the pheromone trail for one food source&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2020/11/ants/ants_walk.gif&quot; alt=&quot;Visualization of ants walking&quot; /&gt; &lt;em&gt;This visualization shows the ants (blue dots) refining the pheromone trail for one food source&lt;/em&gt;&lt;/p&gt;
 &lt;h3&gt;Improvement points&lt;/h3&gt;
 &lt;p&gt;There are a few things I want to change in the app:&lt;/p&gt;
 &lt;ul&gt;
@@ -874,9 +874,9 @@ There are still a number of features I&#39;d like to implement even in this squa
   
   <entry>
     <title>Winter holidays unfinished projects (1/2) - Triomino</title>
-    <link href="https://www.statox.fr/posts/p5/winter-holiday-2020/triomino/"/>
+    <link href="https://www.statox.fr/posts/2021/01/triomino/"/>
     <updated>2021-01-20T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/winter-holiday-2020/triomino/</id>
+    <id>https://www.statox.fr/posts/2021/01/triomino/</id>
     <content type="html">&lt;h3&gt;Board games are fun!&lt;/h3&gt;
 &lt;p&gt;During the winter holidays I played some games of Triomino and Reversi, which I hadn&#39;t done in an eternity. This reminded me that the first programs I enjoyed coding were some board games and it gave me the motivation to get back on some side projects.&lt;/p&gt;
 &lt;p&gt;So once again I cloned my boilerplate git repo with an html page and the p5.js library imported and started coding.&lt;/p&gt;
@@ -884,7 +884,7 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;h3&gt;Triomaster&lt;/h3&gt;
 &lt;p&gt;As the name of the project suggest I was aiming for an IA mastering the Triomino game... I ended up with an IA playing the Triomino game.&lt;/p&gt;
 &lt;p&gt;When I started thinking about this project I had in mind a &lt;a href=&quot;http://www-cs-students.stanford.edu/~amitp/game-programming/grids/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;great article on redblobgame&lt;/a&gt; about different kind of grids and how to implement them I had read several months ago and thought it would be useful. But being impatient to start coding I went straight in and didn&#39;t read it again, probably making some mistakes which I could have avoided.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/triomino/triomino.png&quot; alt=&quot;Screenshot of my Triomino implementation&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2021/01/triomino/triomino.png&quot; alt=&quot;Screenshot of my Triomino implementation&quot; /&gt;&lt;/p&gt;
 &lt;center&gt;
     &lt;i&gt;Another obvious proof of my UX/UI designer genius&lt;/i&gt;
 &lt;/center&gt;
@@ -907,12 +907,12 @@ There are still a number of features I&#39;d like to implement even in this squa
   
   <entry>
     <title>Winter holidays unfinished projects (2/2) - Reversi</title>
-    <link href="https://www.statox.fr/posts/p5/winter-holiday-2020/reversi/"/>
+    <link href="https://www.statox.fr/posts/2021/01/reversi/"/>
     <updated>2021-01-21T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/p5/winter-holiday-2020/reversi/</id>
+    <id>https://www.statox.fr/posts/2021/01/reversi/</id>
     <content type="html">&lt;h3&gt;Board games are fun!&lt;/h3&gt;
-&lt;p&gt;After not finishing my &lt;a href=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/triomino/&quot;&gt;triomino project&lt;/a&gt; I started working on an implementation of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Reversi&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Reversi game&lt;/a&gt;. According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my &lt;em&gt;amazing&lt;/em&gt; implementation of his game).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/p5/winter-holiday-2020/reversi/reversi.png&quot; alt=&quot;Screenshot of my Reversi implementation&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;After not finishing my &lt;a href=&quot;https://www.statox.fr/posts/2021/01/triomino/&quot;&gt;triomino project&lt;/a&gt; I started working on an implementation of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Reversi&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Reversi game&lt;/a&gt;. According to Wikipedia my implementation is technically an Othello game but this name was patented in Japan in 1971 and I decided to play it safe and calling it Reversi (no doubt that the owner of the name would have felt greatly threatened by my &lt;em&gt;amazing&lt;/em&gt; implementation of his game).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2021/01/reversi/reversi.png&quot; alt=&quot;Screenshot of my Reversi implementation&quot; /&gt;&lt;/p&gt;
 &lt;center&gt;
     &lt;i&gt;My patent infrigement material&lt;/i&gt;
 &lt;/center&gt;
@@ -1035,9 +1035,9 @@ There are still a number of features I&#39;d like to implement even in this squa
   
   <entry>
     <title>Reaching 1.2m readers and stepping down from my moderator position on vi.se</title>
-    <link href="https://www.statox.fr/posts/vim/stepping-down-vi-se/"/>
+    <link href="https://www.statox.fr/posts/2021/02/stepping-down-vi-se/"/>
     <updated>2021-02-04T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/vim/stepping-down-vi-se/</id>
+    <id>https://www.statox.fr/posts/2021/02/stepping-down-vi-se/</id>
     <content type="html">&lt;p&gt;This week I sent an email to the Stack Exchange team to let them know that I was stepping down from my moderator position on &lt;a href=&quot;https://vi.meta.stackexchange.com/q/1542/1841&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.se&lt;/a&gt; and asking them to remove my diamond.&lt;/p&gt;
 &lt;p&gt;In 2015 I was in my last year of school and I was maintaining a small CRM project with 7 other students. One of them introduced me to Vim during this project and that was the beginning of my love story with this text editor which is still my daily driver today.&lt;/p&gt;
 &lt;p&gt;One day this friend of mine, Nobe4, created &lt;a href=&quot;https://vi.stackexchange.com/users/1821/nobe4?tab=profile&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;his account&lt;/a&gt; and told me about it. The next day I was creating mine and I have to admit that, for me, it started a &amp;quot;who would get the most reputation points&amp;quot; competition against this fellow whom I consider as a very strong technical person. It turned out that after a year or two Nobe4 stopped participating on the website but for me it was too late: I was hooked and I was already enjoying helping other people more than getting imaginary points from the internet.&lt;/p&gt;
@@ -1116,21 +1116,21 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;p&gt;In the moderator dashboard (&lt;em&gt;which displays a big shiny warning &amp;quot;analytics data is intended for moderators only; please don&#39;t share the specifics of this data in public&amp;quot;&lt;/em&gt;) we (the mods) can see the average number of posts by months has been pretty steady since the creation of the site, excepted for the Spring of 2020 which saw a significant spike which I don&#39;t really have an explanation for other than people got bored because of the various lock downs and started using Vim).&lt;/p&gt;
 &lt;p&gt;The number of page views however has been steadily increasing. For a reason I don&#39;t know the stats of page views starts in February 2018 with about 180.000 pages viewed each month and have been linearly growing ever since to reach about 260.000 monthly page views.&lt;/p&gt;
 &lt;p&gt;As we can see the community has grown quite a lot, today it drives about 7000 visitors each day for an average of 6.3 questions a day. Here are more numbers from the area51 website:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/vim/stepping-down-vi-se/are51-stats.png&quot; alt=&quot;area51 stats&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2021/02/stepping-down-vi-se/are51-stats.png&quot; alt=&quot;area51 stats&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;As we can see the stats are flirting with the out-of-beta thresholds, even thought I don&#39;t think they will reach these thresholds any time soon. As it is the case for a lot of smaller websites dedicated to niche topics on stackexchange, &lt;a href=&quot;https://vim.stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;vi.se&lt;/a&gt; might very well stay in beta all of its life. And that&#39;s great! A smaller community is friendlier and usually easier to moderate which is a nice way to generate some interesting content.&lt;/p&gt;
 &lt;h3&gt;Moderator actions&lt;/h3&gt;
 &lt;p&gt;Due to the relatively small size of the site, the community is quite easy to moderate. In my 3 years of moderation duty I have encountered only one or two problematic users who required the moderation team to take an action against them.&lt;/p&gt;
 &lt;p&gt;Most of the time the moderator duty is just doing the janitor job of handling the few flags coming each day, editing or deleting a post once in a while and helping the new comers to create better posts.&lt;/p&gt;
 &lt;p&gt;Here is an insight on the number of actions I&#39;ve taken during my duty. My two fellow moderators &lt;a href=&quot;https://vi.stackexchange.com/users/10604/d-ben-knoble&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Ben&lt;/a&gt; and &lt;a href=&quot;https://vi.stackexchange.com/users/18609/filbranden&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Fill&lt;/a&gt; are quickly catching up on these metrics since they have been appointed about one year ago and have been doing an amazing job during these last months when I have been less active on the site.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/vim/stepping-down-vi-se/moderator_dashboard.png&quot; alt=&quot;moderator dashboard&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2021/02/stepping-down-vi-se/moderator_dashboard.png&quot; alt=&quot;moderator dashboard&quot; /&gt;&lt;/p&gt;
 &lt;h3&gt;A bit about my work&lt;/h3&gt;
 &lt;p&gt;Now I want to write a bit about me, not that it will be useful to anyone but at least to make me feeling good about myself which is still pretty important.&lt;/p&gt;
 &lt;p&gt;Let&#39;s start with the public overview of &lt;a href=&quot;https://vi.stackexchange.com/users/1841/statox&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;my profile&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/vim/stepping-down-vi-se/statox_stats.png&quot; alt=&quot;my stats&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2021/02/stepping-down-vi-se/statox_stats.png&quot; alt=&quot;my stats&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Of all of these numbers the one I&#39;m definitely the most proud of is the &lt;strong&gt;~1.2m people reached&lt;/strong&gt; 🎉&lt;/p&gt;
 &lt;p&gt;This metric is not exactly accurate &lt;a href=&quot;https://meta.stackoverflow.com/q/290491/4194289&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;as explained here&lt;/a&gt; but knowing that roughly 1 million people have read what I wrote and hopefully got some useful information out of that fills me with pride and happiness. Being able to help other people fixing their problems, learning about a new tool and improving their daily computer life has been really rewarding for me, and despite leaving my moderator position I still intend to continue helping people on the internet.&lt;/p&gt;
 &lt;p&gt;Another metric I am really pleased about is my reputation count. I reached about 39.7k reputation points placing me in the second position in the site-wide ranking, well behind our historical moderator Martin. This ranking has been pretty stable for a year or two now and I believe this is mainly due to a few historical posts which were posted in the early days of the site and continue to gather reputation pretty regularly (as an example romainl the 3rd top user stopped participating on the site in December 2016 and it took me about 4 years after that to reach his score)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/vim/stepping-down-vi-se/reputation_board.png&quot; alt=&quot;reputation ranking&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.statox.fr/posts/2021/02/stepping-down-vi-se/reputation_board.png&quot; alt=&quot;reputation ranking&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;What about my actual posts?&lt;/p&gt;
 &lt;p&gt;Amongst the 60 questions and 500+ answers I wrote, some of them are more important to me than the others.Firstly, I pride myself in having two of my questions in the Top &lt;s&gt;10&lt;/s&gt; 11 &lt;a href=&quot;https://vi.stackexchange.com/questions?tab=Frequent&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;most frequently visited questions&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
@@ -1147,9 +1147,9 @@ There are still a number of features I&#39;d like to implement even in this squa
   
   <entry>
     <title>Migrating my CI from Travis-CI to Github Actions</title>
-    <link href="https://www.statox.fr/posts/others/travis-to-githubactions/"/>
+    <link href="https://www.statox.fr/posts/2021/03/travis-to-githubactions/"/>
     <updated>2021-03-03T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/others/travis-to-githubactions/</id>
+    <id>https://www.statox.fr/posts/2021/03/travis-to-githubactions/</id>
     <content type="html">&lt;p&gt;Last November travis-ci &lt;a href=&quot;https://blog.travis-ci.com/2020-11-02-travis-ci-new-billing&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;announced&lt;/a&gt; a change in their pricing policy and that made me think about changing the CI environment I use for this website. After procrastinating on this topic for a few months I finally switched to &lt;a href=&quot;https://github.com/features/actions&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Github Actions&lt;/a&gt; here&#39;s why and how I did it.&lt;/p&gt;
 &lt;h3&gt;Why changing?&lt;/h3&gt;
 &lt;p&gt;When I created this website I needed to setup a CI environment which would build the site using the static generator &lt;a href=&quot;https://www.11ty.dev/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;eleventy&lt;/a&gt; before it gets deployed to Github Pages. I wanted a tool which would be:&lt;/p&gt;
@@ -1166,7 +1166,7 @@ There are still a number of features I&#39;d like to implement even in this squa
 &lt;p&gt;Before having a look at what changed let&#39;s see what my CI workflow needs to do.&lt;/p&gt;
 &lt;p&gt;It is a pretty straight forward process with three main steps:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Run a script I made to check if I committed new posts with a reference to a Github issue that &lt;a href=&quot;https://www.statox.fr/posts/others/comments/&quot;&gt;I use to host comments&lt;/a&gt; and create the corresponding issue if it doesn&#39;t exists;&lt;/li&gt;
+&lt;li&gt;Run a script I made to check if I committed new posts with a reference to a Github issue that &lt;a href=&quot;https://www.statox.fr/posts/2021/03/comments/&quot;&gt;I use to host comments&lt;/a&gt; and create the corresponding issue if it doesn&#39;t exists;&lt;/li&gt;
 &lt;li&gt;Build the website using eleventy. This requires to checkout the last changes I made in my templates and run a npm script I have which execute eleventy and output the resulting HTML in a specified directory.&lt;/li&gt;
 &lt;li&gt;Commit this built HTML to a &lt;code&gt;gh-pages&lt;/code&gt; branch on the repo which is then served by Github Pages.&lt;/li&gt;
 &lt;/ul&gt;
@@ -1216,9 +1216,9 @@ There are still a number of features I&#39;d like to implement even in this squa
   
   <entry>
     <title>Using Neovim floating window to break bad habits</title>
-    <link href="https://www.statox.fr/posts/vim/breaking_habits_floating_window/"/>
+    <link href="https://www.statox.fr/posts/2021/03/breaking_habits_floating_window/"/>
     <updated>2021-03-07T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/vim/breaking_habits_floating_window/</id>
+    <id>https://www.statox.fr/posts/2021/03/breaking_habits_floating_window/</id>
     <content type="html">&lt;p&gt;In 2016 I added to my &lt;code&gt;.vimrc&lt;/code&gt; a mapping to get easier access to window commands in normal mode. I was pretty happy with it in my local setup but it broke my workflow when I edited files on remote servers. Over time this got pestering enough for me to take action and decide to solve the issue. I thought it was a good opportunity to experiment with Neovim &lt;a href=&quot;https://neovim.io/doc/user/api.html#api-floatwin&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;floating windows&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In this article I&#39;ll show how I used some of the Neovim features to create a quick way to get rid of my bad habits. If you never used the floating window it should be an introduction to get started with this feature and give you some inspiration to use it for your own needs.&lt;/p&gt;
 &lt;h3&gt;The problem&lt;/h3&gt;
@@ -1317,9 +1317,9 @@ If you are not familiar with these options see &lt;a href=&quot;https://neovim.i
   
   <entry>
     <title>Alter Ansible&#39;s output on debugging</title>
-    <link href="https://www.statox.fr/posts/bash/alter_ansible_debugging_output/"/>
+    <link href="https://www.statox.fr/posts/2021/03/alter_ansible_debugging_output/"/>
     <updated>2021-03-17T00:00:00Z</updated>
-    <id>https://www.statox.fr/posts/bash/alter_ansible_debugging_output/</id>
+    <id>https://www.statox.fr/posts/2021/03/alter_ansible_debugging_output/</id>
     <content type="html">&lt;p&gt;Who knew that ansible output could be actually readable? 💡&lt;/p&gt;
 &lt;p&gt;Yesterday I saw &lt;a href=&quot;https://jpmens.net/2021/03/12/alter-ansible-s-output-on-debugging/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;this post&lt;/a&gt; on &lt;a href=&quot;http://lobste.rs/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;lobste.rs&lt;/a&gt; showing how changing the environment variable &lt;code&gt;ANSIBLE_STDOUT_CALLBACK&lt;/code&gt; to &lt;code&gt;yaml&lt;/code&gt; helps improving the output of the &lt;code&gt;ansible-playbook&lt;/code&gt; command. While I was happy to find a way to improve readability there were two things which didn&#39;t fit my needs:&lt;/p&gt;
 &lt;ul&gt;
@@ -1334,7 +1334,7 @@ If you are not familiar with these options see &lt;a href=&quot;https://neovim.i
 &lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;fatal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;localhost&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; FAILED&lt;span class=&quot;token tag&quot;&gt;!&lt;/span&gt; =&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt; changed=true&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; naught deploy &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;override&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;env true &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;cwd /home/ubuntu/project /home/ubuntu/project/shared/naught.ipc&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;0:00:00.045878&#39;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;2021-03-17 09:12:31.012211&#39;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; non&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;zero return code&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;rc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;2021-03-17 09:12:30.966333&#39;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;br /&gt;  unable to connect to ipc&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;file `/home/ubuntu/project/shared/naught.ipc`&lt;br /&gt;&lt;br /&gt;  1. the ipc file specified is invalid&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; or&lt;br /&gt;  2. the daemon process died unexpectedly&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;stderr_lines&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; unable to connect to ipc&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;file `/home/ubuntu/project/shared/naught.ipc`&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; 1. the ipc file specified is invalid&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; or&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; 2. the daemon process died unexpectedly&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token key atrule&quot;&gt;stdout_lines&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &amp;lt;omitted&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Instead of this:&lt;/p&gt;
 &lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;fatal&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;localhost&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; FAILED! =&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;&quot;changed&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;cmd&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;naught deploy --override-env true --cwd /home/ubuntu/project /home/ubuntu/project/shared/naught.ipc&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;delta&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;0:00:00.052263&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;end&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2021-03-17 09:11:32.504379&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;msg&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;non-zero return code&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;rc&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;start&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2021-03-17 09:11:32.452116&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;stderr&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;unable to connect to ipc-file `/home/ubuntu/project/shared/naught.ipc`\n\n1. the ipc file specified is invalid, or\n2. the daemon process died unexpectedly&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;stderr_lines&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;unable to connect to ipc-file `/home/ubuntu/project/shared/naught.ipc`&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;1. the ipc file specified is invalid, or&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2. the daemon process died unexpectedly&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;stdout&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token property&quot;&gt;&quot;stdout_lines&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This also has the advantage of letting you alternating between &lt;code&gt;-v&lt;/code&gt; and no debug calls with the appropriat formatting and it also works from a wrapper script.&lt;/p&gt;
+&lt;p&gt;This also has the advantage of letting you alternating between &lt;code&gt;-v&lt;/code&gt; and no debug calls with the appropriate formatting and it also works from a wrapper script.&lt;/p&gt;
 &lt;!-- vim: set spell: --&gt;
 </content>
   </entry>
