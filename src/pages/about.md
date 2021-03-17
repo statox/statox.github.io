@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: About
+permalink: "/about/"
 eleventyNavigation:
   key: About
   order: 4

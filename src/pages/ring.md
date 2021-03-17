@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Ring
+permalink: "/ring/"
 eleventyNavigation:
   key: Ring
   order: 6

@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Social
+permalink: "/social/"
 eleventyNavigation:
   key: Social
   order: 5
