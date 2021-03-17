@@ -54,5 +54,5 @@ templateClass: tmpl-post
 {% endset %}
 
 <script>
-    {{ inlineJS | safe }}
+    {{ inlineJS | jsmin | safe }}
 </script>

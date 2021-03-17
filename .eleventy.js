@@ -13,6 +13,7 @@ const pluginSEO = require('eleventy-plugin-seo');
 const seoConfig = require('./src/_data/seo.json');
 const sitemap = require('@quasibit/eleventy-plugin-sitemap');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
+const uglify = require('uglify-js');
 const wordCount = require('eleventy-plugin-wordcount').wordCount;
 
 const formatPostDate = date => {
@@ -80,6 +81,15 @@ module.exports = function (eleventyConfig) {
     // CSS minifier filter
     eleventyConfig.addFilter('cssmin', function (code) {
         return new cleanCSS({}).minify(code).styles;
+    });
+
+    // JS minifier filter
+    // TODO fail the CI if uglify.minify(code).error exists
+    eleventyConfig.addFilter('jsmin', function (code) {
+        if (env === 'prod') {
+            return uglify.minify(code).code;
+        }
+        return code;
     });
 
     /*
