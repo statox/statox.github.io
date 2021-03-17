@@ -59,6 +59,6 @@ Instead of this:
 fatal: [localhost]: FAILED! => {"changed": true, "cmd": "naught deploy --override-env true --cwd /home/ubuntu/project /home/ubuntu/project/shared/naught.ipc", "delta": "0:00:00.052263", "end": "2021-03-17 09:11:32.504379", "msg": "non-zero return code", "rc": 1, "start": "2021-03-17 09:11:32.452116", "stderr": "unable to connect to ipc-file `/home/ubuntu/project/shared/naught.ipc`\n\n1. the ipc file specified is invalid, or\n2. the daemon process died unexpectedly", "stderr_lines": ["unable to connect to ipc-file `/home/ubuntu/project/shared/naught.ipc`", "", "1. the ipc file specified is invalid, or", "2. the daemon process died unexpectedly"], "stdout": "", "stdout_lines": []}
 ```
 
-This also has the advantage of letting you alternating between `-v` and no debug calls with the appropriat formatting and it also works from a wrapper script.
+This also has the advantage of letting you alternating between `-v` and no debug calls with the appropriate formatting and it also works from a wrapper script.
 
 <!-- vim: set spell: -->

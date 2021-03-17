@@ -35,7 +35,7 @@ When I decided to get rid of this nasty habit I removed the mapping from my `.vi
 
 Here is the solution I came up with:
 
-![Floating window notice](../../../images/vim_breaking_habits/floating_window_notice.png)
+![Floating window notice](../../../../images/vim_breaking_habits/floating_window_notice.png)
 
 This floating window is shown when I press a command I want to avoid. There are a few features I wanted to have in this solution:
 
@@ -88,7 +88,7 @@ Finally we can use `nvim_open_win()` to open the floating window. The function t
 
 Calling this function with `:call BreakHabitsWindow()` will spawn a simple empty floating window:
 
-![Simple floating window](../../../images/vim_breaking_habits/simple_floating_window.png)
+![Simple floating window](../../../../images/vim_breaking_habits/simple_floating_window.png)
 
 #### Showing the window borders
 
@@ -112,7 +112,7 @@ call nvim_buf_set_lines(buf, 0, -1, v:false, lines)
 
 Adding that to our `BreakHabitsWindow()` function we get the following result:
 
-![Floating window with a box](../../../images/vim_breaking_habits/box_floating_window.png)
+![Floating window with a box](../../../../images/vim_breaking_habits/box_floating_window.png)
 
 #### Adding a message in the window
 
@@ -141,7 +141,7 @@ endfor
 
 We can now call the function with the right parameter `:call BreakHabitsWindow(["Hello world", "This is our floating message"])` and here we have a message in the window:
 
-![Floating window with a message](../../../images/vim_breaking_habits/message_floating_window.png)
+![Floating window with a message](../../../../images/vim_breaking_habits/message_floating_window.png)
 
 #### Closing the window
 
@@ -180,7 +180,7 @@ call nvim_win_set_option(win, 'winhl', 'Normal:ErrorFloat')
 
 And here we are:
 
-![Floating window with a colored message](../../../images/vim_breaking_habits/colors_floating_window.png)
+![Floating window with a colored message](../../../../images/vim_breaking_habits/colors_floating_window.png)
 
 #### Creating the mappings
 

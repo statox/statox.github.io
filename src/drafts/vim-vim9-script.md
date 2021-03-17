@@ -1,9 +1,8 @@
 ---
 layout: layouts/post.njk
-tags: ['post', 'vim']
+tags: ['draft', 'vim']
 date: 1970-01-01
 title: What is the new vim9 scripting language?
-eleventyExcludeFromCollections: true
 ---
 
 Intesresting readme presenting the main ideas and some differences (The repo is archived)

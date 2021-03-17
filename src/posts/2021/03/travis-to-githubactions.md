@@ -106,7 +106,7 @@ jobs:
 
 The `name` block is only to set up the name of the action which will be shown in the UI
 
-![deploy workflow](../../../images/github_workflow.png)
+![deploy workflow](../../../../images/github_workflow.png)
 
 - The `on` blocks defines when the workflow is ran. I want to deploy every time I push something to the `master` branch and I also added the `workflow_dispatch` directive which create the `Run workflow` button in the UI to trigger it manually. I don't know if I'll ever need it but it doesn't hurt to have it.
 

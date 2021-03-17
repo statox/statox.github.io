@@ -3,7 +3,6 @@ layout: layouts/post.njk
 tags: ['post', 'p5', 'mindfulness', 'procedural']
 date: 2020-10-22
 title: Algorithmically guided breathing
-permalink: "breath/index.html"
 commentIssueId: 14
 ---
 
@@ -191,4 +190,4 @@ So that was a fun and relaxing project and I really hope I will continue to take
 
 Here is a gif of some of the visuals I created and the full application is available [on this page](https://breath.statox.fr)
 
-![spoiler](../images/breath.gif)
+![spoiler](../../../../images/breath.gif)
