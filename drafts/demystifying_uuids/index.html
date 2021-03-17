@@ -423,7 +423,7 @@ function adaptToScreenSize(x) {
     document.getElementById('comment_word').textContent = commentWordSpanContent;
 }
 
-var x = window.matchMedia("(max-width: 700px)")
+var x = window.matchMedia("(max-width: 500px)")
 adaptToScreenSize(x) // Call listener function at run time
 x.addListener(adaptToScreenSize) // Attach listener function on state changes 
 </script>
