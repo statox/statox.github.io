@@ -158,7 +158,7 @@
 <h2>Demystifying UUIDs</h2>
 <p class="post-subheader">
     March 15, 2021
-    - 1089 words
+    - 1148 words
     - <span id="commentCounter"></span> comments
 
 </p>
@@ -181,19 +181,19 @@
 <li>Try to find a free version of the standard <a href="https://www.iso.org/standard/2229.html" target="_blank" rel="noopener noreferrer">https://www.iso.org/standard/2229.html</a></li>
 <li>A uuid decoder <a href="https://www.uuidtools.com/decode" target="_blank" rel="noopener noreferrer">https://www.uuidtools.com/decode</a></li>
 </ul>
-<h3>Format of a UUID</h3>
+<h3>Anatomy of a UUID</h3>
 <p>The textual representation of a UUID is composed of 36 characters. These characters are grouped in 5 groups of different lengths separated by hyphens. The length of these groups is always <code>8-4-4-4-12</code>.</p>
 <p>These characters represent the 16 octets (i.e. 128 bits) of the UUIDS. These 16 octets are represented as 32 hexadecimal digits plus the hyphens.</p>
 <p>Here is an example:</p>
 <pre><code>123e4567-e89b-12d3-a456-426614174000
 </code></pre>
-<h3>Variant and version</h3>
-<p>As we will see later there are several versions and variant of UUIDs and a UUID always embed its version and variant. Specifically this information is stored in two</p>
+<h4>Variant and version</h4>
+<p>The different groups of characters in the textual representation of a UUID have different meaning depending on the version and the variant which were used to generate the UUID. Before we look at the different versions and  variant let's see how to identify them.</p>
+<p>This information is embed directly in the UUID, to identify them one need to check two of the hexadecimal digits of the textual representation. Let's take an example:</p>
 <pre><code>123e4567-e89b-12d3-a456-426614174000
 xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx
 </code></pre>
-<p>TL;DR Reading Version and Variant:</p>
-<p>To get the version you take the digit M and deduce the version immediately:</p>
+<p>To get the version you take the digit M. It can only take values between 1 and 5 to reference a specified version and its value describes directly the used version:</p>
 <table>
 <thead>
 <tr>
@@ -208,7 +208,7 @@ xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx
 </tr>
 <tr>
 <td>2</td>
-<td>version 2 (RFC 4122 reserves version-2 for &quot;DCE security&quot; UUIDs however no details are provided.)</td>
+<td>version 2</td>
 </tr>
 <tr>
 <td>3</td>
@@ -223,8 +223,8 @@ xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx
 <td>version 5</td>
 </tr>
 <tr>
-<td>6 - f, 0</td>
-<td>version unknown</td>
+<td>6-f, 0</td>
+<td>version unknown (unspecified version)</td>
 </tr>
 </tbody>
 </table>
@@ -268,6 +268,17 @@ xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx
 <p>One way to convert hexadecimal digit to binary in bash:</p>
 <pre><code># Warning bc is case sensitive and digits &gt;= A must be uppercase
 echo &quot;obase=2; ibase=16; C&quot; | bc
+</code></pre>
+<p>Examples:</p>
+<pre><code>6b818db4-ad21-401e-a821-a73793f0cf50
+              ↑    ↑
+        Version 4
+                 Variant DCE 1.1
+
+c1facb48-86a7-11eb-bacb-00224d83ea8d
+              ↑    ↑
+        Version 1
+                 Variant DCE 1.1
 </code></pre>
 <p>From <a href="https://tools.ietf.org/html/rfc4122#section-4.1.1" target="_blank" rel="noopener noreferrer">https://tools.ietf.org/html/rfc4122#section-4.1.1</a></p>
 <blockquote>
@@ -379,11 +390,7 @@ uuidgen | hexdump -c
 <p>
 <h3>Related posts</h3>
 
-<p>Posts in the same category: <span class='formatted-tag'>[bash]<span><p>
-<ul><li>
-            <a class="post-link" href=/notes/bash-arrays/>Bash arrays</a>
-        </li></ul>
-<p>
+<p>No other posts in the category <span class='formatted-tag'>[uuid]<span></p>
 
 
 
