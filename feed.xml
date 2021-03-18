@@ -42,7 +42,7 @@
 &lt;ul&gt;
 &lt;li&gt;First I have to do my own research in the help system, like any vimmer would do.&lt;/li&gt;
 &lt;li&gt;Then I have to copy the help topic to my clipboard&lt;/li&gt;
-&lt;li&gt;In the web interface I have to redundantly type the string &lt;code&gt;:h &lt;/code&gt; and add the help topic.&lt;/li&gt;
+&lt;li&gt;In the web interface I have to redundantly type the string &lt;code&gt;:h&lt;/code&gt; and add the help topic.&lt;/li&gt;
 &lt;li&gt;Then because I think new users are more inclined to read the doc if it is available right under their hand I look for the topic on an online version of the help&lt;/li&gt;
 &lt;li&gt;Finally I can update my markdown with the right link&lt;/li&gt;
 &lt;/ul&gt;
