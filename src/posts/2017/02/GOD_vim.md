@@ -23,7 +23,7 @@ For a long time I just wrote the help command like `:h autocmd-events` in my ans
 
  - First I have to do my own research in the help system, like any vimmer would do.
  - Then I have to copy the help topic to my clipboard
- - In the web interface I have to redundantly type the string `:h ` and add the help topic.
+ - In the web interface I have to redundantly type the string `:h` and add the help topic.
  - Then because I think new users are more inclined to read the doc if it is available right under their hand I look for the topic on an online version of the help
  - Finally I can update my markdown with the right link
 

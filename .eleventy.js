@@ -90,9 +90,9 @@ module.exports = function (eleventyConfig) {
                 caseSensitive: true,
                 useShortDoctype: true,
                 removeComments: true,
-                collapseWhitespace: true
-                // minifyCSS: true,
-                // minifyJS: true
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true
             });
             return minified;
         }
