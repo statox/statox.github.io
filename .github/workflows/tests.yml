@@ -1,8 +1,6 @@
 # vim:shiftwidth=2
 name: test
-on:
-  push:
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch]
 jobs:
   tests:
     runs-on: ubuntu-latest
