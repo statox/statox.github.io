@@ -1,0 +1,25 @@
+# vim:shiftwidth=2
+name: test
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔀 Checkout
+        uses: actions/checkout@v2
+      - name: 🚩 Configure node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: 🔧 Install and build
+        run: |
+          npm ci
+          npm run build
+      - name: 👀 Visual tests
+        uses: percy/snapshot-action@v0.1.2
+        with:
+          build-directory: "docs"
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
