@@ -9,6 +9,7 @@ const markdownItEmoji = require('markdown-it-emoji');
 const markdownItExternalLinks = require('markdown-it-external-links');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const pluginSEO = require('eleventy-plugin-seo');
+const prettier = require('prettier');
 const seoConfig = require('./src/_data/seo.json');
 const sitemap = require('@quasibit/eleventy-plugin-sitemap');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
@@ -80,24 +81,26 @@ module.exports = function (eleventyConfig) {
     // Also minifies JS and CSS
     // TODO Check continueOnParseError option and how to handle failure in CI
     eleventyConfig.addTransform('htmlmin', function (content, outputPath) {
-        if (env !== 'prod') {
+        if (!outputPath.endsWith('.html')) {
             return content;
         }
 
-        if (outputPath.endsWith('.html')) {
-            let minified = htmlmin.minify(content, {
-                keepClosingSlash: true,
-                caseSensitive: true,
-                useShortDoctype: true,
-                removeComments: true,
-                collapseWhitespace: true,
-                minifyCSS: true,
-                minifyJS: true
-            });
-            return minified;
+        const prettified = prettier.format(content, {parser: 'html'});
+
+        if (env !== 'prod') {
+            return prettified;
         }
 
-        return content;
+        const minified = htmlmin.minify(prettified, {
+            keepClosingSlash: true,
+            caseSensitive: true,
+            useShortDoctype: true,
+            removeComments: true,
+            collapseWhitespace: true,
+            minifyCSS: true,
+            minifyJS: true
+        });
+        return minified;
     });
 
     /*
