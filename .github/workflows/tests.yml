@@ -1,6 +1,10 @@
 # vim:shiftwidth=2
-name: test
-on: [push, pull_request, workflow_dispatch]
+name: tests
+on:
+  push:
+    branches-ignore: [ master ]
+  pull_request:
+  workflow_dispatch:
 jobs:
   tests:
     runs-on: ubuntu-latest
