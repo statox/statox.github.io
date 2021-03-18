@@ -8,7 +8,16 @@ Baby Huey and his band took one of the best songs ever written and turned it int
 
 The introduction really translate the melancholic side of the song until the brass section enters in a psychedelic explosion which sends you directly back to the 60's (or what I imagine the 60's to be).
 
-https://open.spotify.com/track/1HzIPQceSx4GYLUyag9EPm?si=gGG_fxmAQ7S2GI5gjohw_Q
+<div id="spotify-track-1HzIPQceSx4GYLUyag9EPm">
+    <iframe title="California dreamin'"
+            src="https://open.spotify.com/embed/track/1HzIPQceSx4GYLUyag9EPm"
+            width="300"
+            height="380"
+            frameborder="0"
+            allowtransparency="true"
+            allow="encrypted-media">
+    </iframe>
+</div>
 
 California Dreamin' is one of the songs with the most occurrences in my playlist but I think this version is by far my favorite.
 

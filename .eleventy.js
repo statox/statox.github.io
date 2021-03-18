@@ -3,7 +3,6 @@
  */
 
 const eleventyNavigation = require('@11ty/eleventy-navigation');
-const embedSpotify = require('eleventy-plugin-embed-spotify');
 const htmlmin = require('html-minifier');
 const markdownIt = require('markdown-it');
 const markdownItEmoji = require('markdown-it-emoji');
@@ -110,8 +109,6 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginRss);
     // Word count plugin
     eleventyConfig.addPlugin(wordCount);
-    // Spotify plugin
-    eleventyConfig.addPlugin(embedSpotify);
     // SEO plugin
     eleventyConfig.addPlugin(pluginSEO, seoConfig);
     // Sitemap plugin
