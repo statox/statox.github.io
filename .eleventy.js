@@ -87,12 +87,13 @@ module.exports = function (eleventyConfig) {
 
         if (outputPath.endsWith('.html')) {
             let minified = htmlmin.minify(content, {
+                keepClosingSlash: true,
                 caseSensitive: true,
                 useShortDoctype: true,
                 removeComments: true,
-                collapseWhitespace: true,
-                minifyCSS: true,
-                minifyJS: true
+                collapseWhitespace: true
+                // minifyCSS: true,
+                // minifyJS: true
             });
             return minified;
         }
