@@ -24,7 +24,7 @@ templateClass: tmpl-post
 <p>
 <h3>Related posts</h3>
 {% if related.length > 0 %}
-<p>Posts in the same category: <span class='formatted-tag'>[{{currentTag}}]<span><p>
+<p>Posts in the same category: <span class='formatted-tag'>[{{currentTag}}]</span></p>
 <ul>
     {%- for post in related -%}
         <li>
@@ -32,9 +32,8 @@ templateClass: tmpl-post
         </li>
     {%- endfor -%}
 </ul>
-<p>
 {% else %}
-<p>No other posts in the category <span class='formatted-tag'>[{{currentTag}}]<span></p>
+<p>No other posts in the category <span class='formatted-tag'>[{{currentTag}}]</span></p>
 {% endif %}
 
 {# Comments section #}
