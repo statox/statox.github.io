@@ -2,9 +2,9 @@
  * Eleventy configuration file
  */
 
-const cleanCSS = require('clean-css');
 const eleventyNavigation = require('@11ty/eleventy-navigation');
 const embedSpotify = require('eleventy-plugin-embed-spotify');
+const htmlmin = require('html-minifier');
 const markdownIt = require('markdown-it');
 const markdownItEmoji = require('markdown-it-emoji');
 const markdownItExternalLinks = require('markdown-it-external-links');
@@ -13,7 +13,6 @@ const pluginSEO = require('eleventy-plugin-seo');
 const seoConfig = require('./src/_data/seo.json');
 const sitemap = require('@quasibit/eleventy-plugin-sitemap');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
-const uglify = require('uglify-js');
 const wordCount = require('eleventy-plugin-wordcount').wordCount;
 
 const formatPostDate = date => {
@@ -78,18 +77,27 @@ module.exports = function (eleventyConfig) {
     // Change the tab title to the tittle of the post or the tittle of the site
     eleventyConfig.addFilter('pageTitle', tittle => tittle || 'The stuff I do');
 
-    // CSS minifier filter
-    eleventyConfig.addFilter('cssmin', function (code) {
-        return new cleanCSS({}).minify(code).styles;
-    });
-
-    // JS minifier filter
-    // TODO fail the CI if uglify.minify(code).error exists
-    eleventyConfig.addFilter('jsmin', function (code) {
-        if (env === 'prod') {
-            return uglify.minify(code).code;
+    // HTML minifier transform
+    // Also minifies JS and CSS
+    // TODO Check continueOnParseError option and how to handle failure in CI
+    eleventyConfig.addTransform('htmlmin', function (content, outputPath) {
+        if (env !== 'prod') {
+            return content;
         }
-        return code;
+
+        if (outputPath.endsWith('.html')) {
+            let minified = htmlmin.minify(content, {
+                caseSensitive: true,
+                useShortDoctype: true,
+                removeComments: true,
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true
+            });
+            return minified;
+        }
+
+        return content;
     });
 
     /*

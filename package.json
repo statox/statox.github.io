@@ -12,13 +12,12 @@
         "@octokit/rest": "^18.3.3",
         "@quasibit/eleventy-plugin-sitemap": "^2.0.4",
         "async": "^3.2.0",
-        "clean-css": "^5.1.1",
         "eleventy-plugin-embed-spotify": "^1.2.0",
         "eleventy-plugin-seo": "^0.5.1",
         "eleventy-plugin-wordcount": "^1.0.5",
+        "html-minifier": "^4.0.0",
         "markdown-it-emoji": "^2.0.0",
-        "markdown-it-external-links": "0.0.6",
-        "uglify-js": "^3.13.1"
+        "markdown-it-external-links": "^0.0.6"
     },
     "homepage": "www.statox.fr",
     "keywords": [],
