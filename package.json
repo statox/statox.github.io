@@ -12,7 +12,6 @@
         "@octokit/rest": "^18.3.3",
         "@quasibit/eleventy-plugin-sitemap": "^2.0.4",
         "async": "^3.2.0",
-        "eleventy-plugin-embed-spotify": "^1.2.0",
         "eleventy-plugin-seo": "^0.5.1",
         "eleventy-plugin-wordcount": "^1.0.5",
         "html-minifier": "^4.0.0",

@@ -14,4 +14,13 @@ Barbara Keith's version is closer to Hendrix's one because it borrows more to th
 
 In the third verse the lyrics says "Outside in the distance a wildcat did growl" and a guitar with a wahwah pedal mimics this growl, this is the kind of usage of this pedal which I really like. After this cool third verse a beautiful guitar solo reminds the end of the Hendrix version and the song could have ended right there leaving us with a beautiful rock cover of a classical folk song... But Barbara Keith decided to repeat the third verse again. Was it necessary for the song? No. But that let us appreciate her charming voice for a bit longer and we can't blame her for that.
 
-https://open.spotify.com/track/6htQYhSt0OhRL1XSlu8sKN?si=W7VrVQOBQCGgsPi5wW0cGw
+<div id="spotify-track-6htQYhSt0OhRL1XSlu8sKN">
+    <iframe title="All along the watchtower"
+            src="https://open.spotify.com/embed/track/6htQYhSt0OhRL1XSlu8sKN"
+            width="300"
+            height="380"
+            frameborder="0"
+            allowtransparency="true"
+            allow="encrypted-media">
+    </iframe>
+</div>
