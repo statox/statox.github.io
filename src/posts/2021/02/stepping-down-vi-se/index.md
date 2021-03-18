@@ -45,20 +45,20 @@ Here is are a few general numbers that I pulled from [data.se](https://data.stac
                             <th>Type of post</th>
                             <th>Count</th>
                         </tr>
-                    <thead>
+                    </thead>
                     <tbody>
                         <tr>
                             <td>Question</td>
                             <td>643</td>
-                        <tr>
+                        </tr>
                         <tr>
                             <td>Answer</td>
                             <td>1146</td>
-                        <tr>
+                        </tr>
                         <tr>
                             <td>Tag wiki</td>
                             <td>81</td>
-                        <tr>
+                        </tr>
                     </tbody>
                 </table>
             </td>
@@ -69,24 +69,24 @@ Here is are a few general numbers that I pulled from [data.se](https://data.stac
                             <th>Type of post</th>
                             <th>Count</th>
                         </tr>
-                    <thead>
+                    </thead>
                     <tbody>
                         <tr>
                             <td>Question</td>
                             <td>10405</td>
-                        <tr>
+                        </tr>
                         <tr>
                             <td>Answer</td>
                             <td>13747</td>
-                        <tr>
+                        </tr>
                         <tr>
                             <td>Tag wiki</td>
                             <td>229</td>
-                        <tr>
+                        </tr>
                     </tbody>
                 </table>
             </td>
-        <tr>
+        </tr>
     </tbody>
 </table>
 
