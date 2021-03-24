@@ -20,3 +20,42 @@ function adaptToScreenSize(x) {
 var x = window.matchMedia('(max-width: 500px)');
 adaptToScreenSize(x); // Call listener function at run time
 x.addListener(adaptToScreenSize); // Attach listener function on state changes
+
+function domReady(fn) {
+    document.addEventListener('DOMContentLoaded', fn);
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        fn();
+    }
+}
+
+function toggleFullscreen(event) {
+    isFullscreen = !isFullscreen;
+    if (!isFullscreen) {
+        const fullscreenElements = document.getElementsByClassName('focus');
+        for (const element of fullscreenElements) {
+            element.classList.remove('focus');
+        }
+        document.body.removeChild(backgroundDiv);
+        document.body.classList.remove('noscroll');
+        return;
+    }
+
+    const image = event.target;
+
+    image.classList.add('focus');
+    document.body.append(backgroundDiv);
+    document.body.classList.add('noscroll');
+}
+
+function addImagesFullscreenFeature() {
+    const elements = document.getElementsByTagName('img');
+
+    for (const element of elements) {
+        element.addEventListener('click', toggleFullscreen);
+    }
+}
+let isFullscreen = false;
+let backgroundDiv = document.createElement('div');
+backgroundDiv.classList.add('img_background');
+backgroundDiv.addEventListener('click', toggleFullscreen);
+domReady(addImagesFullscreenFeature);
