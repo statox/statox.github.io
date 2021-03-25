@@ -17,7 +17,10 @@
         "html-minifier": "^4.0.0",
         "markdown-it-emoji": "^2.0.0",
         "markdown-it-external-links": "^0.0.6",
-        "prettier": "^2.2.1"
+        "pixelmatch": "^5.2.1",
+        "pngjs": "^6.0.0",
+        "prettier": "^2.2.1",
+        "puppeteer": "^8.0.0"
     },
     "homepage": "www.statox.fr",
     "keywords": [],
