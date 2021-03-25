@@ -14,13 +14,6 @@ const reactionEmojis = {
     eyes: '&#x1F440'
 };
 
-function domReady(fn) {
-    document.addEventListener('DOMContentLoaded', fn);
-    if (document.readyState === 'interactive' || document.readyState === 'complete') {
-        fn();
-    }
-}
-
 function countReactions(reactions) {
     const counts = {};
     reactions.forEach(r => {
