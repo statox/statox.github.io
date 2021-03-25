@@ -48,8 +48,11 @@ templateClass: tmpl-post
 
 {# Include inline JS from _includes/scripts files #}
 {% set inlineJS %}
+      {% include "scripts/utils.js" %}
+      {# githubComments and responsiveImages rely on utils to provide the domReady function #}
       {% include "scripts/githubComments.js" %}
       {% include "scripts/responsivePost.js" %}
+      {% include "scripts/responsiveImages.js" %}
 {% endset %}
 
 <script>
