@@ -85,11 +85,11 @@ module.exports = function (eleventyConfig) {
             return content;
         }
 
-        const prettified = prettier.format(content, {parser: 'html'});
-
-        if (env !== 'prod') {
-            return prettified;
+        if (env === 'dev') {
+            return content;
         }
+
+        const prettified = prettier.format(content, {parser: 'html'});
 
         const minified = htmlmin.minify(prettified, {
             keepClosingSlash: true,
