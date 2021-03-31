@@ -10,7 +10,7 @@
         "@11ty/eleventy-plugin-rss": "^1.1.1",
         "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.6",
         "@octokit/rest": "^18.5.2",
-        "@quasibit/eleventy-plugin-sitemap": "^2.0.4",
+        "@quasibit/eleventy-plugin-sitemap": "^2.0.5",
         "async": "^3.2.0",
         "eleventy-plugin-seo": "^0.5.1",
         "eleventy-plugin-wordcount": "^1.0.5",
