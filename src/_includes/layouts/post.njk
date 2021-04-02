@@ -28,7 +28,7 @@ templateClass: tmpl-post
 <ul>
     {%- for post in related -%}
         <li>
-            <a class="post-link" href="{{post.url}}">{{ post.title }}</a>
+            <span class="post-date">{{ post.date | datePost }}</span> <a class="post-link" href="{{post.url}}">{{ post.title }}</a>
         </li>
     {%- endfor -%}
 </ul>

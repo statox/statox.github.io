@@ -11,7 +11,6 @@ function htmlmin(content, outputPath) {
     }
 
     if (env === 'dev') {
-        console.log('not minified');
         return content;
     }
 

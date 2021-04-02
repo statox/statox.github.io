@@ -15,8 +15,10 @@ function noteTags(tags) {
 }
 
 // Filter to get posts related to the current one
-// TODO: To be refactored to better use eleventy collections
-function relatedPosts(collection, currentPost) {
+// TODO: To be refactored to better use eleventy collections to avoid hack for drafts
+function relatedPosts(_collection, currentPost) {
+    // Exclude drafts from collection
+    const collection = _collection.filter(p => !p.url.includes('drafts'));
     const currentPostIndex = collection.findIndex(p => p.url === currentPost.url);
     const relatedPosts = [];
     const transformPost = post => {
@@ -27,15 +29,25 @@ function relatedPosts(collection, currentPost) {
         };
     };
 
+    // For every post excepted the first one add the previous post
     if (currentPostIndex > 0) {
         const prevPost = collection[currentPostIndex - 1];
         relatedPosts.push(transformPost(prevPost));
     }
+    // For the last post add the penultimate post too if it exists
+    if (currentPostIndex === collection.length - 1 && currentPostIndex - 2 >= 0) {
+        const penultimatePost = collection[currentPostIndex - 2];
+        relatedPosts.push(transformPost(penultimatePost));
+    }
+    // For every post excepted the last one add the next post
     if (currentPostIndex < collection.length - 1) {
         const nextPost = collection[currentPostIndex + 1];
-        if (!nextPost.data.tags.includes('draft')) {
-            relatedPosts.push(transformPost(nextPost));
-        }
+        relatedPosts.push(transformPost(nextPost));
+    }
+    // For the first post add one more post if it exists
+    if (currentPostIndex === 0 && currentPostIndex + 2 <= collection.length - 1) {
+        const nextNextPost = collection[currentPostIndex + 2];
+        relatedPosts.push(transformPost(nextNextPost));
     }
     return relatedPosts;
 }
