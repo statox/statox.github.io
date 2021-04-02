@@ -18,3 +18,4 @@ Some blogs and personal websites I like to read regularly (or just every once in
 - https://nicolas-hoizey.com
 - https://sericaia.me
 - https://tonycodes.com
+- https://tonsky.me/
