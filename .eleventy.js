@@ -3,104 +3,36 @@
  */
 
 const eleventyNavigation = require('@11ty/eleventy-navigation');
-const htmlmin = require('html-minifier');
 const markdownIt = require('markdown-it');
 const markdownItEmoji = require('markdown-it-emoji');
 const markdownItExternalLinks = require('markdown-it-external-links');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const pluginSEO = require('eleventy-plugin-seo');
-const prettier = require('prettier');
 const seoConfig = require('./src/_data/seo.json');
 const sitemap = require('@quasibit/eleventy-plugin-sitemap');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const wordCount = require('eleventy-plugin-wordcount').wordCount;
 
-const formatPostDate = date => {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return `${months[month]} ${year}`;
-};
+const filters = require('./tools/eleventy/filters.js');
+const collections = require('./tools/eleventy/collections.js');
+const transforms = require('./tools/eleventy/transforms.js');
+
+const env = process.env.ELEVENTY_ENV;
 
 module.exports = function (eleventyConfig) {
-    const env = process.env.ELEVENTY_ENV;
-
-    // Notes sorted alphabetically by their title
-    eleventyConfig.addCollection('notesAlphabetical', collection =>
-        collection.getFilteredByGlob('src/notes/*.md').sort((a, b) => {
-            if (a.data.title > b.data.title) return 1;
-            else if (a.data.title < b.data.title) return -1;
-            else return 0;
-        })
-    );
-
-    /*
-     * Filters
-     */
-    // Posts dates in home page
-    eleventyConfig.addFilter('datePost', formatPostDate);
-
-    // Format tags of notes
-    eleventyConfig.addFilter('noteTags', tags => {
-        return tags
-            .filter(t => t !== 'note')
-            .map(t => '[' + t + ']')
-            .join('');
+    // Filters
+    Object.keys(filters).forEach(filterName => {
+        eleventyConfig.addFilter(filterName, filters[filterName]);
     });
 
-    // Filter to get posts related to the current one
-    // TODO: To be refactored to better use eleventy collections
-    eleventyConfig.addFilter('relatedPosts', (collection, currentPost) => {
-        const currentPostIndex = collection.findIndex(p => p.url === currentPost.url);
-        const relatedPosts = [];
-        const transformPost = post => {
-            return {
-                date: post.date,
-                url: post.url,
-                title: post.data.title
-            };
-        };
-
-        if (currentPostIndex > 0) {
-            const prevPost = collection[currentPostIndex - 1];
-            relatedPosts.push(transformPost(prevPost));
-        }
-        if (currentPostIndex < collection.length - 1) {
-            const nextPost = collection[currentPostIndex + 1];
-            if (!nextPost.data.tags.includes('draft')) {
-                relatedPosts.push(transformPost(nextPost));
-            }
-        }
-        return relatedPosts;
+    // Collections
+    Object.keys(collections).forEach(collectionName => {
+        eleventyConfig.addCollection(collectionName, collections[collectionName]);
     });
 
-    // Change the tab title to the tittle of the post or the tittle of the site
-    eleventyConfig.addFilter('pageTitle', tittle => tittle || 'The stuff I do');
-
-    // HTML minifier transform
-    // Also minifies JS and CSS
-    // TODO Check continueOnParseError option and how to handle failure in CI
-    eleventyConfig.addTransform('htmlmin', function (content, outputPath) {
-        if (!outputPath.endsWith('.html')) {
-            return content;
-        }
-
-        if (env === 'dev') {
-            return content;
-        }
-
-        const prettified = prettier.format(content, {parser: 'html'});
-
-        const minified = htmlmin.minify(prettified, {
-            keepClosingSlash: true,
-            caseSensitive: true,
-            useShortDoctype: true,
-            removeComments: true,
-            collapseWhitespace: true,
-            minifyCSS: true,
-            minifyJS: true
-        });
-        return minified;
+    // Transforms
+    Object.keys(transforms).forEach(transformName => {
+        eleventyConfig.addTransform(transformName, transforms[transformName]);
     });
 
     /*
