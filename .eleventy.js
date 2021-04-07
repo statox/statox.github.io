@@ -13,6 +13,7 @@ const sitemap = require('@quasibit/eleventy-plugin-sitemap');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const wordCount = require('eleventy-plugin-wordcount').wordCount;
 
+const fs = require('fs');
 const filters = require('./tools/eleventy/filters.js');
 const collections = require('./tools/eleventy/collections.js');
 const transforms = require('./tools/eleventy/transforms.js');
@@ -33,6 +34,20 @@ module.exports = function (eleventyConfig) {
     // Transforms
     Object.keys(transforms).forEach(transformName => {
         eleventyConfig.addTransform(transformName, transforms[transformName]);
+    });
+
+    // Local 404 page
+    eleventyConfig.setBrowserSyncConfig({
+        callbacks: {
+            ready: function (err, browserSync) {
+                const content_404 = fs.readFileSync('docs/404.html');
+
+                browserSync.addMiddleware('*', (req, res) => {
+                    res.write(content_404);
+                    res.end();
+                });
+            }
+        }
     });
 
     /*
