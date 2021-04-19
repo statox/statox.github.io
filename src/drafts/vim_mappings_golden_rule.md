@@ -70,6 +70,20 @@ Distinction between ex commands and normal mode commands
 - Learn to debug your mappings/Be aware of the pitfalls
   - https://vi.stackexchange.com/q/7722/1841
 
+
+Now that we agree on the vocabulary let's get to the interesting part: How to make good mappings!
+
+The first and most important thing to remember is this:
+
+Never remap a built-in command
+
+Simple enough right? But what does that mean exactly and how do you make sure you don't do it?
+
+In normal mode remapping a built-in command has great chances of creating nasty side effects:
+
+- Built-in commands are useful and well thought-out
+ - Maybe you deem one as useless because you didn't manage to integrate it to your workflow
+
 ### Conclusion
 
 <!-- vim: set spell: -->
