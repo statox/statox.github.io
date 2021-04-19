@@ -18,8 +18,20 @@ alias mcf='myCoolFunction'
 Then create the completion function (best practice `underscore+function name`) which can be anywhere too. An interesting list of the helpers provided by zsh for the completion functions is [here](https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org).
 
 ```bash
+# Suggest words as completion options
 _myCoolFunction() {
     compadd "$@" foo bar baz
+}
+
+# Or have completion options with additional description
+_myCoolFunction() {
+    local -a options
+    options=(
+        'arg1:To do something'
+        'arg2:To do something else'
+        'arg3:A different argument'
+    )
+    _describe 'mcf' options
 }
 ```
 
