@@ -1401,7 +1401,7 @@ If you are not familiar with these options see &lt;a href=&quot;https://neovim.i
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;The hue value represent the raw color. It is expressed as an angle as shown on the color wheel here. This angle is between &lt;code&gt;0&lt;/code&gt;-&lt;code&gt;360&lt;/code&gt; degrees, but in a p5 sketch we map these values to the range &lt;code&gt;0&lt;/code&gt;-&lt;code&gt;100&lt;/code&gt;, and in a shader we will map it in the range &lt;code&gt;0.0&lt;/code&gt;-&lt;code&gt;1.0&lt;/code&gt;. But no matter which range we use the relative difference between the color is always the same.&lt;br /&gt;
-&lt;img src=&quot;https://www.statox.fr/posts/2021/images/color_picker_shader/color_wheel.png&quot; alt=&quot;color wheel&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://www.statox.fr/images/color_picker_shader/color_wheel.png&quot; alt=&quot;color wheel&quot; /&gt;&lt;/p&gt;
 &lt;center&gt;
     &lt;i&gt;Color wheel borrowed from &lt;a href=&quot;https://learnui.design/blog/the-hsb-color-system-practicioners-primer.html&quot;&gt;this site&lt;/a&gt;&lt;/i&gt;
 &lt;/center&gt;
