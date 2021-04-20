@@ -1,9 +1,9 @@
 ---
 layout: layouts/post.njk
-tags: ['draft', 'p5', 'shader']
+tags: ['post', 'p5', 'shader']
 date: 2021-04-15
-title: Using glsl shaders in p5js for the first time
-commentIssueId: 25
+title: A first exploration of shaders with p5js
+commentIssueId: 26
 ---
 
 For many years now I had the idea to play with shaders in the back of my mind but I had never dared looking into it because that seemed like a very complex topic which I didn't have time to dig into. A few days ago I finally started my first project using shaders and I want to share this experiment, both for documenting purpose so that I can build on top of that in future projects but also to show that it can be fairly easy to some satisfying results.
@@ -45,7 +45,7 @@ This first version allowed me to define the 3 main areas that I want to render w
 - The picker: The rectangle on the left with a gradient on the current hue, the user will be able to choose a specific saturation and brightness by clicking there;
 - The sample: The rectangle on the right which shows the currently selected color.
 
-![Picker zones](../../images/color_picker_shader/picker_zones.png)
+![Picker zones](../../../../images/color_picker_shader/picker_zones.png)
 
 ### A quick word about HSB
 
@@ -55,28 +55,42 @@ There is nothing too complex about it, and [this website](https://learnui.design
 
 - **HSB** stands for **H**ue, **S**aturation and **B**rightness.
 - The hue value represent the raw color. It is expressed as an angle as shown on the color wheel here. This angle is between `0`-`360` degrees, but in a p5 sketch we map these values to the range `0`-`100`, and in a shader we will map it in the range `0.0`-`1.0`. But no matter which range we use the relative difference between the color is always the same.
-  ![color wheel](../../images/color_picker_shader/color_wheel.png)
+  ![color wheel](../../../../images/color_picker_shader/color_wheel.png)
   <center>
       <i>Color wheel borrowed from <a href="https://learnui.design/blog/the-hsb-color-system-practicioners-primer.html">this site</a></i>
   </center>
 - The saturation is how rich the color is: A 100% saturation is very colorful while a 0% saturation is grey. With a 0% saturation no matter which hue you use you will always get the same grey
 
-  <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-    <a style="background-color: hsl(0, 0%, 50%);   color: black; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">0%</a>
-    <a style="background-color: hsl(0, 25%, 50%);  color: black; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">25%</a>
-    <a style="background-color: hsl(0, 50%, 50%);  color: white; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">50%</a>
-    <a style="background-color: hsl(0, 75%, 50%);  color: white; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">75%</a>
-    <a style="background-color: hsl(0, 100%, 50%); color: white; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">100%</a>
-  </div>
+  <p class='color-line'>
+    <span class='color-block text-black' style='background-color: hsl(0, 0%, 50%)'>0%</span>
+    <span class='color-block text-black' style='background-color: hsl(0, 25%, 50%)'>25%</span>
+    <span class='color-block text-black' style='background-color: hsl(0, 50%, 50%)'>50%</span>
+    <span class='color-block text-white' style='background-color: hsl(0, 75%, 50%)'>75%</span>
+    <span class='color-block text-white' style='background-color: hsl(0, 100%, 50%)'>100%</span>
+  </p>
+  <p class='color-line'>
+    <span class='color-block text-black' style='background-color: hsl(230, 0%, 50%)'>0%</span>
+    <span class='color-block text-black' style='background-color: hsl(230, 25%, 50%)'>25%</span>
+    <span class='color-block text-black' style='background-color: hsl(230, 50%, 50%)'>50%</span>
+    <span class='color-block text-white' style='background-color: hsl(230, 75%, 50%)'>75%</span>
+    <span class='color-block text-white' style='background-color: hsl(230, 100%, 50%)'>100%</span>
+  </p>
 
 - The brightness is how... bright is your color? Simply put: 0% brightness is complete black no matter the hue, 100% is white if saturation is 0% or just a very bright color.
-  <div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-    <a style="background-color: hsl(0, 100%, 0%);   color: white; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">0%</a>
-    <a style="background-color: hsl(0, 100%, 25%);  color: white; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">25%</a>
-    <a style="background-color: hsl(0, 100%, 50%);  color: black; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">50%</a>
-    <a style="background-color: hsl(0, 100%, 75%);  color: black; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">75%</a>
-    <a style="background-color: hsl(0, 100%, 100%); color: black; width: 100px; padding: 5px; text-align:center; text-decoration:none" href="#0">100%</a>
-  </div>
+  <p class='color-line'>
+    <span class='color-block text-white' style="background-color: hsl(0, 100%, 0%)">0%</span>
+    <span class='color-block text-white' style="background-color: hsl(0, 100%, 25%)">25%</span>
+    <span class='color-block text-white' style="background-color: hsl(0, 100%, 50%)">50%</span>
+    <span class='color-block text-black' style="background-color: hsl(0, 100%, 75%)">75%</span>
+    <span class='color-block text-black' style="background-color: hsl(0, 100%, 100%)">100%</span>
+  </p>
+  <p class='color-line'>
+    <span class='color-block text-white' style="background-color: hsl(230, 100%, 0%)">0%</span>
+    <span class='color-block text-white' style="background-color: hsl(230, 100%, 25%)">25%</span>
+    <span class='color-block text-white' style="background-color: hsl(230, 100%, 50%)">50%</span>
+    <span class='color-block text-black' style="background-color: hsl(230, 100%, 75%)">75%</span>
+    <span class='color-block text-black' style="background-color: hsl(230, 100%, 100%)">100%</span>
+  </p>
 
 Note that you'll also find online some references to the color systems **HSV** and **HSL**. If I believe the wikipedia page **HSV** is the exact same thing as **HSB** excepted **B**rightness is named **V**alue. And **HSL** is **H**ue, **S**aturation, **L**ightness which is kind of the inverse of Brightness (if you want details, check wiki they explain it better than I'll do).
 
@@ -115,7 +129,7 @@ This will use a shader named `basic` to draw a rectangle on screen. The interest
 - `shader.vert`
 - `shader.frag`
 
-These files are written with [GLSL](https://en.wikipedia.org/wiki/OpenGL_Shading_Language) which is a widely used language to program shaders, we will see an example right after.
+These files are written with [GLSL](https://en.wikipedia.org/wiki/OpenGL_Shading_Language) which is a widely used language to program shaders, this is the language we will use the shader files in the articles.
 
 My basic understanding is that the `vert` file is used to calculate the screen position of the different vertexes (i.e. points forming the shape) we want to draw. This comes in pretty useful when one needs to draw a 3D shape, but that also considerably increases the complexity of the shader. For now we will focus only on 2D drawings, so our `vert` file will be pretty simple and it will be the same in all of the shaders we will talk about in the rest of this article. It looks like this:
 
@@ -171,9 +185,9 @@ void main() {
 
 In a `frag` file you must set the `gl_FragColor` variable: This will tell the shader which color to use for the current pixel and that will stop the execution of the `main()` function. The `gl_FragColor` takes four components `R` (red), `G` (green), `B` (blue), `A` (alpha), which is a common way to describe a color with the [RGBA color system](https://en.wikipedia.org/wiki/RGBA_color_model). Note that usually the `RGB` components range between `0` and `255` but in a shader all values range between `0.0` and `1.0`, that's why red is `1.0, 0.0, 0.0` (and blue would be `0.0, 0.0, 1.0`)
 
-![Red rectangle](../../images/color_picker_shader/red_rectangle.png)
+![Red rectangle](../../../../images/color_picker_shader/red_rectangle.png)
 
-The result is a simple red rectangle but it is drawn by the GPU, we are heading the right way! We will be able to reuse this shader in the "sample" section of the color picker by passing the component of the color to the shader. We will see how to pass values to the shader in the next part.
+The result is a simple red rectangle but it is drawn by the GPU, we are heading the right way! We will be able to reuse this shader in the "sample" section of the color picker by passing the components of the color to the shader. We will see how to pass values to the shader in the next part.
 
 ### Rainbows 🌈
 
@@ -234,7 +248,7 @@ function draw() {
 
 Aaand: 🌈 RAINBOW 🌈
 
-![Rainbow rectangle](../../images/color_picker_shader/rainbow.png)
+![Rainbow rectangle](../../../../images/color_picker_shader/rainbow.png)
 
 ### The picker
 
@@ -283,7 +297,7 @@ theShader.setUniform('u_hue', [map(mouseX, 0, width, 0, 1)]);
 
 And here is our result!
 
-![Picker rectangle](../../images/color_picker_shader/picker_rectangle.gif)
+![Picker rectangle](../../../../images/color_picker_shader/picker_rectangle.gif)
 
 <center>
     <i>Don't be fooled by the potato 🥔 quality of my screencap, the actual webpage doesn't have these ugly artifacts.</i>
@@ -413,17 +427,17 @@ function draw() {
 
 And here we are!
 
-![The three rectangles of the color picker](../../images/color_picker_shader/picker_3_rectangles.png)
+![The three rectangles of the color picker](../../../../images/color_picker_shader/picker_3_rectangles.png)
 
-Now adding a bit of logic in our sketch to detect when the user clicks on the screen and convert the mouse position into the HSB values, doing a bit of conversions to get the RGB and hex values corresponding to the current selection and putting all of that in a terribly bad looking UI and we have a complete color picker:
+Now adding a bit of logic in our sketch to detect when the user clicks on the screen and convert the mouse position into the HSB values, doing some additional conversions to get the RGB and hex values corresponding to the current selection and putting all of that in a terribly bad looking UI and we have a complete color picker:
 
-![Demo of the complete color picker](../../images/color_picker_shader/color_picker_demo.gif)
+![Demo of the complete color picker](../../../../images/color_picker_shader/color_picker_demo.gif)
 
-An online demo is available [here](https://statox.github.io/color-picker/), it doesn't work very well on my iPhone but it looks like it's ok on both firefox and chromium.
+An online demo is available [here](https://statox.github.io/color-picker/), it doesn't work very well on my iPhone but it looks like it's ok on both Firefox and Chromium.
 
 ### A new world of opportunities
 
-This project was really fun to do and I hope that if you never played with shaders before it gave you some inspiration to do the same! I am really excited to use this new skill I learned because I've done a few simulations in the browser with p5 before but they were all limited by their performances. Offloading some of the work to the GPU should allow me to create simulations with much larger definitions. I'm thinking about trying to make a [Critters cellular automaton](https://en.wikipedia.org/wiki/Critters_(cellular_automaton)), exploring [fractal](https://www.shadertoy.com/view/lsX3W4) or maybe maps generation as seen in some of [Sebastian Lague's videos](https://www.youtube.com/channel/UCmtyQOKKmrMVaKuRXz02jbQ).
+This project was really fun to do and I hope that if you never played with shaders before it gave you some inspiration to do the same! I am really excited to use this new skill I learned because I've done [a few](https://www.statox.fr/posts/2020/11/ants/) [simulations](https://www.statox.fr/posts/2020/09/boids/) in the browser with p5 before but they were all limited by their performances. Offloading some of the work to the GPU should allow me to create simulations with much larger definitions. I'm thinking about trying to make a [Critters cellular automaton](https://en.wikipedia.org/wiki/Critters_(cellular_automaton)), exploring [fractal](https://www.shadertoy.com/view/lsX3W4) or maybe maps generation as seen in some of [Sebastian Lague's videos](https://www.youtube.com/channel/UCmtyQOKKmrMVaKuRXz02jbQ).
 
 If you also want to get started with shaders here is a list of some interesting resources:
 
@@ -433,6 +447,6 @@ If you also want to get started with shaders here is a list of some interesting 
 - [lea.codes](https://lea.codes/webgl/) - The personal website of a dev who does cool things with shaders and threejs
 - [The book of shaders](https://thebookofshaders.com/) - The Bible of shader programming
 
-If you know of some good other resources or want to discuss a project idea, leave a comment on this article!
+If you know of other good resources or want to discuss a project idea, leave a comment on this article!
 
 <!-- vim: set spell: -->
