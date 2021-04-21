@@ -1,0 +1,100 @@
+[
+    {
+        "demo_url": "https://statox.github.io/color-picker/",
+        "code_url": "https://github.com/statox/color-picker",
+        "image": "images/projects/color_picker.png",
+        "name": "Color picker",
+        "description": "A color picker implemented with GLSL shaders"
+    },
+    {
+        "demo_url": "https://statox.github.io/ants-colony-2/",
+        "code_url": "https://github.com/statox/ants-colony-2",
+        "image": "images/projects/ants_colony_v2.png",
+        "name": "Ants colony v2",
+        "description": "My second attempt at simulating a colony of ants. This is not completely finished as I need to fix a bug where the ants get stuck in infinite lines"
+    },
+    {
+        "demo_url": "https://statox.github.io/bezier-experiment/",
+        "code_url": "https://github.com/statox/bezier-experiment",
+        "image": "images/projects/bezier_experiment.png",
+        "name": "Bezier experiment",
+        "description": "Generate a smooth path between a set of points using Bezier curves. This is an exploration before digging into a racetrack generation project."
+    },
+    {
+        "demo_url": "https://statox.github.io/genetic-cars/",
+        "code_url": "https://github.com/statox/genetic-cars",
+        "image": "images/projects/genetic_cars.png",
+        "name": "Genetic cars",
+        "description": "Another genetic algorithm experiment, this time trying to control some cars on a racetrack. It would need a better track generation to have more situations to learn from, this is what inspired me the \"Bezier experiement\" project."
+    },
+    {
+        "demo_url": "https://statox.github.io/reversi/",
+        "code_url": "https://github.com/statox/reversi",
+        "image": "images/projects/reversi.png",
+        "name": "Reversi",
+        "description": "My implementation of the Reversi game with an AI opponent using the min max algorithm."
+    },
+    {
+        "demo_url": "https://statox.github.io/triomaster/",
+        "code_url": "https://github.com/statox/triomaster",
+        "image": "images/projects/triomaster.png",
+        "name": "Triomaster",
+        "description": "My implementation of the triomono game with a not very efficient AI opponent."
+    },
+    {
+        "demo_url": "https://breath.statox.fr/",
+        "code_url": "https://github.com/statox/breath",
+        "image": "images/projects/breath.png",
+        "name": "Breath",
+        "description": "A breathing exercise to help you relax."
+    },
+    {
+        "demo_url": "https://statox.github.io/ants-colony/",
+        "code_url": "https://github.com/statox/ants-colony",
+        "image": "images/projects/ants_colony.png",
+        "name": "Ants colony",
+        "description": "My first attempt at simulating an Ant colony. They go out of the anthill, look for food and use pheromones to get back home and form efficient paths."
+    },
+    {
+        "demo_url": "https://asteroides.statox.fr/",
+        "code_url": "https://github.com/statox/asteroides",
+        "image": "images/projects/asteroids.png",
+        "name": "Asteroids",
+        "description": "My implementation of the famous video game from the 80's Asteroids with my own sound effects as a bonus."
+    },
+    {
+        "demo_url": "https://statox.github.io/p5-maze/",
+        "code_url": "https://github.com/statox/p5-maze",
+        "image": "images/projects/mazes.png",
+        "name": "Maze",
+        "description": "Using several algorithms to generate mazes and then solve them with different methods."
+    },
+    {
+        "demo_url": "https://statox.github.io/p5-circles/",
+        "code_url": "https://github.com/statox/p5-circles",
+        "image": "images/projects/kitten_circles.png",
+        "name": "Kitten circles",
+        "description": "Using a circle packing algorithm to recreate pictures of kitten."
+    },
+    {
+        "demo_url": "https://statox.github.io/p5-cellular-automaton/",
+        "code_url": "https://github.com/statox/p5-cellular-automaton",
+        "image": "images/projects/cellular_automaton.png",
+        "name": "Cellular automaton",
+        "description": "A cellular automaton framework in the browser: Test different neighboring rules and survival conditions to recreate the Game of Life or discover new automaton."
+    },
+    {
+        "demo_url": "https://statox.github.io/p5-genetics/",
+        "code_url": "https://github.com/statox/p5-genetics",
+        "image": "images/projects/genetic_robots.png",
+        "name": "Genetic robots",
+        "description": "My first attempt at using genetic algorithms. Trying to teach a flock of Roombas to reach a target."
+    },
+    {
+        "demo_url": "https://statox.github.io/p5-pool/",
+        "code_url": "https://github.com/statox/p5-pool",
+        "image": "images/projects/pool.png",
+        "name": "Pool",
+        "description": "A pool with a homemade physics engine."
+    }
+]

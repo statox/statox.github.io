@@ -25,6 +25,10 @@
     {% include "css/minesweeper.css" %}
 {% endif %}
 
+{% if 'projects' in page.url %}
+    {% include "css/projects.css" %}
+{% endif %}
+
 {% if 'color_picker_shader' in page.url %}
     {% include "css/colorpicker.css" %}
 {% endif %}

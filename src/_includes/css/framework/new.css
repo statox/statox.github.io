@@ -9,6 +9,7 @@
  * --nc-tx-1: Heading text color
  * --nc-tx-2: Body text color
  * --nc-tx-3: Subheading text color
+ * --nc-bg-0: More contrasted background color
  * --nc-bg-1: Base background color
  * --nc-bg-2: Slightly darker background color
  * --nc-bg-3: Even slightly darker background color
@@ -25,6 +26,7 @@
     --nc-tx-1: #000000;
     --nc-tx-2: #1A1A1A;
     --nc-tx-3: #6d7169;
+    --nc-bg-0: #CECECE;
     --nc-bg-1: #FFFFFF;
     --nc-bg-2: #F6F8FA;
     --nc-bg-3: #E5E7EB;
@@ -38,6 +40,7 @@
     --nc-d-tx-1: #ffffff;
     --nc-d-tx-2: #eeeeee;
     --nc-d-tx-3: #8a8d87;
+    --nc-d-bg-0: #13191c;
     --nc-d-bg-1: #000000;
     --nc-d-bg-2: #111111;
     --nc-d-bg-3: #222222;
@@ -52,6 +55,7 @@
     :root {
         --nc-tx-1: var(--nc-d-tx-1);
         --nc-tx-2: var(--nc-d-tx-2);
+        --nc-bg-0: var(--nc-d-bg-0);
         --nc-bg-1: var(--nc-d-bg-1);
         --nc-bg-2: var(--nc-d-bg-2);
         --nc-bg-3: var(--nc-d-bg-3);
