@@ -4,6 +4,7 @@
 
 const eleventyNavigation = require('@11ty/eleventy-navigation');
 const markdownIt = require('markdown-it');
+const markdownItAnchor = require('markdown-it-anchor');
 const markdownItEmoji = require('markdown-it-emoji');
 const markdownItExternalLinks = require('markdown-it-external-links');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
@@ -73,20 +74,26 @@ module.exports = function (eleventyConfig) {
     /*
      * Markdown parsing configuration
      */
-    let markdownItOptions = {
+    const markdownItOptions = {
         html: true, // Enable HTML tags in source
         breaks: true, // Convert '\n' in paragraphs into <br>
         linkify: true // Convert text looking like a link to a link
     };
 
     // Open external links in new tabs
-    let markdownItExternalLinksOptions = {
+    const markdownItExternalLinksOptions = {
         externalClassName: null,
         externalRel: 'noopener noreferrer',
         externalTarget: '_blank'
     };
 
+    const markdownItAnchorOptions = {
+        permalink: true,
+        permalinkSymbol: '🔗'
+    };
+
     let markdownLib = markdownIt(markdownItOptions)
+        .use(markdownItAnchor, markdownItAnchorOptions)
         .use(markdownItExternalLinks, markdownItExternalLinksOptions)
         .use(markdownItEmoji);
 

@@ -49,3 +49,7 @@ img {
 ul {
     list-style-type: circle;
 }
+
+.header-anchor {
+    font-size: small;
+}

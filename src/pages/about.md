@@ -15,7 +15,13 @@ I am Adrien (aka statox), a server software engineer at [Dashlane](https://www.d
 
 This website is just a place for me to talk a bit about my side projects and keep a few notes for myself. You will find stuff about the topics that I like (in no particular order): Vim, Linux and system administration, doing fun simulations and games in the browser, DIY projects, improving people's privacy on the internet and software development in general.
 
-You can check [my social page]({{ '/social/' | url}}) to contact me.
+### Social
+
+You can email me at <code>me AT statox DOT fr</code> or reach out to me on any of these social platforms:
+
+- [Github](https://github.com/statox/) - Where I host my side projects and experiments.
+- [vi.stackexchange](https://vi.stackexchange.com/users/1841/statox) - Where I've been a moderator for a few years and try to be helpful to other Vim users.
+- [Linked in](https://www.linkedin.com/in/adrien-fabre-7a30994b/) - Where you can contact me if you want to.
 
 ### Technology on this site
 
