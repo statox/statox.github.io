@@ -37,3 +37,4 @@ The source code of the site is [on Github](https://github.com/statox/blog/) and 
 
 [CI On Github Actions](https://github.com/statox/blog/actions/)
 ![Build Status](https://github.com/statox/blog/actions/workflows/deploy.yml/badge.svg)
+Last build: {{ "" | buildInfo }}
