@@ -4,7 +4,7 @@ title: Ring
 permalink: "/ring/"
 eleventyNavigation:
   key: Ring
-  order: 6
+  order: 7
 ---
 
 ### Sharing is caring

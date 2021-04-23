@@ -1,0 +1,70 @@
+.projects-board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.project-card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 10px;
+    background: var(--nc-bg-0);
+    padding-top: 10px;
+    margin: 10px;
+
+    /* By default two cards by row */
+    /* Need a bit less of 50% because of the margin (I think) */
+    width: 47%;
+}
+
+/* On smaller screens 1 card by row */
+@media screen and (max-width: 600px) {
+    .project-card {
+        width: 100%;
+    }
+}
+
+/* On mouse-over, add a deeper shadow */
+.project-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    padding-top: 0px;
+}
+/* Trying to use active because hover doesn't work on mobile */
+.project-card:active {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    padding-top: 0px;
+}
+
+/* On mouse-over, mark the name as clickable */
+.project-card:hover div h3 {
+    color: var(--nc-lk-2);
+}
+.project-card:active div h3 {
+    color: var(--nc-lk-2);
+}
+
+.project-img {
+    width: 80%;
+    height: 250px;
+    transition: 0.3s;
+    border-radius: 10px 10px 10px 10px;
+    margin-bottom: auto;
+}
+
+.project-card:hover .project-img {
+    width: 100%
+}
+.project-card:active .project-img {
+    width: 100%
+}
+
+.text-overlay {
+    padding: 2px 16px;
+    border-radius: 0 0 10px 10px;
+}
+
+h3.project-title {
+    border-bottom: none;
+    color: var(--nc-tx-1);
+}

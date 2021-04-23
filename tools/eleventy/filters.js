@@ -1,3 +1,35 @@
+function currentCommitHash() {
+    if (process.env.ELEVENTY_ENV !== 'prod') {
+        return 'Dev env - no commit';
+    }
+    if (!process.env.GITHUB_SHA) {
+        return 'Unknown - something probably went wrong';
+    }
+    const sha = process.env.GITHUB_SHA;
+    const shortSha = process.env.GITHUB_SHA.slice(0, 7);
+    const url = `https://github.com/statox/blog/commit/${sha}`;
+    return `[${shortSha}](${url})`;
+}
+
+function currentBuildInfo() {
+    const pad = v => v.toString().padStart(2, '0');
+    const now = new Date();
+    const day = pad(now.getDate());
+    const month = pad(now.getMonth() + 1);
+    const year = now.getFullYear();
+    const hours = pad(now.getHours());
+    const minutes = pad(now.getMinutes());
+    const nowStr = `${day}/${month}/${year} ${hours}:${minutes}`;
+
+    const buildId = process.env.GITHUB_RUN_ID || '';
+    const url = `https://github.com/statox/blog/actions/runs/${buildId}`;
+    return `[${nowStr}](${url})`;
+}
+
+function buildInfo() {
+    return currentCommitHash() + ' - ' + currentBuildInfo();
+}
+
 // Posts dates in home page
 function datePost(date) {
     const year = date.getFullYear();
@@ -58,6 +90,7 @@ function pageTitle(title) {
 }
 
 module.exports = {
+    buildInfo,
     datePost,
     noteTags,
     relatedPosts,

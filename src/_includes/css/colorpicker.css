@@ -1,0 +1,25 @@
+.color-line {
+    display: flex;
+    flex: 0 auto;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+.color-block {
+    color: black;
+    width: 300px;
+    height: 50px;
+    text-align:center;
+    text-decoration:none;
+    font-weight: bold;
+    border: grey;
+
+}
+
+.text-white {
+    color: #fff;
+}
+
+.text-black {
+    color: #000;
+}

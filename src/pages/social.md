@@ -4,7 +4,7 @@ title: Social
 permalink: "/social/"
 eleventyNavigation:
   key: Social
-  order: 5
+  order: 6
 ---
 
 ## Social
