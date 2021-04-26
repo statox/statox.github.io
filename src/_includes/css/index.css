@@ -46,6 +46,10 @@ img {
   margin-right: auto;
 }
 
+ul.post-list {
+    list-style-type: none;
+}
+
 ul {
     list-style-type: circle;
 }
