@@ -44,24 +44,24 @@ It turns out that for a game of Othello there are a lot of different possibiliti
 While I was implementing my different AIs I needed to compare them together to make sure I was heading in the right direction, so in addition of the GUI I also developed a testing program which runs thousands of games and collects some simple statistics. Here are some results:
 
 |Random vs. Random | win percentages | nb of games won|
-|------------------|-----------------|----------------|
-|player 1 (Random) | 49.11%          | 4911           |
-|player 2 (Random) | 50.89%          | 5089           |
+|:-----------------|----------------:|---------------:|
+|Random            | 49.11%          | 4911           |
+|Random            | 50.89%          | 5089           |
 
 |Random vs. Most disks | win percentages | nb of games won|
-|----------------------|-----------------|----------------|
-|player 1 (Random)     | 42.82%          | 4282           |
-|player 2 (Most disks) | 57.18%          | 5718           |
+|:---------------------|----------------:|---------------:|
+|Random                | 42.82%          | 4282           |
+|Most disks            | 57.18%          | 5718           |
 
 |Random vs. MinMax (depth 3) | win percentages | nb of games won| avg. nodes evaluated by turn|
-|----------------------------|-----------------|----------------|-----------------------------|
-|player 1 (Random)           | 26.55%          | 478            |                             |
-|player 2 (MinMax)           | 73.44%          | 1322           | 12 179 319                  |
+|:---------------------------|----------------:|---------------:|----------------------------:|
+|Random                      | 26.55%          | 478            | -                           |
+|MinMax                      | 73.44%          | 1322           | 12 179 319                  |
 
 |Random vs. AlphaBeta (depth 3) | win percentages | nb of games won| avg. nodes evaluated by turn|
-|-------------------------------|-----------------|----------------|-----------------------------|
-|player 1 (Random)              | 35.33%          | 1590           |                             |
-|player 2 (AlphaBeta)           | 64.66%          | 2910           | 2 785 672                   |
+|:------------------------------|----------------:|---------------:|----------------------------:|
+|Random                         | 35.33%          | 1590           | -                           |
+|AlphaBeta                      | 64.66%          | 2910           | 2 785 672                   |
 
 Nothing really surprising here but at least the results seem to be pretty coherent with what I was expecting:
 

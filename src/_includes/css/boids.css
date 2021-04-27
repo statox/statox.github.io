@@ -10,3 +10,7 @@ div.boids tr.settings-table-values td {
     vertical-align: top;
     text-align: center;
 }
+
+div.boids th {
+    text-align: center;
+}

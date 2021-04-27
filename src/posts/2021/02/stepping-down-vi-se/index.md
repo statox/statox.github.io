@@ -25,16 +25,16 @@ Here is are a few general numbers that I pulled from [data.se](https://data.stac
 <table>
     <thead>
         <tr>
-            <th></th>
-            <th>April 2015</th>
-            <th>February 2021</th>
+            <th style="text-align: right;"></th>
+            <th style="text-align: center;">April 2015</th>
+            <th style="text-align: center;">February 2021</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>Number of users</td>
-            <td>1773</td>
-            <td>29745</td>
+            <td style="text-align: left;">Number of users</td>
+            <td style="text-align: center;">1773</td>
+            <td style="text-align: center;">29745</td>
         </tr>
         <tr>
             <td>Number of posts</td>
@@ -42,22 +42,22 @@ Here is are a few general numbers that I pulled from [data.se](https://data.stac
                 <table>
                     <thead>
                         <tr>
-                            <th>Type of post</th>
-                            <th>Count</th>
+                            <th style="text-align: left;">Type of post</th>
+                            <th style="text-align: right;">Count</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Question</td>
-                            <td>643</td>
+                            <td style="text-align: left;">Question</td>
+                            <td style="text-align: right;">643</td>
                         </tr>
                         <tr>
-                            <td>Answer</td>
-                            <td>1146</td>
+                            <td style="text-align: left;">Answer</td>
+                            <td style="text-align: right;">1146</td>
                         </tr>
                         <tr>
-                            <td>Tag wiki</td>
-                            <td>81</td>
+                            <td style="text-align: left;">Tag wiki</td>
+                            <td style="text-align: right;">81</td>
                         </tr>
                     </tbody>
                 </table>
@@ -66,22 +66,22 @@ Here is are a few general numbers that I pulled from [data.se](https://data.stac
                 <table>
                     <thead>
                         <tr>
-                            <th>Type of post</th>
-                            <th>Count</th>
+                            <th style="text-align: left;">Type of post</th>
+                            <th style="text-align: right;">Count</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Question</td>
-                            <td>10405</td>
+                            <td style="text-align: left;">Question</td>
+                            <td style="text-align: right;">10405</td>
                         </tr>
                         <tr>
-                            <td>Answer</td>
-                            <td>13747</td>
+                            <td style="text-align: left;">Answer</td>
+                            <td style="text-align: right;">13747</td>
                         </tr>
                         <tr>
-                            <td>Tag wiki</td>
-                            <td>229</td>
+                            <td style="text-align: left;">Tag wiki</td>
+                            <td style="text-align: right;">229</td>
                         </tr>
                     </tbody>
                 </table>

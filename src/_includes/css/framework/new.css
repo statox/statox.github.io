@@ -407,18 +407,13 @@ table {
 
 td,
 th {
-    border: 1px solid var(--nc-bg-3);
     text-align: left;
     padding: .5rem;
 }
 
 th {
-    background: var(--nc-bg-2);
-}
-
-tr:nth-child(even) {
-    /* Set every other cell slightly darker. Improves readability. */
-    background: var(--nc-bg-2);
+    font-weight: normal;
+    border-bottom: 1px solid var(--nc-tx-1);
 }
 
 table caption {
