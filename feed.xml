@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2021-04-15T00:00:00Z</updated>
+  <updated>2021-05-05T00:00:00Z</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -1519,6 +1519,21 @@ If you are not familiar with these options see &lt;a href=&quot;https://neovim.i
 &lt;li&gt;&lt;a href=&quot;https://thebookofshaders.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;The book of shaders&lt;/a&gt; - The Bible of shader programming&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If you know of other good resources or want to discuss a project idea, leave a comment on this article!&lt;/p&gt;
+&lt;!-- vim: set spell: --&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>How to become a great technical interviewer</title>
+    <link href="https://www.statox.fr/posts/2021/05/becoming_a_good_technical_interviewer/"/>
+    <updated>2021-05-05T00:00:00Z</updated>
+    <id>https://www.statox.fr/posts/2021/05/becoming_a_good_technical_interviewer/</id>
+    <content type="html">&lt;p&gt;I&#39;ve been a software engineer at Dashlane for a bit more than two years now and amongst the different things that I enjoy in this job there is the fact that I am trusted to lead technical interviews for candidates joining my team and sometimes other teams.&lt;/p&gt;
+&lt;p&gt;I never had the opportunity to be on this side of the interview table before so for me it was a great challenge to learn how to lead a technical discussion while assessing the skills of the person being interviewed.&lt;/p&gt;
+&lt;p&gt;I believe that after two years of interviewing and more than 40 interviews (&lt;em&gt;and counting!&lt;/em&gt;) I grew the skills to be a good technical interviewer. So I decided to write a series of two articles to help other software engineers to become great interviewers. These articles are now published on &lt;a href=&quot;https://blog.dashlane.com/category/engineering/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Dashlane engineering blog&lt;/a&gt; 🎉&lt;/p&gt;
+&lt;p&gt;The first article &lt;a href=&quot;https://blog.dashlane.com/how-to-create-a-good-problem-solving-interview/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;How to create a good problem solving interview&lt;/a&gt; focuses on the strategy to create a problem solving interview which is interesting for the candidate and allows the interviewer to assess the right skills and compare candidates on objective data.&lt;/p&gt;
+&lt;p&gt;The second article &lt;a href=&quot;https://blog.dashlane.com/becoming-a-good-technical-interviewer/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Becoming a good technical interviewer&lt;/a&gt; focuses on tips for people who never lead an interview before and who might -like me- have doubts about how to start doing it the right way.&lt;/p&gt;
+&lt;p&gt;I&#39;m quite proud of these pieces of writing because I think there are some interesting information which can be useful to a lot of people. Also it was a great opportunity to see how much proofreading by native English speaker my writing needs, which makes me think that the articles of this blog are most probably filled with weird sentences and terrible grammatical mistakes. But hey, I&#39;m doing this for fun so... 🤷&lt;/p&gt;
 &lt;!-- vim: set spell: --&gt;
 </content>
   </entry>

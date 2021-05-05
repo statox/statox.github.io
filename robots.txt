@@ -2,3 +2,4 @@ Sitemap: https://www.statox.fr/sitemap.xml
 User-Agent: *
 Disallow: /uploads/
 Disallow: /drafts/
+Disallow: /mirror/
