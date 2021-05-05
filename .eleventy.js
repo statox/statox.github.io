@@ -108,6 +108,7 @@ module.exports = function (eleventyConfig) {
      * Passthroughs: Copy ./dir/ to docs/dir/
      */
     eleventyConfig.addPassthroughCopy('fonts');
+    eleventyConfig.addPassthroughCopy('mirror');
     eleventyConfig.addPassthroughCopy({'./assets/images': '/images'});
 
     if (env === 'prod') {
