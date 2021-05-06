@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-mirror
+data: mirrors
+---
+
+<h2>Mirrors</h2>
+
+<p>This is a bunch of pages that I want to keep a copy of because nothing last forever on the internet.<p>
+
+{%- for mirror in mirrors -%}
+    <div>
+    <h3>{{mirror.title}}</h3>
+    <p>{{mirror.description}}</p>
+    <p>
+    <a target="_blank" rel="noopener noreferrer" href="{{mirror.originalUrl}}">Source</a>
+    <a target="_blank" rel="noopener noreferrer" href="{{mirror.localSlug|url}}">Mirror</a>
+    </p>
+    </div>
+{%- endfor -%}
