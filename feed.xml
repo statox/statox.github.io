@@ -4,7 +4,7 @@
   <subtitle>statox&#39;s blog</subtitle>
   <link href="https://www.statox.fr/feed.xml" rel="self"/>
   <link href="https://www.statox.fr/"/>
-  <updated>2021-05-05T00:00:00Z</updated>
+  <updated>2021-05-24T00:00:00Z</updated>
   <id>https://www.statox.fr/</id>
   <author>
     <name>statox</name>
@@ -1542,7 +1542,7 @@ If you are not familiar with these options see &lt;a href=&quot;https://neovim.i
   <entry>
     <title>Javascript codegolf tips</title>
     <link href="https://www.statox.fr/posts/2021/05/javascript_golf_tips/"/>
-    <updated>2021-05-05T00:00:00Z</updated>
+    <updated>2021-05-24T00:00:00Z</updated>
     <id>https://www.statox.fr/posts/2021/05/javascript_golf_tips/</id>
     <content type="html">&lt;center&gt;
 &lt;i style=&quot;color: grey;&quot;&gt;This page is a work in progress. I want to keep adding stuff I already know when I think of using it and new stuff when I discover it.&lt;/i&gt;
