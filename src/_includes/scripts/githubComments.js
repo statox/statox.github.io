@@ -61,9 +61,9 @@ function appendComments(comments) {
     comments.forEach(function (comment) {
         const formattedDate = formatCommentDate(new Date(comment.created_at));
         const commentHeader =
-            `<a href="${comment.user.html_url} target="_blank">${comment.user.login}</a>` +
+            `<a href="${comment.user.html_url} rel="noopener noreferrer" target="_blank">${comment.user.login}</a>` +
             ' on ' +
-            `<a href="${comment.html_url}" target="_blank">${formattedDate}</a>`;
+            `<a href="${comment.html_url}" rel="noopener noreferrer" target="_blank">${formattedDate}</a>`;
 
         let result = '';
         result += '<div class="comment">';
