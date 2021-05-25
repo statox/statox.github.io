@@ -15,9 +15,9 @@ I love to play on [codingame](https://www.codingame.com) it's a great way to kee
 
 There are several types of clashes (fastest to get the right solution, reverse engineering and shortest code) and recently the shortest code became one of my favorite. Since I start to have a decent ranking I compiled some tricks I use in javascript to shorten my code. Some save several bytes and other only save a few but learning how to combine them and when to use them can lead a long way.
 
-![My ranking on May 24th 2021](./clash_of_code_rank.png)
+![My ranking on May 25th 2021](./clash_of_code_rank.png)
 <center>
-<i>Rank: 432/252.316 - At one point I even got under 300 but forgot to screenshot it 🤦</i>
+<i>My ranking on 25/05/21: 397/252.815 Top 0.16%😎</i>
 </center>
 
 
@@ -67,10 +67,22 @@ for(;;)
 
 #### Declarations in `for` loop first statement
 
-In javascript you can combine some statements with `,` and this can be used to put a lot of things. This is a simple example but it can get much more complex and powerful:
+In javascript you can combine some statements with `,` and this can be used to put a lot of things. Say you need to read two values and then iterate between these two:
 
 ```javascript
-for(i=0,a=1;i<10;i++)
+// 44 bytes
+a=readline()
+b=readline()
+for(i=a;i<b;i++)
+
+// 37 bytes
+for(b=realine(a=readline();a<b;a++)
+```
+
+Here is an example of a code I made for a challenge using this kind of declarations:
+
+```javascript
+for(r=readline,n=+r(m=+r(t=0)+1);m<n;m++){for(j=T=0,S=[...m+""],L=S.length;j<L;j++)T+=S[j]**L;t+=T==m}print(t)
 ```
 
 #### `for (... of ...)`
@@ -146,6 +158,20 @@ y<x?x:y
 0.5 === .5 // true
 ```
 
+### The ternary operator
+
+[The ternary operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) is precious to avoid lengthy conditional expressions.
+
+Always be mindful of what you use in your conditional expressions, sometimes putting them in another way can save a byte or two while preserving the same feature:
+
+```javascript
+r=a<10?a+'0':a
+r=a>9?a:a+'0'
+
+r=a==b?'same':a>b?'higher':'lower'
+r=a>b?'higher':a<b?'lower':'same'
+```
+
 ### Codingame particularities
 
 These tips are only useful on the codingame website.
@@ -213,5 +239,18 @@ To pass your result to codingame validators you need to write it to the standard
 console.log('valid')
 print('valid')
 ```
+
+#### Stop your program with an invalid command
+
+In some cases where you need to stop your program immediately it is possible to use an invalid instruction rather than trying to use e.g. `process.exit()`.
+
+This work because codingame validate the standard output of your program but not that it ran without errors. This is a bogus example just to show my point: Imagine you need to iterate through a list looking for the first value matching a condition, knowing that several values will match it. You'll want to avoid printing the next values so you need to stop the program altogether. You could use `process.exit()` but using `Z` (assuming that you didn't define the variable) is much shorter:
+
+```javascript
+if (//condition)print(result),process.exit()
+if (//condition)print(result),Z
+```
+
+Arguably this is not an example drawn from an actual challenge and in most of the case one could use `[array].find()` or a similar function instead of iterating through the loop. But in some rare situations that can be useful.
 
 <!-- vim: set spell: -->
